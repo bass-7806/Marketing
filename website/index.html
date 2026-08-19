@@ -3,275 +3,289 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Bwell — สุขภาพดีในทุกมิติของชีวิต | Total Wellness for Everyday Life</title>
-  <meta name="description" content="Bwell แบรนด์เครื่องใช้ไฟฟ้าเพื่อสุขภาพ — เครื่องฟอกอากาศ เครื่องกรองน้ำ หุ่นยนต์ดูดฝุ่น เก้าอี้เพื่อสุขภาพ และอีกมากมาย เรามอบประสบการณ์แบรนด์ที่ดีที่สุดให้แก่คุณ">
+  <title>Bwell — สุขภาพดีในทุกมิติของชีวิต</title>
+  <meta name="description" content="Bwell แบรนด์เครื่องใช้ไฟฟ้าเพื่อสุขภาพ — เครื่องฟอกอากาศ เครื่องกรองน้ำ หุ่นยนต์ดูดฝุ่น เก้าอี้เพื่อสุขภาพ และ Bwell Beauty. Total wellness for everyday life.">
   <meta property="og:title" content="Bwell — สุขภาพดีในทุกมิติของชีวิต">
   <meta property="og:description" content="Total wellness for everyday life — We Deliver The Top Brand Experiences.">
   <meta property="og:type" content="website">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Kanit:wght@300;400;500;700&family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Kanit:wght@300;400;500;600;700&family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="css/style.css">
   <link rel="icon" type="image/svg+xml" href='data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 56 56"><circle cx="16" cy="16" r="13" fill="%23008ad0"/><circle cx="40" cy="16" r="13" fill="none" stroke="%23008ad0" stroke-width="6"/><circle cx="16" cy="40" r="13" fill="none" stroke="%23008ad0" stroke-width="6"/><circle cx="40" cy="40" r="13" fill="%23008ad0"/></svg>'>
 </head>
 <body>
 
-  <!-- ===== Header ===== -->
-  <header class="site-header" id="top">
-    <div class="container header-inner">
-      <a href="#top" class="brand" aria-label="Bwell — หน้าแรก">
-        <img src="assets/logos/Logo_Bwell_BG_White.webp" alt="Bwell" class="brand-logo">
+  <!-- ===== Announcement ribbon ===== -->
+  <div class="ribbon">
+    <p>แคมเปญ 9.9 กำลังจะมาถึง — รับสิทธิพิเศษก่อนใครทาง LINE OA <a href="#contact">สมัครเลย&nbsp;›</a></p>
+  </div>
+
+  <!-- ===== Global nav (slim, translucent) ===== -->
+  <header class="globalnav" id="top">
+    <nav class="globalnav-inner" aria-label="เมนูหลัก">
+      <a href="#top" class="gn-logo" aria-label="Bwell — หน้าแรก">
+        <svg viewBox="0 0 56 56" aria-hidden="true">
+          <circle cx="16" cy="16" r="13" fill="currentColor"/>
+          <circle cx="40" cy="16" r="13" fill="none" stroke="currentColor" stroke-width="6"/>
+          <circle cx="16" cy="40" r="13" fill="none" stroke="currentColor" stroke-width="6"/>
+          <circle cx="40" cy="40" r="13" fill="currentColor"/>
+        </svg>
+        <span>Bwell</span>
       </a>
-      <nav class="main-nav" id="mainNav" aria-label="เมนูหลัก">
-        <a href="#products">สินค้าของเรา</a>
-        <a href="#why-bwell">ทำไมต้อง Bwell</a>
-        <a href="#beauty">Bwell Beauty</a>
-        <a href="#promotions">โปรโมชั่น</a>
+      <div class="gn-links" id="gnLinks">
+        <a href="#air">เครื่องฟอกอากาศ</a>
+        <a href="#robot">หุ่นยนต์ดูดฝุ่น</a>
+        <a href="#water">เครื่องกรองน้ำ</a>
+        <a href="#beauty">Beauty</a>
+        <a href="#chair">เก้าอี้สุขภาพ</a>
+        <a href="#vacuum">เครื่องดูดฝุ่น</a>
+        <a href="#promo">โปรโมชั่น</a>
         <a href="#contact">ติดต่อเรา</a>
-      </nav>
-      <a href="#products" class="btn btn-primary header-cta">เลือกซื้อสินค้า</a>
-      <button class="nav-toggle" id="navToggle" aria-label="เปิด/ปิดเมนู" aria-expanded="false">
-        <span></span><span></span><span></span>
-      </button>
-    </div>
+      </div>
+      <button class="gn-toggle" id="gnToggle" aria-label="เปิด/ปิดเมนู" aria-expanded="false"><span></span><span></span></button>
+    </nav>
   </header>
 
   <main>
 
-    <!-- ===== Hero ===== -->
-    <section class="hero">
-      <div class="hero-bg-circles" aria-hidden="true">
-        <svg viewBox="0 0 56 56" class="hero-circles">
-          <circle cx="16" cy="16" r="13" fill="rgba(255,255,255,.08)"/>
-          <circle cx="40" cy="16" r="13" fill="none" stroke="rgba(255,255,255,.08)" stroke-width="6"/>
-          <circle cx="16" cy="40" r="13" fill="none" stroke="rgba(255,255,255,.08)" stroke-width="6"/>
-          <circle cx="40" cy="40" r="13" fill="rgba(255,255,255,.08)"/>
+    <!-- ===== Tile 1 — Air Purifier (dark, full-bleed) ===== -->
+    <section class="tile tile-dark tile-hero" id="air">
+      <div class="tile-copy reveal">
+        <h1>เครื่องฟอกอากาศ Bwell</h1>
+        <p class="tile-sub">อากาศสะอาดทุกลมหายใจ จัดการ PM2.5 และสารก่อภูมิแพ้ได้อย่างมั่นใจ</p>
+        <div class="tile-links">
+          <a class="link-arrow" href="#contact">ดูเพิ่มเติม <span>›</span></a>
+          <a class="link-arrow" href="#contact">ซื้อเลย <span>›</span></a>
+        </div>
+      </div>
+      <div class="tile-visual reveal" aria-hidden="true">
+        <svg viewBox="0 0 480 300" class="pv pv-air">
+          <defs>
+            <linearGradient id="airBody" x1="0" y1="0" x2="0" y2="1">
+              <stop offset="0" stop-color="#3b4754"/><stop offset="1" stop-color="#171c22"/>
+            </linearGradient>
+            <radialGradient id="airGlow" cx=".5" cy=".5" r=".5">
+              <stop offset="0" stop-color="#008ad0" stop-opacity=".55"/><stop offset="1" stop-color="#008ad0" stop-opacity="0"/>
+            </radialGradient>
+          </defs>
+          <ellipse cx="240" cy="160" rx="220" ry="130" fill="url(#airGlow)"/>
+          <path d="M310 40 q60 -18 96 6M330 70 q52 -14 84 6M350 100 q40 -10 64 6" fill="none" stroke="#59c2f7" stroke-width="5" stroke-linecap="round" opacity=".75"/>
+          <rect x="165" y="45" width="150" height="230" rx="42" fill="url(#airBody)"/>
+          <rect x="165" y="45" width="150" height="230" rx="42" fill="none" stroke="#5b6a79" stroke-width="1.5"/>
+          <circle cx="240" cy="120" r="34" fill="#0e1318" stroke="#008ad0" stroke-width="5"/>
+          <text x="240" y="128" text-anchor="middle" font-family="Poppins, Arial" font-size="20" font-weight="600" fill="#59c2f7">15</text>
+          <g fill="#5b6a79">
+            <circle cx="205" cy="200" r="4"/><circle cx="228" cy="200" r="4"/><circle cx="251" cy="200" r="4"/><circle cx="274" cy="200" r="4"/>
+            <circle cx="205" cy="222" r="4"/><circle cx="228" cy="222" r="4"/><circle cx="251" cy="222" r="4"/><circle cx="274" cy="222" r="4"/>
+            <circle cx="205" cy="244" r="4"/><circle cx="228" cy="244" r="4"/><circle cx="251" cy="244" r="4"/><circle cx="274" cy="244" r="4"/>
+          </g>
         </svg>
       </div>
-      <div class="container hero-inner">
-        <p class="hero-eyebrow reveal">Total Wellness for Everyday Life</p>
-        <h1 class="reveal">สุขภาพดี<br>ในทุกมิติของชีวิต</h1>
-        <p class="hero-sub reveal">เครื่องใช้ไฟฟ้าเพื่อสุขภาพสำหรับทุกคนในครอบครัว — อากาศสะอาด น้ำบริสุทธิ์
-          บ้านที่สบาย และการพักผ่อนที่ดีกว่า เพราะสุขภาพคือการลงทุนที่คุ้มค่าที่สุด</p>
-        <div class="hero-actions reveal">
-          <a href="#products" class="btn btn-light">ดูสินค้าทั้งหมด</a>
-          <a href="#why-bwell" class="btn btn-outline-light">ทำไมต้อง Bwell</a>
+    </section>
+
+    <!-- ===== Tile 2 — Robot Vacuum (light, full-bleed) ===== -->
+    <section class="tile tile-light tile-hero" id="robot">
+      <div class="tile-copy reveal">
+        <h2 class="h1">หุ่นยนต์ดูดฝุ่น</h2>
+        <p class="tile-sub">บ้านสะอาดอัตโนมัติทุกวัน ให้เวลาคุณอยู่กับสิ่งที่สำคัญกว่า</p>
+        <div class="tile-links">
+          <a class="link-arrow" href="#contact">ดูเพิ่มเติม <span>›</span></a>
+          <a class="link-arrow" href="#contact">ซื้อเลย <span>›</span></a>
         </div>
-        <p class="hero-tagline reveal">เรามอบประสบการณ์แบรนด์ที่ดีที่สุดให้แก่คุณ — <em>We Deliver The Top Brand Experiences.</em></p>
+      </div>
+      <div class="tile-visual reveal" aria-hidden="true">
+        <svg viewBox="0 0 480 260" class="pv pv-robot">
+          <defs>
+            <linearGradient id="robBody" x1="0" y1="0" x2="0" y2="1">
+              <stop offset="0" stop-color="#ffffff"/><stop offset="1" stop-color="#d9dee3"/>
+            </linearGradient>
+          </defs>
+          <ellipse cx="240" cy="215" rx="150" ry="18" fill="#c3cbd3" opacity=".55"/>
+          <path d="M60 214 q-18 0 -12 -12l6 -10M420 214 q18 0 12 -12l-6 -10" fill="none" stroke="#a8aaad" stroke-width="4" stroke-linecap="round" opacity=".7"/>
+          <ellipse cx="240" cy="150" rx="160" ry="66" fill="url(#robBody)"/>
+          <ellipse cx="240" cy="144" rx="160" ry="64" fill="#f4f6f8" stroke="#c9d1d8" stroke-width="1.5"/>
+          <ellipse cx="240" cy="140" rx="120" ry="46" fill="none" stroke="#dfe5ea" stroke-width="2"/>
+          <ellipse cx="240" cy="120" rx="34" ry="16" fill="#eef2f5" stroke="#c9d1d8" stroke-width="1.5"/>
+          <ellipse cx="240" cy="118" rx="20" ry="9" fill="#005D9D"/>
+          <ellipse cx="240" cy="118" rx="8" ry="3.5" fill="#59c2f7"/>
+          <path d="M150 168 a95 36 0 0 0 180 0" fill="none" stroke="#008ad0" stroke-width="4" stroke-linecap="round" opacity=".85"/>
+        </svg>
       </div>
     </section>
 
-    <!-- ===== Trust bar ===== -->
-    <section class="trust-bar" aria-label="จุดเด่นของ Bwell">
-      <div class="container trust-inner">
-        <div class="trust-item">
-          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2l2.9 6.26L21 9.27l-4.5 4.38L17.8 20 12 16.77 6.2 20l1.3-6.35L3 9.27l6.1-1.01L12 2z"/></svg>
-          <span>สินค้าคุณภาพ<br>ผ่านการทดสอบจริง</span>
+    <!-- ===== Half-tile grid ===== -->
+    <section class="tile-grid">
+
+      <!-- Water purifier -->
+      <section class="tile tile-gray tile-half" id="water">
+        <div class="tile-copy reveal">
+          <h2>เครื่องกรองน้ำ</h2>
+          <p class="tile-sub">น้ำดื่มสะอาด ปลอดภัย สำหรับทุกคนในบ้าน</p>
+          <div class="tile-links">
+            <a class="link-arrow" href="#contact">ดูเพิ่มเติม <span>›</span></a>
+            <a class="link-arrow" href="#contact">ซื้อเลย <span>›</span></a>
+          </div>
         </div>
-        <div class="trust-item">
-          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2L4 5v6c0 5.25 3.4 10.15 8 11 4.6-.85 8-5.75 8-11V5l-8-3z"/></svg>
-          <span>รับประกันสินค้า<br>โดยศูนย์บริการในไทย</span>
+        <div class="tile-visual reveal" aria-hidden="true">
+          <svg viewBox="0 0 320 190" class="pv">
+            <path d="M160 22 s54 60 54 96a54 54 0 11-108 0c0-36 54-96 54-96z" fill="none" stroke="#008ad0" stroke-width="7" stroke-linejoin="round"/>
+            <path d="M132 122 a28 28 0 0028 28" fill="none" stroke="#59c2f7" stroke-width="6" stroke-linecap="round"/>
+          </svg>
         </div>
-        <div class="trust-item">
-          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3 6h13v9H3zM16 9h4l1.5 3V15H16zM6 18a1.8 1.8 0 100-.01M18 18a1.8 1.8 0 100-.01" fill="none" stroke-width="1.8"/></svg>
-          <span>จัดส่งรวดเร็ว<br>ทั่วประเทศ</span>
+      </section>
+
+      <!-- Beauty -->
+      <section class="tile tile-dark tile-half" id="beauty">
+        <div class="tile-copy reveal">
+          <p class="beauty-mark">Bwell <span>— BEAUTY —</span></p>
+          <h2>สวยได้ทุกวัน</h2>
+          <p class="tile-sub">เครื่องจัดแต่งทรงผม เทคโนโลยีถนอมเส้นผมระดับซาลอน</p>
+          <div class="tile-links">
+            <a class="link-arrow" href="#contact">ดูเพิ่มเติม <span>›</span></a>
+            <a class="link-arrow" href="#contact">ซื้อเลย <span>›</span></a>
+          </div>
         </div>
-        <div class="trust-item">
-          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 21s-7-4.6-9.5-9A5.4 5.4 0 0112 6.3 5.4 5.4 0 0121.5 12C19 16.4 12 21 12 21z"/></svg>
-          <span>ดูแลหลังการขาย<br>เหมือนเพื่อนที่ห่วงใย</span>
+        <div class="tile-visual reveal" aria-hidden="true">
+          <svg viewBox="0 0 320 190" class="pv">
+            <path d="M60 60 h130 a56 56 0 0114 110.2V150 a20 20 0 01-40 4l-8 -40 H60 a14 14 0 01-14 -14V74 a14 14 0 0114 -14z" fill="none" stroke="#59c2f7" stroke-width="6" stroke-linejoin="round"/>
+            <path d="M70 82 h80M70 100 h80" stroke="#3b4754" stroke-width="5" stroke-linecap="round"/>
+          </svg>
         </div>
-      </div>
+      </section>
+
+      <!-- Ergonomic chair -->
+      <section class="tile tile-light tile-half" id="chair">
+        <div class="tile-copy reveal">
+          <h2>เก้าอี้เพื่อสุขภาพ</h2>
+          <p class="tile-sub">นั่งถูกท่า ลดออฟฟิศซินโดรม ทำงานได้ยาวนานขึ้น</p>
+          <div class="tile-links">
+            <a class="link-arrow" href="#contact">ดูเพิ่มเติม <span>›</span></a>
+            <a class="link-arrow" href="#contact">ซื้อเลย <span>›</span></a>
+          </div>
+        </div>
+        <div class="tile-visual reveal" aria-hidden="true">
+          <svg viewBox="0 0 320 190" class="pv">
+            <path d="M130 24 q44 10 40 58l-4 34M124 122 h64M156 122 v34M120 172 l36 -16 36 16M126 116 q-26 -6 -22 -34" fill="none" stroke="#005D9D" stroke-width="7" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+        </div>
+      </section>
+
+      <!-- Dehumidifier -->
+      <section class="tile tile-gray tile-half" id="dehum">
+        <div class="tile-copy reveal">
+          <h2>เครื่องลดความชื้น</h2>
+          <p class="tile-sub">บ้านแห้งสบาย ลดเชื้อราและไรฝุ่นตลอดหน้าฝน</p>
+          <div class="tile-links">
+            <a class="link-arrow" href="#contact">ดูเพิ่มเติม <span>›</span></a>
+            <a class="link-arrow" href="#contact">ซื้อเลย <span>›</span></a>
+          </div>
+        </div>
+        <div class="tile-visual reveal" aria-hidden="true">
+          <svg viewBox="0 0 320 190" class="pv">
+            <rect x="110" y="30" width="100" height="130" rx="18" fill="none" stroke="#008ad0" stroke-width="6"/>
+            <path d="M160 62 s22 26 22 41a22 22 0 11-44 0c0-15 22-41 22-41z" fill="#59c2f7" opacity=".85"/>
+            <path d="M130 138 h60" stroke="#008ad0" stroke-width="5" stroke-linecap="round"/>
+          </svg>
+        </div>
+      </section>
+
+      <!-- Cordless vacuum -->
+      <section class="tile tile-light tile-half" id="vacuum">
+        <div class="tile-copy reveal">
+          <h2>เครื่องดูดฝุ่นไร้สาย</h2>
+          <p class="tile-sub">เบา คล่องตัว เข้าถึงทุกซอกมุมของบ้าน</p>
+          <div class="tile-links">
+            <a class="link-arrow" href="#contact">ดูเพิ่มเติม <span>›</span></a>
+            <a class="link-arrow" href="#contact">ซื้อเลย <span>›</span></a>
+          </div>
+        </div>
+        <div class="tile-visual reveal" aria-hidden="true">
+          <svg viewBox="0 0 320 190" class="pv">
+            <path d="M196 26 l-52 104M138 134 h44 l14 40a14 14 0 01-26 8zM192 30 a18 18 0 0124 16" fill="none" stroke="#005D9D" stroke-width="7" stroke-linecap="round" stroke-linejoin="round"/>
+            <circle cx="222" cy="52" r="6" fill="#59c2f7"/>
+          </svg>
+        </div>
+      </section>
+
+      <!-- Promotions -->
+      <section class="tile tile-gradient tile-half" id="promo">
+        <div class="tile-copy reveal">
+          <h2>โปรโมชั่น Double Digit</h2>
+          <p class="tile-sub">9.9 · 10.10 · 11.11 · 12.12 — ดีลใหญ่ทุกเดือนบน Shopee, Lazada และ TikTok Shop</p>
+          <div class="tile-links">
+            <a class="link-arrow link-arrow-light" href="#contact">ดูดีลทั้งหมด <span>›</span></a>
+          </div>
+        </div>
+        <div class="tile-visual reveal" aria-hidden="true">
+          <p class="promo-numbers">9.9<span>›</span>12.12</p>
+        </div>
+      </section>
+
     </section>
 
-    <!-- ===== Products ===== -->
-    <section class="section products" id="products">
-      <div class="container">
-        <p class="section-eyebrow reveal">Our Products</p>
-        <h2 class="reveal">สินค้าของเรา</h2>
-        <p class="section-sub reveal">ครบทุกหมวดหมู่เพื่อสุขภาพที่ดี ตั้งแต่อากาศที่คุณหายใจ จนถึงการนั่งทำงานในทุกวัน</p>
-
-        <div class="product-grid">
-          <a class="product-card reveal" href="#contact">
-            <div class="product-icon"><svg viewBox="0 0 24 24"><path d="M4 7h9a3 3 0 100-3M4 12h13a3 3 0 110 3M4 17h7a2.5 2.5 0 11-.01 3" fill="none" stroke-width="1.8" stroke-linecap="round"/></svg></div>
-            <h3>เครื่องฟอกอากาศ</h3>
-            <p>Air Purifiers — จัดการ PM2.5 และสารก่อภูมิแพ้ เพื่ออากาศสะอาดทุกลมหายใจ</p>
-          </a>
-          <a class="product-card reveal" href="#contact">
-            <div class="product-icon"><svg viewBox="0 0 24 24"><path d="M12 3s6 6.5 6 11a6 6 0 11-12 0c0-4.5 6-11 6-11z" fill="none" stroke-width="1.8"/></svg></div>
-            <h3>เครื่องกรองน้ำ</h3>
-            <p>Water Purifiers — น้ำดื่มสะอาดปลอดภัย สำหรับทุกคนในบ้าน</p>
-          </a>
-          <a class="product-card reveal" href="#contact">
-            <div class="product-icon"><svg viewBox="0 0 24 24"><path d="M8 4s3.5 4 3.5 6.5a3.5 3.5 0 11-7 0C4.5 8 8 4 8 4zM16 11s3 3.4 3 5.5a3 3 0 11-6 0c0-2.1 3-5.5 3-5.5z" fill="none" stroke-width="1.7"/></svg></div>
-            <h3>เครื่องลดความชื้น</h3>
-            <p>Dehumidifiers — บ้านแห้งสบาย ลดเชื้อราและไรฝุ่นในหน้าฝน</p>
-          </a>
-          <a class="product-card reveal" href="#contact">
-            <div class="product-icon"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="8" fill="none" stroke-width="1.8"/><circle cx="12" cy="12" r="2.6" fill="none" stroke-width="1.6"/><path d="M12 4v3" stroke-width="1.6" stroke-linecap="round"/></svg></div>
-            <h3>หุ่นยนต์ดูดฝุ่น</h3>
-            <p>Robot Vacuum — บ้านสะอาดอัตโนมัติ ให้เวลาคุณอยู่กับสิ่งที่สำคัญ</p>
-          </a>
-          <a class="product-card reveal" href="#contact">
-            <div class="product-icon"><svg viewBox="0 0 24 24"><path d="M14 3l-6 12M8 15h5l1.5 4.5a1.6 1.6 0 01-3 .8L8 15zM13.5 3.5a2 2 0 012.5 2" fill="none" stroke-width="1.7" stroke-linecap="round"/></svg></div>
-            <h3>เครื่องดูดฝุ่นไร้สาย</h3>
-            <p>Cordless Vacuum — เบา คล่องตัว ทำความสะอาดได้ทุกซอกมุม</p>
-          </a>
-          <a class="product-card reveal" href="#contact">
-            <div class="product-icon"><svg viewBox="0 0 24 24"><path d="M12 3v18M12 12l6.5-3.75M12 12L5.5 8.25M12 12l6.5 3.75M12 12l-6.5 3.75M8.5 4.5L12 7l3.5-2.5M8.5 19.5L12 17l3.5 2.5" fill="none" stroke-width="1.5" stroke-linecap="round"/></svg></div>
-            <h3>แอร์เคลื่อนที่</h3>
-            <p>Portable Air Conditioners — เย็นสบายได้ทุกห้อง ไม่ต้องติดตั้งถาวร</p>
-          </a>
-          <a class="product-card reveal" href="#contact">
-            <div class="product-icon"><svg viewBox="0 0 24 24"><path d="M9 4h6v8H9zM7 12h10M12 12v5M8 21l4-4 4 4M9 4a4 4 0 00-3 6" fill="none" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
-            <h3>เก้าอี้เพื่อสุขภาพ</h3>
-            <p>Ergonomic Chairs — นั่งถูกท่า ลดอาการออฟฟิศซินโดรม</p>
-          </a>
-          <a class="product-card reveal" href="#contact">
-            <div class="product-icon"><svg viewBox="0 0 24 24"><rect x="3" y="8" width="18" height="8" rx="4" fill="none" stroke-width="1.8"/><path d="M8 12h8" stroke-width="1.6" stroke-linecap="round"/></svg></div>
-            <h3>หมอนเพื่อสุขภาพ</h3>
-            <p>Health Pillows — รองรับสรีระ หลับลึกตื่นมาสดชื่น</p>
-          </a>
-          <a class="product-card reveal" href="#contact">
-            <div class="product-icon"><svg viewBox="0 0 24 24"><path d="M5 4h9a4.5 4.5 0 011 8.9V19a1.5 1.5 0 01-3 0v-6H5zM5 4v9" fill="none" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
-            <h3>เครื่องจัดแต่งทรงผม</h3>
-            <p>Hair Styling — สวยได้ทุกวัน ด้วยเทคโนโลยีถนอมเส้นผม จาก Bwell Beauty</p>
-          </a>
-          <a class="product-card reveal" href="#contact">
-            <div class="product-icon"><svg viewBox="0 0 24 24"><path d="M7 9v6M17 9v6M4.5 10.5v3M19.5 10.5v3M7 12h10" fill="none" stroke-width="1.8" stroke-linecap="round"/></svg></div>
-            <h3>อุปกรณ์ออกกำลังกาย</h3>
-            <p>Fitness Equipment — ฟิตได้ที่บ้าน สุขภาพแข็งแรงในแบบของคุณ</p>
-          </a>
-        </div>
-      </div>
-    </section>
-
-    <!-- ===== Why Bwell ===== -->
-    <section class="section why" id="why-bwell">
-      <div class="container">
-        <p class="section-eyebrow reveal">Why Bwell</p>
-        <h2 class="reveal">ทำไมต้อง Bwell</h2>
-        <p class="section-sub reveal">เราเชื่อว่าสุขภาพดีไม่ควรเป็นเรื่องไกลตัว — ไม่ถูกเกินไปจนไว้ใจไม่ได้ ไม่หรูจนเข้าไม่ถึง</p>
-
-        <div class="why-grid">
-          <div class="why-card reveal">
-            <span class="why-num">01</span>
-            <h3>Health &amp; Wellness</h3>
-            <p>ลงทุนกับสุขภาพของคุณและครอบครัว ทุกผลิตภัณฑ์ออกแบบมาเพื่อคุณภาพชีวิตที่ดีขึ้นจริงในทุกวัน</p>
-          </div>
-          <div class="why-card reveal">
-            <span class="why-num">02</span>
-            <h3>Science-backed Quality</h3>
-            <p>พูดด้วยข้อมูล ไม่โอเวอร์เคลม — สเปคจริง ผลทดสอบจริง มาตรฐานที่ตรวจสอบได้</p>
-          </div>
-          <div class="why-card reveal">
-            <span class="why-num">03</span>
-            <h3>Value for Money</h3>
-            <p>คุ้มค่า ทนทาน คิดเผื่อการใช้งานระยะยาว เพราะของดีไม่จำเป็นต้องแพงเกินเหตุ</p>
-          </div>
-          <div class="why-card reveal">
-            <span class="why-num">04</span>
-            <h3>Lifestyle Fit</h3>
-            <p>ดีไซน์และฟังก์ชันที่เข้ากับไลฟ์สไตล์คนเมือง ใช้งานง่าย เข้ากับทุกบ้าน ทุกคอนโด</p>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <!-- ===== Beauty sub-brand ===== -->
-    <section class="section beauty" id="beauty">
-      <div class="container beauty-inner">
-        <div class="beauty-content">
-          <div class="beauty-logo reveal" aria-label="Bwell Beauty">
-            <svg viewBox="0 0 56 56" class="beauty-icon" aria-hidden="true">
-              <circle cx="16" cy="16" r="13" fill="#ffffff"/>
-              <circle cx="40" cy="16" r="13" fill="none" stroke="#ffffff" stroke-width="6"/>
-              <circle cx="16" cy="40" r="13" fill="none" stroke="#ffffff" stroke-width="6"/>
-              <circle cx="40" cy="40" r="13" fill="#ffffff"/>
-            </svg>
-            <div>
-              <span class="beauty-wordmark">Bwell</span>
-              <span class="beauty-subline">— BEAUTY —</span>
-            </div>
-          </div>
-          <h2 class="reveal">สวยอย่างมั่นใจ<br>ด้วยเทคโนโลยีถนอมเส้นผม</h2>
-          <p class="reveal">Bwell Beauty — ไลน์ผลิตภัณฑ์จัดแต่งทรงผมที่ออกแบบมาเพื่อผลลัพธ์ระดับซาลอน
-            พร้อมดูแลสุขภาพเส้นผมของคุณในทุกการใช้งาน</p>
-          <a href="#contact" class="btn btn-light reveal">รู้จัก Bwell Beauty</a>
-        </div>
-      </div>
-    </section>
-
-    <!-- ===== Promotions ===== -->
-    <section class="section promos" id="promotions">
-      <div class="container">
-        <p class="section-eyebrow reveal">Promotions</p>
-        <h2 class="reveal">โปรโมชั่นและแคมเปญ</h2>
-        <p class="section-sub reveal">พบกับดีลพิเศษตลอดปี ทั้งแคมเปญ Double Digit และเทศกาลสำคัญ</p>
-        <div class="promo-grid">
-          <div class="promo-card reveal">
-            <span class="promo-badge">Double Digit</span>
-            <h3>9.9 · 10.10 · 11.11 · 12.12</h3>
-            <p>ดีลใหญ่ประจำเดือนบน Shopee, Lazada และ TikTok Shop — ราคาพิเศษพร้อมของแถมเฉพาะช่วงแคมเปญ</p>
-          </div>
-          <div class="promo-card reveal">
-            <span class="promo-badge">Seasonal</span>
-            <h3>สงกรานต์ · วันแม่ · ส่งท้ายปี</h3>
-            <p>เซ็ตของขวัญเพื่อสุขภาพสำหรับคนที่คุณรัก ในทุกเทศกาลแห่งการให้</p>
-          </div>
-          <div class="promo-card reveal">
-            <span class="promo-badge">Always-on</span>
-            <h3>สินค้าใหม่ &amp; Flash Sale</h3>
-            <p>ติดตามการเปิดตัวสินค้าใหม่และแฟลชเซลได้ทาง LINE OA และโซเชียลมีเดียของเรา</p>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <!-- ===== Contact / Channels ===== -->
-    <section class="section contact" id="contact">
-      <div class="container">
-        <p class="section-eyebrow reveal">Find Us</p>
-        <h2 class="reveal">ช้อปและติดตาม Bwell ได้ที่</h2>
-        <p class="section-sub reveal">เลือกช่องทางที่คุณสะดวก — ทีมงานของเราพร้อมดูแลคุณทุกช่องทาง</p>
-        <div class="channel-grid">
-          <a class="channel-card reveal" href="#" rel="noopener">Shopee</a>
-          <a class="channel-card reveal" href="#" rel="noopener">Lazada</a>
-          <a class="channel-card reveal" href="#" rel="noopener">TikTok Shop</a>
-          <a class="channel-card reveal" href="#" rel="noopener">Facebook</a>
-          <a class="channel-card reveal" href="#" rel="noopener">Instagram</a>
-          <a class="channel-card reveal" href="#" rel="noopener">LINE OA</a>
-        </div>
+    <!-- ===== Trust strip ===== -->
+    <section class="trust">
+      <div class="trust-inner">
+        <p class="reveal"><strong>สินค้าคุณภาพ</strong> ผ่านการทดสอบจริง</p>
+        <p class="reveal"><strong>รับประกันสินค้า</strong> ศูนย์บริการในไทย</p>
+        <p class="reveal"><strong>จัดส่งรวดเร็ว</strong> ทั่วประเทศ</p>
+        <p class="reveal"><strong>ดูแลหลังการขาย</strong> ทุกช่องทาง</p>
       </div>
     </section>
 
   </main>
 
-  <!-- ===== Footer ===== -->
-  <footer class="site-footer">
-    <div class="container footer-inner">
-      <div class="footer-brand">
-        <img src="assets/logos/Bwell_Ergo_White.png" alt="Bwell" class="footer-logo">
-        <p>สุขภาพดีในทุกมิติของชีวิต<br><em>Total wellness for everyday life</em></p>
-      </div>
-      <nav class="footer-nav" aria-label="ลิงก์ท้ายหน้า">
+  <!-- ===== Footer (fine-print directory) ===== -->
+  <footer class="footer" id="contact">
+    <div class="footer-inner">
+      <p class="footer-note">Bwell — สุขภาพดีในทุกมิติของชีวิต · Total wellness for everyday life.
+        เรามอบประสบการณ์แบรนด์ที่ดีที่สุดให้แก่คุณ พร้อมบริการหลังการขายโดยศูนย์บริการในประเทศไทย</p>
+      <div class="footer-cols">
         <div>
           <h4>สินค้า</h4>
-          <a href="#products">เครื่องฟอกอากาศ</a>
-          <a href="#products">เครื่องกรองน้ำ</a>
-          <a href="#products">หุ่นยนต์ดูดฝุ่น</a>
-          <a href="#products">เก้าอี้เพื่อสุขภาพ</a>
-          <a href="#beauty">Bwell Beauty</a>
+          <a href="#air">เครื่องฟอกอากาศ</a>
+          <a href="#water">เครื่องกรองน้ำ</a>
+          <a href="#dehum">เครื่องลดความชื้น</a>
+          <a href="#robot">หุ่นยนต์ดูดฝุ่น</a>
+          <a href="#vacuum">เครื่องดูดฝุ่นไร้สาย</a>
         </div>
         <div>
-          <h4>เกี่ยวกับเรา</h4>
-          <a href="#why-bwell">ทำไมต้อง Bwell</a>
-          <a href="#promotions">โปรโมชั่น</a>
-          <a href="#contact">ติดต่อเรา</a>
+          <h4>ไลฟ์สไตล์</h4>
+          <a href="#chair">เก้าอี้เพื่อสุขภาพ</a>
+          <a href="#chair">หมอนเพื่อสุขภาพ</a>
+          <a href="#beauty">Bwell Beauty</a>
+          <a href="#beauty">อุปกรณ์ออกกำลังกาย</a>
         </div>
-      </nav>
-    </div>
-    <div class="container footer-bottom">
-      <p>© 2026 Bwell. We Deliver The Top Brand Experiences.</p>
+        <div>
+          <h4>ช้อปกับเรา</h4>
+          <a href="#" rel="noopener">Shopee</a>
+          <a href="#" rel="noopener">Lazada</a>
+          <a href="#" rel="noopener">TikTok Shop</a>
+        </div>
+        <div>
+          <h4>ติดตาม Bwell</h4>
+          <a href="#" rel="noopener">Facebook</a>
+          <a href="#" rel="noopener">Instagram</a>
+          <a href="#" rel="noopener">TikTok</a>
+          <a href="#" rel="noopener">LINE OA</a>
+        </div>
+        <div>
+          <h4>เกี่ยวกับ Bwell</h4>
+          <a href="#top">ทำไมต้อง Bwell</a>
+          <a href="#promo">โปรโมชั่น</a>
+          <a href="#">ศูนย์บริการ</a>
+          <a href="#">ติดต่อเรา</a>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <p>© 2026 Bwell. We Deliver The Top Brand Experiences.</p>
+        <div class="footer-legal">
+          <a href="#">นโยบายความเป็นส่วนตัว</a>
+          <a href="#">เงื่อนไขการใช้งาน</a>
+          <a href="#">การรับประกันสินค้า</a>
+        </div>
+      </div>
     </div>
   </footer>
 

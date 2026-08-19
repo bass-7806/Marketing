@@ -1,20 +1,20 @@
-// Bwell website — mobile nav + scroll reveal
+// Bwell website — global nav toggle + scroll reveal
 
 (function () {
   document.documentElement.classList.add('js');
 
-  var toggle = document.getElementById('navToggle');
-  var nav = document.getElementById('mainNav');
+  var toggle = document.getElementById('gnToggle');
+  var links = document.getElementById('gnLinks');
 
   toggle.addEventListener('click', function () {
-    var open = nav.classList.toggle('open');
+    var open = links.classList.toggle('open');
     toggle.classList.toggle('open', open);
     toggle.setAttribute('aria-expanded', open ? 'true' : 'false');
   });
 
-  nav.addEventListener('click', function (e) {
+  links.addEventListener('click', function (e) {
     if (e.target.tagName === 'A') {
-      nav.classList.remove('open');
+      links.classList.remove('open');
       toggle.classList.remove('open');
       toggle.setAttribute('aria-expanded', 'false');
     }
