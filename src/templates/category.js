@@ -53,7 +53,7 @@ module.exports = function category(cat, opts = {}) {
   ${C.seoIntro(cat.introTitle, cat.introBody, cat.introMore)}
 
   <!-- 4. Product Grid -->
-  ${C.productGrid(cat.products, 'สินค้าขายดี')}
+  ${C.productGrid(opts.products || cat.products, 'สินค้าขายดี')}
 
   <!-- 5. ตัวแทนจำหน่ายออนไลน์ -->
   ${C.logoRow(S.onlinePartners, 'ตัวแทนจำหน่ายทางออนไลน์', '', true)}

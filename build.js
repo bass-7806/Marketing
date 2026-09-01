@@ -110,6 +110,7 @@ for (const sub of subPages) {
     title: sub.title,
     heroLead: sub.heroLead,
     url: `/${sub.slug}/`,
+    products: sub.products,
     parent,
   }));
 }

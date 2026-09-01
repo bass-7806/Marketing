@@ -82,40 +82,41 @@ loaded from Google Fonts per the brand guidelines.
 
 ## Images
 
-Real Bwell photography from the live site now fills the main slots — the
-homepage hero, all five blog covers, seven of the twelve category tiles and
-every featured product. They live in `src/assets/img/` (~500KB total, resized
-and re-encoded to WebP).
+All imagery is Bwell's own, pulled from the live site: the homepage hero, every
+blog cover, all twelve category tiles, and a real photo for every product in
+every grid. 69 files, ~1.5MB, resized to at most 800px wide (1400px for the
+hero) and re-encoded to WebP. They live in `src/assets/img/`.
 
-| Slot | File |
+| Slot | Files |
 |---|---|
-| Homepage hero | `hero-lineup.webp` (the product-lineup banner) |
-| Blog covers ×5 | `blog-*.webp` |
-| Category tiles ×7 | `cat-*.webp` |
-| Featured products ×4 | `prod-*.webp` |
+| Homepage hero | `hero-lineup.webp` |
+| Blog covers | `blog-*.webp` (5) |
+| Category tiles | `cat-*.webp` and lead product shots (12) |
+| Product grids | `p-*.webp` (51) |
 
 The hero uses Apple's stacked product-family treatment — copy on a pale ground
 with the lineup shot beneath — rather than a full-bleed photo with overlaid
 text, because the Bwell banner is a wide shot on a bright background where
 white text would be unreadable.
 
-Every remaining slot is a generated SVG placeholder at a real `<img>` path. To
-fill one, drop a file into `src/assets/img/` and set `img:` on the matching
-entry in `src/data/`. Still needing photography:
-
-- **Category tiles (5):** hair styling, water heater, robot vacuum, fitness, filters
-- **All category-page SEO blocks:** each needs a lifestyle shot (4 per category)
+**Still placeholders (51 slots):** the four SEO feature blocks on each category
+page, which need lifestyle photography the current site does not have. Each is
+a real `<img>` at a stable path — drop a file into `src/assets/img/` and set the
+matching `image:` value in `src/data/categories.js` to fill one.
 
 ## Before launch
 
 These need real assets or a sign-off — none of them block the build:
 
-- **Remaining photography.** 104 slots are still placeholders — see Images above.
-- **Product names, model codes and prices.** The four featured products and the
-  five blog posts now carry real names, prices and images taken from the live
-  bwell.co.th homepage. **The per-category product grids are still placeholder
-  entries** invented to fill the layout, and must be replaced with the real
-  catalogue before publishing.
+- **Lifestyle photography.** 51 slots are still placeholders — see Images above.
+- **Catalogue accuracy.** Every product name, price and photo now comes from the
+  live bwell.co.th category pages, captured on 2026-09-01. Prices move, so
+  re-check them against the shop before publishing. Each category grid shows the
+  first few products the live page lists, not a curated selection.
+- **`/pm25-air-purifier/` does not exist on the live site** — it returns 404,
+  even though the approved site structure lists it. This build generates the
+  page and it currently falls back to the parent category's products. Either
+  give it its own products or drop it from `src/data/categories.js`.
 - **Blog posts.** `/blog/` lists real titles but every card links to the blog index;
   article pages are not built yet.
 - **Product brochure.** The homepage CTA currently points at `/contact/`. When the
