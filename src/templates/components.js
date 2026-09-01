@@ -59,13 +59,17 @@ const titledList = (items) => `
       </li>`).join('\n      ')}
     </ul>`;
 
-/** Alternating image / copy block used by every category page. */
+/**
+ * Alternating image / copy block used by every category page.
+ * `block.imageSrc` names a real lifestyle photograph; without one the slot
+ * falls back to a labelled placeholder.
+ */
 function featureBlock(block, listHtml, reverse) {
   return `
   <section class="section ${reverse ? 'bg-gray' : 'bg-light'}">
     <div class="wrap">
       <div class="feature${reverse ? ' reverse' : ''} reveal">
-        <div class="feature-media">${media(block.image, '4-3')}</div>
+        <div class="feature-media">${media(block.image, '4-3', { src: block.imageSrc })}</div>
         <div>
           <h2 class="t-title">${esc(block.title)}</h2>
           ${listHtml}
