@@ -74,31 +74,6 @@ function placeholderSvg(label) {
 </svg>`;
 }
 
-// Abstract full-bleed hero artwork. Replace assets/img/hero-bg.svg (or point the
-// hero <img> at a .jpg) with a real product photograph before launch.
-const HERO_BG = `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1600 900" width="1600" height="900" preserveAspectRatio="xMidYMid slice">
-  <defs>
-    <linearGradient id="sky" x1="0" y1="0" x2="1" y2="1">
-      <stop offset="0%" stop-color="#0a4f80"/>
-      <stop offset="55%" stop-color="#008ad0"/>
-      <stop offset="100%" stop-color="#0d6ca8"/>
-    </linearGradient>
-    <radialGradient id="glow" cx="0.68" cy="0.32" r="0.62">
-      <stop offset="0%" stop-color="#7fd0ff" stop-opacity="0.55"/>
-      <stop offset="100%" stop-color="#7fd0ff" stop-opacity="0"/>
-    </radialGradient>
-  </defs>
-  <rect width="1600" height="900" fill="url(#sky)"/>
-  <rect width="1600" height="900" fill="url(#glow)"/>
-  <g fill="none" stroke="#ffffff" stroke-opacity="0.16" stroke-width="1.5">
-    <circle cx="1120" cy="300" r="150"/><circle cx="1120" cy="300" r="240"/>
-    <circle cx="1120" cy="300" r="340"/><circle cx="1120" cy="300" r="450"/>
-  </g>
-  <g fill="#ffffff" fill-opacity="0.07">
-    <circle cx="300" cy="700" r="220"/><circle cx="150" cy="200" r="130"/>
-  </g>
-</svg>`;
-
 const FAVICON = `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 56 56">
   <circle cx="16" cy="16" r="13" fill="#008ad0"/>
   <circle cx="40" cy="16" r="13" fill="none" stroke="#008ad0" stroke-width="6"/>
@@ -148,7 +123,6 @@ copyDir(path.join(__dirname, 'src/assets'), path.join(OUT, 'assets'));
 const imgDir = path.join(OUT, 'assets/img');
 fs.mkdirSync(imgDir, { recursive: true });
 fs.writeFileSync(path.join(imgDir, 'favicon.svg'), FAVICON);
-fs.writeFileSync(path.join(imgDir, 'hero-bg.svg'), HERO_BG);
 for (const { file, label } of C.media.registry) {
   fs.writeFileSync(path.join(imgDir, `${file}.svg`), placeholderSvg(label));
 }

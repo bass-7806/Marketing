@@ -82,22 +82,40 @@ loaded from Google Fonts per the brand guidelines.
 
 ## Images
 
-Every image is a real `<img>` pointing at a generated SVG placeholder under
-`/assets/img/`. To use a real photograph, drop a file at the same path — no markup
-change needed. The hero uses `/assets/img/hero-bg.svg`.
+Real Bwell photography from the live site now fills the main slots — the
+homepage hero, all five blog covers, seven of the twelve category tiles and
+every featured product. They live in `src/assets/img/` (~500KB total, resized
+and re-encoded to WebP).
 
-Placeholder filenames are a hash of the caption, so the same caption always maps to
-the same file. `node build.js` prints the count; the caption is in each file and in
-the `alt` text.
+| Slot | File |
+|---|---|
+| Homepage hero | `hero-lineup.webp` (the product-lineup banner) |
+| Blog covers ×5 | `blog-*.webp` |
+| Category tiles ×7 | `cat-*.webp` |
+| Featured products ×4 | `prod-*.webp` |
+
+The hero uses Apple's stacked product-family treatment — copy on a pale ground
+with the lineup shot beneath — rather than a full-bleed photo with overlaid
+text, because the Bwell banner is a wide shot on a bright background where
+white text would be unreadable.
+
+Every remaining slot is a generated SVG placeholder at a real `<img>` path. To
+fill one, drop a file into `src/assets/img/` and set `img:` on the matching
+entry in `src/data/`. Still needing photography:
+
+- **Category tiles (5):** hair styling, water heater, robot vacuum, fitness, filters
+- **All category-page SEO blocks:** each needs a lifestyle shot (4 per category)
 
 ## Before launch
 
 These need real assets or a sign-off — none of them block the build:
 
-- **Product photography.** All 117 image slots are placeholders.
-- **Product names, model codes and prices.** Carried over from the wireframes and
-  extended with plausible entries for the categories the wireframes did not cover.
-  Verify against the live catalogue before publishing.
+- **Remaining photography.** 104 slots are still placeholders — see Images above.
+- **Product names, model codes and prices.** The four featured products and the
+  five blog posts now carry real names, prices and images taken from the live
+  bwell.co.th homepage. **The per-category product grids are still placeholder
+  entries** invented to fill the layout, and must be replaced with the real
+  catalogue before publishing.
 - **Blog posts.** `/blog/` lists real titles but every card links to the blog index;
   article pages are not built yet.
 - **Product brochure.** The homepage CTA currently points at `/contact/`. When the

@@ -33,7 +33,7 @@ function productHub() {
           <p class="t-body">${esc(hero.tagline)}</p>
           <a class="btn btn-primary" href="${catUrl(hero)}">ดูสินค้า</a>
         </div>
-        ${C.media(hero.title, '4-3')}
+        ${C.media(hero.title, '4-3', { src: hero.img, fit: hero.img ? 'contain' : 'cover' })}
       </div>
       <div class="tile-grid">
         ${rest.map((c, i) => `
@@ -41,7 +41,7 @@ function productHub() {
           <h2 class="t-title">${esc(catName(c))}</h2>
           <p class="t-body">${esc(c.hubDesc)}</p>
           <span class="link-chevron" style="margin-bottom:22px">ดูสินค้า</span>
-          ${C.media(catName(c), '4-3')}
+          ${C.media(catName(c), '4-3', { src: c.img, fit: c.img ? 'contain' : 'cover' })}
         </a>`).join('\n')}
       </div>
     </div>

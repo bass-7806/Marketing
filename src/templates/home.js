@@ -8,19 +8,22 @@ module.exports = function home() {
   const rest = categories.filter((c) => !c.hero);
 
   const body = `
-  <!-- 1. Hero Banner -->
-  <section class="hero on-image">
-    <div class="hero-media">
-      ${C.heroMedia('ภาพรวมสินค้าเพื่อสุขภาพจาก Bwell')}
-    </div>
+  <!-- 1. Hero Banner — copy above, product lineup below.
+       The Bwell lineup banner is a wide shot on a bright ground, so overlaid
+       white text would be unreadable; Apple uses this same stacked treatment
+       for its product-family heroes. -->
+  <section class="hero hero-light">
     <div class="hero-inner">
-      <p class="t-eyebrow" style="color:#fff">${esc(S.brand.positioning)}</p>
+      <p class="t-eyebrow">${esc(S.brand.positioning)}</p>
       <h1 class="t-hero">รู้สึกดีได้ในทุกวัน<br>กับ Bwell</h1>
       <p class="t-sub">ยกระดับการดูแลสุขภาพของคุณและครอบครัว ด้วยสินค้าเพื่อสุขภาพที่ผ่านการคัดสรรมาแล้วตั้งแต่ปี ${S.brand.since}</p>
       <div class="cta-row center">
         <a class="btn btn-primary" href="${S.brand.shop}" rel="noopener">เลือกซื้อสินค้า</a>
-        <a class="link-chevron on-dark" href="/product-bwell/">ดูเพิ่มเติม</a>
+        <a class="link-chevron" href="/product-bwell/">ดูเพิ่มเติม</a>
       </div>
+    </div>
+    <div class="hero-lineup">
+      ${C.media('สินค้าเพื่อสุขภาพจาก Bwell ทั้งหมด', '16-9', { src: 'hero-lineup.webp', eager: true })}
     </div>
   </section>
 
@@ -54,7 +57,7 @@ module.exports = function home() {
           <p class="t-body">${esc(hero.tagline)}</p>
           <a class="btn btn-primary" href="${catUrl(hero)}">ดูสินค้า</a>
         </div>
-        ${C.media(hero.title, '4-3')}
+        ${C.media(hero.title, '4-3', { src: hero.img, fit: hero.img ? 'contain' : 'cover' })}
       </div>
 
       <div class="tile-grid">
@@ -63,7 +66,7 @@ module.exports = function home() {
           <h3 class="t-title">${esc(catName(c))}</h3>
           <p class="t-body">${esc(c.hubDesc)}</p>
           <span class="link-chevron" style="margin-bottom:22px">ดูสินค้า</span>
-          ${C.media(catName(c), '4-3')}
+          ${C.media(catName(c), '4-3', { src: c.img, fit: c.img ? 'contain' : 'cover' })}
         </a>`).join('\n')}
       </div>
     </div>

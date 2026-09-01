@@ -61,20 +61,25 @@ const reviews = [
 ];
 
 const blogPosts = [
-  { title: 'HEPA Filter คืออะไร? สำคัญแค่ไหนในเครื่องฟอกอากาศ', slug: 'hepa-filter', tag: 'เครื่องฟอกอากาศ' },
-  { title: 'เลือกซื้อเครื่องดูดฝุ่นแบบไหนดี ต้องดูอะไรบ้าง', slug: 'choose-vacuum', tag: 'เครื่องดูดฝุ่น' },
-  { title: 'เปรียบเทียบชนิดถังของเครื่องดูดฝุ่น แบบไหนเหมาะกับบ้านคุณ', slug: 'vacuum-bin-types', tag: 'เครื่องดูดฝุ่น' },
-  { title: 'เครื่องดูดฝุ่นไร้สายเหมาะกับใคร?', slug: 'cordless-vacuum-for-who', tag: 'เครื่องดูดฝุ่น' },
-  { title: 'PM2.5 อันตรายแค่ไหน และป้องกันในบ้านได้อย่างไร', slug: 'pm25-guide', tag: 'สุขภาพ' },
-  { title: 'ออฟฟิศซินโดรม แก้ได้ด้วยการนั่งที่ถูกต้อง', slug: 'office-syndrome', tag: 'เก้าอี้เพื่อสุขภาพ' },
+  { title: 'HEPA Filter คืออะไร? สำคัญแค่ไหนในเครื่องฟอกอากาศ',
+    tag: 'เครื่องฟอกอากาศ', img: 'blog-hepa-filter.webp' },
+  { title: 'เลือกซื้อเครื่องดูดฝุ่นต้องดูอะไรบ้าง? เคล็ดลับเลือกให้เหมาะกับบ้านและไลฟ์สไตล์ของคุณ',
+    tag: 'เครื่องดูดฝุ่นไร้สาย', img: 'blog-choose-vacuum.webp' },
+  { title: 'เปรียบเทียบข้อดีข้อเสียของหุ่นยนต์ดูดฝุ่น vs เครื่องดูดฝุ่นทั่วไป แบบไหนคุ้มค่ากว่ากัน?',
+    tag: 'หุ่นยนต์ดูดฝุ่น', img: 'blog-robot-vs-stick.webp' },
+  { title: 'เครื่องดูดฝุ่นไร้สายเหมาะกับใคร? ข้อดี-ข้อเสียที่ควรรู้ก่อนซื้อ',
+    tag: 'เครื่องดูดฝุ่นไร้สาย', img: 'blog-cordless-vacuum.webp' },
+  { title: 'ข้อแนะนำการเลือกเครื่องกรองน้ำสำหรับบ้านและคอนโดมิเนียม เลือกให้เหมาะกับที่อยู่อาศัย',
+    tag: 'เครื่องกรองน้ำ', img: 'blog-water-purifier.webp' },
 ];
 
 // Homepage "สินค้าแนะนำ"
+// Names, prices and images taken from the live bwell.co.th homepage.
 const featuredProducts = [
-  { title: 'เครื่องฟอกอากาศ PM2.5 รุ่น AP-N15365', price: '฿6,990', img: 'product-ap-n15365' },
-  { title: 'เครื่องลดความชื้นแบบพกพา รุ่น G9', price: '฿4,990', img: 'product-g9' },
-  { title: 'เครื่องฟอกอากาศ PM2.5 รุ่น AP-M22195', price: '฿9,990', img: 'product-ap-m22195' },
-  { title: 'Bwell เก้าอี้ Ergonomic รุ่น Stella Ilon', price: '฿7,990', img: 'product-stella-ilon' },
+  { title: 'เครื่องฟอกอากาศ PM2.5 รุ่น AP-M1536S', was: '฿6,990', price: '฿3,990', img: 'prod-ap-m1536s.webp' },
+  { title: 'เครื่องฟอกอากาศ PM2.5 รุ่น AP-H2219S', was: '฿9,990', price: '฿6,990', img: 'prod-ap-h2219s.webp' },
+  { title: 'เครื่องฟอกอากาศในรถยนต์ รุ่น G9', price: '฿4,990', img: 'prod-g9.webp' },
+  { title: 'Bwell เก้าอี้ Ergonomic รุ่น Stella สีเทา', price: '฿7,990', img: 'prod-stella.webp' },
 ];
 
 const footer = {

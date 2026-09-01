@@ -5,6 +5,7 @@
 const categories = [
   {
     slug: 'air-purifier-bwell',
+    img: 'cat-air-purifier.webp',
     title: 'เครื่องฟอกอากาศ',
     hero: true,
     tagline: 'ฟอกอากาศได้สูงสุด 8 เท่า กรองฝุ่น PM2.5 และเชื้อโรคด้วยระบบ Triple Action',
@@ -128,6 +129,7 @@ const categories = [
 
   {
     slug: 'bwell-ergonomic-chair',
+    img: 'cat-chair.webp',
     title: 'เก้าอี้เพื่อสุขภาพ',
     tagline: 'ออกแบบตามหลัก Ergonomic รองรับสรีระ ลดอาการปวดหลังจากการนั่งนาน',
     hubDesc: 'ออกแบบตามหลัก Ergonomic รองรับสรีระ ลดอาการปวดหลังจากการนั่งนาน',
@@ -184,6 +186,7 @@ const categories = [
 
   {
     slug: 'ergonomic-cushion-bwell',
+    img: 'cat-cushion.webp',
     title: 'หมอนและเบาะรองเพื่อสุขภาพ',
     tagline: 'เพื่อสุขภาพหลังและคอ ลดแรงกดทับ นุ่มสบายรองรับสรีระ',
     hubDesc: 'เพื่อสุขภาพหลังและคอ ลดแรงกดทับ นุ่มสบายรองรับสรีระ',
@@ -296,6 +299,7 @@ const categories = [
 
   {
     slug: 'water-purifier',
+    img: 'cat-water-purifier.webp',
     title: 'เครื่องกรองน้ำ ไส้กรองน้ำ',
     shortTitle: 'เครื่องกรองน้ำ',
     tagline: 'กรองน้ำสะอาดได้มาตรฐาน ราคาประหยัด อัตราการกรอง 100 แกลลอนต่อวัน',
@@ -353,6 +357,7 @@ const categories = [
 
   {
     slug: 'air-dehumidifier',
+    img: 'cat-dehumidifier.webp',
     title: 'เครื่องลดความชื้น',
     tagline: 'ลดความชื้นในอากาศ ป้องกันเชื้อราและกลิ่นอับ เหมาะกับทุกห้อง',
     hubDesc: 'ลดความชื้นในอากาศ ป้องกันเชื้อราและกลิ่นอับ เหมาะกับทุกห้อง',
@@ -409,6 +414,7 @@ const categories = [
 
   {
     slug: 'portable-air-conditioner',
+    img: 'cat-portable-ac.webp',
     title: 'แอร์เคลื่อนที่',
     tagline: 'ทำความเย็นได้ทันที เคลื่อนย้ายสะดวก ไม่ต้องเจาะผนัง',
     hubDesc: 'ทำความเย็นได้ทันที เคลื่อนย้ายสะดวก ไม่ต้องเจาะผนัง',
@@ -465,6 +471,7 @@ const categories = [
 
   {
     slug: 'vacuum-cleaner',
+    img: 'cat-vacuum.webp',
     title: 'เครื่องดูดฝุ่นไร้สาย',
     tagline: 'น้ำหนักเบา แรงดูดสูง ใช้งานได้ทุกพื้นผิวในบ้าน',
     hubDesc: 'น้ำหนักเบา แรงดูดสูง ใช้งานได้ทุกพื้นผิวในบ้าน',
