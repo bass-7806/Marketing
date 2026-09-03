@@ -18,12 +18,12 @@ const slugify = (label) =>
  * otherwise be cropped by the default cover behaviour.
  */
 function media(label, ratio = '4-3', opts = {}) {
-  const { src = null, fit = 'cover', extraClass = '', eager = false } = opts;
+  const { src = null, fit = 'cover', extraClass = '', eager = false, theme = null } = opts;
   const cls = ['media', `ratio-${ratio}`, fit === 'contain' ? 'fit-contain' : '', extraClass]
     .filter(Boolean).join(' ');
   if (!src) {
-    const file = slugify(label);
-    if (!media.registry.some((m) => m.file === file)) media.registry.push({ file, label });
+    const file = slugify(theme ? `${theme}|${label}` : label);
+    if (!media.registry.some((m) => m.file === file)) media.registry.push({ file, label, theme });
     return `<div class="${cls}">
       <img src="/assets/img/${file}.svg" alt="${esc(label)}" loading="lazy" width="800" height="600">
     </div>`;
@@ -64,12 +64,12 @@ const titledList = (items) => `
  * `block.imageSrc` names a real lifestyle photograph; without one the slot
  * falls back to a labelled placeholder.
  */
-function featureBlock(block, listHtml, reverse) {
+function featureBlock(block, listHtml, reverse, theme) {
   return `
   <section class="section ${reverse ? 'bg-gray' : 'bg-light'}">
     <div class="wrap">
       <div class="feature${reverse ? ' reverse' : ''} reveal">
-        <div class="feature-media">${media(block.image, '4-3', { src: block.imageSrc })}</div>
+        <div class="feature-media">${media(block.image, '4-3', { src: block.imageSrc, theme })}</div>
         <div>
           <h2 class="t-title">${esc(block.title)}</h2>
           ${listHtml}

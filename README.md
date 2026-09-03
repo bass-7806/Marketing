@@ -102,10 +102,17 @@ white text would be unreadable.
 Three lifestyle photographs from Google Drive (`life-*.webp`) fill the SEO
 feature blocks on the robot vacuum page.
 
-**Still placeholders (48 slots):** the SEO feature blocks on the other eleven
-category pages. Each is a real `<img>` at a stable path — drop a file into
-`src/assets/img/` and add `imageSrc: 'filename.webp'` next to the block's
-`image:` label in `src/data/categories.js` to fill one.
+**Mockup artwork (48 slots):** the SEO feature blocks on the other eleven
+category pages are filled by `src/mockup.js`, which draws an illustrated
+interior scene per category — a room, a product silhouette and a motif, in
+brand colours. They are deliberately illustrative rather than photographic and
+each carries a MOCKUP tag, so the pages present as finished design in review
+without passing artwork off as real photography.
+
+To replace one with a photograph, drop a file into `src/assets/img/` and add
+`imageSrc: 'filename.webp'` next to that block's `image:` label in
+`src/data/categories.js`. `src/mockup.js` maps each category slug to a scene;
+a new category falls back to the air-purifier scene until it is added there.
 
 A search of the Drive turned up little else usable for these: the asset library
 is mostly white-background product cut-outs, marketplace graphics with burnt-in
@@ -116,8 +123,9 @@ on Bwell category pages. Filling the remaining blocks needs a photo shoot.
 
 These need real assets or a sign-off — none of them block the build:
 
-- **Lifestyle photography.** 48 slots are still placeholders — see Images above.
-  The Drive does not contain suitable shots for them; this needs new photography.
+- **Lifestyle photography.** 48 slots use generated mockup artwork — see Images
+  above. The Drive holds nothing suitable for them, so real photography for these
+  blocks still needs a shoot; the mockups make the pages presentable meanwhile.
 - **Catalogue accuracy.** Every product name, price and photo now comes from the
   live bwell.co.th category pages, captured on 2026-09-01. Prices move, so
   re-check them against the shop before publishing. Each category grid shows the

@@ -59,10 +59,10 @@ module.exports = function category(cat, opts = {}) {
   ${C.logoRow(S.onlinePartners, 'ตัวแทนจำหน่ายทางออนไลน์', '', true)}
 
   <!-- 6–9. SEO feature blocks, alternating sides -->
-  ${C.featureBlock(cat.whyChoose, C.titledList(cat.whyChoose.items), false)}
-  ${C.featureBlock(cat.benefits, C.checkedList(cat.benefits.items), true)}
-  ${C.featureBlock(cat.howToChoose, C.numberedList(cat.howToChoose.items), false)}
-  ${C.featureBlock(cat.maintenance, C.numberedList(cat.maintenance.items), true)}
+  ${C.featureBlock(cat.whyChoose, C.titledList(cat.whyChoose.items), false, cat.slug)}
+  ${C.featureBlock(cat.benefits, C.checkedList(cat.benefits.items), true, cat.slug)}
+  ${C.featureBlock(cat.howToChoose, C.numberedList(cat.howToChoose.items), false, cat.slug)}
+  ${C.featureBlock(cat.maintenance, C.numberedList(cat.maintenance.items), true, cat.slug)}
 
   <!-- 10. Contact CTA -->
   ${C.ctaBand(

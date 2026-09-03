@@ -17,6 +17,7 @@ const C = require('./src/templates/components');
 const home = require('./src/templates/home');
 const category = require('./src/templates/category');
 const P = require('./src/templates/pages');
+const { mockupSvg } = require('./src/mockup');
 
 const OUT = path.join(__dirname, 'dist');
 const SITE = 'https://bwell.co.th';
@@ -35,43 +36,6 @@ function copyDir(from, to) {
     if (entry.isDirectory()) copyDir(s, d);
     else fs.copyFileSync(s, d);
   }
-}
-
-/**
- * Placeholder artwork for an image slot. Replace the generated file at the
- * same path with a real photo to swap it in — no markup change needed.
- */
-function placeholderSvg(label) {
-  const safe = String(label)
-    .replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;');
-  // Wrap the caption so long Thai labels stay inside the frame.
-  const words = safe.split(' ');
-  const lines = [];
-  let line = '';
-  for (const w of words) {
-    if ((line + ' ' + w).trim().length > 26) { lines.push(line.trim()); line = w; }
-    else line = (line + ' ' + w).trim();
-  }
-  if (line) lines.push(line);
-  const shown = lines.slice(0, 3);
-  const startY = 330 - (shown.length - 1) * 15;
-
-  return `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 600" width="800" height="600" role="img" aria-label="${safe}">
-  <defs>
-    <linearGradient id="g" x1="0" y1="0" x2="1" y2="1">
-      <stop offset="0%" stop-color="#eef4f9"/><stop offset="100%" stop-color="#dbe8f4"/>
-    </linearGradient>
-  </defs>
-  <rect width="800" height="600" fill="url(#g)"/>
-  <g transform="translate(372 210)" opacity="0.5">
-    <circle cx="14" cy="14" r="12" fill="#008ad0"/>
-    <circle cx="42" cy="14" r="12" fill="none" stroke="#008ad0" stroke-width="5"/>
-    <circle cx="14" cy="42" r="12" fill="none" stroke="#008ad0" stroke-width="5"/>
-    <circle cx="42" cy="42" r="12" fill="#008ad0"/>
-  </g>
-  ${shown.map((t, i) => `<text x="400" y="${startY + i * 30}" text-anchor="middle" font-family="Kanit, Arial, sans-serif" font-size="21" fill="#5b7c96">${t}</text>`).join('\n  ')}
-  <text x="400" y="${startY + shown.length * 30 + 16}" text-anchor="middle" font-family="Kanit, Arial, sans-serif" font-size="13" fill="#9db4c6" letter-spacing="1.5">IMAGE PLACEHOLDER</text>
-</svg>`;
 }
 
 const FAVICON = `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 56 56">
@@ -124,8 +88,8 @@ copyDir(path.join(__dirname, 'src/assets'), path.join(OUT, 'assets'));
 const imgDir = path.join(OUT, 'assets/img');
 fs.mkdirSync(imgDir, { recursive: true });
 fs.writeFileSync(path.join(imgDir, 'favicon.svg'), FAVICON);
-for (const { file, label } of C.media.registry) {
-  fs.writeFileSync(path.join(imgDir, `${file}.svg`), placeholderSvg(label));
+for (const { file, label, theme } of C.media.registry) {
+  fs.writeFileSync(path.join(imgDir, `${file}.svg`), mockupSvg(label, theme));
 }
 
 // sitemap.xml + robots.txt
@@ -161,5 +125,5 @@ write('/404', layout({
 fs.renameSync(path.join(OUT, '404/index.html'), path.join(OUT, '404.html'));
 fs.rmdirSync(path.join(OUT, '404'));
 
-console.log(`Built ${pages.length} pages + 404, ${C.media.registry.length} image placeholders → dist/`);
+console.log(`Built ${pages.length} pages + 404, ${C.media.registry.length} mockup images → dist/`);
 for (const p of pages) console.log(`  ${p.url.padEnd(30)} ${p.title}`);
