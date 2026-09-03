@@ -16,6 +16,8 @@ const S = require('./src/data/site');
 const C = require('./src/templates/components');
 const home = require('./src/templates/home');
 const category = require('./src/templates/category');
+const product = require('./src/templates/product');
+const { products } = require('./src/data/products');
 const P = require('./src/templates/pages');
 const { mockupSvg } = require('./src/mockup');
 
@@ -77,6 +79,11 @@ for (const sub of subPages) {
     products: sub.products,
     parent,
   }));
+}
+
+// Product detail pages (level 3, under their category)
+for (const p of products) {
+  add(product(p, products, categories.find((c) => c.slug === p.category)));
 }
 
 // Policy pages

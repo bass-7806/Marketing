@@ -81,15 +81,17 @@ function featureBlock(block, listHtml, reverse, theme) {
 
 const productCard = (p) => `
       <article class="product-card">
-        ${media(p.title, '1-1', { src: p.img, fit: 'contain' })}
-        <h3>${esc(p.title)}</h3>
+        ${p.badge ? `<span class="badge">${esc(p.badge)}</span>` : ''}
+        ${p.url ? `<a href="${p.url}" aria-hidden="true" tabindex="-1">${media(p.title, '1-1', { src: p.img, fit: 'contain' })}</a>`
+                : media(p.title, '1-1', { src: p.img, fit: 'contain' })}
+        <h3>${p.url ? `<a href="${p.url}">${esc(p.title)}</a>` : esc(p.title)}</h3>
         <div class="price">${p.was
           ? `<span class="sr-only">ราคาปกติ</span><s>${esc(p.was)}</s>
              <span class="sr-only">ราคาพิเศษ</span>`
           : ''}${esc(p.price)}</div>
         <div class="actions">
           <a class="btn btn-primary" href="https://shop.bwell.co.th" rel="noopener">หยิบใส่ตะกร้า</a>
-          <a class="btn btn-ghost" href="https://shop.bwell.co.th" rel="noopener">ดูสินค้า</a>
+          <a class="btn btn-ghost" href="${p.url || 'https://shop.bwell.co.th'}"${p.url ? '' : ' rel="noopener"'}>ดูสินค้า</a>
         </div>
       </article>`;
 

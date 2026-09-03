@@ -153,6 +153,7 @@ ${JSON.stringify({
     telephone: '+66-2-294-3211',
   }, null, 2)}
 </script>
+${page.jsonld ? `<script type="application/ld+json">\n${JSON.stringify(page.jsonld, null, 2)}\n</script>` : ''}
 </head>
 <body>
 <a class="sr-only" href="#main">ข้ามไปยังเนื้อหาหลัก</a>

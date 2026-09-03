@@ -33,6 +33,20 @@
     });
   });
 
+  // Product gallery thumbnails --------------------------------------------
+  document.querySelectorAll('[data-gallery]').forEach(function (g) {
+    var main = g.querySelector('.pdp-main img');
+    var thumbs = g.querySelectorAll('.pdp-thumbs button');
+    if (!main) return;
+    thumbs.forEach(function (b) {
+      b.addEventListener('click', function () {
+        main.src = b.getAttribute('data-src');
+        main.alt = b.getAttribute('data-alt');
+        thumbs.forEach(function (x) { x.setAttribute('aria-pressed', String(x === b)); });
+      });
+    });
+  });
+
   // Scroll reveal ----------------------------------------------------------
   var targets = document.querySelectorAll('.reveal');
   if (!('IntersectionObserver' in window) ||

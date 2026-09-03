@@ -28,6 +28,7 @@ No dependencies and no build tooling — `build.js` is plain Node (>=18).
 | Product hub | `/product-bwell/` |
 | Categories (12) | `/air-purifier-bwell/`, `/hair-styling-tools/`, `/bwell-ergonomic-chair/`, `/ergonomic-cushion-bwell/`, `/water-heater-bwell/`, `/water-purifier/`, `/air-dehumidifier/`, `/portable-air-conditioner/`, `/vacuum-cleaner/`, `/robot-vacuum/`, `/sport-gadgets/`, `/air-purification-filters/` |
 | Sub-categories (7) | `/pm25-air-purifier/`, `/air-purifier/`, `/portable-air-purifiers/`, `/hair-straightener/`, `/hair-curler/`, `/electric-hair-brush/`, `/hair-dryer/` |
+| Product detail (4) | `/robot-vacuum/t20/`, `/robot-vacuum/l6c/`, `/robot-vacuum/l0/`, `/robot-vacuum/y1/` — data in `src/data/products.js`, template `src/templates/product.js` |
 | Other | `/distribution-channels/`, `/findbwell/`, `/blog/`, `/contact/` |
 | Policies | `/privacy-policy/`, `/cookies-policy/`, `/shipping-policy/`, `/warranty-policy/` |
 
@@ -93,6 +94,7 @@ hero) and re-encoded to WebP. They live in `src/assets/img/`.
 | Blog covers | `blog-*.webp` (5) |
 | Category tiles | `cat-*.webp` and lead product shots (12) |
 | Product grids | `p-*.webp` (51) |
+| Product galleries | `g-*.webp` (18) — L6C/Y1/L0 gallery graphics from the live site, T20 cutouts and marketing graphics from the Drive folder "Photo T20" |
 
 The hero uses Apple's stacked product-family treatment — copy on a pale ground
 with the lineup shot beneath — rather than a full-bleed photo with overlaid
@@ -130,6 +132,15 @@ These need real assets or a sign-off — none of them block the build:
   live bwell.co.th category pages, captured on 2026-09-01. Prices move, so
   re-check them against the shop before publishing. Each category grid shows the
   first few products the live page lists, not a curated selection.
+- **T20 has no price yet.** The content document lists the Ultra T20 OmniBase price
+  as "-", so its page and card show "สอบถามราคา" and the JSON-LD carries no offer.
+  Set `price` in `src/data/products.js` once it is announced. Note the document
+  states a 1-year warranty for T20 versus 2 years for Y1/L0/L6C.
+- **Product detail pages** follow the live L6C page order (title, price, gallery,
+  ระบบการทำงานที่แตกต่าง, รายละเอียดสินค้า, related models, contact CTA) plus a
+  key-numbers band and the comparison table from the content document. Only the
+  robot-vacuum category has detail pages so far; other categories still link
+  cards to `shop.bwell.co.th`.
 - **`/pm25-air-purifier/` does not exist on the live site** — it returns 404,
   even though the approved site structure lists it. This build generates the
   page and it currently falls back to the parent category's products. Either
