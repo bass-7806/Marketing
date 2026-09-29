@@ -19,6 +19,7 @@ PAGES = {
     "index.html": "bwell-home-prototype.html",
     "robot-vacuum.html": "bwell-category-robot-prototype.html",
     "ultra-t20.html": "bwell-product-t20-prototype.html",
+    "support.html": "bwell-support-prototype.html",
     "global-nav.html": "bwell-nav-prototype.html",
 }
 T20_LIVE = "https://bwell.co.th/product/robot-vacuum-cleaner-bwell-ultra-t20/"
@@ -48,7 +49,7 @@ def set_href(html: str, nav_pattern: str, target: str) -> str:
 def rewire(name: str, html: str) -> str:
     # Shared: logo goes home, nav robot tab and footer robot link go to the category page
     html = html.replace('<a class="gn-logo" href="#"', '<a class="gn-logo" href="index.html"')
-    html = html.replace("href=\"#${key}\"", "href=\"${key==='c-robot'?'robot-vacuum.html':'#'+key}\"")
+    html = html.replace("href=\"#${key}\"", "href=\"${({'c-robot':'robot-vacuum.html','support':'support.html'})[key]||'#'+key}\"")
     html = html.replace('<li><a href="#">Ultra T20 OmniBase <span class="tag">New</span></a></li>',
                         '<li><a href="ultra-t20.html">Ultra T20 OmniBase <span class="tag">New</span></a></li>')
     html = html.replace('<li><a href="#">เปรียบเทียบทุกรุ่น</a></li></ul></div>\n    <div class="gn-group"><h3>ซื้อหุ่นยนต์ดูดฝุ่น',
@@ -61,6 +62,8 @@ def rewire(name: str, html: str) -> str:
     elif name == "robot-vacuum.html":
         html = set_href(html, r"cat/robot/(chapter/t20|prio/learn|lineup/t20/learn)", "ultra-t20.html")
         html = set_href(html, r"cat/robot/which/fullcompare", "ultra-t20.html#compare")
+    elif name == "support.html":
+        html = set_href(html, r"support/product/robot", "robot-vacuum.html")
     elif name == "ultra-t20.html":
         html = set_href(html, r"pdp/t20/footer/breadcrumb/robot-vacuum", "robot-vacuum.html")
     return html
