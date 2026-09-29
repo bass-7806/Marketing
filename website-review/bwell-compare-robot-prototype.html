@@ -1,0 +1,940 @@
+<title>Bwell Compare</title>
+<meta name="description" content="Bwell robot vacuum compare page prototype in the apple.com/th compare pattern, with specs sourced from bwell.co.th product pages.">
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Kanit:wght@300;400;500;600&family=Poppins:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+
+:root{
+  --blue:#008AD0; --navy:#005D9D; --navy-deep:#0E2A44; --gray:#A8AAAD;
+  --ink:#1D1D1F; --ink-2:#5B6B7A; --ground:#F5F8FB; --surface:#FFFFFF; --line:#D5DFE8;
+  --bar-h:44px; --bar-h-m:48px; --content:980px;
+  --bar-bg:rgba(255,255,255,.82); --bar-ink:#1D1D1F; --bar-ink-soft:rgba(29,29,31,.72); --bar-line:rgba(0,0,0,.08);
+  --fly-bg:rgba(255,255,255,.94); --fly-ink:#1D1D1F; --fly-soft:#6E6E73; --fly-hover:#005D9D;
+  --display:"Poppins","Kanit",system-ui,sans-serif; --body:"Kanit","Poppins",system-ui,sans-serif;
+  --ease:cubic-bezier(.4,0,.6,1);
+  --nav-fs:13px; --nav-pad:10px;
+}
+:root[data-variant="hybrid"],:root[data-variant="ba"]{--content:1080px;--nav-fs:13px;--nav-pad:9px}
+:root[data-variant="flat"]{--content:1200px;--nav-fs:12px;--nav-pad:7px}
+:root[data-bar="dark"]{
+  --bar-bg:rgba(14,42,68,.86); --bar-ink:#FFFFFF; --bar-ink-soft:rgba(255,255,255,.8); --bar-line:rgba(255,255,255,.08);
+  --fly-bg:rgba(14,42,68,.96); --fly-ink:#FFFFFF; --fly-soft:rgba(255,255,255,.62); --fly-hover:#8FD0FF;
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{margin:0;background:var(--ground);color:var(--ink);font-family:var(--body);font-weight:300;font-size:16px;line-height:1.6}
+a{color:inherit;text-decoration:none}
+button{font:inherit;color:inherit;background:none;border:0;padding:0;cursor:pointer}
+:focus-visible{outline:2px solid var(--blue);outline-offset:2px;border-radius:4px}
+
+/* ===== Global nav bar ===== */
+.gn{position:sticky;top:env(safe-area-inset-top,0px);z-index:50;height:var(--bar-h);background:var(--bar-bg);-webkit-backdrop-filter:saturate(1.8) blur(20px);backdrop-filter:saturate(1.8) blur(20px);border-bottom:1px solid var(--bar-line);color:var(--bar-ink)}
+.gn-inner{max-width:var(--content);margin:0 auto;height:100%;display:flex;align-items:center;padding-inline:16px}
+.gn-logo{display:flex;align-items:center;gap:6px;height:100%;padding-inline:8px;margin-left:-8px}
+.gn-logo-img{height:19px;width:auto;display:block}
+.gn-list{list-style:none;margin:0;padding:0;display:flex;flex:1;justify-content:space-evenly;height:100%}
+.gn-item{height:100%}
+.gn-link{display:flex;align-items:center;height:100%;padding-inline:var(--nav-pad);font-size:var(--nav-fs);font-weight:400;color:var(--bar-ink-soft);letter-spacing:-.01em;white-space:nowrap;transition:color .2s var(--ease)}
+.gn-link:hover,.gn-item.is-open .gn-link{color:var(--bar-ink)}
+.gn-actions{display:flex;align-items:center;gap:4px;margin-right:-8px}
+.gn-icon{display:flex;align-items:center;justify-content:center;width:36px;height:var(--bar-h);color:var(--bar-ink-soft);transition:color .2s}
+.gn-icon:hover{color:var(--bar-ink)}
+.gn-icon svg{width:17px;height:17px;display:block}
+.gn-burger{display:none}
+
+/* ===== Curtain + flyout ===== */
+.gn-curtain{position:fixed;inset:0;top:var(--bar-h);background:rgba(0,0,0,.42);-webkit-backdrop-filter:blur(6px);backdrop-filter:blur(6px);opacity:0;pointer-events:none;transition:opacity .32s var(--ease);z-index:40}
+.gn-curtain.is-on{opacity:1;pointer-events:auto}
+.gn-flyout{position:fixed;left:0;right:0;top:var(--bar-h);z-index:45;background:var(--fly-bg);-webkit-backdrop-filter:saturate(1.8) blur(20px);backdrop-filter:saturate(1.8) blur(20px);color:var(--fly-ink);overflow:hidden;height:0;transition:height .38s var(--ease);border-bottom:1px solid var(--bar-line)}
+.gn-flyout[data-open="true"]{height:var(--fly-h,420px)}
+.gn-panel{max-width:980px;margin:0 auto;padding:44px 16px 56px;display:none;grid-template-columns:1.6fr 1fr 1fr;gap:0 48px;opacity:0;transform:translateY(-8px);transition:opacity .28s var(--ease) .12s,transform .28s var(--ease) .12s}
+.gn-panel.is-active{display:grid}
+.gn-panel.is-visible{opacity:1;transform:none}
+.gn-group h3{font-family:var(--body);font-weight:400;font-size:12px;color:var(--fly-soft);margin:0 0 14px;letter-spacing:.01em}
+.gn-group ul{list-style:none;margin:0;padding:0}
+.gn-group li{margin:0 0 10px}
+.gn-group a{display:inline-block;font-size:12.5px;font-weight:400;color:var(--fly-ink);transition:color .15s}
+.gn-group a:hover{color:var(--fly-hover)}
+.gn-group.is-primary li{margin-bottom:10px}
+.gn-group.is-primary a{font-family:var(--body);font-size:24px;font-weight:500;line-height:1.2;letter-spacing:-.015em}
+.gn-group .tag{display:inline-block;margin-left:8px;font-family:var(--display);font-size:9px;font-weight:600;letter-spacing:.08em;text-transform:uppercase;color:#fff;background:var(--blue);padding:2px 6px;border-radius:999px;vertical-align:middle}
+
+/* Pillar strip (variant B+A) */
+.gn-pillar-strip{grid-column:1/-1;margin-top:28px;padding-top:18px;border-top:1px solid var(--bar-line);display:none;align-items:baseline;gap:6px 18px;flex-wrap:wrap;font-size:12.5px}
+:root[data-variant="ba"] .gn-pillar-strip{display:flex}
+.gn-pillar-strip .lbl{color:var(--fly-soft)}
+.gn-pillar-strip a{color:var(--fly-ink)} .gn-pillar-strip a:hover{color:var(--fly-hover)} .gn-pillar-strip a[aria-current]{color:var(--blue);font-weight:500}
+body.gn-mobile .gn-drawer-root li.gn-grp{border-bottom:0;padding:18px 0 4px;font-family:var(--display);font-size:11px;font-weight:600;letter-spacing:.12em;text-transform:uppercase;color:var(--fly-soft)}
+body.gn-mobile .gn-drawer-root li.gn-grp:first-child{padding-top:6px}
+/* Search panel */
+.gn-search{max-width:980px;margin:0 auto;padding:36px 16px 56px}
+.gn-search form{display:flex;align-items:center;gap:14px;border-bottom:1px solid var(--bar-line);padding-bottom:12px}
+.gn-search svg{width:22px;height:22px;color:var(--fly-soft);flex:none}
+.gn-search input{flex:1;background:none;border:0;font:inherit;font-family:var(--body);font-size:28px;font-weight:400;color:var(--fly-ink);outline:none;min-width:0}
+.gn-search input::placeholder{color:var(--fly-soft)}
+.gn-search h3{font-size:12px;font-weight:400;color:var(--fly-soft);margin:28px 0 12px}
+.gn-search ul{list-style:none;margin:0;padding:0}
+.gn-search li a{display:flex;align-items:center;gap:10px;padding:6px 0;font-size:15px;font-weight:400}
+.gn-search li a::before{content:"";width:6px;height:6px;border-right:1.5px solid var(--fly-soft);border-top:1.5px solid var(--fly-soft);transform:rotate(45deg);flex:none}
+.gn-search li a:hover{color:var(--fly-hover)}
+
+/* ===== Mobile drawer ===== */
+.gn-drawer{display:none}
+body.gn-mobile .gn{height:var(--bar-h-m)}
+body.gn-mobile .gn-inner{position:relative;justify-content:center}
+body.gn-mobile .gn-list,body.gn-mobile .gn-flyout,body.gn-mobile .gn-curtain{display:none}
+body.gn-mobile .gn-logo{position:absolute;left:50%;transform:translateX(-50%);margin:0;padding:0}
+body.gn-mobile .gn-icon{height:var(--bar-h-m);width:44px}
+body.gn-mobile .gn-burger{display:flex;position:absolute;left:8px}
+body.gn-mobile .gn-actions{position:absolute;right:8px;margin:0}
+body.gn-mobile .gn-actions .gn-icon-search{display:none}
+body.gn-mobile .gn-burger .bar{position:relative;width:18px;height:12px}
+body.gn-mobile .gn-burger .bar::before,body.gn-mobile .gn-burger .bar::after{content:"";position:absolute;left:0;width:18px;height:1.5px;background:currentColor;border-radius:2px;transition:transform .3s var(--ease),top .3s var(--ease)}
+body.gn-mobile .gn-burger .bar::before{top:1px}
+body.gn-mobile .gn-burger .bar::after{top:10px}
+body.gn-mobile .gn-burger[aria-expanded="true"] .bar::before{top:5px;transform:rotate(45deg)}
+body.gn-mobile .gn-burger[aria-expanded="true"] .bar::after{top:5px;transform:rotate(-45deg)}
+body.gn-mobile .gn-drawer{display:block;position:fixed;inset:0;top:var(--bar-h-m);z-index:45;background:var(--fly-bg);-webkit-backdrop-filter:saturate(1.8) blur(20px);backdrop-filter:saturate(1.8) blur(20px);color:var(--fly-ink);transform:translateY(-8px);opacity:0;pointer-events:none;transition:opacity .3s var(--ease),transform .3s var(--ease);overflow:hidden}
+body.gn-mobile .gn-drawer.is-open{opacity:1;transform:none;pointer-events:auto}
+body.gn-mobile .gn-drawer-track{display:flex;width:200%;height:100%;transition:transform .36s var(--ease)}
+body.gn-mobile .gn-drawer.is-sub .gn-drawer-track{transform:translateX(-50%)}
+body.gn-mobile .gn-drawer-pane{width:50%;flex:0 0 50%;height:100%;overflow-y:auto;overflow-x:hidden;padding:16px 24px 48px;-webkit-overflow-scrolling:touch}
+body.gn-mobile .gn-drawer-search{display:flex;align-items:center;gap:10px;background:rgba(0,0,0,.06);border-radius:10px;padding:10px 12px;margin-bottom:8px}
+:root[data-bar="dark"] body.gn-mobile .gn-drawer-search{background:rgba(255,255,255,.1)}
+body.gn-mobile .gn-drawer-search svg{width:16px;height:16px;color:var(--fly-soft)}
+body.gn-mobile .gn-drawer-search input{flex:1;background:none;border:0;font:inherit;font-size:17px;color:var(--fly-ink);outline:none;min-width:0}
+body.gn-mobile .gn-drawer ul{list-style:none;margin:0;padding:0}
+body.gn-mobile .gn-drawer-root>li{border-bottom:1px solid var(--bar-line)}
+body.gn-mobile .gn-drawer-root>li>button,body.gn-mobile .gn-drawer-root>li>a{display:flex;align-items:center;justify-content:space-between;width:100%;padding:14px 0;font-size:24px;font-weight:500;letter-spacing:-.015em;text-align:left;opacity:0;transform:translateY(6px);transition:opacity .35s var(--ease),transform .35s var(--ease)}
+body.gn-mobile .gn-drawer.is-open .gn-drawer-root>li>button,body.gn-mobile .gn-drawer.is-open .gn-drawer-root>li>a{opacity:1;transform:none}
+body.gn-mobile .gn-drawer-root>li>button::after{content:"";width:8px;height:8px;border-right:1.5px solid var(--fly-soft);border-top:1.5px solid var(--fly-soft);transform:rotate(45deg)}
+body.gn-mobile .gn-back{display:flex;align-items:center;gap:8px;font-size:14px;color:var(--fly-soft);padding:8px 0 18px}
+body.gn-mobile .gn-back::before{content:"";width:8px;height:8px;border-left:1.5px solid currentColor;border-top:1.5px solid currentColor;transform:rotate(-45deg)}
+body.gn-mobile .gn-sub h3{font-size:12px;font-weight:400;color:var(--fly-soft);margin:20px 0 8px}
+body.gn-mobile .gn-sub li a{display:block;padding:8px 0;font-size:15px}
+body.gn-mobile .gn-sub .is-primary li a{font-size:22px;font-weight:500;padding:6px 0;letter-spacing:-.015em}
+body.gn-mobile .gn-sub .tag{display:inline-block;margin-left:8px;font-family:var(--display);font-size:9px;font-weight:600;letter-spacing:.08em;text-transform:uppercase;color:#fff;background:var(--blue);padding:2px 6px;border-radius:999px;vertical-align:middle}
+body.gn-lock{overflow:hidden}
+body:not(.gn-mobile) .gn-drawer{display:none !important}
+
+
+/* ================= SHARED PAGE SYSTEM ================= */
+
+/* ===== Homepage (apple.com/th layout pattern, Bwell identity) ===== */
+body{background:#FFFFFF}
+.sr-only{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}
+.ribbon{background:#EAF3FA;text-align:center;padding:14px 16px;font-size:14px;line-height:1.5;color:#1D1D1F}
+.ribbon p{margin:0;max-width:980px;margin-inline:auto}
+.ribbon a{color:var(--navy);white-space:nowrap}
+.ribbon a::after{content:" ›"}
+
+main{display:block}
+.headline{font-family:var(--body);font-weight:600;font-size:clamp(40px,5.2vw,64px);line-height:1.08;letter-spacing:-.015em;margin:0;text-wrap:balance}
+.subhead{font-family:var(--body);font-weight:400;font-size:clamp(21px,2.4vw,28px);line-height:1.25;margin:6px 0 0;text-wrap:balance}
+.detail{font-size:clamp(15px,1.4vw,17px);font-weight:300;margin:10px 0 0;opacity:.85;text-wrap:balance}
+.eyebrow{font-family:var(--display);font-size:13px;font-weight:600;letter-spacing:.14em;text-transform:uppercase;margin:0 0 6px}
+sup{font-size:.6em;line-height:0}
+sup a{color:inherit;opacity:.8}
+
+.ctas{display:flex;gap:14px;flex-wrap:wrap;margin-top:20px}
+.center .ctas{justify-content:center}
+.pill{display:inline-flex;align-items:center;justify-content:center;min-height:44px;padding:0 22px;border-radius:999px;font-family:var(--body);font-weight:500;font-size:16px;line-height:1;border:1px solid transparent;transition:background .2s var(--ease),color .2s var(--ease),border-color .2s var(--ease)}
+.pill-fill{background:var(--blue);color:#fff}
+.pill-fill:hover{background:var(--navy)}
+.pill-line{border-color:var(--blue);color:var(--navy)}
+.pill-line:hover{background:var(--blue);color:#fff}
+.hero-dark .pill-fill{background:#fff;color:var(--navy)}
+.hero-dark .pill-fill:hover{background:#EAF3FA}
+.hero-dark .pill-line{border-color:rgba(255,255,255,.9);color:#fff}
+.hero-dark .pill-line:hover{background:#fff;color:var(--navy)}
+.pill-light{background:rgba(255,255,255,.92);color:#1D1D1F;min-height:40px;font-size:15px}
+.pill-light:hover{background:#fff}
+
+/* Hero */
+.hero{position:relative;overflow:hidden;min-height:692px;margin:0 0 12px}
+.hero-dark{background:#0B4F85;color:#fff}
+.hero-art,.hero-art img{position:absolute;inset:0;width:100%;height:100%}
+.hero-art img{object-fit:cover;object-position:right center}
+.hero-dark .hero-copy{position:relative;z-index:1;max-width:980px;margin:0 auto;padding:0 16px;min-height:692px;display:flex;flex-direction:column;justify-content:center}
+.hero-dark .hero-copy>*{max-width:460px}
+.hero-light{background:#F5F7FA;color:#1D1D1F;display:flex;flex-direction:column;align-items:center;text-align:center;padding-top:52px}
+.hero-light .hero-copy{padding:0 16px;max-width:900px}
+.hero-product{height:clamp(300px,34vw,460px);width:auto;max-width:80vw;margin-top:auto;mix-blend-mode:multiply;margin-bottom:44px}
+
+/* Promo grid */
+.grid{display:grid;grid-template-columns:1fr 1fr;gap:12px;padding:0 12px;margin-bottom:12px}
+.tile{position:relative;overflow:hidden;min-height:580px;display:flex;flex-direction:column;align-items:center;text-align:center;padding-top:52px;color:#1D1D1F}
+.t-white{background:#FFFFFF;box-shadow:inset 0 0 0 1px #EEF1F5}
+.t-cool{background:#F5F7FA}
+.t-blush{background:#F7F1EE}
+.tile-copy{padding:0 24px;max-width:560px}
+.tile-brand{font-family:var(--display);font-size:12px;font-weight:600;letter-spacing:.16em;text-transform:uppercase;color:#8A6A5C;margin:0 0 6px}
+.tile-title{font-family:var(--body);font-weight:600;font-size:clamp(28px,3.2vw,40px);line-height:1.1;letter-spacing:-.01em;margin:0;text-wrap:balance}
+.tile-sub{font-size:clamp(17px,1.8vw,21px);font-weight:400;margin:6px 0 0;text-wrap:balance}
+.tile-detail{font-size:14px;font-weight:300;color:#5B6B7A;margin:8px 0 0}
+.ctas.sm{margin-top:16px;gap:10px}
+.ctas.sm .pill{min-height:38px;padding:0 18px;font-size:15px}
+.tile-img{height:clamp(240px,24vw,320px);width:auto;max-width:72%;margin-top:auto;mix-blend-mode:multiply;margin-bottom:36px}
+.tile-img-sm{height:clamp(200px,19vw,250px);margin-bottom:60px}
+
+/* Gallery */
+.gallery{padding:72px 0 56px;background:#FFFFFF;overflow:hidden}
+.gallery-title{font-family:var(--body);font-weight:600;font-size:clamp(28px,3.4vw,40px);text-align:center;margin:0 0 28px;padding:0 16px;letter-spacing:-.01em}
+.g-viewport{overflow:hidden}
+.g-track{list-style:none;margin:0;padding:0;display:flex;gap:16px;transition:transform .6s var(--ease);will-change:transform}
+.g-slide{position:relative;flex:0 0 min(1100px,86vw);aspect-ratio:16/9;border-radius:18px;overflow:hidden;background:#EAF3FA;opacity:.55;transition:opacity .6s var(--ease)}
+.g-slide.is-current{opacity:1}
+.g-slide img{width:100%;height:100%;object-fit:cover;display:block}
+.g-cap{position:absolute;z-index:1;left:24px;bottom:24px;right:24px;display:flex;align-items:center;gap:14px 18px;flex-wrap:wrap;color:#fff;text-shadow:0 1px 12px rgba(0,0,0,.35)}
+.g-cap::before{content:"";position:absolute;inset:-140px -24px -24px;background:linear-gradient(0deg,rgba(0,0,0,.62),rgba(0,0,0,.28) 55%,rgba(0,0,0,0));z-index:-1;border-radius:0 0 18px 18px}
+.g-kicker{margin:0;font-family:var(--display);font-weight:600;font-size:13px;letter-spacing:.1em;text-transform:uppercase;flex-basis:100%}
+.g-text{margin:0;font-size:clamp(16px,1.7vw,21px);font-weight:400;max-width:44ch;text-wrap:balance}
+.g-cap .pill{text-shadow:none}
+.g-controls{display:flex;align-items:center;justify-content:center;gap:14px;margin-top:22px}
+.g-dots{display:flex;gap:8px;background:#EEF1F5;padding:10px 14px;border-radius:999px}
+.g-dots button{width:8px;height:8px;border-radius:999px;background:#A8AAAD;transition:width .3s var(--ease),background .3s}
+.g-dots button[aria-selected="true"]{width:28px;background:#1D1D1F}
+.g-play{width:40px;height:40px;border-radius:999px;background:#EEF1F5;display:flex;align-items:center;justify-content:center;color:#1D1D1F}
+.g-play .i-pause{width:10px;height:12px;border-left:3px solid currentColor;border-right:3px solid currentColor}
+.g-play .i-play{width:0;height:0;border-left:11px solid currentColor;border-top:7px solid transparent;border-bottom:7px solid transparent;margin-left:3px;display:none}
+.g-play[data-state="paused"] .i-pause{display:none}
+.g-play[data-state="paused"] .i-play{display:block}
+
+/* Trust + buy-from */
+.trust{background:#F5F7FA;padding:64px 16px}
+.trust-title{font-family:var(--body);font-weight:600;font-size:clamp(24px,2.6vw,32px);text-align:center;margin:0 0 32px}
+.trust-list{list-style:none;margin:0 auto;padding:0;max-width:980px;display:grid;grid-template-columns:repeat(4,1fr);gap:28px}
+.trust-list li{text-align:center}
+.trust-list svg{width:36px;height:36px;color:var(--blue)}
+.trust-list h3{font-size:17px;font-weight:500;margin:10px 0 4px;text-wrap:balance}
+.trust-list p{font-size:14px;font-weight:300;color:#5B6B7A;margin:0;text-wrap:balance}
+.buyfrom{padding:36px 16px;text-align:center;border-top:1px solid #EEF1F5}
+.buyfrom-title{font-size:14px;color:#5B6B7A;margin:0 0 14px}
+.buyfrom-list{list-style:none;margin:0 auto;padding:0;display:flex;flex-wrap:wrap;justify-content:center;gap:10px;max-width:980px}
+.buyfrom-list a{display:inline-flex;align-items:center;min-height:40px;padding:0 18px;border-radius:999px;border:1px solid #D5DFE8;font-size:15px;color:#1D1D1F;transition:border-color .2s,color .2s}
+.buyfrom-list a:hover{border-color:var(--blue);color:var(--navy)}
+
+/* Footer */
+.ft{background:#F5F7FA;color:#6E6E73;font-size:12px;line-height:1.55}
+.ft-inner{max-width:980px;margin:0 auto;padding:20px 16px 28px}
+.ft a{color:#424245} .ft a:hover{color:var(--navy);text-decoration:underline}
+.ft-notes{margin:0 0 18px;padding:0 0 16px 18px;border-bottom:1px solid #D2D2D7}
+.ft-notes li{margin:0 0 6px}
+/* Directory: 5 columns, each column stacks one or more groups (apple.com/th footer pattern) */
+.ft-dir{display:grid;grid-template-columns:1.25fr 1fr 1fr 1.15fr 1fr;gap:0 24px;padding:10px 0 22px;border-bottom:1px solid #D2D2D7}
+.ft-col{min-width:0}
+.ft-sec+.ft-sec{margin-top:26px}
+.ft-dir summary{list-style:none;font-weight:600;font-size:12px;color:#1D1D1F;margin-bottom:10px;cursor:default}
+.ft-dir summary::-webkit-details-marker{display:none}
+.ft-dir ul{list-style:none;margin:0;padding:0}
+.ft-dir li{margin:0 0 9px;line-height:1.35}
+.ft-shop{margin:16px 0 0}
+.ft-legal p{margin:14px 0 0}
+.ft-legal-row{display:flex;flex-wrap:wrap;justify-content:space-between;gap:8px 20px;padding-top:12px;margin-top:12px;border-top:1px solid #D2D2D7}
+.ft-legal-row p{margin:0}
+.ft-legal-row ul{list-style:none;margin:0;padding:0;display:flex;flex-wrap:wrap;gap:4px 0}
+.ft-legal-row li+li::before{content:"|";margin:0 8px;color:#D2D2D7}
+
+/* Reveal motion */
+.reveal{opacity:0;transform:translateY(18px);transition:opacity .6s var(--ease),transform .6s var(--ease)}
+.reveal.is-in{opacity:1;transform:none}
+
+/* Spec */
+.spec-pill{position:fixed;right:16px;bottom:16px;z-index:30;background:#fff;border:1px solid #D5DFE8;border-radius:999px;padding:9px 16px;font-family:var(--display);font-size:12px;font-weight:500;color:var(--navy);box-shadow:0 8px 24px rgba(0,0,0,.12)}
+.spec{max-width:1080px;margin:0 auto;padding:72px 20px 96px;background:#fff;border-top:6px solid var(--navy)}
+.spec h2{font-family:var(--display);font-weight:600;font-size:22px;margin:0 0 10px}
+.spec h3{font-family:var(--display);font-weight:600;font-size:16px;margin:36px 0 8px;color:var(--navy)}
+.spec p{max-width:78ch;font-size:15px}
+.tablewrap{overflow-x:auto;border:1px solid #D5DFE8;border-radius:6px;background:#fff;margin-top:10px}
+.spec table{border-collapse:collapse;width:100%;font-size:14px}
+.spec th{font-family:var(--display);font-weight:500;font-size:12px;letter-spacing:.06em;text-transform:uppercase;text-align:left;color:#5B6B7A;background:#EDF3F8;padding:10px 12px;border-bottom:1px solid #D5DFE8;white-space:nowrap}
+.spec td{padding:10px 12px;border-bottom:1px solid #D5DFE8;vertical-align:top}
+.spec tr:last-child td{border-bottom:0}
+.spec code{font-family:ui-monospace,SFMono-Regular,Menlo,monospace;font-size:.86em;background:#EDF3F8;padding:1px 5px;border-radius:4px}
+
+/* Responsive */
+@media (max-width:1068px){
+  .ft-dir{grid-template-columns:repeat(3,1fr);gap:28px 24px}
+  .hero,.hero-dark .hero-copy{min-height:620px}
+  .tile{min-height:520px}
+}
+@media (max-width:734px){
+  .hero{min-height:740px}
+  .hero-art img{object-position:center top}
+  .hero-dark .hero-copy{min-height:740px;justify-content:flex-start;align-items:center;text-align:center;padding-top:48px}
+  .hero-dark .hero-copy>*{max-width:100%}
+  .hero-dark .ctas{justify-content:center}
+  .hero-light{padding-top:44px;min-height:620px}
+  .grid{grid-template-columns:1fr;padding:0}
+  .tile{min-height:500px;padding-top:44px}
+  .g-slide{aspect-ratio:4/5;flex-basis:84vw}
+  .g-cap{left:16px;right:16px;bottom:16px}
+  .trust-list{grid-template-columns:1fr 1fr;gap:28px 16px}
+  .ft-dir{grid-template-columns:1fr;gap:0;padding-top:0}
+  .ft-sec+.ft-sec{margin-top:0}
+  .ft-dir details{border-bottom:1px solid #D2D2D7}
+  .ft-col:last-child details:last-child{border-bottom:0}
+  .ft-dir summary{padding:11px 0;margin:0;font-weight:400;font-size:12px;cursor:pointer;display:flex;justify-content:space-between}
+  .ft-dir summary::after{content:"+";font-weight:400;color:#6E6E73}
+  .ft-dir details[open] summary::after{content:"−"}
+  .ft-dir ul{padding:0 0 12px 12px}
+  .ft-dir li{margin-bottom:11px}
+  .ft-legal-row{flex-direction:column}
+  .ft-legal-row ul{gap:8px 18px}
+  .ft-legal-row li+li::before{display:none}
+}
+@media (prefers-reduced-motion: reduce){ .reveal{opacity:1;transform:none} .g-track{transition:none} }
+
+/* ================= COMPARE PAGE ================= */
+/* ===== Compare page (apple.com/th compare pattern, Bwell identity) ===== */
+.cmpg{background:#fff}
+.k-grid{--n:3;display:grid;grid-template-columns:repeat(var(--n),minmax(0,1fr));gap:0 28px;max-width:1080px;margin:0 auto;padding:0 16px}
+
+.k-hero{max-width:1080px;margin:0 auto;padding:64px 16px 28px;text-align:center}
+.k-title{font-family:var(--body);font-weight:600;font-size:clamp(34px,4.6vw,56px);line-height:1.1;letter-spacing:-.015em;margin:0;color:#1D1D1F;text-wrap:balance}
+.k-lead{font-size:clamp(17px,1.6vw,21px);color:#424245;margin:12px 0 0;font-weight:300}
+
+/* Sticky selector bar */
+.k-bar{position:sticky;top:var(--bar-h);z-index:30;background:rgba(255,255,255,.92);-webkit-backdrop-filter:saturate(1.8) blur(20px);backdrop-filter:saturate(1.8) blur(20px);padding:12px 0;border-bottom:1px solid transparent;transition:border-color .2s,box-shadow .2s}
+body.gn-mobile .k-bar{top:var(--bar-h-m)}
+.k-bar.is-stuck{border-bottom-color:#E8E8ED;box-shadow:0 6px 16px rgba(0,0,0,.04)}
+.k-sel{position:relative;display:block}
+.k-sel::after{content:"";position:absolute;right:16px;top:50%;width:8px;height:8px;border-right:1.6px solid #1D1D1F;border-bottom:1.6px solid #1D1D1F;transform:translateY(-70%) rotate(45deg);pointer-events:none}
+.k-sel select{appearance:none;-webkit-appearance:none;width:100%;height:44px;padding:0 40px 0 16px;border:1px solid #D2D2D7;border-radius:12px;background:#fff;font:inherit;font-family:var(--display);font-size:16px;font-weight:500;color:#1D1D1F;cursor:pointer}
+.k-sel select:focus-visible{outline:2px solid var(--blue);outline-offset:2px}
+
+/* Product header cells */
+.k-heads{padding:28px 0 12px}
+.k-head{display:flex;flex-direction:column;align-items:center;text-align:center}
+.k-head img{height:170px;width:auto;max-width:86%;object-fit:contain;mix-blend-mode:multiply;margin-bottom:18px}
+.k-new{min-height:17px;margin:0;font-family:var(--display);font-size:12px;font-weight:600;letter-spacing:.06em;color:#C2410C}
+.k-name{font-family:var(--display);font-weight:600;font-size:clamp(24px,2.4vw,32px);margin:2px 0 6px;color:#1D1D1F}
+.k-tag{font-size:15px;line-height:1.45;color:#424245;margin:0;min-height:44px;max-width:22em;font-weight:300}
+.k-price{font-size:17px;font-weight:500;margin:12px 0 0;color:#1D1D1F}
+.k-price sup a{color:inherit}
+.k-ctas{display:flex;align-items:center;gap:18px;margin-top:16px}
+.pill-sm{min-height:34px;padding:0 16px;font-size:14px}
+.k-learn{color:var(--navy);font-size:15px}
+.k-learn::after{content:" ›"}
+
+/* Sections and rows */
+.k-sec{padding:28px 0 0}
+.k-sec-t{max-width:1080px;margin:0 auto;padding:0 16px 10px;font-family:var(--body);font-weight:600;font-size:clamp(24px,2.6vw,32px);color:#1D1D1F}
+.k-sec-t::before{content:"";display:block;border-top:1px solid #D2D2D7;margin-bottom:36px}
+.k-title .nw{white-space:nowrap}
+.k-row{padding:6px 0}
+.k-label{max-width:1080px;margin:14px auto 8px;padding:0 16px;font-size:13px;font-weight:500;color:#6E6E73;letter-spacing:.01em}
+.k-cell{text-align:center;padding:4px 0 14px;border-bottom:1px solid #F0F0F2}
+.k-v{margin:0;font-size:clamp(17px,1.6vw,20px);font-weight:500;line-height:1.35;color:#1D1D1F;text-wrap:balance}
+.k-s{margin:4px auto 0;font-size:14px;line-height:1.45;color:#6E6E73;max-width:20em;font-weight:300}
+.k-na span[aria-hidden]{font-size:20px;color:#A1A1A6}
+.k-nojs{max-width:1080px;margin:24px auto;padding:0 16px;color:#6E6E73}
+
+/* Help */
+.k-help{margin:72px auto 0;padding:72px 16px;text-align:center;background:#F5F5F7}
+.k-help h2{font-family:var(--body);font-weight:600;font-size:clamp(28px,3vw,40px);margin:0 0 10px;color:#1D1D1F}
+.k-help p{margin:0 auto;max-width:34em;font-size:17px;line-height:1.55;color:#424245;font-weight:300}
+.k-help .ctas{justify-content:center;margin-top:22px}
+
+/* Footer breadcrumb */
+.ft-bc{display:flex;align-items:center;flex-wrap:wrap;gap:4px 8px;font-size:12px;padding:0 0 14px;margin-bottom:6px;border-bottom:1px solid #D2D2D7;color:#6E6E73}
+.ft-bc img{height:12px;width:auto;display:block}
+.ft-bc .sep{color:#A1A1A6}
+.ft-bc [aria-current]{color:#424245}
+
+@media (max-width:734px){
+  .k-grid{gap:0 16px}
+  .k-col3{display:none}
+  .k-hero{padding-top:40px}
+  .k-head img{height:120px}
+  .k-tag{font-size:13px;min-height:57px}
+  .k-ctas{flex-direction:column;gap:10px}
+  .k-sel select{font-size:15px;padding-left:12px}
+}
+
+</style>
+<!-- ============ GLOBAL NAV ============ -->
+<header class="gn" id="gn">
+  <div class="gn-inner">
+    <button class="gn-icon gn-burger" id="gnBurger" aria-label="เปิดเมนู" aria-expanded="false" aria-controls="gnDrawer"><span class="bar"></span></button>
+    <a class="gn-logo" href="#" aria-label="Bwell หน้าแรก">
+      <img class="gn-logo-img" src="home-assets/bwell-logo.png" alt="" width="728" height="169">
+    </a>
+    <ul class="gn-list" id="gnList" role="menubar" aria-label="เมนูหลัก"></ul>
+    <div class="gn-actions">
+      <button class="gn-icon gn-icon-search" data-menu="search" aria-label="ค้นหา" aria-expanded="false"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><circle cx="11" cy="11" r="7"/><path d="M20 20l-3.6-3.6"/></svg></button>
+      <button class="gn-icon" data-menu="store" aria-label="ซื้อสินค้า" aria-expanded="false"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M6 8h12l1 12H5L6 8z"/><path d="M9 8V6a3 3 0 0 1 6 0v2"/></svg></button>
+    </div>
+  </div>
+</header>
+<div class="gn-curtain" id="gnCurtain"></div>
+
+<div class="gn-flyout" id="gnFlyout" data-open="false" aria-hidden="true">
+  <!-- AIR -->
+  <div class="gn-panel" data-panel="air">
+    <div class="gn-group is-primary"><h3>สำรวจ Air</h3><ul>
+      <li><a href="#">เครื่องฟอกอากาศ</a></li>
+      <li><a href="#">เครื่องลดความชื้น</a></li>
+      <li><a href="#">แอร์เคลื่อนที่</a></li>
+      <li><a href="#">แผ่นฟอกอากาศและไส้กรอง</a></li>
+      <li><a href="#">เปรียบเทียบเครื่องฟอกอากาศ</a></li>
+    </ul></div>
+    <div class="gn-group"><h3>ซื้อ Air</h3><ul>
+      <li><a href="#">ซื้อเครื่องฟอกอากาศ</a></li>
+      <li><a href="#">ซื้อเครื่องลดความชื้น</a></li>
+      <li><a href="#">ซื้อไส้กรองตรงรุ่น</a></li>
+      <li><a href="#">ค้นหาสาขาใกล้คุณ</a></li>
+      <li><a href="#">ผ่อน 0% <span style="color:var(--fly-soft)">[ยืนยันเงื่อนไข]</span></a></li>
+    </ul></div>
+    <div class="gn-group"><h3>เพิ่มเติมจาก Air</h3><ul>
+      <li><a href="#">เลือกเครื่องฟอกอากาศให้เหมาะกับห้อง</a></li>
+      <li><a href="#">CADR คืออะไร</a></li>
+      <li><a href="#">เปลี่ยนไส้กรองเมื่อไหร่</a></li>
+      <li><a href="#">คู่มือการใช้งาน</a></li>
+      <li><a href="#">ลงทะเบียนรับประกัน</a></li>
+    </ul></div>
+  </div>
+  <!-- WATER -->
+  <div class="gn-panel" data-panel="water">
+    <div class="gn-group is-primary"><h3>สำรวจ Water</h3><ul>
+      <li><a href="#">เครื่องกรองน้ำ RO</a></li>
+      <li><a href="#">เครื่องทำน้ำอุ่น</a></li>
+      <li><a href="#">เครื่องทำน้ำร้อน</a></li>
+      <li><a href="#">ไส้กรองน้ำ</a></li>
+      <li><a href="#">เปรียบเทียบเครื่องกรองน้ำ</a></li>
+    </ul></div>
+    <div class="gn-group"><h3>ซื้อ Water</h3><ul>
+      <li><a href="#">ซื้อเครื่องกรองน้ำ</a></li>
+      <li><a href="#">ซื้อเครื่องทำน้ำอุ่น</a></li>
+      <li><a href="#">ซื้อไส้กรองน้ำ</a></li>
+      <li><a href="#">ค้นหาสาขาใกล้คุณ</a></li>
+    </ul></div>
+    <div class="gn-group"><h3>เพิ่มเติมจาก Water</h3><ul>
+      <li><a href="#">เลือกเครื่องกรองน้ำสำหรับบ้านและคอนโด</a></li>
+      <li><a href="#">RO กับ UF ต่างกันอย่างไร</a></li>
+      <li><a href="#">วิธีเปลี่ยนไส้กรอง</a></li>
+      <li><a href="#">คู่มือการใช้งาน</a></li>
+      <li><a href="#">ลงทะเบียนรับประกัน</a></li>
+    </ul></div>
+  </div>
+  <!-- CLEAN HOME -->
+  <div class="gn-panel" data-panel="clean">
+    <div class="gn-group is-primary"><h3>สำรวจ Clean Home</h3><ul>
+      <li><a href="#">หุ่นยนต์ดูดฝุ่น Ultra T20 <span class="tag">New</span></a></li>
+      <li><a href="#">หุ่นยนต์ดูดฝุ่น L6C</a></li>
+      <li><a href="#">หุ่นยนต์ดูดฝุ่น L0</a></li>
+      <li><a href="#">หุ่นยนต์ดูดฝุ่น Y1</a></li>
+      <li><a href="#">เครื่องดูดฝุ่นไร้สาย</a></li>
+      <li><a href="#">เปรียบเทียบหุ่นยนต์ดูดฝุ่น</a></li>
+    </ul></div>
+    <div class="gn-group"><h3>ซื้อ Clean Home</h3><ul>
+      <li><a href="#">ซื้อหุ่นยนต์ดูดฝุ่น</a></li>
+      <li><a href="#">ซื้อเครื่องดูดฝุ่นไร้สาย</a></li>
+      <li><a href="#">อะไหล่และแปรง</a></li>
+      <li><a href="#">ค้นหาสาขาใกล้คุณ</a></li>
+    </ul></div>
+    <div class="gn-group"><h3>เพิ่มเติมจาก Clean Home</h3><ul>
+      <li><a href="#">รุ่นไหนเหมาะกับบ้านคุณ</a></li>
+      <li><a href="#">ดูแลแท่น OmniBase</a></li>
+      <li><a href="#">แอป Bwell Smart</a></li>
+      <li><a href="#">คู่มือการใช้งาน</a></li>
+      <li><a href="#">ลงทะเบียนรับประกัน</a></li>
+    </ul></div>
+  </div>
+  <!-- ERGONOMIC -->
+  <div class="gn-panel" data-panel="ergo">
+    <div class="gn-group is-primary"><h3>สำรวจ Ergonomic</h3><ul>
+      <li><a href="#">เก้าอี้เพื่อสุขภาพ Bjorn</a></li>
+      <li><a href="#">เก้าอี้เพื่อสุขภาพ Stella</a></li>
+      <li><a href="#">เก้าอี้เพื่อสุขภาพ Astrid</a></li>
+      <li><a href="#">หมอนและเบาะรองเพื่อสุขภาพ</a></li>
+      <li><a href="#">อุปกรณ์ออกกำลังกาย</a></li>
+      <li><a href="#">เปรียบเทียบเก้าอี้</a></li>
+    </ul></div>
+    <div class="gn-group"><h3>ซื้อ Ergonomic</h3><ul>
+      <li><a href="#">ซื้อเก้าอี้เพื่อสุขภาพ</a></li>
+      <li><a href="#">ซื้อหมอนและเบาะรอง</a></li>
+      <li><a href="#">ทดลองนั่งที่ Showroom</a></li>
+      <li><a href="#">สั่งซื้อในนามองค์กร</a></li>
+    </ul></div>
+    <div class="gn-group"><h3>เพิ่มเติมจาก Ergonomic</h3><ul>
+      <li><a href="#">ปรับเก้าอี้ให้พอดีตัว</a></li>
+      <li><a href="#">Office Syndrome และท่านั่ง</a></li>
+      <li><a href="#">คู่มือการประกอบ</a></li>
+      <li><a href="#">ลงทะเบียนรับประกัน</a></li>
+    </ul></div>
+  </div>
+  <!-- BEAUTY -->
+  <div class="gn-panel" data-panel="beauty">
+    <div class="gn-group is-primary"><h3>สำรวจ Bwell Beauty</h3><ul>
+      <li><a href="#">หวีลมร้อนดิจิตอล</a></li>
+      <li><a href="#">ไดร์จัดแต่งทรงผม BLDC</a></li>
+      <li><a href="#">เครื่องหนีบผม</a></li>
+      <li><a href="#">เครื่องม้วนผม</a></li>
+      <li><a href="#">ดูทั้งหมด</a></li>
+    </ul></div>
+    <div class="gn-group"><h3>ซื้อ Beauty</h3><ul>
+      <li><a href="#">ซื้อหวีลมร้อน</a></li>
+      <li><a href="#">ซื้อเครื่องหนีบผม</a></li>
+      <li><a href="#">ซื้อบน Shopee / Lazada</a></li>
+    </ul></div>
+    <div class="gn-group"><h3>เพิ่มเติมจาก Beauty</h3><ul>
+      <li><a href="#">หวีม้วนผมไฟฟ้า เลือกอย่างไร</a></li>
+      <li><a href="#">ไดร์เป่าผมแห้งไว ทำงานอย่างไร</a></li>
+      <li><a href="#">ดูแลเครื่องจัดแต่งทรงผม</a></li>
+      <li><a href="#">ลงทะเบียนรับประกัน</a></li>
+    </ul></div>
+  </div>
+  <!-- SUPPORT -->
+  <div class="gn-panel" data-panel="support">
+    <div class="gn-group is-primary"><h3>บริการช่วยเหลือ</h3><ul>
+      <li><a href="#">ลงทะเบียนรับประกันสินค้า</a></li>
+      <li><a href="#">คู่มือการใช้งาน</a></li>
+      <li><a href="#">คำถามที่พบบ่อย</a></li>
+      <li><a href="#">เคลมสินค้าและคืนเงิน</a></li>
+      <li><a href="#">ติดต่อเรา</a></li>
+    </ul></div>
+    <div class="gn-group"><h3>ช่องทางติดต่อ</h3><ul>
+      <li><a href="#">LINE Official Account</a></li>
+      <li><a href="#">โทร 02-294-3211</a></li>
+      <li><a href="#">อีเมล [ยืนยันอีเมล]</a></li>
+      <li><a href="#">จันทร์ – เสาร์ 08.30 – 17.30 น.</a></li>
+    </ul></div>
+    <div class="gn-group"><h3>เพิ่มเติม</h3><ul>
+      <li><a href="#">นโยบายการรับประกัน</a></li>
+      <li><a href="#">นโยบายการจัดส่ง</a></li>
+      <li><a href="#">ซื้อไส้กรองและอะไหล่</a></li>
+      <li><a href="#">สมัครตัวแทนจำหน่าย</a></li>
+    </ul></div>
+  </div>
+  <!-- STORE -->
+  <div class="gn-panel" data-panel="store">
+    <div class="gn-group is-primary"><h3>ซื้อสินค้า Bwell</h3><ul>
+      <li><a href="#">Bwell Shop ร้านค้าทางการ</a></li>
+      <li><a href="#">Shopee Official Store</a></li>
+      <li><a href="#">Lazada Official Store</a></li>
+      <li><a href="#">TikTok Shop</a></li>
+      <li><a href="#">NocNoc</a></li>
+    </ul></div>
+    <div class="gn-group"><h3>หน้าร้าน</h3><ul>
+      <li><a href="#">ค้นหาสาขาใกล้คุณ</a></li>
+      <li><a href="#">Bwell Showroom เจริญราษฎร์</a></li>
+      <li><a href="#">Bwell Flagship Store CDC</a></li>
+      <li><a href="#">Central · HomePro · PowerBuy</a></li>
+    </ul></div>
+    <div class="gn-group"><h3>บริการ</h3><ul>
+      <li><a href="#">ผ่อน 0% [ยืนยันเงื่อนไข]</a></li>
+      <li><a href="#">จัดส่งและติดตั้ง</a></li>
+      <li><a href="#">สั่งซื้อในนามองค์กร</a></li>
+      <li><a href="#">สมัครตัวแทนจำหน่าย</a></li>
+    </ul></div>
+  </div>
+  <div class="gn-panel" data-panel="c-airpurifier" data-pillar="Air">
+    <div class="gn-group is-primary"><h3>สำรวจเครื่องฟอกอากาศ</h3><ul><li><a href="#">AP-H3029US 40–80 ตร.ม.</a></li><li><a href="#">CF-8428 20–40 ตร.ม.</a></li><li><a href="#">AP-8119US 10–30 ตร.ม.</a></li><li><a href="#">CF-8005 10–20 ตร.ม.</a></li><li><a href="#">เครื่องฟอกอากาศในรถยนต์</a></li><li><a href="#">เปรียบเทียบทุกรุ่น</a></li></ul></div>
+    <div class="gn-group"><h3>ซื้อเครื่องฟอกอากาศ</h3><ul><li><a href="#">ซื้อเครื่องฟอกอากาศ</a></li><li><a href="#">ซื้อแผ่นฟอกอากาศตรงรุ่น</a></li><li><a href="#">ค้นหาสาขาใกล้คุณ</a></li></ul></div>
+    <div class="gn-group"><h3>เพิ่มเติม</h3><ul><li><a href="#">เลือกเครื่องฟอกอากาศให้เหมาะกับห้อง</a></li><li><a href="#">CADR คืออะไร</a></li><li><a href="#">คู่มือการใช้งาน</a></li><li><a href="#">ลงทะเบียนรับประกัน</a></li></ul></div>
+  </div>
+  <div class="gn-panel" data-panel="c-dehum" data-pillar="Air">
+    <div class="gn-group is-primary"><h3>สำรวจเครื่องลดความชื้น</h3><ul><li><a href="#">BDH-53A 40–80 ตร.ม.</a></li><li><a href="#">BDH-30A 20–40 ตร.ม.</a></li><li><a href="#">BDH-12A 10–20 ตร.ม.</a></li><li><a href="#">เปรียบเทียบทุกรุ่น</a></li></ul></div>
+    <div class="gn-group"><h3>ซื้อเครื่องลดความชื้น</h3><ul><li><a href="#">ซื้อเครื่องลดความชื้น</a></li><li><a href="#">ค้นหาสาขาใกล้คุณ</a></li></ul></div>
+    <div class="gn-group"><h3>เพิ่มเติม</h3><ul><li><a href="#">ความชื้นเท่าไหร่ถึงต้องใช้</a></li><li><a href="#">ใช้ในห้องนอนอย่างไร</a></li><li><a href="#">คู่มือการใช้งาน</a></li><li><a href="#">ลงทะเบียนรับประกัน</a></li></ul></div>
+  </div>
+  <div class="gn-panel" data-panel="c-pac" data-pillar="Air">
+    <div class="gn-group is-primary"><h3>สำรวจแอร์เคลื่อนที่</h3><ul><li><a href="#">BPAC-12B 12,000 BTU</a></li><li><a href="#">BPAC-09B 9,000 BTU</a></li><li><a href="#">เปรียบเทียบทุกรุ่น</a></li></ul></div>
+    <div class="gn-group"><h3>ซื้อแอร์เคลื่อนที่</h3><ul><li><a href="#">ซื้อแอร์เคลื่อนที่</a></li><li><a href="#">ค้นหาสาขาใกล้คุณ</a></li></ul></div>
+    <div class="gn-group"><h3>เพิ่มเติม</h3><ul><li><a href="#">เลือก BTU ให้พอดีห้อง</a></li><li><a href="#">ติดตั้งท่อระบายอากาศ</a></li><li><a href="#">คู่มือการใช้งาน</a></li><li><a href="#">ลงทะเบียนรับประกัน</a></li></ul></div>
+  </div>
+  <div class="gn-panel" data-panel="c-water" data-pillar="Water">
+    <div class="gn-group is-primary"><h3>สำรวจเครื่องกรองน้ำ</h3><ul><li><a href="#">เครื่องกรองน้ำ RO แบบไร้ถัง</a></li><li><a href="#">เครื่องกรองน้ำ BW-D103</a></li><li><a href="#">เครื่องกรองน้ำ AICSN-H3</a></li><li><a href="#">เครื่องกรองน้ำใช้ 20 นิ้ว</a></li><li><a href="#">ไส้กรองน้ำ</a></li></ul></div>
+    <div class="gn-group"><h3>ซื้อเครื่องกรองน้ำ</h3><ul><li><a href="#">ซื้อเครื่องกรองน้ำ</a></li><li><a href="#">ซื้อไส้กรองน้ำ</a></li><li><a href="#">ค้นหาสาขาใกล้คุณ</a></li></ul></div>
+    <div class="gn-group"><h3>เพิ่มเติม</h3><ul><li><a href="#">เลือกเครื่องกรองน้ำสำหรับบ้านและคอนโด</a></li><li><a href="#">RO กับ UF ต่างกันอย่างไร</a></li><li><a href="#">คู่มือการใช้งาน</a></li><li><a href="#">ลงทะเบียนรับประกัน</a></li></ul></div>
+  </div>
+  <div class="gn-panel" data-panel="c-heater" data-pillar="Water">
+    <div class="gn-group is-primary"><h3>สำรวจเครื่องทำน้ำอุ่น</h3><ul><li><a href="#">FELIX 3,500 / 4,500 / 5,500 W</a></li><li><a href="#">LUKA 4,500 W</a></li><li><a href="#">ELKA 3,500 / 5,500 W</a></li><li><a href="#">Konrad น้ำร้อน 8,000 W</a></li><li><a href="#">เปรียบเทียบทุกรุ่น</a></li></ul></div>
+    <div class="gn-group"><h3>ซื้อเครื่องทำน้ำอุ่น</h3><ul><li><a href="#">ซื้อเครื่องทำน้ำอุ่น</a></li><li><a href="#">ค้นหาสาขาใกล้คุณ</a></li></ul></div>
+    <div class="gn-group"><h3>เพิ่มเติม</h3><ul><li><a href="#">เลือกกำลังวัตต์ให้เหมาะกับบ้าน</a></li><li><a href="#">ระบบตัดไฟ ELCB</a></li><li><a href="#">คู่มือการติดตั้ง</a></li><li><a href="#">ลงทะเบียนรับประกัน</a></li></ul></div>
+  </div>
+  <div class="gn-panel" data-panel="c-robot" data-pillar="Clean Home">
+    <div class="gn-group is-primary"><h3>สำรวจหุ่นยนต์ดูดฝุ่น</h3><ul><li><a href="#">Ultra T20 OmniBase <span class="tag">New</span></a></li><li><a href="#">L6C</a></li><li><a href="#">L0</a></li><li><a href="#">Y1</a></li><li><a href="#">เปรียบเทียบทุกรุ่น</a></li></ul></div>
+    <div class="gn-group"><h3>ซื้อหุ่นยนต์ดูดฝุ่น</h3><ul><li><a href="#">ซื้อหุ่นยนต์ดูดฝุ่น</a></li><li><a href="#">อะไหล่และแปรง</a></li><li><a href="#">ค้นหาสาขาใกล้คุณ</a></li></ul></div>
+    <div class="gn-group"><h3>เพิ่มเติม</h3><ul><li><a href="#">รุ่นไหนเหมาะกับบ้านคุณ</a></li><li><a href="#">ดูแลแท่น OmniBase</a></li><li><a href="#">แอป Bwell Smart</a></li><li><a href="#">ลงทะเบียนรับประกัน</a></li></ul></div>
+  </div>
+  <div class="gn-panel" data-panel="c-cordless" data-pillar="Clean Home">
+    <div class="gn-group is-primary"><h3>สำรวจเครื่องดูดฝุ่นไร้สาย</h3><ul><li><a href="#">T12 Allergy Plus 120 AW</a></li><li><a href="#">201A</a></li><li><a href="#">เปรียบเทียบทุกรุ่น</a></li></ul></div>
+    <div class="gn-group"><h3>ซื้อเครื่องดูดฝุ่นไร้สาย</h3><ul><li><a href="#">ซื้อเครื่องดูดฝุ่นไร้สาย</a></li><li><a href="#">หัวแปรงและไส้กรอง</a></li></ul></div>
+    <div class="gn-group"><h3>เพิ่มเติม</h3><ul><li><a href="#">เครื่องดูดฝุ่นสำหรับคนเป็นภูมิแพ้</a></li><li><a href="#">คู่มือการใช้งาน</a></li><li><a href="#">ลงทะเบียนรับประกัน</a></li></ul></div>
+  </div>
+  <div class="gn-panel" data-panel="c-chair" data-pillar="Ergonomic">
+    <div class="gn-group is-primary"><h3>สำรวจเก้าอี้เพื่อสุขภาพ</h3><ul><li><a href="#">Bjorn</a></li><li><a href="#">Stella</a></li><li><a href="#">Astrid</a></li><li><a href="#">Agnes</a></li><li><a href="#">เปรียบเทียบทุกรุ่น</a></li></ul></div>
+    <div class="gn-group"><h3>ซื้อเก้าอี้เพื่อสุขภาพ</h3><ul><li><a href="#">ซื้อเก้าอี้เพื่อสุขภาพ</a></li><li><a href="#">ทดลองนั่งที่ Showroom</a></li><li><a href="#">สั่งซื้อในนามองค์กร</a></li></ul></div>
+    <div class="gn-group"><h3>เพิ่มเติม</h3><ul><li><a href="#">ปรับเก้าอี้ให้พอดีตัว</a></li><li><a href="#">Office Syndrome และท่านั่ง</a></li><li><a href="#">คู่มือการประกอบ</a></li><li><a href="#">ลงทะเบียนรับประกัน</a></li></ul></div>
+  </div>
+  <div class="gn-panel" data-panel="c-cushion" data-pillar="Ergonomic">
+    <div class="gn-group is-primary"><h3>สำรวจหมอนและเบาะรอง</h3><ul><li><a href="#">หมอนรองคอเพื่อสุขภาพ</a></li><li><a href="#">เบาะรองหลังสำหรับรถยนต์</a></li><li><a href="#">หมอนรองคอสำหรับรถยนต์</a></li><li><a href="#">ที่วางเท้าเพื่อสุขภาพ</a></li></ul></div>
+    <div class="gn-group"><h3>ซื้อหมอนและเบาะรอง</h3><ul><li><a href="#">ซื้อหมอนและเบาะรอง</a></li></ul></div>
+    <div class="gn-group"><h3>เพิ่มเติม</h3><ul><li><a href="#">เลือกหมอนรองคอสำหรับเดินทาง</a></li><li><a href="#">ดูแลเมมโมรี่โฟม</a></li></ul></div>
+  </div>
+  <div class="gn-panel" data-panel="c-sport" data-pillar="Ergonomic">
+    <div class="gn-group is-primary"><h3>สำรวจอุปกรณ์ออกกำลังกาย</h3><ul><li><a href="#">เสื่อโยคะหนาพิเศษ 12 มม.</a></li><li><a href="#">Foam Roller</a></li><li><a href="#">ดูทั้งหมด</a></li></ul></div>
+    <div class="gn-group"><h3>ซื้ออุปกรณ์ออกกำลังกาย</h3><ul><li><a href="#">ซื้ออุปกรณ์ออกกำลังกาย</a></li></ul></div>
+    <div class="gn-group"><h3>เพิ่มเติม</h3><ul><li><a href="#">คลายกล้ามเนื้อหลังออกกำลังกาย</a></li></ul></div>
+  </div>
+  <div class="gn-panel" data-panel="c-beauty" data-pillar="Beauty">
+    <div class="gn-group is-primary"><h3>สำรวจจัดแต่งทรงผม</h3><ul><li><a href="#">หวีลมร้อนดิจิตอล BSL-02</a></li><li><a href="#">ไดร์จัดแต่งทรงผม BLDC BSL-01</a></li><li><a href="#">เครื่องหนีบผม 23 / 40 มม.</a></li><li><a href="#">เครื่องหนีบผมลมร้อน</a></li><li><a href="#">ดูทั้งหมด</a></li></ul></div>
+    <div class="gn-group"><h3>ซื้อจัดแต่งทรงผม</h3><ul><li><a href="#">ซื้อเครื่องจัดแต่งทรงผม</a></li><li><a href="#">ซื้อบน Shopee / Lazada</a></li></ul></div>
+    <div class="gn-group"><h3>เพิ่มเติม</h3><ul><li><a href="#">หวีม้วนผมไฟฟ้า เลือกอย่างไร</a></li><li><a href="#">ไดร์เป่าผมแห้งไว ทำงานอย่างไร</a></li><li><a href="#">ลงทะเบียนรับประกัน</a></li></ul></div>
+  </div>
+  <div class="gn-panel" data-panel="c-filters" data-pillar="Air">
+    <div class="gn-group is-primary"><h3>สำรวจแผ่นฟอกอากาศ</h3><ul><li><a href="#">ชุดแผ่นฟอก AP-H3029US</a></li><li><a href="#">ชุดแผ่นฟอก CF-8428</a></li><li><a href="#">ชุดแผ่นฟอก AP-8119US</a></li><li><a href="#">ชุดแผ่นฟอก CF-8005</a></li><li><a href="#">ชุดแผ่นฟอก AC-2103 / AC-2104</a></li><li><a href="#">ดูทั้งหมด</a></li></ul></div>
+    <div class="gn-group"><h3>ซื้อแผ่นฟอกอากาศ</h3><ul><li><a href="#">ซื้อแผ่นฟอกอากาศ</a></li><li><a href="#">ค้นหาไส้กรองตรงรุ่น</a></li></ul></div>
+    <div class="gn-group"><h3>เพิ่มเติม</h3><ul><li><a href="#">เปลี่ยนไส้กรองเมื่อไหร่</a></li><li><a href="#">วิธีเปลี่ยนและรีเซ็ตไส้กรอง</a></li></ul></div>
+  </div>
+  <!-- SEARCH -->
+  <div class="gn-panel" data-panel="search" style="display:none;grid-template-columns:1fr">
+    <div class="gn-search" style="padding:0;grid-column:1/-1">
+      <form role="search" onsubmit="return false">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><circle cx="11" cy="11" r="7"/><path d="M20 20l-3.6-3.6"/></svg>
+        <input id="gnSearchInput" type="search" placeholder="ค้นหาสินค้า รุ่น หรือคู่มือ" aria-label="ค้นหา" autocomplete="off">
+      </form>
+      <h3>ลิงก์ด่วน</h3>
+      <ul>
+        <li><a href="#">หุ่นยนต์ดูดฝุ่น Ultra T20</a></li>
+        <li><a href="#">เครื่องฟอกอากาศสำหรับห้องนอน</a></li>
+        <li><a href="#">ไส้กรองตรงรุ่น</a></li>
+        <li><a href="#">ลงทะเบียนรับประกัน</a></li>
+        <li><a href="#">ค้นหาสาขา</a></li>
+      </ul>
+    </div>
+  </div>
+</div>
+
+<!-- Mobile drawer -->
+<div class="gn-drawer" id="gnDrawer" aria-hidden="true">
+  <div class="gn-drawer-track">
+    <div class="gn-drawer-pane">
+      <label class="gn-drawer-search"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><circle cx="11" cy="11" r="7"/><path d="M20 20l-3.6-3.6"/></svg><input type="search" placeholder="ค้นหาสินค้า รุ่น หรือคู่มือ" aria-label="ค้นหา"></label>
+      <ul class="gn-drawer-root" id="gnDrawerRoot"></ul>
+    </div>
+    <div class="gn-drawer-pane gn-sub" id="gnDrawerSub">
+      <button class="gn-back" id="gnBack">เมนูหลัก</button>
+      <div id="gnSubContent"></div>
+    </div>
+  </div>
+</div>
+
+
+
+<main id="main" class="cmpg">
+  <section class="k-hero" aria-labelledby="k-title">
+    <h1 class="k-title" id="k-title">เปรียบเทียบ<wbr><span class="nw">หุ่นยนต์ดูดฝุ่น</span> <span class="nw">Bwell</span></h1>
+    <p class="k-lead">เลือกได้สูงสุด 3 รุ่น เพื่อดูความต่างทีละหัวข้อ</p>
+  </section>
+
+  <!-- Sticky selector bar: one select per column -->
+  <div class="k-bar" id="kBar">
+    <div class="k-grid">
+      <label class="k-sel"><span class="sr-only">รุ่นในคอลัมน์ที่ 1</span><select data-col="0"></select></label>
+      <label class="k-sel"><span class="sr-only">รุ่นในคอลัมน์ที่ 2</span><select data-col="1"></select></label>
+      <label class="k-sel k-col3"><span class="sr-only">รุ่นในคอลัมน์ที่ 3</span><select data-col="2"></select></label>
+    </div>
+  </div>
+
+  <!-- Product header cells -->
+  <section class="k-heads" aria-label="รุ่นที่เลือก">
+    <div class="k-grid" id="kHeads"></div>
+  </section>
+
+  <!-- Spec sections (rendered from data) -->
+  <div id="kSections"></div>
+
+  <noscript><p class="k-nojs">หน้านี้ต้องเปิด JavaScript เพื่อแสดงตารางเปรียบเทียบ ดูสเปกแต่ละรุ่นได้ที่หน้าสินค้า</p></noscript>
+
+  <section class="k-help" aria-labelledby="k-help-t">
+    <h2 id="k-help-t">ยังเลือกไม่ได้</h2>
+    <p>บอกขนาดบ้าน ประเภทพื้น และสัตว์เลี้ยง ทีมงาน Bwell ช่วยเลือกรุ่นที่พอดีให้</p>
+    <div class="ctas">
+      <a class="pill pill-fill" href="https://lin.ee/xULzTdA" data-nav="compare/help/line">ปรึกษาผ่าน LINE</a>
+      <a class="pill pill-line" href="https://bwell.co.th/robot-vacuum/" data-nav="compare/help/category">ดูหุ่นยนต์ดูดฝุ่นทุกรุ่น</a>
+    </div>
+  </section>
+</main>
+
+<!-- ============ FOOTER ============ -->
+<footer class="ft" aria-label="ส่วนท้าย">
+  <div class="ft-inner">
+    <ol class="ft-notes">
+      <li id="kfn1">สเปกและราคาของทุกรุ่นอ้างอิงจากหน้าสินค้าบน bwell.co.th ณ วันที่ 29 ก.ย. 2026 ราคาและโปรโมชันอาจต่างกันในแต่ละช่องทาง</li>
+      <li>เครื่องหมาย — หมายถึงหน้าสินค้าไม่ได้ระบุข้อมูลนี้ ไม่ได้แปลว่ารุ่นนั้นไม่มีคุณสมบัติดังกล่าว</li>
+      <li>ระยะเวลาทำงานของ Ultra T20 วัดในโหมด Quiet ระยะเวลาเก็บฝุ่นของ L6C ขึ้นอยู่กับความถี่ในการใช้งานและปริมาณฝุ่น</li>
+    </ol>
+    <nav class="ft-bc" aria-label="ตำแหน่งหน้า"><a href="https://bwell.co.th/" data-nav="compare/footer/breadcrumb/home"><img src="home-assets/bwell-logo.png" alt="Bwell" width="728" height="169"></a><span class="sep" aria-hidden="true">›</span><a href="https://bwell.co.th/robot-vacuum/" data-nav="compare/footer/breadcrumb/robot-vacuum">หุ่นยนต์ดูดฝุ่น</a><span class="sep" aria-hidden="true">›</span><span aria-current="page">เปรียบเทียบ</span></nav>
+    <nav class="ft-dir" aria-label="สารบัญเว็บไซต์ Bwell">
+      <div class="ft-col">
+        <details class="ft-sec" open><summary>เลือกซื้อและเรียนรู้</summary><ul><li><a href="https://bwell.co.th/product-bwell/" data-nav="compare/footer/เลือกซื้อและเรียนรู้/สินค้าทั้งหมด">สินค้าทั้งหมด</a></li><li><a href="https://bwell.co.th/air-purifier-bwell/" data-nav="compare/footer/เลือกซื้อและเรียนรู้/เครื่องฟอกอากาศ">เครื่องฟอกอากาศ</a></li><li><a href="https://bwell.co.th/portable-air-purifiers/" data-nav="compare/footer/เลือกซื้อและเรียนรู้/เครื่องฟอกอากาศพกพา">เครื่องฟอกอากาศพกพา</a></li><li><a href="https://bwell.co.th/air-purification-filters/" data-nav="compare/footer/เลือกซื้อและเรียนรู้/แผ่นฟอกอากาศ">แผ่นฟอกอากาศ</a></li><li><a href="https://bwell.co.th/air-dehumidifier/" data-nav="compare/footer/เลือกซื้อและเรียนรู้/เครื่องลดความชื้น">เครื่องลดความชื้น</a></li><li><a href="https://bwell.co.th/portable-air-conditioner/" data-nav="compare/footer/เลือกซื้อและเรียนรู้/แอร์เคลื่อนที่">แอร์เคลื่อนที่</a></li><li><a href="https://bwell.co.th/water-purifier/" data-nav="compare/footer/เลือกซื้อและเรียนรู้/เครื่องกรองน้ำ">เครื่องกรองน้ำ</a></li><li><a href="https://bwell.co.th/water-heater-bwell/" data-nav="compare/footer/เลือกซื้อและเรียนรู้/เครื่องทำน้ำอุ่น-น้ำร้อน">เครื่องทำน้ำอุ่น น้ำร้อน</a></li><li><a href="https://bwell.co.th/robot-vacuum/" data-nav="compare/footer/เลือกซื้อและเรียนรู้/หุ่นยนต์ดูดฝุ่น">หุ่นยนต์ดูดฝุ่น</a></li><li><a href="https://bwell.co.th/vacuum-cleaner/" data-nav="compare/footer/เลือกซื้อและเรียนรู้/เครื่องดูดฝุ่นไร้สาย">เครื่องดูดฝุ่นไร้สาย</a></li><li><a href="https://bwell.co.th/bwell-ergonomic-chair/" data-nav="compare/footer/เลือกซื้อและเรียนรู้/เก้าอี้เพื่อสุขภาพ">เก้าอี้เพื่อสุขภาพ</a></li><li><a href="https://bwell.co.th/ergonomic-cushion-bwell/" data-nav="compare/footer/เลือกซื้อและเรียนรู้/หมอนและเบาะรองเพื่อสุขภาพ">หมอนและเบาะรองเพื่อสุขภาพ</a></li><li><a href="https://bwell.co.th/sport-gadgets/" data-nav="compare/footer/เลือกซื้อและเรียนรู้/อุปกรณ์ออกกำลังกาย">อุปกรณ์ออกกำลังกาย</a></li><li><a href="https://bwell.co.th/hair-styling-tools/" data-nav="compare/footer/เลือกซื้อและเรียนรู้/อุปกรณ์จัดแต่งทรงผม">อุปกรณ์จัดแต่งทรงผม</a></li></ul></details>
+      </div>
+      <div class="ft-col">
+        <details class="ft-sec" open><summary>ร้านค้าออนไลน์</summary><ul><li><a href="https://shop.bwell.co.th/" data-nav="compare/footer/ร้านค้าออนไลน์/Bwell-Shop">Bwell Shop</a></li><li><a href="#" data-nav="compare/footer/ร้านค้าออนไลน์/Shopee">Shopee</a></li><li><a href="#" data-nav="compare/footer/ร้านค้าออนไลน์/Lazada">Lazada</a></li><li><a href="#" data-nav="compare/footer/ร้านค้าออนไลน์/TikTok-Shop">TikTok Shop</a></li><li><a href="#" data-nav="compare/footer/ร้านค้าออนไลน์/NocNoc">NocNoc</a></li></ul></details>
+        <details class="ft-sec" open><summary>แอป Bwell</summary><ul><li><a href="https://apps.apple.com/th/app/bwell/id6787315911?l=th" data-nav="compare/footer/แอป-Bwell/ดาวน์โหลดบน-App-Store">ดาวน์โหลดบน App Store</a></li><li><a href="https://play.google.com/store/apps/details?id=com.bwell.smart" data-nav="compare/footer/แอป-Bwell/ดาวน์โหลดบน-Google-Play">ดาวน์โหลดบน Google Play</a></li></ul></details>
+      </div>
+      <div class="ft-col">
+        <details class="ft-sec" open><summary>หน้าร้าน Bwell</summary><ul><li><a href="https://bwell.co.th/findbwell/" data-nav="compare/footer/หน้าร้าน-Bwell/ค้นหาสาขาของ-Bwell">ค้นหาสาขาของ Bwell</a></li><li><a href="https://bwell.co.th/%e0%b8%8a%e0%b9%88%e0%b8%ad%e0%b8%87%e0%b8%97%e0%b8%b2%e0%b8%87%e0%b8%88%e0%b8%b1%e0%b8%94%e0%b8%88%e0%b8%b3%e0%b8%ab%e0%b8%99%e0%b9%88%e0%b8%b2%e0%b8%a2/" data-nav="compare/footer/หน้าร้าน-Bwell/ช่องทางจัดจำหน่าย">ช่องทางจัดจำหน่าย</a></li><li><a href="https://bwell.co.th/findbwell/" data-nav="compare/footer/หน้าร้าน-Bwell/Showroom-เจริญราษฎร์">Showroom เจริญราษฎร์</a></li><li><a href="https://bwell.co.th/findbwell/" data-nav="compare/footer/หน้าร้าน-Bwell/Flagship-Store-CDC">Flagship Store CDC</a></li><li><a href="https://bwell.co.th/findbwell/" data-nav="compare/footer/หน้าร้าน-Bwell/Central-·-HomePro-·-PowerBuy">Central · HomePro · PowerBuy</a></li></ul></details>
+      </div>
+      <div class="ft-col">
+        <details class="ft-sec" open><summary>บริการหลังการขาย</summary><ul><li><a href="https://bwell.co.th/warranty/" data-nav="compare/footer/บริการหลังการขาย/ลงทะเบียนรับประกันสินค้า">ลงทะเบียนรับประกันสินค้า</a></li><li><a href="https://bwell.co.th/faq/" data-nav="compare/footer/บริการหลังการขาย/คำถามที่พบบ่อย">คำถามที่พบบ่อย</a></li><li><a href="https://bwell.co.th/air-purifier-user-manual/" data-nav="compare/footer/บริการหลังการขาย/คู่มือการใช้งานเครื่องฟอกอากาศ">คู่มือการใช้งานเครื่องฟอกอากาศ</a></li><li><a href="https://bwell.co.th/warranty-policy/" data-nav="compare/footer/บริการหลังการขาย/นโยบายคืนเงินและรับประกันสินค้า">นโยบายคืนเงินและรับประกันสินค้า</a></li><li><a href="https://bwell.co.th/%e0%b8%99%e0%b9%82%e0%b8%a2%e0%b8%9a%e0%b8%b2%e0%b8%a2%e0%b8%81%e0%b8%b2%e0%b8%a3%e0%b8%88%e0%b8%b1%e0%b8%94%e0%b8%aa%e0%b9%88%e0%b8%87%e0%b8%aa%e0%b8%b4%e0%b8%99%e0%b8%84%e0%b9%89%e0%b8%b2/" data-nav="compare/footer/บริการหลังการขาย/นโยบายการจัดส่งสินค้า">นโยบายการจัดส่งสินค้า</a></li></ul></details>
+        <details class="ft-sec" open><summary>บัญชี</summary><ul><li><a href="https://bwell.co.th/my-account/" data-nav="compare/footer/บัญชี/เข้าสู่ระบบบัญชี-Bwell">เข้าสู่ระบบบัญชี Bwell</a></li></ul></details>
+        <details class="ft-sec" open><summary>สำหรับองค์กร</summary><ul><li><a href="https://bwell.co.th/%e0%b8%a5%e0%b8%b9%e0%b8%81%e0%b8%84%e0%b9%89%e0%b8%b2%e0%b8%82%e0%b8%ad%e0%b8%87%e0%b9%80%e0%b8%a3%e0%b8%b2/" data-nav="compare/footer/สำหรับองค์กร/ลูกค้าของเรา">ลูกค้าของเรา</a></li></ul></details>
+      </div>
+      <div class="ft-col">
+        <details class="ft-sec" open><summary>เกี่ยวกับ Bwell</summary><ul><li><a href="https://bwell.co.th/about-us/" data-nav="compare/footer/เกี่ยวกับ-Bwell/เกี่ยวกับแบรนด์">เกี่ยวกับแบรนด์</a></li><li><a href="https://bwell.co.th/whybwell/" data-nav="compare/footer/เกี่ยวกับ-Bwell/ทำไมต้อง-Bwell">ทำไมต้อง Bwell</a></li><li><a href="https://bwell.co.th/blog/" data-nav="compare/footer/เกี่ยวกับ-Bwell/บทความ">บทความ</a></li><li><a href="https://bwell.co.th/contact/" data-nav="compare/footer/เกี่ยวกับ-Bwell/ติดต่อเรา">ติดต่อเรา</a></li></ul></details>
+        <details class="ft-sec" open><summary>ติดตาม Bwell</summary><ul><li><a href="https://lin.ee/xULzTdA" data-nav="compare/footer/ติดตาม-Bwell/LINE-Official-Account">LINE Official Account</a></li><li><a href="https://www.facebook.com/bwellgroup/" data-nav="compare/footer/ติดตาม-Bwell/Facebook">Facebook</a></li></ul></details>
+      </div>
+    </nav>
+    <div class="ft-legal">
+      <p class="ft-shop">ช่องทางอื่นในการสั่งซื้อ: <a href="https://bwell.co.th/findbwell/" data-nav="compare/footer/shop/findbwell">ค้นหาสาขาของ Bwell</a> หรือ<a href="https://bwell.co.th/%e0%b8%8a%e0%b9%88%e0%b8%ad%e0%b8%87%e0%b8%97%e0%b8%b2%e0%b8%87%e0%b8%88%e0%b8%b1%e0%b8%94%e0%b8%88%e0%b8%b3%e0%b8%ab%e0%b8%99%e0%b9%88%e0%b8%b2%e0%b8%a2/" data-nav="compare/footer/shop/dealers">ช่องทางจัดจำหน่าย</a>ใกล้คุณ หรือโทร 02-294-3211</p>
+      <div class="ft-legal-row"><p>© 2026 B-Well International Co., Ltd. สงวนลิขสิทธิ์</p><ul><li><a href="https://bwell.co.th/privacy-policy/" data-nav="compare/footer/legal/นโยบายความเป็นส่วนตัว">นโยบายความเป็นส่วนตัว</a></li><li><a href="https://bwell.co.th/cookies-policy/" data-nav="compare/footer/legal/นโยบายการใช้คุกกี้">นโยบายการใช้คุกกี้</a></li><li><a href="https://bwell.co.th/%e0%b8%99%e0%b9%82%e0%b8%a2%e0%b8%9a%e0%b8%b2%e0%b8%a2%e0%b8%81%e0%b8%b2%e0%b8%a3%e0%b8%88%e0%b8%b1%e0%b8%94%e0%b8%aa%e0%b9%88%e0%b8%87%e0%b8%aa%e0%b8%b4%e0%b8%99%e0%b8%84%e0%b9%89%e0%b8%b2/" data-nav="compare/footer/legal/นโยบายการจัดส่งสินค้า">นโยบายการจัดส่งสินค้า</a></li><li><a href="https://bwell.co.th/warranty-policy/" data-nav="compare/footer/legal/นโยบายคืนเงินและรับประกันสินค้า">นโยบายคืนเงินและรับประกันสินค้า</a></li></ul></div>
+    </div>
+  </div>
+</footer>
+
+<a class="spec-pill" href="#spec">Spec สำหรับ agency ›</a>
+
+<!-- ============ SPEC (for agency) ============ -->
+<section class="spec" id="spec">
+  <h2>Spec: Bwell Compare Page · หุ่นยนต์ดูดฝุ่น (apple.com/th compare pattern)</h2>
+  <p>หน้านี้ใช้ pattern หน้าเปรียบเทียบของ Apple ได้แก่ เลือกรุ่นด้วย dropdown สูงสุด 3 คอลัมน์ (มือถือ 2 คอลัมน์) แถบเลือกรุ่นติดบนจอขณะเลื่อน หัวคอลัมน์มีภาพ ราคา และปุ่มซื้อ จากนั้นเป็นแถวสเปกแยกตามหัวข้อ ค่าทุกช่องมาจากหน้าสินค้าจริงบน bwell.co.th ณ 29 ก.ย. 2026 ช่องที่หน้าสินค้าไม่ได้ระบุแสดงเป็น —</p>
+  <h3>พฤติกรรม</h3>
+  <div class="tablewrap"><table>
+    <thead><tr><th>ส่วน</th><th>การทำงาน</th></tr></thead>
+    <tbody>
+      <tr><td>Dropdown</td><td>เลือกรุ่นที่แสดงอยู่แล้วในอีกคอลัมน์ = สลับตำแหน่งสองคอลัมน์ ไม่เกิดรุ่นซ้ำ</td></tr>
+      <tr><td>URL</td><td>รุ่นที่เลือกเก็บใน <code>?models=t20,l6c,l0</code> ส่งลิงก์ต่อได้ และหน้าสินค้า/หน้าหมวดลิงก์มาพร้อมรุ่นที่เลือกได้</td></tr>
+      <tr><td>Sticky bar</td><td>ติดใต้ global nav ขณะเลื่อน มีเส้นขอบเมื่อติด</td></tr>
+      <tr><td>มือถือ</td><td>แสดง 2 คอลัมน์ ซ่อน dropdown ที่ 3</td></tr>
+      <tr><td>Tracking</td><td><code>data-nav="compare/..."</code> → GTM <code>compare_click</code> และควรส่ง <code>compare_models</code> ทุกครั้งที่เปลี่ยน dropdown</td></tr>
+      <tr><td>Flatsome</td><td>ใช้ JSON สเปกจาก WooCommerce attributes ต่อรุ่น แล้ว render ด้วยสคริปต์เดียวกับ prototype ไม่ต้องทำตารางแยกต่อหมวด</td></tr>
+    </tbody>
+  </table></div>
+  <h3>ข้อมูลที่ควรเติมให้ครบ</h3>
+  <div class="tablewrap"><table>
+    <thead><tr><th>ช่องว่าง</th><th>รุ่น</th></tr></thead>
+    <tbody>
+      <tr><td>ระดับเสียง</td><td>Ultra T20</td></tr>
+      <tr><td>มีแท่นหรือไม่ และถุงเก็บฝุ่น</td><td>L0 · Y1</td></tr>
+      <tr><td>ปรับปริมาณน้ำ · เลือกพื้นที่ทำความสะอาด</td><td>L6C · Y1</td></tr>
+      <tr><td>ประเภทแปรงหลัก</td><td>L6C · L0</td></tr>
+      <tr><td>น้ำหนัก 7.5 กก. รวมแท่นหรือไม่</td><td>L6C</td></tr>
+      <tr><td>ประกัน 1 ปี เทียบรุ่นอื่น 2 ปี</td><td>Ultra T20</td></tr>
+    </tbody>
+  </table></div>
+</section>
+
+<script>
+(function(){
+  const root=document.documentElement, body=document.body;
+  const nav=document.getElementById('gn'), fly=document.getElementById('gnFlyout'), curtain=document.getElementById('gnCurtain');
+  const list=document.getElementById('gnList'), drawerRoot=document.getElementById('gnDrawerRoot');
+  const panels=[...fly.querySelectorAll('.gn-panel')];
+  const canHover=window.matchMedia('(hover:hover) and (pointer:fine)').matches;
+
+  /* Variants: label + panel key. bp = viewport width below which the bar collapses to the mobile drawer */
+  const VARIANTS={
+    pillars:{bp:1024,items:[['Air','air'],['Water','water'],['Clean Home','clean'],['Ergonomic','ergo'],['Beauty','beauty'],['บริการช่วยเหลือ','support']]},
+    ba:{bp:1180,grouped:true,items:[['เครื่องฟอกอากาศ','c-airpurifier','Air'],['เครื่องลดความชื้น','c-dehum','Air'],['แอร์เคลื่อนที่','c-pac','Air'],['เครื่องกรองน้ำ','c-water','Water'],['เครื่องทำน้ำอุ่น','c-heater','Water'],['หุ่นยนต์ดูดฝุ่น','c-robot','Clean Home'],['เก้าอี้เพื่อสุขภาพ','c-chair','Ergonomic'],['Beauty','c-beauty','Beauty'],['บริการช่วยเหลือ','support','']]},
+    hybrid:{bp:1180,items:[['เครื่องฟอกอากาศ','c-airpurifier'],['เครื่องลดความชื้น','c-dehum'],['แอร์เคลื่อนที่','c-pac'],['เครื่องกรองน้ำ','c-water'],['เครื่องทำน้ำอุ่น','c-heater'],['หุ่นยนต์ดูดฝุ่น','c-robot'],['เก้าอี้เพื่อสุขภาพ','c-chair'],['Beauty','c-beauty'],['บริการช่วยเหลือ','support']]},
+    flat:{bp:1280,items:[['ฟอกอากาศ','c-airpurifier'],['ลดความชื้น','c-dehum'],['แอร์เคลื่อนที่','c-pac'],['กรองน้ำ','c-water'],['น้ำอุ่น','c-heater'],['หุ่นยนต์ดูดฝุ่น','c-robot'],['ดูดฝุ่นไร้สาย','c-cordless'],['เก้าอี้','c-chair'],['หมอนเบาะรอง','c-cushion'],['ออกกำลังกาย','c-sport'],['จัดแต่งทรงผม','c-beauty'],['ช่วยเหลือ','support']]}
+  };
+  let variant='ba', items=[], openKey=null, hoverTimer=null, closeTimer=null, lastTrigger=null;
+  const isDesktop=()=>window.innerWidth>=VARIANTS[variant].bp;
+  const panelFor=key=>panels.find(p=>p.dataset.panel===key);
+
+  function open(key,trigger){
+    if(!isDesktop()) return;
+    clearTimeout(closeTimer);
+    const p=panelFor(key); if(!p) return;
+    panels.forEach(x=>{ if(x!==p){x.classList.remove('is-active','is-visible'); x.style.display='';} });
+    p.style.display= key==='search'?'block':'grid';
+    p.classList.add('is-active');
+    requestAnimationFrame(()=>{
+      fly.style.setProperty('--fly-h',p.scrollHeight+'px');
+      fly.dataset.open='true'; fly.setAttribute('aria-hidden','false'); curtain.classList.add('is-on');
+      requestAnimationFrame(()=>p.classList.add('is-visible'));
+    });
+    items.forEach(it=>{ const on=it.dataset.menu===key; it.classList.toggle('is-open',on); const t=it.matches('[aria-expanded]')?it:it.querySelector('[aria-expanded]'); if(t) t.setAttribute('aria-expanded',String(on)); });
+    openKey=key; lastTrigger=trigger||lastTrigger;
+    if(key==='search') setTimeout(()=>document.getElementById('gnSearchInput').focus(),80);
+  }
+  function close(restoreFocus){
+    if(!openKey) return;
+    const p=panelFor(openKey);
+    fly.dataset.open='false'; fly.setAttribute('aria-hidden','true'); curtain.classList.remove('is-on');
+    if(p){ p.classList.remove('is-visible'); setTimeout(()=>{ if(fly.dataset.open==='false'){ p.classList.remove('is-active'); p.style.display=''; } },380); }
+    items.forEach(it=>{ it.classList.remove('is-open'); const t=it.matches('[aria-expanded]')?it:it.querySelector('[aria-expanded]'); if(t) t.setAttribute('aria-expanded','false'); });
+    if(restoreFocus && lastTrigger) lastTrigger.focus();
+    openKey=null;
+  }
+  const scheduleClose=()=>{ clearTimeout(closeTimer); closeTimer=setTimeout(()=>close(false),200); };
+
+  function bind(it){
+    const key=it.dataset.menu, trigger=it.matches('a,button')?it:it.querySelector('a,button');
+    if(canHover && key!=='search'){
+      it.addEventListener('mouseenter',()=>{ clearTimeout(closeTimer); clearTimeout(hoverTimer); hoverTimer=setTimeout(()=>open(key,trigger),120); });
+      it.addEventListener('mouseleave',()=>{ clearTimeout(hoverTimer); scheduleClose(); });
+    }
+    trigger.addEventListener('click',e=>{
+      if(!isDesktop()) return;
+      if(openKey===key && trigger.tagName==='A' && key!=='search') return; /* second click follows the link */
+      e.preventDefault(); openKey===key?close(true):open(key,trigger);
+    });
+    trigger.addEventListener('keydown',e=>{ if(e.key==='Enter'||e.key===' '){ e.preventDefault(); openKey===key?close(true):open(key,trigger); } });
+  }
+
+  function buildNav(){
+    close(false); closeDrawer();
+    list.innerHTML=''; drawerRoot.innerHTML='';
+    const cfg=VARIANTS[variant]; let lastGrp=null;
+    cfg.items.forEach(([label,key,grp])=>{
+      const li=document.createElement('li'); li.className='gn-item'; li.dataset.menu=key;
+      li.innerHTML=`<a class="gn-link" href="#${key}" role="menuitem" aria-haspopup="true" aria-expanded="false">${label}</a>`;
+      list.appendChild(li);
+      if(cfg.grouped && grp && grp!==lastGrp){ const g=document.createElement('li'); g.className='gn-grp'; g.textContent=grp; drawerRoot.appendChild(g); lastGrp=grp; }
+      if(cfg.grouped && !grp && lastGrp){ const g=document.createElement('li'); g.className='gn-grp'; g.textContent='บริการ'; drawerRoot.appendChild(g); lastGrp=null; }
+      const dli=document.createElement('li'); dli.innerHTML=`<button data-sub="${key}">${label}</button>`; drawerRoot.appendChild(dli);
+    });
+    /* pillar strip inside each category flyout (variant B+A): siblings in the same pillar */
+    document.querySelectorAll('.gn-pillar-strip').forEach(e=>e.remove());
+    if(cfg.grouped){
+      const byPillar={}; panels.forEach(p=>{ if(p.dataset.pillar){ (byPillar[p.dataset.pillar]=byPillar[p.dataset.pillar]||[]).push(p); } });
+      const name=p=>p.querySelector('.gn-group.is-primary h3').textContent.replace(/^สำรวจ/,'').trim();
+      panels.forEach(p=>{ const pl=p.dataset.pillar; if(!pl) return; const strip=document.createElement('div'); strip.className='gn-pillar-strip';
+        strip.innerHTML=`<span class="lbl">อยู่ในกลุ่ม ${pl}</span>`+byPillar[pl].map(s=>`<a href="#${s.dataset.panel}" ${s===p?'aria-current="true"':''}>${name(s)}</a>`).join('');
+        p.appendChild(strip); });
+    }
+    const dli=document.createElement('li'); dli.innerHTML='<button data-sub="store">ซื้อสินค้า</button>'; drawerRoot.appendChild(dli);
+    items=[...list.querySelectorAll('.gn-item'),...document.querySelectorAll('.gn-actions [data-menu]')];
+    items.forEach(bind);
+    drawerRoot.querySelectorAll('button[data-sub]').forEach(b=>b.addEventListener('click',()=>showSub(b.dataset.sub)));
+    applyLayout();
+  }
+  function applyLayout(){ body.classList.toggle('gn-mobile',!isDesktop()); if(!isDesktop()) close(false); else closeDrawer(); }
+
+  fly.addEventListener('mouseenter',()=>clearTimeout(closeTimer));
+  fly.addEventListener('mouseleave',()=>{ if(canHover && openKey!=='search') scheduleClose(); });
+  curtain.addEventListener('click',()=>close(false));
+  document.addEventListener('keydown',e=>{ if(e.key==='Escape'){ close(true); closeDrawer(); } });
+  document.addEventListener('focusin',e=>{ if(openKey && !nav.contains(e.target) && !fly.contains(e.target)) close(false); });
+  window.addEventListener('resize',applyLayout);
+
+  /* ---- Mobile drawer ---- */
+  const burger=document.getElementById('gnBurger'), drawer=document.getElementById('gnDrawer'), sub=document.getElementById('gnSubContent'), back=document.getElementById('gnBack');
+  function openDrawer(){ drawer.classList.add('is-open'); drawer.setAttribute('aria-hidden','false'); burger.setAttribute('aria-expanded','true'); burger.setAttribute('aria-label','ปิดเมนู'); body.classList.add('gn-lock'); }
+  function closeDrawer(){ drawer.classList.remove('is-open','is-sub'); drawer.setAttribute('aria-hidden','true'); burger.setAttribute('aria-expanded','false'); burger.setAttribute('aria-label','เปิดเมนู'); body.classList.remove('gn-lock'); }
+  function showSub(key){ const p=panelFor(key); if(!p) return; sub.innerHTML=''; [...p.querySelectorAll('.gn-group')].forEach(g=>sub.appendChild(g.cloneNode(true))); drawer.scrollLeft=0; drawer.classList.add('is-sub'); setTimeout(()=>{ back.focus({preventScroll:true}); drawer.scrollLeft=0; },380); }
+  burger.addEventListener('click',()=> drawer.classList.contains('is-open')?closeDrawer():openDrawer());
+  back.addEventListener('click',()=>drawer.classList.remove('is-sub'));
+  document.querySelector('.gn-actions [data-menu="store"]').addEventListener('click',()=>{ if(!isDesktop()){ openDrawer(); showSub('store'); } });
+
+  /* ---- Locked variant: B+A, Light bar ---- */
+  function setVariant(v){ variant=v; root.setAttribute('data-variant',v); buildNav(); }
+  setVariant('ba');
+})();
+</script>
+<script>
+(function(){
+  /* ---- Model data: every value from the model's product page on bwell.co.th (29 Sep 2026) ---- */
+  const U='https://bwell.co.th/product/';
+  const M={
+    t20:{name:'Ultra T20',isNew:true,price:'฿17,990',img:'product-assets/t20-robot-front.webp',w:1100,h:841,url:U+'robot-vacuum-cleaner-bwell-ultra-t20/',
+      tag:'ดูด ถู ซักและเป่าม็อบแห้งอัตโนมัติ พร้อมแท่น OmniBase'},
+    l6c:{name:'L6C',price:'฿17,990',img:'product-assets/cmp-l6c.webp',w:700,h:700,url:U+'%e0%b8%ab%e0%b8%b8%e0%b9%88%e0%b8%99%e0%b8%a2%e0%b8%99%e0%b8%95%e0%b9%8c%e0%b8%94%e0%b8%b9%e0%b8%94%e0%b8%9d%e0%b8%b8%e0%b9%88%e0%b8%99-bwell-%e0%b8%a3%e0%b8%b8%e0%b9%88%e0%b8%99-l6c/',
+      tag:'ดูดฝุ่นและถูพื้นพร้อมกัน แท่นเก็บฝุ่นอัตโนมัติ'},
+    l0:{name:'L0',price:'฿11,990',img:'product-assets/cmp-l0.webp',w:700,h:700,url:U+'%e0%b8%ab%e0%b8%b8%e0%b9%88%e0%b8%99%e0%b8%a2%e0%b8%99%e0%b8%95%e0%b9%8c%e0%b8%94%e0%b8%b9%e0%b8%94%e0%b8%9d%e0%b8%b8%e0%b9%88%e0%b8%99-bwell-l0/',
+      tag:'สแกนพื้นที่ด้วย LDS Mapping ปรับน้ำได้ 3 ระดับ'},
+    y1:{name:'Y1',price:'฿7,990',img:'product-assets/cmp-y1.webp',w:700,h:634,url:U+'%e0%b8%ab%e0%b8%b8%e0%b9%88%e0%b8%99%e0%b8%a2%e0%b8%99%e0%b8%95%e0%b9%8c%e0%b8%94%e0%b8%b9%e0%b8%94%e0%b8%9d%e0%b8%b8%e0%b9%88%e0%b8%99-bwell-%e0%b8%a3%e0%b8%b8%e0%b9%88%e0%b8%99-y1/',
+      tag:'กวาด ดูด ถู 3 in 1 ใช้งานง่าย คุ้มค่า'}
+  };
+  const ORDER=['t20','l6c','l0','y1'];
+  /* each row: label, then per model [big value, small caption] or null when the page does not state it */
+  const S=[
+    {t:'การดูดฝุ่น',rows:[
+      ['แรงดูดสูงสุด',{t20:['22,000Pa'],l6c:['5,000Pa'],l0:['2,000Pa'],y1:['2,100Pa']}],
+      ['แปรงและการป้องกันเส้นผมพัน',{t20:['แปรงยาง','ลดปัญหาเส้นผมพัน เหมาะกับบ้านที่มีสัตว์เลี้ยง'],l6c:null,l0:null,y1:['Anti-tangle','ป้องกันเศษผง ฝุ่น และเส้นผมอุดตัน']}],
+      ['ถังเก็บฝุ่นในตัวเครื่อง',{t20:['250 มล.'],l6c:['300 มล.'],l0:['430 มล.'],y1:['200 มล.']}]
+    ]},
+    {t:'การถูพื้น',rows:[
+      ['ระบบถูพื้น',{t20:['ม็อบคู่หมุน','ยืดออกทำความสะอาดตามแนวผนังและมุม'],l6c:['Sweep / Vacuum / Mop','3 in 1'],l0:['Sweep / Vacuum / Mop','3 in 1'],y1:['Sweep / Vacuum / Mop','3 in 1']}],
+      ['ถังน้ำในตัวเครื่อง',{t20:['70 มล.','แท่นเติมน้ำให้อัตโนมัติ'],l6c:['300 มล.'],l0:['210 มล.'],y1:['200 มล.']}],
+      ['ปรับปริมาณน้ำ',{t20:['ผ่านแอป'],l6c:null,l0:['3 ระดับ','Low / Medium / High'],y1:null}],
+      ['เมื่อเจอพรม',{t20:['ยกม็อบอัตโนมัติ','ตรวจจับด้วยเซ็นเซอร์ Ultrasonic'],l6c:['Carpet Boost','เพิ่มแรงดูดบนพรม'],l0:null,y1:null}]
+    ]},
+    {t:'การนำทาง',rows:[
+      ['ระบบนำทาง',{t20:['เลเซอร์','พร้อม Front Line Laser ตรวจจับสิ่งกีดขวางด้านหน้า'],l6c:['LDS Mapping','สแกนและคำนวณพื้นที่'],l0:['LDS Mapping','สแกนและคำนวณพื้นที่'],y1:['Gyroscope','ทำความสะอาดแบบ Zig-Zag']}],
+      ['เลือกพื้นที่ทำความสะอาด',{t20:['ห้อง · โซน · พื้นที่ห้ามเข้า','ตั้งค่าผ่านแอป'],l6c:null,l0:['Plan · Zone · Spot · Edge · Map'],y1:null}],
+      ['ข้ามพื้นต่างระดับ',{t20:null,l6c:null,l0:['สูงสุด 1.5 ซม.'],y1:null}]
+    ]},
+    {t:'แท่น',rows:[
+      ['ประเภทแท่น',{t20:['OmniBase All-in-One','ซักและเป่าม็อบแห้ง เติมน้ำ เก็บฝุ่น'],l6c:['แท่นเก็บฝุ่นอัตโนมัติ'],l0:null,y1:null}],
+      ['ถุงเก็บฝุ่น',{t20:['ประมาณ 2.8 ลิตร'],l6c:['3 ลิตร','เก็บฝุ่นได้นานสูงสุด 60 วัน'],l0:null,y1:null}],
+      ['ถังน้ำที่แท่น',{t20:['น้ำสะอาด 5 ลิตร','น้ำเสีย 4.2 ลิตร แยกถัง'],l6c:null,l0:null,y1:null}],
+      ['สุขอนามัยในถังเก็บฝุ่น',{t20:null,l6c:['Ozone and Sterilization','ลดแบคทีเรียและกลิ่น'],l0:null,y1:null}]
+    ]},
+    {t:'แบตเตอรี่และพลังงาน',rows:[
+      ['แบตเตอรี่',{t20:['5,200mAh','Li-ion 14.4V'],l6c:['3,200mAh'],l0:['2,600mAh'],y1:['2,600mAh']}],
+      ['ระยะเวลาทำงาน',{t20:['มากกว่า 200 นาที','โหมด Quiet'],l6c:['สูงสุด 120 นาที'],l0:['สูงสุด 120 นาที'],y1:['สูงสุด 120 นาที']}],
+      ['ระยะเวลาชาร์จ',{t20:['น้อยกว่า 7 ชั่วโมง'],l6c:['5 ชั่วโมง'],l0:['5 ชั่วโมง'],y1:['5 ชั่วโมง']}],
+      ['กำลังไฟ',{t20:['75W'],l6c:['45W'],l0:['28W'],y1:['35W']}]
+    ]},
+    {t:'แอปและการควบคุม',rows:[
+      ['แอป',{t20:['Smart Mamibot','หรือ Smart Life'],l6c:['Tuya Smart'],l0:['Tuya Smart'],y1:['Tuya Smart']}],
+      ['ความสามารถในแอป',{t20:['สร้างแผนที่ ตั้งเวลา','ปรับแรงดูดหรือปริมาณน้ำ'],l6c:null,l0:null,y1:null}]
+    ]},
+    {t:'ขนาด น้ำหนัก และเสียง',rows:[
+      ['ขนาดหุ่นยนต์',{t20:['Ø345 × 103.5 มม.'],l6c:['33 × 33 × 10 ซม.'],l0:['30 × 30 × 9.5 ซม.'],y1:['31.5 × 31.5 × 7.9 ซม.']}],
+      ['น้ำหนัก',{t20:['ประมาณ 3.8 กก.','แท่นประมาณ 7.6 กก.'],l6c:['7.5 กก.','ตามที่ระบุบนหน้าสินค้า'],l0:['4.56 กก.'],y1:['3.75 กก.']}],
+      ['ขนาดแท่น',{t20:['51 × 34.5 × 48.2 ซม.'],l6c:null,l0:null,y1:null}],
+      ['ระดับเสียง',{t20:null,l6c:['≤ 68 dB'],l0:['≤ 65 dB'],y1:['≤ 65 dB']}]
+    ]},
+    {t:'การรับประกัน',rows:[
+      ['ระยะเวลารับประกัน',{t20:['1 ปี'],l6c:['2 ปี'],l0:['2 ปี'],y1:['2 ปี']}]
+    ]}
+  ];
+
+  const esc=s=>String(s).replace(/[&<>"]/g,m=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[m]));
+  const mq=window.matchMedia('(max-width:734px)');
+  let cols=['t20','l6c','l0'];
+  try{ const q=new URLSearchParams(location.search).get('models'); if(q){ const p=q.split(',').filter(k=>M[k]); if(p.length) cols=[...p,...ORDER.filter(k=>!p.includes(k))].slice(0,3); } }catch(e){}
+  const sels=[...document.querySelectorAll('.k-sel select')], heads=document.getElementById('kHeads'), secs=document.getElementById('kSections');
+
+  function head(k){ const m=M[k];
+    return `<div class="k-head"><img src="${m.img}" alt="${esc(m.name)}" width="${m.w}" height="${m.h}"><p class="k-new">${m.isNew?'ใหม่':''}</p><h2 class="k-name">${esc(m.name)}</h2><p class="k-tag">${esc(m.tag)}</p><p class="k-price">${m.price}<sup><a href="#kfn1">1</a></sup></p><div class="k-ctas"><a class="pill pill-fill pill-sm" href="${m.url}" data-nav="compare/head/${k}/buy">สั่งซื้อ</a><a class="k-learn" href="${m.url}" data-nav="compare/head/${k}/learn">ดูรายละเอียด</a></div></div>`; }
+  function cell(v){ if(!v) return '<div class="k-cell k-na"><span aria-hidden="true">—</span><span class="sr-only">หน้าสินค้าไม่ได้ระบุ</span></div>';
+    return `<div class="k-cell"><p class="k-v">${esc(v[0])}</p>${v[1]?`<p class="k-s">${esc(v[1])}</p>`:''}</div>`; }
+  function render(){
+    const vis=mq.matches?cols.slice(0,2):cols;
+    sels.forEach((s,i)=>{ s.innerHTML=ORDER.map(k=>`<option value="${k}"${k===cols[i]?' selected':''}>${esc(M[k].name)}</option>`).join(''); });
+    heads.innerHTML=vis.map(head).join('');
+    secs.innerHTML=S.map((sec,si)=>`<section class="k-sec" aria-labelledby="ks${si}"><h2 class="k-sec-t" id="ks${si}">${esc(sec.t)}</h2>`+
+      sec.rows.map(([label,vals])=>`<div class="k-row"><h3 class="k-label">${esc(label)}</h3><div class="k-grid">${vis.map(k=>cell(vals[k])).join('')}</div></div>`).join('')+'</section>').join('');
+    document.querySelectorAll('.k-grid').forEach(g=>g.style.setProperty('--n',vis.length));
+  }
+  sels.forEach(s=>s.addEventListener('change',()=>{
+    const i=+s.dataset.col, k=s.value, j=cols.indexOf(k);
+    if(j>-1 && j!==i) cols[j]=cols[i]; /* picking a model already shown swaps the two columns */
+    cols[i]=k; render();
+    try{ const u=new URL(location.href); u.searchParams.set('models',cols.join(',')); history.replaceState(null,'',u); }catch(e){}
+  }));
+  mq.addEventListener('change',render);
+  render();
+
+  /* ---- Sticky bar shadow once it docks under the global nav ---- */
+  const bar=document.getElementById('kBar');
+  const dock=()=>bar.classList.toggle('is-stuck',bar.getBoundingClientRect().top<=parseFloat(getComputedStyle(bar).top)+1 && scrollY>200);
+  addEventListener('scroll',dock,{passive:true}); dock();
+
+  /* ---- Footer directory: columns on desktop, accordion on phones ---- */
+  const det=[...document.querySelectorAll('.ft-dir details')];
+  function syncFt(){ det.forEach(d=>{ d.open=!mq.matches; }); }
+  syncFt(); mq.addEventListener('change',syncFt);
+  det.forEach(d=>d.querySelector('summary').addEventListener('click',e=>{ if(!mq.matches) e.preventDefault(); }));
+})();
+
+</script>

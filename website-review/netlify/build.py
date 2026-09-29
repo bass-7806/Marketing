@@ -20,6 +20,7 @@ PAGES = {
     "robot-vacuum.html": "bwell-category-robot-prototype.html",
     "ultra-t20.html": "bwell-product-t20-prototype.html",
     "support.html": "bwell-support-prototype.html",
+    "compare.html": "bwell-compare-robot-prototype.html",
     "global-nav.html": "bwell-nav-prototype.html",
 }
 T20_LIVE = "https://bwell.co.th/product/robot-vacuum-cleaner-bwell-ultra-t20/"
@@ -53,7 +54,7 @@ def rewire(name: str, html: str) -> str:
     html = html.replace('<li><a href="#">Ultra T20 OmniBase <span class="tag">New</span></a></li>',
                         '<li><a href="ultra-t20.html">Ultra T20 OmniBase <span class="tag">New</span></a></li>')
     html = html.replace('<li><a href="#">เปรียบเทียบทุกรุ่น</a></li></ul></div>\n    <div class="gn-group"><h3>ซื้อหุ่นยนต์ดูดฝุ่น',
-                        '<li><a href="robot-vacuum.html#which">เปรียบเทียบทุกรุ่น</a></li></ul></div>\n    <div class="gn-group"><h3>ซื้อหุ่นยนต์ดูดฝุ่น')
+                        '<li><a href="compare.html">เปรียบเทียบทุกรุ่น</a></li></ul></div>\n    <div class="gn-group"><h3>ซื้อหุ่นยนต์ดูดฝุ่น')
     html = set_href(html, r"[a-z0-9/]+/footer/เลือกซื้อและเรียนรู้/หุ่นยนต์ดูดฝุ่น", "robot-vacuum.html")
     html = set_href(html, r"[a-z0-9/]+/footer/breadcrumb/home", "index.html")
     if name == "index.html":
@@ -61,7 +62,11 @@ def rewire(name: str, html: str) -> str:
         html = set_href(html, r"home/hero/t20/buy", T20_LIVE)
     elif name == "robot-vacuum.html":
         html = set_href(html, r"cat/robot/(chapter/t20|prio/learn|lineup/t20/learn)", "ultra-t20.html")
-        html = set_href(html, r"cat/robot/which/fullcompare", "ultra-t20.html#compare")
+        html = set_href(html, r"cat/robot/(which/fullcompare|lineup/compare|chapter/compare)", "compare.html")
+    elif name == "compare.html":
+        html = html.replace('href="${m.url}" data-nav="compare/head/${k}/learn"',
+                            'href="${k===\'t20\'?\'ultra-t20.html\':m.url}" data-nav="compare/head/${k}/learn"')
+        html = set_href(html, r"compare/(help/category|footer/breadcrumb/robot-vacuum)", "robot-vacuum.html")
     elif name == "support.html":
         html = set_href(html, r"support/product/robot", "robot-vacuum.html")
     elif name == "ultra-t20.html":
