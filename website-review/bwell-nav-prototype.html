@@ -9,7 +9,10 @@
   --fly-bg:rgba(255,255,255,.94); --fly-ink:#1D1D1F; --fly-soft:#6E6E73; --fly-hover:#005D9D;
   --display:"Poppins","Kanit",system-ui,sans-serif; --body:"Kanit","Poppins",system-ui,sans-serif;
   --ease:cubic-bezier(.4,0,.6,1);
+  --nav-fs:13px; --nav-pad:10px;
 }
+:root[data-variant="hybrid"]{--content:1080px;--nav-fs:13px;--nav-pad:9px}
+:root[data-variant="flat"]{--content:1200px;--nav-fs:12px;--nav-pad:7px}
 :root[data-bar="dark"]{
   --bar-bg:rgba(14,42,68,.86); --bar-ink:#FFFFFF; --bar-ink-soft:rgba(255,255,255,.8); --bar-line:rgba(255,255,255,.08);
   --fly-bg:rgba(14,42,68,.96); --fly-ink:#FFFFFF; --fly-soft:rgba(255,255,255,.62); --fly-hover:#8FD0FF;
@@ -35,7 +38,7 @@ button{font:inherit;color:inherit;background:none;border:0;padding:0;cursor:poin
 :root[data-bar="dark"] .gn-logo .word{color:#fff}
 .gn-list{list-style:none;margin:0;padding:0;display:flex;flex:1;justify-content:space-evenly;height:100%}
 .gn-item{height:100%}
-.gn-link{display:flex;align-items:center;height:100%;padding-inline:10px;font-size:13px;font-weight:400;color:var(--bar-ink-soft);letter-spacing:-.01em;white-space:nowrap;transition:color .2s var(--ease)}
+.gn-link{display:flex;align-items:center;height:100%;padding-inline:var(--nav-pad);font-size:var(--nav-fs);font-weight:400;color:var(--bar-ink-soft);letter-spacing:-.01em;white-space:nowrap;transition:color .2s var(--ease)}
 .gn-link:hover,.gn-item.is-open .gn-link{color:var(--bar-ink)}
 .gn-actions{display:flex;align-items:center;gap:4px;margin-right:-8px}
 .gn-icon{display:flex;align-items:center;justify-content:center;width:36px;height:var(--bar-h);color:var(--bar-ink-soft);transition:color .2s}
@@ -48,7 +51,7 @@ button{font:inherit;color:inherit;background:none;border:0;padding:0;cursor:poin
 .gn-curtain.is-on{opacity:1;pointer-events:auto}
 .gn-flyout{position:fixed;left:0;right:0;top:var(--bar-h);z-index:45;background:var(--fly-bg);-webkit-backdrop-filter:saturate(1.8) blur(20px);backdrop-filter:saturate(1.8) blur(20px);color:var(--fly-ink);overflow:hidden;height:0;transition:height .38s var(--ease);border-bottom:1px solid var(--bar-line)}
 .gn-flyout[data-open="true"]{height:var(--fly-h,420px)}
-.gn-panel{max-width:var(--content);margin:0 auto;padding:44px 16px 56px;display:none;grid-template-columns:1.6fr 1fr 1fr;gap:0 48px;opacity:0;transform:translateY(-8px);transition:opacity .28s var(--ease) .12s,transform .28s var(--ease) .12s}
+.gn-panel{max-width:980px;margin:0 auto;padding:44px 16px 56px;display:none;grid-template-columns:1.6fr 1fr 1fr;gap:0 48px;opacity:0;transform:translateY(-8px);transition:opacity .28s var(--ease) .12s,transform .28s var(--ease) .12s}
 .gn-panel.is-active{display:grid}
 .gn-panel.is-visible{opacity:1;transform:none}
 .gn-group h3{font-family:var(--body);font-weight:400;font-size:12px;color:var(--fly-soft);margin:0 0 14px;letter-spacing:.01em}
@@ -61,7 +64,7 @@ button{font:inherit;color:inherit;background:none;border:0;padding:0;cursor:poin
 .gn-group .tag{display:inline-block;margin-left:8px;font-family:var(--display);font-size:9px;font-weight:600;letter-spacing:.08em;text-transform:uppercase;color:#fff;background:var(--blue);padding:2px 6px;border-radius:999px;vertical-align:middle}
 
 /* Search panel */
-.gn-search{max-width:var(--content);margin:0 auto;padding:36px 16px 56px}
+.gn-search{max-width:980px;margin:0 auto;padding:36px 16px 56px}
 .gn-search form{display:flex;align-items:center;gap:14px;border-bottom:1px solid var(--bar-line);padding-bottom:12px}
 .gn-search svg{width:22px;height:22px;color:var(--fly-soft);flex:none}
 .gn-search input{flex:1;background:none;border:0;font:inherit;font-family:var(--body);font-size:28px;font-weight:400;color:var(--fly-ink);outline:none;min-width:0}
@@ -74,43 +77,42 @@ button{font:inherit;color:inherit;background:none;border:0;padding:0;cursor:poin
 
 /* ===== Mobile drawer ===== */
 .gn-drawer{display:none}
-@media (max-width:1023px){
-  .gn{height:var(--bar-h-m)}
-  .gn-inner{position:relative;justify-content:center}
-  .gn-list,.gn-flyout,.gn-curtain{display:none}
-  .gn-logo{position:absolute;left:50%;transform:translateX(-50%);margin:0;padding:0}
-  .gn-icon{height:var(--bar-h-m);width:44px}
-  .gn-burger{display:flex;position:absolute;left:8px}
-  .gn-actions{position:absolute;right:8px;margin:0}
-  .gn-actions .gn-icon-search{display:none}
-  .gn-burger .bar{position:relative;width:18px;height:12px}
-  .gn-burger .bar::before,.gn-burger .bar::after{content:"";position:absolute;left:0;width:18px;height:1.5px;background:currentColor;border-radius:2px;transition:transform .3s var(--ease),top .3s var(--ease)}
-  .gn-burger .bar::before{top:1px}.gn-burger .bar::after{top:10px}
-  .gn-burger[aria-expanded="true"] .bar::before{top:5px;transform:rotate(45deg)}
-  .gn-burger[aria-expanded="true"] .bar::after{top:5px;transform:rotate(-45deg)}
-  .gn-drawer{display:block;position:fixed;inset:0;top:var(--bar-h-m);z-index:45;background:var(--fly-bg);-webkit-backdrop-filter:saturate(1.8) blur(20px);backdrop-filter:saturate(1.8) blur(20px);color:var(--fly-ink);transform:translateY(-8px);opacity:0;pointer-events:none;transition:opacity .3s var(--ease),transform .3s var(--ease);overflow:hidden}
-  .gn-drawer.is-open{opacity:1;transform:none;pointer-events:auto}
-  .gn-drawer-track{display:flex;width:200%;height:100%;transition:transform .36s var(--ease)}
-  .gn-drawer.is-sub .gn-drawer-track{transform:translateX(-50%)}
-  .gn-drawer-pane{width:50%;flex:0 0 50%;height:100%;overflow-y:auto;overflow-x:hidden;padding:16px 24px 48px;-webkit-overflow-scrolling:touch}
-  .gn-drawer-search{display:flex;align-items:center;gap:10px;background:rgba(0,0,0,.06);border-radius:10px;padding:10px 12px;margin-bottom:8px}
-  :root[data-bar="dark"] .gn-drawer-search{background:rgba(255,255,255,.1)}
-  .gn-drawer-search svg{width:16px;height:16px;color:var(--fly-soft)}
-  .gn-drawer-search input{flex:1;background:none;border:0;font:inherit;font-size:17px;color:var(--fly-ink);outline:none;min-width:0}
-  .gn-drawer ul{list-style:none;margin:0;padding:0}
-  .gn-drawer-root>li{border-bottom:1px solid var(--bar-line)}
-  .gn-drawer-root>li>button,.gn-drawer-root>li>a{display:flex;align-items:center;justify-content:space-between;width:100%;padding:14px 0;font-size:24px;font-weight:500;letter-spacing:-.015em;text-align:left;opacity:0;transform:translateY(6px);transition:opacity .35s var(--ease),transform .35s var(--ease)}
-  .gn-drawer.is-open .gn-drawer-root>li>button,.gn-drawer.is-open .gn-drawer-root>li>a{opacity:1;transform:none}
-  .gn-drawer-root>li>button::after{content:"";width:8px;height:8px;border-right:1.5px solid var(--fly-soft);border-top:1.5px solid var(--fly-soft);transform:rotate(45deg)}
-  .gn-back{display:flex;align-items:center;gap:8px;font-size:14px;color:var(--fly-soft);padding:8px 0 18px}
-  .gn-back::before{content:"";width:8px;height:8px;border-left:1.5px solid currentColor;border-top:1.5px solid currentColor;transform:rotate(-45deg)}
-  .gn-sub h3{font-size:12px;font-weight:400;color:var(--fly-soft);margin:20px 0 8px}
-  .gn-sub li a{display:block;padding:8px 0;font-size:15px}
-  .gn-sub .is-primary li a{font-size:22px;font-weight:500;padding:6px 0;letter-spacing:-.015em}
-  .gn-sub .tag{display:inline-block;margin-left:8px;font-family:var(--display);font-size:9px;font-weight:600;letter-spacing:.08em;text-transform:uppercase;color:#fff;background:var(--blue);padding:2px 6px;border-radius:999px;vertical-align:middle}
-  body.gn-lock{overflow:hidden}
-}
-@media (min-width:1024px){ .gn-drawer{display:none !important} }
+body.gn-mobile .gn{height:var(--bar-h-m)}
+body.gn-mobile .gn-inner{position:relative;justify-content:center}
+body.gn-mobile .gn-list,body.gn-mobile .gn-flyout,body.gn-mobile .gn-curtain{display:none}
+body.gn-mobile .gn-logo{position:absolute;left:50%;transform:translateX(-50%);margin:0;padding:0}
+body.gn-mobile .gn-icon{height:var(--bar-h-m);width:44px}
+body.gn-mobile .gn-burger{display:flex;position:absolute;left:8px}
+body.gn-mobile .gn-actions{position:absolute;right:8px;margin:0}
+body.gn-mobile .gn-actions .gn-icon-search{display:none}
+body.gn-mobile .gn-burger .bar{position:relative;width:18px;height:12px}
+body.gn-mobile .gn-burger .bar::before,body.gn-mobile .gn-burger .bar::after{content:"";position:absolute;left:0;width:18px;height:1.5px;background:currentColor;border-radius:2px;transition:transform .3s var(--ease),top .3s var(--ease)}
+body.gn-mobile .gn-burger .bar::before{top:1px}
+body.gn-mobile .gn-burger .bar::after{top:10px}
+body.gn-mobile .gn-burger[aria-expanded="true"] .bar::before{top:5px;transform:rotate(45deg)}
+body.gn-mobile .gn-burger[aria-expanded="true"] .bar::after{top:5px;transform:rotate(-45deg)}
+body.gn-mobile .gn-drawer{display:block;position:fixed;inset:0;top:var(--bar-h-m);z-index:45;background:var(--fly-bg);-webkit-backdrop-filter:saturate(1.8) blur(20px);backdrop-filter:saturate(1.8) blur(20px);color:var(--fly-ink);transform:translateY(-8px);opacity:0;pointer-events:none;transition:opacity .3s var(--ease),transform .3s var(--ease);overflow:hidden}
+body.gn-mobile .gn-drawer.is-open{opacity:1;transform:none;pointer-events:auto}
+body.gn-mobile .gn-drawer-track{display:flex;width:200%;height:100%;transition:transform .36s var(--ease)}
+body.gn-mobile .gn-drawer.is-sub .gn-drawer-track{transform:translateX(-50%)}
+body.gn-mobile .gn-drawer-pane{width:50%;flex:0 0 50%;height:100%;overflow-y:auto;overflow-x:hidden;padding:16px 24px 48px;-webkit-overflow-scrolling:touch}
+body.gn-mobile .gn-drawer-search{display:flex;align-items:center;gap:10px;background:rgba(0,0,0,.06);border-radius:10px;padding:10px 12px;margin-bottom:8px}
+:root[data-bar="dark"] body.gn-mobile .gn-drawer-search{background:rgba(255,255,255,.1)}
+body.gn-mobile .gn-drawer-search svg{width:16px;height:16px;color:var(--fly-soft)}
+body.gn-mobile .gn-drawer-search input{flex:1;background:none;border:0;font:inherit;font-size:17px;color:var(--fly-ink);outline:none;min-width:0}
+body.gn-mobile .gn-drawer ul{list-style:none;margin:0;padding:0}
+body.gn-mobile .gn-drawer-root>li{border-bottom:1px solid var(--bar-line)}
+body.gn-mobile .gn-drawer-root>li>button,body.gn-mobile .gn-drawer-root>li>a{display:flex;align-items:center;justify-content:space-between;width:100%;padding:14px 0;font-size:24px;font-weight:500;letter-spacing:-.015em;text-align:left;opacity:0;transform:translateY(6px);transition:opacity .35s var(--ease),transform .35s var(--ease)}
+body.gn-mobile .gn-drawer.is-open .gn-drawer-root>li>button,body.gn-mobile .gn-drawer.is-open .gn-drawer-root>li>a{opacity:1;transform:none}
+body.gn-mobile .gn-drawer-root>li>button::after{content:"";width:8px;height:8px;border-right:1.5px solid var(--fly-soft);border-top:1.5px solid var(--fly-soft);transform:rotate(45deg)}
+body.gn-mobile .gn-back{display:flex;align-items:center;gap:8px;font-size:14px;color:var(--fly-soft);padding:8px 0 18px}
+body.gn-mobile .gn-back::before{content:"";width:8px;height:8px;border-left:1.5px solid currentColor;border-top:1.5px solid currentColor;transform:rotate(-45deg)}
+body.gn-mobile .gn-sub h3{font-size:12px;font-weight:400;color:var(--fly-soft);margin:20px 0 8px}
+body.gn-mobile .gn-sub li a{display:block;padding:8px 0;font-size:15px}
+body.gn-mobile .gn-sub .is-primary li a{font-size:22px;font-weight:500;padding:6px 0;letter-spacing:-.015em}
+body.gn-mobile .gn-sub .tag{display:inline-block;margin-left:8px;font-family:var(--display);font-size:9px;font-weight:600;letter-spacing:.08em;text-transform:uppercase;color:#fff;background:var(--blue);padding:2px 6px;border-radius:999px;vertical-align:middle}
+body.gn-lock{overflow:hidden}
+body:not(.gn-mobile) .gn-drawer{display:none !important}
 
 /* ===== Page below (placeholder hero + spec) ===== */
 .hero{min-height:560px;background:linear-gradient(180deg,#FFFFFF 0%,#EAF2F9 100%);display:flex;align-items:center;justify-content:center;text-align:center;padding:64px 20px}
@@ -150,14 +152,7 @@ code{font-family:ui-monospace,SFMono-Regular,Menlo,monospace;font-size:.86em;bac
       <svg viewBox="0 0 56 56" aria-hidden="true"><circle cx="16" cy="16" r="13" fill="currentColor" style="color:var(--blue)"/><circle cx="40" cy="16" r="13" fill="none" stroke="var(--blue)" stroke-width="6"/><circle cx="16" cy="40" r="13" fill="none" stroke="var(--blue)" stroke-width="6"/><circle cx="40" cy="40" r="13" fill="var(--blue)"/></svg>
       <span class="word">Bwell</span>
     </a>
-    <ul class="gn-list" id="gnList" role="menubar" aria-label="เมนูหลัก">
-      <li class="gn-item" data-menu="air"><a class="gn-link" href="#air" role="menuitem" aria-haspopup="true" aria-expanded="false">Air</a></li>
-      <li class="gn-item" data-menu="water"><a class="gn-link" href="#water" role="menuitem" aria-haspopup="true" aria-expanded="false">Water</a></li>
-      <li class="gn-item" data-menu="clean"><a class="gn-link" href="#clean-home" role="menuitem" aria-haspopup="true" aria-expanded="false">Clean Home</a></li>
-      <li class="gn-item" data-menu="ergo"><a class="gn-link" href="#ergonomic" role="menuitem" aria-haspopup="true" aria-expanded="false">Ergonomic</a></li>
-      <li class="gn-item" data-menu="beauty"><a class="gn-link" href="#beauty" role="menuitem" aria-haspopup="true" aria-expanded="false">Beauty</a></li>
-      <li class="gn-item" data-menu="support"><a class="gn-link" href="#support" role="menuitem" aria-haspopup="true" aria-expanded="false">บริการช่วยเหลือ</a></li>
-    </ul>
+    <ul class="gn-list" id="gnList" role="menubar" aria-label="เมนูหลัก"></ul>
     <div class="gn-actions">
       <button class="gn-icon gn-icon-search" data-menu="search" aria-label="ค้นหา" aria-expanded="false"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><circle cx="11" cy="11" r="7"/><path d="M20 20l-3.6-3.6"/></svg></button>
       <button class="gn-icon" data-menu="store" aria-label="ซื้อสินค้า" aria-expanded="false"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M6 8h12l1 12H5L6 8z"/><path d="M9 8V6a3 3 0 0 1 6 0v2"/></svg></button>
@@ -326,6 +321,66 @@ code{font-family:ui-monospace,SFMono-Regular,Menlo,monospace;font-size:.86em;bac
       <li><a href="#">สมัครตัวแทนจำหน่าย</a></li>
     </ul></div>
   </div>
+  <div class="gn-panel" data-panel="c-airpurifier">
+    <div class="gn-group is-primary"><h3>สำรวจเครื่องฟอกอากาศ</h3><ul><li><a href="#">AP-H3029US 40–80 ตร.ม.</a></li><li><a href="#">CF-8428 20–40 ตร.ม.</a></li><li><a href="#">AP-8119US 10–30 ตร.ม.</a></li><li><a href="#">CF-8005 10–20 ตร.ม.</a></li><li><a href="#">เครื่องฟอกอากาศในรถยนต์</a></li><li><a href="#">เปรียบเทียบทุกรุ่น</a></li></ul></div>
+    <div class="gn-group"><h3>ซื้อเครื่องฟอกอากาศ</h3><ul><li><a href="#">ซื้อเครื่องฟอกอากาศ</a></li><li><a href="#">ซื้อแผ่นฟอกอากาศตรงรุ่น</a></li><li><a href="#">ค้นหาสาขาใกล้คุณ</a></li></ul></div>
+    <div class="gn-group"><h3>เพิ่มเติม</h3><ul><li><a href="#">เลือกเครื่องฟอกอากาศให้เหมาะกับห้อง</a></li><li><a href="#">CADR คืออะไร</a></li><li><a href="#">คู่มือการใช้งาน</a></li><li><a href="#">ลงทะเบียนรับประกัน</a></li></ul></div>
+  </div>
+  <div class="gn-panel" data-panel="c-dehum">
+    <div class="gn-group is-primary"><h3>สำรวจเครื่องลดความชื้น</h3><ul><li><a href="#">BDH-53A 40–80 ตร.ม.</a></li><li><a href="#">BDH-30A 20–40 ตร.ม.</a></li><li><a href="#">BDH-12A 10–20 ตร.ม.</a></li><li><a href="#">เปรียบเทียบทุกรุ่น</a></li></ul></div>
+    <div class="gn-group"><h3>ซื้อเครื่องลดความชื้น</h3><ul><li><a href="#">ซื้อเครื่องลดความชื้น</a></li><li><a href="#">ค้นหาสาขาใกล้คุณ</a></li></ul></div>
+    <div class="gn-group"><h3>เพิ่มเติม</h3><ul><li><a href="#">ความชื้นเท่าไหร่ถึงต้องใช้</a></li><li><a href="#">ใช้ในห้องนอนอย่างไร</a></li><li><a href="#">คู่มือการใช้งาน</a></li><li><a href="#">ลงทะเบียนรับประกัน</a></li></ul></div>
+  </div>
+  <div class="gn-panel" data-panel="c-pac">
+    <div class="gn-group is-primary"><h3>สำรวจแอร์เคลื่อนที่</h3><ul><li><a href="#">BPAC-12B 12,000 BTU</a></li><li><a href="#">BPAC-09B 9,000 BTU</a></li><li><a href="#">เปรียบเทียบทุกรุ่น</a></li></ul></div>
+    <div class="gn-group"><h3>ซื้อแอร์เคลื่อนที่</h3><ul><li><a href="#">ซื้อแอร์เคลื่อนที่</a></li><li><a href="#">ค้นหาสาขาใกล้คุณ</a></li></ul></div>
+    <div class="gn-group"><h3>เพิ่มเติม</h3><ul><li><a href="#">เลือก BTU ให้พอดีห้อง</a></li><li><a href="#">ติดตั้งท่อระบายอากาศ</a></li><li><a href="#">คู่มือการใช้งาน</a></li><li><a href="#">ลงทะเบียนรับประกัน</a></li></ul></div>
+  </div>
+  <div class="gn-panel" data-panel="c-water">
+    <div class="gn-group is-primary"><h3>สำรวจเครื่องกรองน้ำ</h3><ul><li><a href="#">เครื่องกรองน้ำ RO แบบไร้ถัง</a></li><li><a href="#">เครื่องกรองน้ำ BW-D103</a></li><li><a href="#">เครื่องกรองน้ำ AICSN-H3</a></li><li><a href="#">เครื่องกรองน้ำใช้ 20 นิ้ว</a></li><li><a href="#">ไส้กรองน้ำ</a></li></ul></div>
+    <div class="gn-group"><h3>ซื้อเครื่องกรองน้ำ</h3><ul><li><a href="#">ซื้อเครื่องกรองน้ำ</a></li><li><a href="#">ซื้อไส้กรองน้ำ</a></li><li><a href="#">ค้นหาสาขาใกล้คุณ</a></li></ul></div>
+    <div class="gn-group"><h3>เพิ่มเติม</h3><ul><li><a href="#">เลือกเครื่องกรองน้ำสำหรับบ้านและคอนโด</a></li><li><a href="#">RO กับ UF ต่างกันอย่างไร</a></li><li><a href="#">คู่มือการใช้งาน</a></li><li><a href="#">ลงทะเบียนรับประกัน</a></li></ul></div>
+  </div>
+  <div class="gn-panel" data-panel="c-heater">
+    <div class="gn-group is-primary"><h3>สำรวจเครื่องทำน้ำอุ่น</h3><ul><li><a href="#">FELIX 3,500 / 4,500 / 5,500 W</a></li><li><a href="#">LUKA 4,500 W</a></li><li><a href="#">ELKA 3,500 / 5,500 W</a></li><li><a href="#">Konrad น้ำร้อน 8,000 W</a></li><li><a href="#">เปรียบเทียบทุกรุ่น</a></li></ul></div>
+    <div class="gn-group"><h3>ซื้อเครื่องทำน้ำอุ่น</h3><ul><li><a href="#">ซื้อเครื่องทำน้ำอุ่น</a></li><li><a href="#">ค้นหาสาขาใกล้คุณ</a></li></ul></div>
+    <div class="gn-group"><h3>เพิ่มเติม</h3><ul><li><a href="#">เลือกกำลังวัตต์ให้เหมาะกับบ้าน</a></li><li><a href="#">ระบบตัดไฟ ELCB</a></li><li><a href="#">คู่มือการติดตั้ง</a></li><li><a href="#">ลงทะเบียนรับประกัน</a></li></ul></div>
+  </div>
+  <div class="gn-panel" data-panel="c-robot">
+    <div class="gn-group is-primary"><h3>สำรวจหุ่นยนต์ดูดฝุ่น</h3><ul><li><a href="#">Ultra T20 OmniBase <span class="tag">New</span></a></li><li><a href="#">L6C</a></li><li><a href="#">L0</a></li><li><a href="#">Y1</a></li><li><a href="#">เปรียบเทียบทุกรุ่น</a></li></ul></div>
+    <div class="gn-group"><h3>ซื้อหุ่นยนต์ดูดฝุ่น</h3><ul><li><a href="#">ซื้อหุ่นยนต์ดูดฝุ่น</a></li><li><a href="#">อะไหล่และแปรง</a></li><li><a href="#">ค้นหาสาขาใกล้คุณ</a></li></ul></div>
+    <div class="gn-group"><h3>เพิ่มเติม</h3><ul><li><a href="#">รุ่นไหนเหมาะกับบ้านคุณ</a></li><li><a href="#">ดูแลแท่น OmniBase</a></li><li><a href="#">แอป Bwell Smart</a></li><li><a href="#">ลงทะเบียนรับประกัน</a></li></ul></div>
+  </div>
+  <div class="gn-panel" data-panel="c-cordless">
+    <div class="gn-group is-primary"><h3>สำรวจเครื่องดูดฝุ่นไร้สาย</h3><ul><li><a href="#">T12 Allergy Plus 120 AW</a></li><li><a href="#">201A</a></li><li><a href="#">เปรียบเทียบทุกรุ่น</a></li></ul></div>
+    <div class="gn-group"><h3>ซื้อเครื่องดูดฝุ่นไร้สาย</h3><ul><li><a href="#">ซื้อเครื่องดูดฝุ่นไร้สาย</a></li><li><a href="#">หัวแปรงและไส้กรอง</a></li></ul></div>
+    <div class="gn-group"><h3>เพิ่มเติม</h3><ul><li><a href="#">เครื่องดูดฝุ่นสำหรับคนเป็นภูมิแพ้</a></li><li><a href="#">คู่มือการใช้งาน</a></li><li><a href="#">ลงทะเบียนรับประกัน</a></li></ul></div>
+  </div>
+  <div class="gn-panel" data-panel="c-chair">
+    <div class="gn-group is-primary"><h3>สำรวจเก้าอี้เพื่อสุขภาพ</h3><ul><li><a href="#">Bjorn</a></li><li><a href="#">Stella</a></li><li><a href="#">Astrid</a></li><li><a href="#">Agnes</a></li><li><a href="#">เปรียบเทียบทุกรุ่น</a></li></ul></div>
+    <div class="gn-group"><h3>ซื้อเก้าอี้เพื่อสุขภาพ</h3><ul><li><a href="#">ซื้อเก้าอี้เพื่อสุขภาพ</a></li><li><a href="#">ทดลองนั่งที่ Showroom</a></li><li><a href="#">สั่งซื้อในนามองค์กร</a></li></ul></div>
+    <div class="gn-group"><h3>เพิ่มเติม</h3><ul><li><a href="#">ปรับเก้าอี้ให้พอดีตัว</a></li><li><a href="#">Office Syndrome และท่านั่ง</a></li><li><a href="#">คู่มือการประกอบ</a></li><li><a href="#">ลงทะเบียนรับประกัน</a></li></ul></div>
+  </div>
+  <div class="gn-panel" data-panel="c-cushion">
+    <div class="gn-group is-primary"><h3>สำรวจหมอนและเบาะรอง</h3><ul><li><a href="#">หมอนรองคอเพื่อสุขภาพ</a></li><li><a href="#">เบาะรองหลังสำหรับรถยนต์</a></li><li><a href="#">หมอนรองคอสำหรับรถยนต์</a></li><li><a href="#">ที่วางเท้าเพื่อสุขภาพ</a></li></ul></div>
+    <div class="gn-group"><h3>ซื้อหมอนและเบาะรอง</h3><ul><li><a href="#">ซื้อหมอนและเบาะรอง</a></li></ul></div>
+    <div class="gn-group"><h3>เพิ่มเติม</h3><ul><li><a href="#">เลือกหมอนรองคอสำหรับเดินทาง</a></li><li><a href="#">ดูแลเมมโมรี่โฟม</a></li></ul></div>
+  </div>
+  <div class="gn-panel" data-panel="c-sport">
+    <div class="gn-group is-primary"><h3>สำรวจอุปกรณ์ออกกำลังกาย</h3><ul><li><a href="#">เสื่อโยคะหนาพิเศษ 12 มม.</a></li><li><a href="#">Foam Roller</a></li><li><a href="#">ดูทั้งหมด</a></li></ul></div>
+    <div class="gn-group"><h3>ซื้ออุปกรณ์ออกกำลังกาย</h3><ul><li><a href="#">ซื้ออุปกรณ์ออกกำลังกาย</a></li></ul></div>
+    <div class="gn-group"><h3>เพิ่มเติม</h3><ul><li><a href="#">คลายกล้ามเนื้อหลังออกกำลังกาย</a></li></ul></div>
+  </div>
+  <div class="gn-panel" data-panel="c-beauty">
+    <div class="gn-group is-primary"><h3>สำรวจจัดแต่งทรงผม</h3><ul><li><a href="#">หวีลมร้อนดิจิตอล BSL-02</a></li><li><a href="#">ไดร์จัดแต่งทรงผม BLDC BSL-01</a></li><li><a href="#">เครื่องหนีบผม 23 / 40 มม.</a></li><li><a href="#">เครื่องหนีบผมลมร้อน</a></li><li><a href="#">ดูทั้งหมด</a></li></ul></div>
+    <div class="gn-group"><h3>ซื้อจัดแต่งทรงผม</h3><ul><li><a href="#">ซื้อเครื่องจัดแต่งทรงผม</a></li><li><a href="#">ซื้อบน Shopee / Lazada</a></li></ul></div>
+    <div class="gn-group"><h3>เพิ่มเติม</h3><ul><li><a href="#">หวีม้วนผมไฟฟ้า เลือกอย่างไร</a></li><li><a href="#">ไดร์เป่าผมแห้งไว ทำงานอย่างไร</a></li><li><a href="#">ลงทะเบียนรับประกัน</a></li></ul></div>
+  </div>
+  <div class="gn-panel" data-panel="c-filters">
+    <div class="gn-group is-primary"><h3>สำรวจแผ่นฟอกอากาศ</h3><ul><li><a href="#">ชุดแผ่นฟอก AP-H3029US</a></li><li><a href="#">ชุดแผ่นฟอก CF-8428</a></li><li><a href="#">ชุดแผ่นฟอก AP-8119US</a></li><li><a href="#">ชุดแผ่นฟอก CF-8005</a></li><li><a href="#">ชุดแผ่นฟอก AC-2103 / AC-2104</a></li><li><a href="#">ดูทั้งหมด</a></li></ul></div>
+    <div class="gn-group"><h3>ซื้อแผ่นฟอกอากาศ</h3><ul><li><a href="#">ซื้อแผ่นฟอกอากาศ</a></li><li><a href="#">ค้นหาไส้กรองตรงรุ่น</a></li></ul></div>
+    <div class="gn-group"><h3>เพิ่มเติม</h3><ul><li><a href="#">เปลี่ยนไส้กรองเมื่อไหร่</a></li><li><a href="#">วิธีเปลี่ยนและรีเซ็ตไส้กรอง</a></li></ul></div>
+  </div>
   <!-- SEARCH -->
   <div class="gn-panel" data-panel="search" style="display:none;grid-template-columns:1fr">
     <div class="gn-search" style="padding:0;grid-column:1/-1">
@@ -350,15 +405,7 @@ code{font-family:ui-monospace,SFMono-Regular,Menlo,monospace;font-size:.86em;bac
   <div class="gn-drawer-track">
     <div class="gn-drawer-pane">
       <label class="gn-drawer-search"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><circle cx="11" cy="11" r="7"/><path d="M20 20l-3.6-3.6"/></svg><input type="search" placeholder="ค้นหาสินค้า รุ่น หรือคู่มือ" aria-label="ค้นหา"></label>
-      <ul class="gn-drawer-root" id="gnDrawerRoot">
-        <li><button data-sub="air">Air</button></li>
-        <li><button data-sub="water">Water</button></li>
-        <li><button data-sub="clean">Clean Home</button></li>
-        <li><button data-sub="ergo">Ergonomic</button></li>
-        <li><button data-sub="beauty">Beauty</button></li>
-        <li><button data-sub="support">บริการช่วยเหลือ</button></li>
-        <li><button data-sub="store">ซื้อสินค้า</button></li>
-      </ul>
+      <ul class="gn-drawer-root" id="gnDrawerRoot"></ul>
     </div>
     <div class="gn-drawer-pane gn-sub" id="gnDrawerSub">
       <button class="gn-back" id="gnBack">เมนูหลัก</button>
@@ -405,6 +452,19 @@ code{font-family:ui-monospace,SFMono-Regular,Menlo,monospace;font-size:.86em;bac
       </tbody>
     </table></div>
 
+
+    <h2>ทางเลือกโครงสร้าง nav: กรุ๊ปเป็น pillar หรือกระจายทุกหมวดตามเดิม</h2>
+    <p>วัดความกว้างจริงของ label ด้วยฟอนต์ Kanit (padding ข้างละ 10px) เทียบกับพื้นที่ที่ bar แบบ Apple เหลือให้เมนูหลังหักโลโก้และไอคอน (980px − 90 − 80 ≈ 810px) ผลคือ 12 หมวดชื่อเต็มไม่พอดี bar ไม่ว่าจะย่อฟอนต์แค่ไหน ทางเลือก B และ C ทดลองกดสลับได้ที่ปุ่มมุมขวาล่าง</p>
+    <div class="tablewrap"><table>
+      <thead><tr><th>Variant</th><th>รายการใน bar</th><th>ความกว้างที่ต้องใช้</th><th>Content width</th><th>ยุบเป็น hamburger ต่ำกว่า</th><th>ผลกับผู้ใช้</th></tr></thead>
+      <tbody>
+        <tr><td class="k">A · 5 Pillars (Blueprint)</td><td>Air · Water · Clean Home · Ergonomic · Beauty · บริการช่วยเหลือ (6)</td><td>438px ที่ 13px</td><td>980px</td><td>1024px</td><td>โล่ง อ่านง่ายที่สุด แต่ต้องเปิด flyout ถึงจะเห็นชื่อสินค้า และชื่อ pillar เป็นภาษาอังกฤษ</td></tr>
+        <tr><td class="k">B · 8 หมวด (แนะนำถ้าไม่กรุ๊ป)</td><td>เครื่องฟอกอากาศ · เครื่องลดความชื้น · แอร์เคลื่อนที่ · เครื่องกรองน้ำ · เครื่องทำน้ำอุ่น · หุ่นยนต์ดูดฝุ่น · เก้าอี้เพื่อสุขภาพ · Beauty · บริการช่วยเหลือ (9)</td><td>906px ที่ 13px</td><td>1080px</td><td>1180px</td><td>เห็นหมวดขายหลักทุกหมวดเป็นภาษาไทยชื่อเต็ม ยุบเฉพาะหมวดลูก 4 หมวดเข้า flyout ของแม่: แผ่นฟอกอากาศ → เครื่องฟอกอากาศ · เครื่องดูดฝุ่นไร้สาย → หุ่นยนต์ดูดฝุ่น · หมอนเบาะรอง + ออกกำลังกาย → เก้าอี้เพื่อสุขภาพ</td></tr>
+        <tr><td class="k">C · 12 หมวดตามเดิม</td><td>13 รายการ ต้องตัดชื่อเหลือ 2–4 พยางค์ (ฟอกอากาศ · ลดความชื้น · กรองน้ำ · น้ำอุ่น · เก้าอี้ · ไส้กรอง ...)</td><td>ชื่อเต็ม 1,338px (ไม่มีทางพอดี) · ชื่อย่อ 975px ที่ 12px</td><td>1200px</td><td>1300px</td><td>เห็นครบทุกหมวด แต่ชื่อถูกตัดจนกำกวม ("น้ำอุ่น", "เก้าอี้", "ไส้กรอง") ฟอนต์เล็กกว่า Apple และผู้ใช้ laptop 1280px ทั่วไปจะเห็น hamburger แทน bar ซึ่งเสียจุดเด่นของ pattern นี้ไปเลย</td></tr>
+      </tbody>
+    </table></div>
+    <div class="note"><b>คำแนะนำ:</b> ถ้าไม่ต้องการกรุ๊ปเป็นภาษาอังกฤษ เลือก <b>B</b> ได้เลย ยังคงสัมผัสแบบ Apple ครบ (bar โปร่ง flyout 3 คอลัมน์ search overlay) และทุกหมวดที่มียอดขายหลักยังโชว์ชื่อเต็มภาษาไทย ส่วน C ควรใช้เฉพาะเมื่อยอมรับได้ว่าเว็บบน laptop ส่วนใหญ่จะขึ้น hamburger และชื่อเมนูจะสั้นกว่าที่ลูกค้าคุ้น</div>
+
     <h2>Behavior checklist (ตรวจรับ)</h2>
     <div class="tablewrap"><table>
       <thead><tr><th>#</th><th>พฤติกรรม</th><th>เกณฑ์ผ่าน</th></tr></thead>
@@ -438,35 +498,43 @@ code{font-family:ui-monospace,SFMono-Regular,Menlo,monospace;font-size:.86em;bac
 </main>
 
 <div class="demo-controls" aria-label="ตัวเลือกตัวอย่าง">
-  <button id="modeLight" aria-pressed="true">Light bar</button>
-  <button id="modeDark" aria-pressed="false">Navy bar</button>
+  <button data-variant="pillars" aria-pressed="true">A · 5 Pillars</button>
+  <button data-variant="hybrid" aria-pressed="false">B · 8 หมวด</button>
+  <button data-variant="flat" aria-pressed="false">C · 12 หมวด</button>
+  <span style="width:1px;background:var(--line);margin:0 2px"></span>
+  <button id="modeLight" aria-pressed="true">Light</button>
+  <button id="modeDark" aria-pressed="false">Navy</button>
   <a href="#spec" style="align-self:center;padding:6px 10px;color:var(--navy)">Spec ›</a>
 </div>
 
 <script>
 (function(){
-  const root=document.documentElement;
+  const root=document.documentElement, body=document.body;
   const nav=document.getElementById('gn'), fly=document.getElementById('gnFlyout'), curtain=document.getElementById('gnCurtain');
-  const items=[...document.querySelectorAll('.gn-item[data-menu], .gn-actions [data-menu]')];
+  const list=document.getElementById('gnList'), drawerRoot=document.getElementById('gnDrawerRoot');
   const panels=[...fly.querySelectorAll('.gn-panel')];
-  const isDesktop=()=>window.matchMedia('(min-width:1024px)').matches;
   const canHover=window.matchMedia('(hover:hover) and (pointer:fine)').matches;
-  let openKey=null, hoverTimer=null, closeTimer=null, lastTrigger=null;
 
-  function panelFor(key){return panels.find(p=>p.dataset.panel===key)}
+  /* Variants: label + panel key. bp = viewport width below which the bar collapses to the mobile drawer */
+  const VARIANTS={
+    pillars:{bp:1024,items:[['Air','air'],['Water','water'],['Clean Home','clean'],['Ergonomic','ergo'],['Beauty','beauty'],['บริการช่วยเหลือ','support']]},
+    hybrid:{bp:1180,items:[['เครื่องฟอกอากาศ','c-airpurifier'],['เครื่องลดความชื้น','c-dehum'],['แอร์เคลื่อนที่','c-pac'],['เครื่องกรองน้ำ','c-water'],['เครื่องทำน้ำอุ่น','c-heater'],['หุ่นยนต์ดูดฝุ่น','c-robot'],['เก้าอี้เพื่อสุขภาพ','c-chair'],['Beauty','c-beauty'],['บริการช่วยเหลือ','support']]},
+    flat:{bp:1300,items:[['ฟอกอากาศ','c-airpurifier'],['ลดความชื้น','c-dehum'],['แอร์เคลื่อนที่','c-pac'],['กรองน้ำ','c-water'],['น้ำอุ่น','c-heater'],['หุ่นยนต์ดูดฝุ่น','c-robot'],['ดูดฝุ่นไร้สาย','c-cordless'],['เก้าอี้','c-chair'],['หมอนเบาะรอง','c-cushion'],['ออกกำลังกาย','c-sport'],['จัดแต่งทรงผม','c-beauty'],['ไส้กรอง','c-filters'],['ช่วยเหลือ','support']]}
+  };
+  let variant='pillars', items=[], openKey=null, hoverTimer=null, closeTimer=null, lastTrigger=null;
+  const isDesktop=()=>window.innerWidth>=VARIANTS[variant].bp;
+  const panelFor=key=>panels.find(p=>p.dataset.panel===key);
 
-  function open(key, trigger){
+  function open(key,trigger){
     if(!isDesktop()) return;
     clearTimeout(closeTimer);
     const p=panelFor(key); if(!p) return;
-    panels.forEach(x=>{ if(x!==p){x.classList.remove('is-active','is-visible'); x.style.display=''; }});
-    p.style.display = key==='search' ? 'block' : 'grid';
+    panels.forEach(x=>{ if(x!==p){x.classList.remove('is-active','is-visible'); x.style.display='';} });
+    p.style.display= key==='search'?'block':'grid';
     p.classList.add('is-active');
     requestAnimationFrame(()=>{
-      const h=p.scrollHeight;
-      fly.style.setProperty('--fly-h', h+'px');
-      fly.dataset.open='true'; fly.setAttribute('aria-hidden','false');
-      curtain.classList.add('is-on');
+      fly.style.setProperty('--fly-h',p.scrollHeight+'px');
+      fly.dataset.open='true'; fly.setAttribute('aria-hidden','false'); curtain.classList.add('is-on');
       requestAnimationFrame(()=>p.classList.add('is-visible'));
     });
     items.forEach(it=>{ const on=it.dataset.menu===key; it.classList.toggle('is-open',on); const t=it.matches('[aria-expanded]')?it:it.querySelector('[aria-expanded]'); if(t) t.setAttribute('aria-expanded',String(on)); });
@@ -482,49 +550,65 @@ code{font-family:ui-monospace,SFMono-Regular,Menlo,monospace;font-size:.86em;bac
     if(restoreFocus && lastTrigger) lastTrigger.focus();
     openKey=null;
   }
-  function scheduleClose(){ clearTimeout(closeTimer); closeTimer=setTimeout(()=>close(false),200); }
+  const scheduleClose=()=>{ clearTimeout(closeTimer); closeTimer=setTimeout(()=>close(false),200); };
 
-  items.forEach(it=>{
-    const key=it.dataset.menu;
-    const trigger=it.matches('a,button')?it:it.querySelector('a,button');
+  function bind(it){
+    const key=it.dataset.menu, trigger=it.matches('a,button')?it:it.querySelector('a,button');
     if(canHover && key!=='search'){
       it.addEventListener('mouseenter',()=>{ clearTimeout(closeTimer); clearTimeout(hoverTimer); hoverTimer=setTimeout(()=>open(key,trigger),120); });
       it.addEventListener('mouseleave',()=>{ clearTimeout(hoverTimer); scheduleClose(); });
     }
     trigger.addEventListener('click',e=>{
       if(!isDesktop()) return;
-      if(openKey===key && trigger.tagName==='A' && key!=='search'){ return; } // second click follows link
-      e.preventDefault();
-      if(openKey===key) close(true); else open(key,trigger);
+      if(openKey===key && trigger.tagName==='A' && key!=='search') return; /* second click follows the link */
+      e.preventDefault(); openKey===key?close(true):open(key,trigger);
     });
-    trigger.addEventListener('keydown',e=>{
-      if(e.key==='Enter'||e.key===' '){ e.preventDefault(); openKey===key?close(true):open(key,trigger); }
+    trigger.addEventListener('keydown',e=>{ if(e.key==='Enter'||e.key===' '){ e.preventDefault(); openKey===key?close(true):open(key,trigger); } });
+  }
+
+  function buildNav(){
+    close(false); closeDrawer();
+    list.innerHTML=''; drawerRoot.innerHTML='';
+    VARIANTS[variant].items.forEach(([label,key])=>{
+      const li=document.createElement('li'); li.className='gn-item'; li.dataset.menu=key;
+      li.innerHTML=`<a class="gn-link" href="#${key}" role="menuitem" aria-haspopup="true" aria-expanded="false">${label}</a>`;
+      list.appendChild(li);
+      const dli=document.createElement('li'); dli.innerHTML=`<button data-sub="${key}">${label}</button>`; drawerRoot.appendChild(dli);
     });
-  });
+    const dli=document.createElement('li'); dli.innerHTML='<button data-sub="store">ซื้อสินค้า</button>'; drawerRoot.appendChild(dli);
+    items=[...list.querySelectorAll('.gn-item'),...document.querySelectorAll('.gn-actions [data-menu]')];
+    items.forEach(bind);
+    drawerRoot.querySelectorAll('button[data-sub]').forEach(b=>b.addEventListener('click',()=>showSub(b.dataset.sub)));
+    applyLayout();
+  }
+  function applyLayout(){ body.classList.toggle('gn-mobile',!isDesktop()); if(!isDesktop()) close(false); else closeDrawer(); }
+
   fly.addEventListener('mouseenter',()=>clearTimeout(closeTimer));
   fly.addEventListener('mouseleave',()=>{ if(canHover && openKey!=='search') scheduleClose(); });
   curtain.addEventListener('click',()=>close(false));
   document.addEventListener('keydown',e=>{ if(e.key==='Escape'){ close(true); closeDrawer(); } });
   document.addEventListener('focusin',e=>{ if(openKey && !nav.contains(e.target) && !fly.contains(e.target)) close(false); });
-  window.addEventListener('resize',()=>{ if(!isDesktop()) close(false); else closeDrawer(); });
+  window.addEventListener('resize',applyLayout);
 
   /* ---- Mobile drawer ---- */
   const burger=document.getElementById('gnBurger'), drawer=document.getElementById('gnDrawer'), sub=document.getElementById('gnSubContent'), back=document.getElementById('gnBack');
-  function openDrawer(){ drawer.classList.add('is-open'); drawer.setAttribute('aria-hidden','false'); burger.setAttribute('aria-expanded','true'); burger.setAttribute('aria-label','ปิดเมนู'); document.body.classList.add('gn-lock'); }
-  function closeDrawer(){ drawer.classList.remove('is-open','is-sub'); drawer.setAttribute('aria-hidden','true'); burger.setAttribute('aria-expanded','false'); burger.setAttribute('aria-label','เปิดเมนู'); document.body.classList.remove('gn-lock'); }
+  function openDrawer(){ drawer.classList.add('is-open'); drawer.setAttribute('aria-hidden','false'); burger.setAttribute('aria-expanded','true'); burger.setAttribute('aria-label','ปิดเมนู'); body.classList.add('gn-lock'); }
+  function closeDrawer(){ drawer.classList.remove('is-open','is-sub'); drawer.setAttribute('aria-hidden','true'); burger.setAttribute('aria-expanded','false'); burger.setAttribute('aria-label','เปิดเมนู'); body.classList.remove('gn-lock'); }
+  function showSub(key){ const p=panelFor(key); if(!p) return; sub.innerHTML=''; [...p.querySelectorAll('.gn-group')].forEach(g=>sub.appendChild(g.cloneNode(true))); drawer.scrollLeft=0; drawer.classList.add('is-sub'); setTimeout(()=>{ back.focus({preventScroll:true}); drawer.scrollLeft=0; },380); }
   burger.addEventListener('click',()=> drawer.classList.contains('is-open')?closeDrawer():openDrawer());
-  document.querySelectorAll('#gnDrawerRoot button[data-sub]').forEach(b=>b.addEventListener('click',()=>{
-    const p=panelFor(b.dataset.sub); if(!p) return;
-    sub.innerHTML=''; [...p.querySelectorAll('.gn-group')].forEach(g=>sub.appendChild(g.cloneNode(true)));
-    drawer.scrollLeft=0; drawer.classList.add('is-sub'); setTimeout(()=>{ back.focus({preventScroll:true}); drawer.scrollLeft=0; },380);
-  }));
   back.addEventListener('click',()=>drawer.classList.remove('is-sub'));
-  document.querySelector('.gn-actions [data-menu="store"]').addEventListener('click',()=>{ if(!isDesktop()){ openDrawer(); document.querySelector('#gnDrawerRoot button[data-sub="store"]').click(); } });
+  document.querySelector('.gn-actions [data-menu="store"]').addEventListener('click',()=>{ if(!isDesktop()){ openDrawer(); showSub('store'); } });
 
-  /* ---- Demo: light/dark bar ---- */
+  /* ---- Demo controls ---- */
+  const vbtns=[...document.querySelectorAll('.demo-controls [data-variant]')];
+  function setVariant(v){ variant=v; if(v==='pillars') root.removeAttribute('data-variant'); else root.setAttribute('data-variant',v); vbtns.forEach(b=>b.setAttribute('aria-pressed',String(b.dataset.variant===v))); buildNav(); try{localStorage.setItem('bwell-nav-variant',v)}catch(e){} }
+  vbtns.forEach(b=>b.addEventListener('click',()=>setVariant(b.dataset.variant)));
   const bl=document.getElementById('modeLight'), bd=document.getElementById('modeDark');
   function mode(m){ if(m==='dark') root.setAttribute('data-bar','dark'); else root.removeAttribute('data-bar'); bl.setAttribute('aria-pressed',String(m!=='dark')); bd.setAttribute('aria-pressed',String(m==='dark')); try{localStorage.setItem('bwell-nav-mode',m)}catch(e){} }
   bl.addEventListener('click',()=>mode('light')); bd.addEventListener('click',()=>mode('dark'));
-  try{ const m=localStorage.getItem('bwell-nav-mode'); if(m) mode(m); }catch(e){}
+  let v='pillars', m='light'; try{ v=localStorage.getItem('bwell-nav-variant')||v; m=localStorage.getItem('bwell-nav-mode')||m; }catch(e){}
+  if(!VARIANTS[v]) v='pillars';
+  mode(m); setVariant(v);
+  const params=new URLSearchParams(location.search); if(VARIANTS[params.get('variant')]) setVariant(params.get('variant'));
 })();
 </script>
