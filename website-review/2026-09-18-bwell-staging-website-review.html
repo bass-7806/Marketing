@@ -1,0 +1,270 @@
+<title>Bwell Website Review</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Poppins:wght@500;600&family=Kanit:wght@300;400;500;600&display=swap">
+<style>
+:root{
+  --ground:#F5F8FB; --surface:#FFFFFF; --surface-2:#EDF3F8; --line:#D5DFE8;
+  --ink:#10233A; --ink-2:#4A5C6E; --muted:#7A8A99;
+  --accent:#005D9D; --accent-soft:#E1EEF8; --accent-ink:#FFFFFF;
+  --crit:#B42318; --crit-soft:#FDECEA; --warn:#B54708; --warn-soft:#FEF0E2; --ok:#067647; --ok-soft:#E3F5EA; --info:#175CD3; --info-soft:#E4EDFB;
+  --display:"Poppins","Kanit",system-ui,sans-serif; --body:"Kanit","Poppins",system-ui,sans-serif;
+}
+@media (prefers-color-scheme: dark){ :root:not([data-theme="light"]){
+  --ground:#0E161F; --surface:#151F2B; --surface-2:#1C2937; --line:#2B3A4A;
+  --ink:#E7EEF5; --ink-2:#B4C2CF; --muted:#8395A6;
+  --accent:#4FA3E3; --accent-soft:#16304A; --accent-ink:#0B1420;
+  --crit:#F97066; --crit-soft:#3A1A17; --warn:#F5A05C; --warn-soft:#3A2712; --ok:#5FD39A; --ok-soft:#12321F; --info:#7AB0F5; --info-soft:#16283F;
+}}
+:root[data-theme="dark"]{
+  --ground:#0E161F; --surface:#151F2B; --surface-2:#1C2937; --line:#2B3A4A;
+  --ink:#E7EEF5; --ink-2:#B4C2CF; --muted:#8395A6;
+  --accent:#4FA3E3; --accent-soft:#16304A; --accent-ink:#0B1420;
+  --crit:#F97066; --crit-soft:#3A1A17; --warn:#F5A05C; --warn-soft:#3A2712; --ok:#5FD39A; --ok-soft:#12321F; --info:#7AB0F5; --info-soft:#16283F;
+}
+*{box-sizing:border-box}
+body{margin:0;background:var(--ground);color:var(--ink);font-family:var(--body);font-weight:300;font-size:15.5px;line-height:1.6}
+.wrap{max-width:1080px;margin:0 auto;padding-block:32px 72px;padding-inline:20px}
+h1,h2,h3{font-family:var(--display);font-weight:600;line-height:1.2;text-wrap:balance;margin:0}
+h1{font-size:clamp(26px,3.4vw,36px);letter-spacing:-.01em}
+h2{font-size:22px;margin-top:56px;padding-bottom:10px;border-bottom:2px solid var(--accent);display:flex;align-items:baseline;gap:12px}
+h2 .n{font-size:13px;color:var(--muted);font-weight:500;letter-spacing:.08em}
+h3{font-size:17px;margin-top:28px;font-family:var(--body);font-weight:500}
+p{margin:12px 0;max-width:72ch}
+a{color:var(--accent)}
+code{font-family:ui-monospace,SFMono-Regular,Menlo,monospace;font-size:.86em;background:var(--surface-2);padding:1px 5px;border-radius:4px;word-break:break-all}
+.eyebrow{font-family:var(--display);font-size:12px;font-weight:500;letter-spacing:.12em;text-transform:uppercase;color:var(--accent)}
+.meta{display:flex;flex-wrap:wrap;gap:8px 24px;color:var(--ink-2);font-size:14px;margin-top:10px}
+.meta b{font-weight:500;color:var(--ink)}
+.verdict{margin-top:28px;border:1px solid var(--line);background:var(--surface);border-left:6px solid var(--crit);padding:18px 22px;border-radius:6px}
+.verdict .t{font-family:var(--display);font-weight:600;font-size:18px;color:var(--crit)}
+.verdict p{margin:8px 0 0}
+.tiles{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:12px;margin-top:18px}
+.tile{background:var(--surface);border:1px solid var(--line);border-radius:6px;padding:14px 16px}
+.tile .v{font-family:var(--display);font-size:28px;font-weight:600;font-variant-numeric:tabular-nums;line-height:1.1}
+.tile .l{font-size:13px;color:var(--ink-2);margin-top:4px}
+.tile.crit .v{color:var(--crit)} .tile.warn .v{color:var(--warn)} .tile.good .v{color:var(--ok)} .tile.info .v{color:var(--accent)}
+.tablewrap{overflow-x:auto;margin-top:16px;border:1px solid var(--line);border-radius:6px;background:var(--surface)}
+table{border-collapse:collapse;width:100%;font-size:14px}
+th{font-family:var(--display);font-weight:500;font-size:12px;letter-spacing:.06em;text-transform:uppercase;text-align:left;color:var(--ink-2);background:var(--surface-2);padding:10px 12px;border-bottom:1px solid var(--line);white-space:nowrap}
+td{padding:10px 12px;border-bottom:1px solid var(--line);vertical-align:top}
+tr:last-child td{border-bottom:0}
+td.num{text-align:right;font-variant-numeric:tabular-nums;white-space:nowrap}
+.pill{display:inline-block;font-family:var(--display);font-size:11px;font-weight:600;letter-spacing:.06em;padding:2px 8px;border-radius:999px;white-space:nowrap}
+.p0{background:var(--crit-soft);color:var(--crit)} .p1{background:var(--warn-soft);color:var(--warn)} .p2{background:var(--info-soft);color:var(--info)} .ok{background:var(--ok-soft);color:var(--ok);padding:2px 8px;border-radius:999px;font-size:12px}
+.owner{color:var(--ink-2);font-size:13px}
+ol.steps{padding-left:22px;margin:14px 0}
+ol.steps li{margin:8px 0;padding-left:4px}
+ul.tight{margin:8px 0;padding-left:20px} ul.tight li{margin:4px 0}
+.shots{display:grid;grid-template-columns:repeat(auto-fill,minmax(260px,1fr));gap:18px;margin-top:18px}
+.shot{background:var(--surface);border:1px solid var(--line);border-radius:6px;overflow:hidden}
+.shot img{display:block;width:100%;max-width:100%;height:auto;border-bottom:1px solid var(--line)}
+.shot .cap{padding:10px 12px;font-size:13px;color:var(--ink-2)}
+.shot .cap b{display:block;color:var(--ink);font-weight:500}
+details{margin-top:16px;border:1px solid var(--line);border-radius:6px;background:var(--surface)}
+summary{cursor:pointer;padding:12px 16px;font-family:var(--display);font-weight:500;font-size:14px}
+summary:focus-visible,a:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
+details .tablewrap{border:0;border-top:1px solid var(--line);border-radius:0;margin:0}
+.note{background:var(--accent-soft);border-radius:6px;padding:12px 16px;font-size:14px;margin-top:16px}
+.next{margin-top:56px;background:var(--accent);color:var(--accent-ink);border-radius:6px;padding:20px 24px}
+.next h2{border:0;margin:0 0 8px;color:var(--accent-ink);font-size:20px}
+.next p,.next li{color:var(--accent-ink)} .next p{max-width:none}
+.next ol{margin:8px 0 0;padding-left:20px}
+.toc{display:flex;flex-wrap:wrap;gap:6px 14px;margin-top:22px;font-size:14px}
+.toc a{text-decoration:none;border-bottom:1px solid var(--line)}
+@media (max-width:640px){ h2{font-size:19px;margin-top:44px} body{font-size:15px} }
+@media (prefers-reduced-motion: reduce){ *{scroll-behavior:auto} }
+</style>
+
+<div class="wrap">
+  <div class="eyebrow">Website Review · Pre-launch QA</div>
+  <h1 style="margin-top:8px">Bwell Website Review — Hostinger Staging (Redesign)</h1>
+  <div class="meta">
+    <span>Site: <b><a href="https://antiquewhite-rabbit-277082.hostingersite.com/">antiquewhite-rabbit-277082.hostingersite.com</a></b></span>
+    <span>Reviewed: <b>18 Sep 2026</b></span>
+    <span>Stack: <b>WordPress 7.1 · WooCommerce 11.1 · Flatsome (child) · Yoast · GTM4WP · Site Kit</b></span>
+    <span>Prepared for: <b>Bass (Marketing) → Web agency / Dev</b></span>
+  </div>
+
+  <div class="toc">
+    <a href="#summary">Summary</a><a href="#p0">P0 Blockers</a><a href="#p1">P1 Conversion &amp; UX</a><a href="#p2">P2 SEO &amp; Content</a><a href="#tech">Tracking &amp; Performance</a><a href="#brand">Brand</a><a href="#checklist">Go-live checklist</a><a href="#pages">Page-by-page</a><a href="#shots">Screenshots</a>
+  </div>
+
+  <h2 id="summary"><span class="n">01</span>Executive Summary</h2>
+  <div class="verdict">
+    <div class="t">Verdict: ยังไม่พร้อม Go-live — มี Blocker 6 ข้อที่ต้องแก้ก่อนสลับ Domain</div>
+    <p>โครงสร้างและ Content ย้ายมาครบ (URL ตรงกับ bwell.co.th 100% จาก Sitemap 349 URL) แต่ยังมี link หลุดไปหา preview site ของ agency, CTA ที่กดแล้วไม่ไปไหน, Store Locator ที่แผนที่ไม่ขึ้น และ Tracking ซ้ำซ้อน 3 ชั้น ซึ่งจะทำให้ตัวเลข GA4 / ROAS เพี้ยนตั้งแต่วันแรกที่เปิด</p>
+  </div>
+  <div class="tiles">
+    <div class="tile crit"><div class="v">6</div><div class="l">P0 — Blocker ก่อน Go-live</div></div>
+    <div class="tile warn"><div class="v">11</div><div class="l">P1 — Conversion &amp; UX</div></div>
+    <div class="tile info"><div class="v">9</div><div class="l">P2 — SEO &amp; Content</div></div>
+    <div class="tile good"><div class="v">40</div><div class="l">Pages crawled · ทั้งหมด HTTP 200</div></div>
+    <div class="tile good"><div class="v">74</div><div class="l">External links checked · 0 broken</div></div>
+    <div class="tile crit"><div class="v">530/787</div><div class="l">Images without alt text</div></div>
+  </div>
+  <p style="margin-top:18px"><b>สิ่งที่ทำได้ดี:</b> Hero message ใหม่ชัด (Home Environment Wellness → "รู้สึกดีได้ในทุกวันกับ Bwell"), category grid 12 หมวดครบ, Blog 157 บทความย้ายมาครบ, มี Cookie consent (Complianz) รองรับ PDPA, Facebook Pixel + GTM ติดตั้งแล้ว, ทุกลิงก์ไป shop.bwell.co.th (40 SKU) ใช้งานได้จริง</p>
+
+  <h2 id="p0"><span class="n">02</span>P0 — Blockers ก่อน Go-live</h2>
+  <p>ทั้ง 6 ข้อนี้ผู้ใช้เจอทันทีในหน้าแรกหรือกระทบทุกหน้า ต้องปิดให้หมดก่อน DNS cutover</p>
+  <div class="tablewrap"><table>
+    <thead><tr><th>#</th><th>Where</th><th>Issue</th><th>Impact</th><th>Fix</th><th>Owner</th></tr></thead>
+    <tbody>
+      <tr><td><span class="pill p0">P0-1</span></td><td>Footer "หน้าเพจ" — ทุกหน้า (10 links)</td><td>ลิงก์ เกี่ยวกับ Bwell / ทำไมต้อง Bwell / ลูกค้าของเรา / บทความ / ช่องทางจัดจำหน่าย / ค้นหาสาขา / ติดต่อเรา / Privacy / Cookies / Shipping ชี้ไป <code>bwell-redesign-preview.netlify.app</code> (preview site ของ agency)</td><td>User หลุดออกจากเว็บไปหน้า preview ที่ไม่มี tracking ไม่มี shop และ agency ปิดได้ทุกเมื่อ</td><td>แก้ footer menu ให้เป็น relative path ภายในเว็บ แล้ว search-replace domain netlify ทั้ง DB</td><td class="owner">Web Dev</td></tr>
+      <tr><td><span class="pill p0">P0-2</span></td><td>Home (section เครื่องฟอกอากาศ) และ About Us</td><td>ปุ่ม "อ่านเพิ่มเติม" ลิงก์ไป <code>/why-bwell/</code> → <b>404</b> (หน้าจริงคือ <code>/whybwell/</code>)</td><td>CTA หลักของ hero category พัง</td><td>เปลี่ยน link เป็น <code>/whybwell/</code> หรือเพิ่ม 301 redirect</td><td class="owner">Web Dev</td></tr>
+      <tr><td><span class="pill p0">P0-3</span></td><td>Home — section "โบรชัวร์สินค้าของเรา"</td><td>ปุ่ม "ขอรับโบรชัวร์สินค้า" และ "สอบถามผ่าน LINE" <b>ไม่มี href</b> (กดแล้วไม่ไปไหน)</td><td>Lead-gen CTA 2 จุดสุดท้ายของหน้าแรกไม่ทำงาน; LINE คือ channel หลักของการปิดการขาย</td><td>LINE → <code>https://lin.ee/xULzTdA</code> (ใช้อยู่แล้วในหน้า category); โบรชัวร์ → link PDF บน Drive/CDN หรือ form CF7</td><td class="owner">Web Dev + Marketing (ไฟล์โบรชัวร์)</td></tr>
+      <tr><td><span class="pill p0">P0-4</span></td><td><code>/findbwell/</code> (ค้นหาสาขาของ Bwell)</td><td>WP Store Locator ไม่โหลด Google Maps API (ไม่มี API key) → แผนที่ว่าง, ไอคอน search ในเมนูมือถือหาย, label เป็นอังกฤษ (Your location / Results / Search)</td><td>หน้า Offline retail (Central, HomePro, PowerBuy) ใช้งานไม่ได้เลย</td><td>ใส่ Google Maps API key ใน WPSL settings + restrict key ตาม domain ใหม่; แปล label เป็นไทย; ตรวจว่ามีสาขาใน DB ครบ</td><td class="owner">Web Dev</td></tr>
+      <tr><td><span class="pill p0">P0-5</span></td><td>Site-wide — Launch configuration</td><td>ยังเป็นค่า staging ทั้งหมด: <code>meta robots noindex,nofollow</code> ทุกหน้า · <code>robots.txt</code> Disallow Googlebot ทั้งเว็บ · Sitemap ใช้ <code>http://</code> · ไม่มี canonical · <code>html lang="en-US"</code> · <code>og:locale en_US</code> · ไม่มี <code>og:image</code> · internal link ทุกอันเป็น absolute URL ของ hostingersite</td><td>ถ้าลืมข้อใดข้อหนึ่ง = หายจาก Google ทันทีหลัง launch หรือ link ทั้งเว็บชี้กลับ staging</td><td>ทำเป็น launch checklist (ดู section 07): ปลด noindex, แก้ robots.txt, search-replace domain, Yoast → canonical + og:image default, ตั้ง Site Language = ไทย</td><td class="owner">Web Dev</td></tr>
+      <tr><td><span class="pill p0">P0-6</span></td><td>Tracking — ทุกหน้า</td><td>GA4 ยิงซ้ำ 3 property พร้อมกัน: <code>G-6G579VY226</code> (gtag ฝังมือ), <code>G-ECSJE4X7ZW</code> (WooCommerce GA plugin), <code>G-W1KG7QPGYP</code> (Site Kit) + GTM <code>GTM-M2KZX2K</code> + Meta Pixel <code>599495719004394</code> ผ่าน PixelYourSite</td><td>Pageview / Session นับซ้ำหรือกระจาย 3 property → Dashboard, ROAS, Attribution เพี้ยน</td><td>เหลือ GTM ตัวเดียวเป็น container; ย้าย GA4 + Meta Pixel + TikTok Pixel เข้า GTM; ปิด gtag ฝังมือ, ปิด GA ใน Site Kit และ Woo GA plugin; ยืนยัน property ID ที่ทีมใช้จริงกับ Bass</td><td class="owner">Web Dev + Marketing (ยืนยัน property)</td></tr>
+    </tbody>
+  </table></div>
+
+  <h2 id="p1"><span class="n">03</span>P1 — Conversion &amp; UX</h2>
+  <p>ไม่ block การ launch แต่กระทบ conversion และความน่าเชื่อถือโดยตรง ควรปิดใน sprint แรกหลัง launch หรือก่อนถ้าทัน</p>
+  <div class="tablewrap"><table>
+    <thead><tr><th>#</th><th>Where</th><th>Issue</th><th>Recommendation</th><th>Owner</th></tr></thead>
+    <tbody>
+      <tr><td><span class="pill p1">P1-1</span></td><td>Commerce model — ทุกหน้าสินค้า</td><td>เว็บอยู่ใน Flatsome "catalog mode" ปุ่มซื้อทุกปุ่มเด้งออกไป <code>shop.bwell.co.th</code> แต่ยังเปิดหน้า <code>/cart/</code>, <code>/checkout/</code>, <code>/my-account/</code>, Login/Register ในเมนูมือถือ และมี Omise, YITH Stripe, YITH Subscription ติดตั้งอยู่</td><td><b>ตัดสินใจ 1 ทาง:</b> (A) Catalog + redirect ไป shop.bwell.co.th → ซ่อน cart/checkout/my-account/login, ปิด payment plugin หรือ (B) ขายบนเว็บนี้เลย → เปิด cart ให้ครบ flow. แนะนำ (A) ในระยะสั้น เพื่อไม่แยก inventory และ order 2 ระบบ</td><td class="owner">Bass (decision) → Web Dev</td></tr>
+      <tr><td><span class="pill p1">P1-2</span></td><td>Home "สินค้าแนะนำ", Category pages</td><td>ปุ่มเขียนว่า "หยิบใส่ตะกร้า" แต่กดแล้วเปิด tab ใหม่ไป shop.bwell.co.th (ไม่ได้ใส่ตะกร้า)</td><td>เปลี่ยน label เป็น "สั่งซื้อที่ Bwell Shop" หรือ "ซื้อเลย" ให้ตรงกับพฤติกรรมจริง</td><td class="owner">Web Dev</td></tr>
+      <tr><td><span class="pill p1">P1-3</span></td><td><code>/contact/</code></td><td>มีแค่ที่อยู่ + เบอร์ 2 สาขา ไม่มี Contact form, ไม่มี Email, ไม่มี LINE, ไม่มี Social; typo "วันอาิทตย์" (ต้องเป็น วันอาทิตย์)</td><td>เพิ่ม LINE OA button, Email (sales / corporate), CF7 form (ชื่อ, เบอร์, สนใจสินค้าหมวดไหน, ประเภทลูกค้า บุคคล/องค์กร), Social icons; แก้ typo</td><td class="owner">Content + Web Dev</td></tr>
+      <tr><td><span class="pill p1">P1-4</span></td><td>Category pages เช่น <code>/air-purifier-bwell/</code></td><td>แสดง "สินค้าขายดี" แค่ 4 SKU แล้วจบ ไม่มี grid สินค้าทั้งหมดในหมวด; block บทความท้ายหน้าเครื่องฟอกอากาศแสดงบทความ "หวีม้วนผม / ไดร์เป่าผม" (คนละหมวด)</td><td>เพิ่ม product grid ทั้งหมวด (หรือปุ่ม "ดูสินค้าทั้งหมด" ไป product-category) และ filter บทความตาม category ของหน้านั้น</td><td class="owner">Web Dev</td></tr>
+      <tr><td><span class="pill p1">P1-5</span></td><td>Product page เช่น Bjorn</td><td>Description ซ้ำ 2 รอบ (feature list โผล่สองครั้ง), thumbnail gallery มีรูปแตก 2 รูป, ไม่มีตาราง Spec / SKU / Warranty summary, meta description = "bwell-เก้าอี้เพื่อสุขภาพ รุ่น Bjorn"</td><td>ทำ template product ให้มี: Key benefits → Spec table → Warranty → FAQ → Related; ลบ content ซ้ำ; อัปโหลดรูป gallery ใหม่</td><td class="owner">Content + Web Dev</td></tr>
+      <tr><td><span class="pill p1">P1-6</span></td><td>Home "ความคิดเห็นจากผู้ใช้จริง"</td><td>Review 4 อัน ชื่อและข้อความดู generic (Patcharin, Manunya, Suppawut, Pattaraa) ไม่ระบุสินค้า / วันที่ / แหล่งที่มา</td><td>ใช้ review จริงจาก Shopee / Lazada / Google พร้อมชื่อรุ่น + platform + rating; หรือ embed widget</td><td class="owner">Marketing</td></tr>
+      <tr><td><span class="pill p1">P1-7</span></td><td>Home "ตัวแทนจำหน่าย" / "ลูกค้าของเรา"</td><td>โลโก้ห้าง (The Mall ฯลฯ) และโรงพยาบาลเป็นรูปนิ่ง ไม่มี link; section ตัวแทนออนไลน์: TikTok ชี้ไป profile <code>@bwell.group</code> ไม่ใช่ TikTok Shop; NocNoc มีแค่ใน footer</td><td>ลิงก์โลโก้ห้างไป Store Locator (filter ตามห้าง), TikTok → TikTok Shop URL, เพิ่ม NocNoc ในกลุ่มเดียวกัน (Shopee / Lazada / TikTok Shop / NocNoc)</td><td class="owner">Marketing + Web Dev</td></tr>
+      <tr><td><span class="pill p1">P1-8</span></td><td>UI strings ทั่วเว็บ</td><td>ข้อความระบบยังเป็นอังกฤษ: Home (breadcrumb), Search for:, Login / Register, Username or email address, Description, Related products, Quick View, Products Archive, Default sorting, Uncategorized, "Posted on July 13, 2026 by Pongsathorn", Comments Off, "Your cart is currently empty"</td><td>ตั้ง Site Language = ไทย + Loco Translate สำหรับ WooCommerce / Flatsome strings; ซ่อน author + comments meta ในบทความ</td><td class="owner">Web Dev</td></tr>
+      <tr><td><span class="pill p1">P1-9</span></td><td><code>/shop/</code> (สินค้าทั้งหมด)</td><td>Sidebar โชว์ category "Best seller", "Bwell Subscription", "Uncategorized"; ชื่อหมวดปนไทย-อังกฤษ; หน้าโหลด 10 วินาที (TTFB) ในการ crawl</td><td>ซ่อนหมวด internal/ว่าง, ตั้งชื่อหมวดให้เป็นระบบเดียว, เปิด LiteSpeed Cache + object cache บน Hostinger</td><td class="owner">Web Dev</td></tr>
+      <tr><td><span class="pill p1">P1-10</span></td><td>Home "สินค้าแนะนำ"</td><td>4 SKU ที่แนะนำคือ แผ่นฟอกอากาศ, เครื่องกรองน้ำ RO, เก้าอี้ Bjorn, เครื่องทำน้ำอุ่น FELIX — ไม่มีเครื่องฟอกอากาศซึ่งเป็น hero category ของหน้า</td><td>ให้ Marketing กำหนด featured SKU ตาม campaign calendar (Q4: เครื่องฟอกอากาศ + เครื่องลดความชื้น) และเปลี่ยนได้จาก WooCommerce "Featured"</td><td class="owner">Marketing</td></tr>
+      <tr><td><span class="pill p1">P1-11</span></td><td>Google Translate widget</td><td>โหลด <code>translate_a/element.js</code> ทุกหน้า โดยตั้ง includedLanguages = "es" (สเปน) และไม่แสดงตัวสลับภาษา</td><td>ถอดออก (ลด 1 external request + JS) หรือถ้าต้องการ EN ให้ทำ EN page แยกแทน</td><td class="owner">Web Dev</td></tr>
+    </tbody>
+  </table></div>
+
+  <h2 id="p2"><span class="n">04</span>P2 — SEO &amp; Content</h2>
+  <div class="tablewrap"><table>
+    <thead><tr><th>#</th><th>Area</th><th>Finding</th><th>Recommendation</th><th>Owner</th></tr></thead>
+    <tbody>
+      <tr><td><span class="pill p2">P2-1</span></td><td>Meta description</td><td>ไม่มีใน 22 จาก 40 หน้า รวม About Us, ทำไมต้อง Bwell, ติดต่อเรา, Blog, ช่องทางจัดจำหน่าย, ลูกค้าของเรา, FAQ, Warranty, Policy ทุกหน้า, product FELIX</td><td>เขียน meta description 120–155 ตัวอักษรทุกหน้าหลัก (template ใน Yoast สำหรับ product / post)</td><td class="owner">Content</td></tr>
+      <tr><td><span class="pill p2">P2-2</span></td><td>Title tag</td><td>Home title ยาว 95 ตัวอักษร; หน้า generic: "About Us | Bwell", "FAQ | Bwell", "Sport Gadgets | Bwell", "Products Archive | Bwell", "Cart | Bwell", "My account | Bwell"</td><td>Home ≤ 60 ตัวอักษร เช่น "Bwell เครื่องฟอกอากาศ เครื่องกรองน้ำ เก้าอี้เพื่อสุขภาพ | Home Environment Wellness"; แปลและใส่ keyword ในหน้าที่เหลือ</td><td class="owner">Content</td></tr>
+      <tr><td><span class="pill p2">P2-3</span></td><td>H1</td><td>ไม่มี H1: Blog, Contact, FAQ, Find Bwell, Privacy, Shipping policy, Shop, Cart · มี H1 ซ้ำ 2 อัน: User manual, RO product, Warranty policy</td><td>1 H1 ต่อหน้า ตรงกับ title; Flatsome page title block ตั้งเป็น H1</td><td class="owner">Web Dev</td></tr>
+      <tr><td><span class="pill p2">P2-4</span></td><td>Image alt</td><td>530 จาก 787 รูปไม่มี alt (Home 31/40, Bjorn 39/49, RO 26/41)</td><td>ใส่ alt เป็นชื่อรุ่น + ประโยชน์ เช่น "Bwell เครื่องฟอกอากาศ AP-H3029US กรอง PM2.5 40-80 ตร.ม." ผ่าน Media Library bulk</td><td class="owner">Content</td></tr>
+      <tr><td><span class="pill p2">P2-5</span></td><td>Footer SEO text (ทุกหน้า)</td><td>บล็อกข้อความ "เครื่องฟอกอากาศ คืออะไร?" ยาว ~700 คำ ซ้ำทุกหน้า และมี typo "เครืองฟอกอากาศ Activated Carbon"</td><td>ย้าย content นี้ไปไว้เฉพาะหน้า <code>/air-purifier-bwell/</code> (duplicate content ทุกหน้าไม่ช่วย SEO) และแก้ typo</td><td class="owner">Content</td></tr>
+      <tr><td><span class="pill p2">P2-6</span></td><td>Structured data</td><td>มี Organization / WebSite / Breadcrumb / Article แล้ว แต่ product page ยังไม่พบ Product schema พร้อม price / availability (ตรวจหลังตัดสินใจ P1-1)</td><td>ถ้าเลือก catalog mode ให้เปิด Yoast WooCommerce SEO หรือใส่ Product schema เอง พร้อม offers.url ชี้ shop.bwell.co.th</td><td class="owner">Web Dev</td></tr>
+      <tr><td><span class="pill p2">P2-7</span></td><td>Social / OG</td><td>อ้างอิง Facebook 2 เพจไม่ตรงกัน: <code>facebook.com/bwellgroup</code> (Yoast) กับ <code>facebook.com/Bwell.Healthcare</code> (link ในเว็บ); ไม่มี og:image default</td><td>ยืนยันเพจทางการ 1 เพจ; ตั้ง default OG image 1200×630 ใน Yoast</td><td class="owner">Marketing</td></tr>
+      <tr><td><span class="pill p2">P2-8</span></td><td>Blog</td><td>157 โพสต์ย้ายครบ; หน้า Blog ไม่มี H1 / meta; บทความล่าสุดเป็น Hair styling ทั้งหมด (13 ก.ค. 2026)</td><td>วาง Content calendar Q4 ให้ครอบคลุม Air (PM2.5 season) + Dehumidifier (ฝน) + Water; internal link จากบทความไปหน้า category</td><td class="owner">Marketing</td></tr>
+      <tr><td><span class="pill p2">P2-9</span></td><td>URL / redirect</td><td>Staging มี URL ครบเท่ากับ live (0 URL หาย) + เพิ่ม <code>/shipping-policy/</code>, <code>/pm25-air-purifier/</code>; live มี <code>/privacypolicy/</code> และ staging ใช้ <code>/privacy-policy/</code></td><td>Export redirect map ก่อน launch: 301 จาก slug เก่าที่เปลี่ยน (เช่น privacypolicy → privacy-policy) และ monitor 404 ใน Search Console 2 สัปดาห์แรก</td><td class="owner">Web Dev</td></tr>
+    </tbody>
+  </table></div>
+
+  <h2 id="tech"><span class="n">05</span>Tracking, Performance &amp; Plugin Hygiene</h2>
+  <div class="tablewrap"><table>
+    <thead><tr><th>Item</th><th>Observed</th><th>Recommendation</th></tr></thead>
+    <tbody>
+      <tr><td>Tag inventory</td><td>GTM-M2KZX2K · GA4 ×3 (ดู P0-6) · Meta Pixel 599495719004394 (PixelYourSite) · ไม่มี TikTok Pixel · ไม่มี Heatmap</td><td>รวมทุก tag ใน GTM; เพิ่ม TikTok Pixel + Microsoft Clarity (ฟรี) เพื่อดู behavior หลัง launch; ตั้ง GA4 event: click_shop_bwell, click_marketplace (Shopee/Lazada/TikTok), click_line, submit_warranty, click_call</td></tr>
+      <tr><td>Page weight (Home)</td><td>HTML 263 KB · 50 script tags · 16 stylesheets · รูปรวม ~1.07 MB (35 รูป) · รูปใหญ่สุด 317 KB PNG (thumbnail บทความ) และ 120 KB PNG (TheMall logo)</td><td>เปิด LiteSpeed Cache (Hostinger) + CSS/JS minify และ delay JS; convert PNG → WebP ผ่าน WP Compress ที่ติดตั้งอยู่แล้ว; ลด plugin ที่โหลด script ทุกหน้า</td></tr>
+      <tr><td>Server response</td><td>เฉลี่ย ~2.1 วินาทีต่อหน้า (ผ่าน proxy); <code>/shop/</code> 10.3 วินาที, <code>/warranty-policy/</code> 6.7 วินาที, Home 3.4 วินาที</td><td>ตรวจ TTFB จาก Thailand ด้วย PageSpeed Insights / WebPageTest หลังเปิด cache; target LCP &lt; 2.5 วินาที บนมือถือ</td></tr>
+      <tr><td>Fonts</td><td>Google Fonts โหลด Lato + Dancing Script (ไม่เห็นใช้งาน) และ Noto Sans Thai</td><td>ตัด font ที่ไม่ใช้; ดูข้อ Brand ด้านล่าง</td></tr>
+      <tr><td>Plugins ที่ซ้ำหน้าที่</td><td>Popup Maker + AYS Popup Box (popup 2 ตัว) · Site Kit + gtag ฝังมือ + Woo GA + GTM4WP + PixelYourSite (tracking 5 ตัว) · Omise + YITH Stripe + YITH Subscription Premium (payment ในโหมด catalog)</td><td>เหลือ popup 1 ตัว, tracking = GTM4WP อย่างเดียว, ปิด payment plugin ถ้าเลือก catalog mode (ลด attack surface + license cost)</td></tr>
+      <tr><td>Security / hygiene</td><td>เปิด <code>xmlrpc.php</code> และ REST <code>wp-json</code> link ใน head; WordPress 7.1 / Woo 11.1 เป็น version ล่าสุด (ดี)</td><td>ปิด XML-RPC, จำกัด login attempts, ตั้ง auto-update สำหรับ plugin security</td></tr>
+      <tr><td>Cookie consent</td><td>Complianz GDPR ติดตั้งแล้ว</td><td>ตั้ง banner ภาษาไทยและ link ไป <code>/cookies-policy/</code>; ยืนยันว่า GTM ยิงหลัง consent</td></tr>
+    </tbody>
+  </table></div>
+
+  <h2 id="brand"><span class="n">06</span>Brand Consistency</h2>
+  <div class="tablewrap"><table>
+    <thead><tr><th>Element</th><th>Brand guideline</th><th>On staging</th><th>Action</th></tr></thead>
+    <tbody>
+      <tr><td>Primary color</td><td>#005D9D (navy)</td><td>ใช้ #005D9D ถูกต้องใน header / hero / footer แต่ปุ่ม "สั่งซื้อสินค้า" บนหน้า product ใช้ #159BD7 (inline style) และ CTA บางจุดใช้ #2167A8 / #14558B</td><td>กำหนด CSS variable เดียว <code>--bwell-navy:#005D9D</code> ใน child theme และลบ inline style</td></tr>
+      <tr><td>Typography</td><td>DB Helvethaica X (TH/EN), Poppins (EN), Kanit (TH)</td><td>Noto Sans Thai (body/heading) + Lato + Dancing Script จาก Google Fonts; ไม่มี DB Helvethaica X / Poppins / Kanit</td><td>โหลด Kanit + Poppins จาก Google Fonts (ฟรี) และ self-host DB Helvethaica X (license) สำหรับ heading; ลบ Lato / Dancing Script</td></tr>
+      <tr><td>Logo</td><td>Logo Bwell (pantone)</td><td>Header ใช้ไฟล์ปี 2022 <code>logoBwell_pantone-Bwell-เดี่ยว-02.png</code>; footer ใช้ <code>Bwell_logo-2021-01-1400x371.png</code> (41 KB สำหรับพื้นที่ 200px); logo มือถือหน้า Contact แสดงเป็นรูปแตกใน screenshot (ต้อง verify)</td><td>ใช้ SVG logo เวอร์ชันเดียวทั้งเว็บ; ตรวจ sticky/mobile logo setting ใน Flatsome</td></tr>
+      <tr><td>Tone of voice</td><td>Health &amp; safety, ไม่แข่งราคา</td><td>Hero และ category copy ตรง positioning ดี; แต่ review generic และ copy บางจุดเน้น "ราคาประหยัด" (เครื่องกรองน้ำ)</td><td>ปรับ copy หมวดเครื่องกรองน้ำเป็น benefit ด้านความปลอดภัย / มาตรฐาน แทนราคา</td></tr>
+      <tr><td>Product naming</td><td>ชื่อรุ่นเดียวกันทุก channel</td><td>ชื่อสินค้าบนเว็บ ("เครื่องฟอกอากาศกำจัดไวรัส รุ่น AP-H3029US") ต่างจาก shop.bwell.co.th ("เครื่องฟอกอากาศขนาด 40-80 ตรม 8 ขั้นตอน รุ่น AP-H3029US")</td><td>ทำ master naming sheet แล้ว sync ทั้งเว็บ, shop, marketplace</td></tr>
+    </tbody>
+  </table></div>
+
+  <h2 id="checklist"><span class="n">07</span>Go-live Checklist (เรียงตามลำดับทำ)</h2>
+  <ol class="steps">
+    <li><b>ตัดสินใจ commerce model</b> (P1-1) — catalog + shop.bwell.co.th หรือขายบนเว็บ; ทุกข้อด้านล่างขึ้นกับข้อนี้</li>
+    <li>แก้ footer links netlify (P0-1), <code>/why-bwell/</code> (P0-2), ปุ่มโบรชัวร์ + LINE (P0-3)</li>
+    <li>ใส่ Google Maps API key ให้ Store Locator และตรวจข้อมูลสาขา (P0-4)</li>
+    <li>จัด tracking ใหม่ให้เหลือ GTM เดียว + ทดสอบด้วย GA4 DebugView และ Meta Pixel Helper (P0-6)</li>
+    <li>Content pass: meta description, H1, alt text, typo (P2-1 ถึง P2-5), ปุ่ม "หยิบใส่ตะกร้า" → "สั่งซื้อ" (P1-2), แปล UI strings (P1-8)</li>
+    <li>Performance: เปิด LiteSpeed Cache, WebP, ตัด font/plugin ที่ไม่ใช้ แล้ววัด PageSpeed มือถือ</li>
+    <li><b>Launch day:</b> search-replace <code>antiquewhite-rabbit-277082.hostingersite.com</code> → <code>www.bwell.co.th</code> ทั้ง DB (รวม netlify) · ปลด noindex ใน Yoast + Settings › Reading · แก้ robots.txt · regenerate sitemap เป็น https · ตั้ง Site Language ไทย · ใส่ redirect map (P2-9) · ยืนยัน SSL · submit sitemap ใน Search Console · ตรวจ GTM ยิงบน domain จริง</li>
+    <li><b>Post-launch 14 วัน:</b> monitor 404 ใน Search Console, Core Web Vitals, GA4 event ครบ, ranking keyword หลัก (เครื่องฟอกอากาศ, เครื่องลดความชื้น, เครื่องกรองน้ำ)</li>
+  </ol>
+
+  <h2 id="pages"><span class="n">08</span>Page-by-page SEO audit (40 pages)</h2>
+  <details>
+    <summary>เปิดตาราง: URL · Title · H1 · รูปไม่มี alt / รูปทั้งหมด · Flags</summary>
+    <div class="tablewrap"><table>
+      <thead><tr><th>URL</th><th>Title</th><th>H1</th><th>No alt</th><th>Flags</th></tr></thead>
+      <tbody>
+<tr><td><code>/</code></td><td>Bwell จำหน่ายเครื่องฟอกอากาศ เก้าอี้เพื่อสุขภาพ เครื่องกรองน้ำ เครื่อง</td><td>รู้สึกดีได้ในทุกวันกับ Bwell</td><td class='num'>31/40</td><td>title &gt;60, slow 3.4s</td></tr>
+<tr><td><code>/ช่องทางจัดจำหน่าย/</code></td><td>ช่องทางจัดจำหน่าย | Bwell</td><td>ช่องทางจัดจำหน่าย</td><td class='num'>14/16</td><td>no meta desc</td></tr>
+<tr><td><code>/นโยบายการจัดส่งสินค้า/</code></td><td>นโยบายการจัดส่งสินค้า | Bwell</td><td>—</td><td class='num'>6/8</td><td>no meta desc, no H1</td></tr>
+<tr><td><code>/ลูกค้าของเรา/</code></td><td>ลูกค้าของเรา | Bwell</td><td>ลูกค้าของเรา</td><td class='num'>10/12</td><td>no meta desc</td></tr>
+<tr><td><code>/about-us/</code></td><td>About Us | Bwell</td><td>เกี่ยวกับ Bwell</td><td class='num'>10/13</td><td>no meta desc</td></tr>
+<tr><td><code>/air-dehumidifier/</code></td><td>เครื่องดูดความชื้น เครื่องลดความชื้น กำจัดความชื้น เชื้อรา และกลิ่น</td><td>เครื่องลดความชื้น</td><td class='num'>13/23</td><td>title &gt;60</td></tr>
+<tr><td><code>/air-purification-filters/</code></td><td>แผ่นฟอกอากาศ กรองฝุ่น เชื้อโรค คุณภาพสูง| Bwell</td><td>แผ่นฟอกอากาศ</td><td class='num'>13/23</td><td><span class=ok>OK</span></td></tr>
+<tr><td><code>/air-purifier-bwell/</code></td><td>เครื่องฟอกอากาศ เครื่องกรองอากาศ กรองฝุ่น pm2.5 | Bwell</td><td>เครื่องฟอกอากาศ</td><td class='num'>13/22</td><td><span class=ok>OK</span></td></tr>
+<tr><td><code>/air-purifier-user-manual/</code></td><td>คู่มือการใช้งานเครื่องฟอกอากาศ Bwell | Bwell</td><td>วิธีเปลี่ยนและรีเซ็ตแผ่นฟอกอากาศ / คำถามที่พบบ่อย</td><td class='num'>14/16</td><td>multi H1</td></tr>
+<tr><td><code>/blog/</code></td><td>บทความ | Bwell</td><td>—</td><td class='num'>6/17</td><td>no meta desc, no H1</td></tr>
+<tr><td><code>/blog/knowledge/เครื่องม้วนผมไฟฟ้า-เลือ/</code></td><td>เครื่องม้วนผมไฟฟ้า เลือกอย่างไรให้เหมาะกับสภาพผม ลุคที่ต้องการ และการใ</td><td>เครื่องม้วนผมไฟฟ้า เลือกอย่างไรให้เหมาะกับสภาพผม ลุคที่ต้องก</td><td class='num'>19/21</td><td>no meta desc, title &gt;60</td></tr>
+<tr><td><code>/blog/knowledge/electric-curling-hair-brush-what</code></td><td>หวีม้วนผมไฟฟ้า คืออะไร? เลือกอย่างไรให้เหมาะกับสภาพผมและการใช้งาน | Bw</td><td>หวีม้วนผมไฟฟ้า คืออะไร? เลือกอย่างไรให้เหมาะกับสภาพผมและการใ</td><td class='num'>13/20</td><td>title &gt;60</td></tr>
+<tr><td><code>/blog/knowledge/fast-hair-dryer-how-it-works-and</code></td><td>ไดร์เป่าผมแห้งไว หลักการทำงาน เทคโนโลยี เลือกอย่างไรให้เหมาะกับสภาพผม </td><td>ไดร์เป่าผมแห้งไว หลักการทำงาน เทคโนโลยี เลือกอย่างไรให้เหมาะ</td><td class='num'>15/21</td><td>title &gt;60</td></tr>
+<tr><td><code>/blog/water-purifier/water-filter-for-home-and-c</code></td><td>ข้อแนะนำการเลือกเครื่องกรองน้ำสำหรับบ้านและคอนโดมิเนียม เลือกให้เหมาะก</td><td>ข้อแนะนำการเลือกเครื่องกรองน้ำสำหรับบ้านและคอนโดมิเนียม เลือ</td><td class='num'>7/20</td><td>title &gt;60</td></tr>
+<tr><td><code>/bwell-ergonomic-chair/</code></td><td>เก้าอี้เพื่อสุขภาพ | Bwell</td><td>เก้าอี้เพื่อสุขภาพ</td><td class='num'>13/23</td><td><span class=ok>OK</span></td></tr>
+<tr><td><code>/cart/</code></td><td>Cart | Bwell</td><td>—</td><td class='num'>6/8</td><td>no meta desc, no H1</td></tr>
+<tr><td><code>/contact/</code></td><td>ติดต่อเรา | Bwell</td><td>—</td><td class='num'>10/12</td><td>no meta desc, no H1</td></tr>
+<tr><td><code>/cookies-policy/</code></td><td>นโยบายการใช้คุกกี้ (Cookies Policy) | Bwell</td><td>นโยบายการใช้คุกกี้</td><td class='num'>6/8</td><td>no meta desc</td></tr>
+<tr><td><code>/ergonomic-cushion-bwell/</code></td><td>เบาะรองนั่งเพื่อสุขภาพ เมมโมรี่โฟม Cool Gel | หมอนรองหลังและเบาะพิงหลั</td><td>หมอนและเบาะรองเพื่อสุขภาพ</td><td class='num'>13/23</td><td>title &gt;60</td></tr>
+<tr><td><code>/faq/</code></td><td>FAQ | Bwell</td><td>—</td><td class='num'>6/8</td><td>no meta desc, no H1</td></tr>
+<tr><td><code>/findbwell/</code></td><td>ค้นหาสาขาของ Bwell | Bwell</td><td>—</td><td class='num'>6/8</td><td>no meta desc, no H1</td></tr>
+<tr><td><code>/hair-styling-tools/</code></td><td>อุปกรณ์จัดแต่งทรงผม | เครื่องจัดแต่งทรงผมครบทุกไอเท็ม | Bwell</td><td>อุปกรณ์จัดแต่งทรงผม</td><td class='num'>13/23</td><td>title &gt;60</td></tr>
+<tr><td><code>/my-account/</code></td><td>My account | Bwell</td><td>My account</td><td class='num'>6/8</td><td>no meta desc</td></tr>
+<tr><td><code>/my-account/lost-password/</code></td><td>My account | Bwell</td><td>My account</td><td class='num'>6/8</td><td>no meta desc</td></tr>
+<tr><td><code>/portable-air-conditioner/</code></td><td>แอร์เคลื่อนที่ Bwell เครื่องปรับอากาศเคลื่อนที่ เย็นฉ่ำ ราคาพิเศษ</td><td>แอร์เคลื่อนที่</td><td class='num'>13/21</td><td>title &gt;60</td></tr>
+<tr><td><code>/privacy-policy/</code></td><td>นโยบายความเป็นส่วนตัวของข้อมูล (Privacy Policy) | Bwell</td><td>—</td><td class='num'>6/8</td><td>no meta desc, no H1</td></tr>
+<tr><td><code>/product-bwell/</code></td><td>สินค้า | Bwell</td><td>สินค้าทั้งหมด</td><td class='num'>21/23</td><td>no meta desc</td></tr>
+<tr><td><code>/product/ชุดแผ่นฟอกอากาศ-a09f1d-1/</code></td><td>ชุดแผ่นฟอกอากาศ A09F1D-1 | Bwell</td><td>ชุดแผ่นฟอกอากาศ A09F1D-1</td><td class='num'>16/26</td><td><span class=ok>OK</span></td></tr>
+<tr><td><code>/product/เครื่องกรองน้ำ-ro-แบบไร้ถ/</code></td><td>เครื่องกรองน้ำ RO แบบไร้ถัง | Bwell</td><td>เครื่องกรองน้ำ RO แบบไร้ถัง / สอบถามข้อมูลเพิ่มเติม</td><td class='num'>26/41</td><td>multi H1</td></tr>
+<tr><td><code>/product/bwell-bjorn-black/</code></td><td>Bwell เก้าอี้ Ergonomic รุ่น Bjorn สีดำ | Bwell</td><td>Bwell เก้าอี้ Ergonomic รุ่น Bjorn สีดำ</td><td class='num'>39/49</td><td><span class=ok>OK</span></td></tr>
+<tr><td><code>/product/bwell-water-heater-felix-3500w/</code></td><td>Bwell เครื่องทำน้ำอุ่น FELIX ขนาด 3,500 วัตต์ | Bwell</td><td>Bwell เครื่องทำน้ำอุ่น FELIX ขนาด 3,500 วัตต์</td><td class='num'>30/40</td><td>no meta desc</td></tr>
+<tr><td><code>/robot-vacuum/</code></td><td>หุ่นยนต์ดูดฝุ่น หุ่นยนต์ถูพื้น | หุ่นยนต์ดูดฝุ่นทำความสะอาดอัจฉริยะ | </td><td>หุ่นยนต์ดูดฝุ่น</td><td class='num'>13/22</td><td>title &gt;60</td></tr>
+<tr><td><code>/shop/</code></td><td>Products Archive | Bwell</td><td>—</td><td class='num'>17/32</td><td>no meta desc, no H1, slow 10.3s</td></tr>
+<tr><td><code>/sport-gadgets/</code></td><td>Sport Gadgets | Bwell</td><td>อุปกรณ์ออกกำลังกาย</td><td class='num'>13/20</td><td>no meta desc</td></tr>
+<tr><td><code>/vacuum-cleaner/</code></td><td>เครื่องดูดฝุ่นไร้สาย Bwell รางวัล Reddot Award สำหรับผู้ที่เป็นภูมิแพ้</td><td>เครื่องดูดฝุ่นไร้สาย</td><td class='num'>13/22</td><td>title &gt;60</td></tr>
+<tr><td><code>/warranty-policy/</code></td><td>นโยบายคืนเงิน และ รับประกันสินค้า | Bwell</td><td>นโยบายการเคลมสินค้าและคืนเงิน / นโยบายการรับประกัน</td><td class='num'>6/8</td><td>no meta desc, multi H1, slow 6.7s</td></tr>
+<tr><td><code>/warranty/</code></td><td>ลงทะเบียนรับประกันสินค้า | Bwell</td><td>นโยบายรับประกันสินค้า</td><td class='num'>6/8</td><td>no meta desc</td></tr>
+<tr><td><code>/water-heater-bwell/</code></td><td>เครื่องทำน้ำอุ่น เครื่องทำน้ำร้อน (Water Heater) | พร้อมระบบที่ทันสมัย</td><td>เครื่องทำน้ำอุ่น น้ำร้อน</td><td class='num'>13/23</td><td>title &gt;60</td></tr>
+<tr><td><code>/water-purifier/</code></td><td>เครื่องกรองน้ำ RO กรองน้ำดื่มสะอาด เครื่องกรองน้ำดื่ม Bwell</td><td>เครื่องกรองน้ำ</td><td class='num'>13/23</td><td><span class=ok>OK</span></td></tr>
+<tr><td><code>/whybwell/</code></td><td>ทำไมต้อง Bwell | Bwell</td><td>ทำไมต้อง Bwell</td><td class='num'>10/12</td><td>no meta desc</td></tr>
+      </tbody>
+    </table></div>
+  </details>
+  <div class="note"><b>หมายเหตุการทดสอบ:</b> ระหว่าง render ด้วย headless Chromium ผ่าน proxy พบ 4 หน้า (เครื่องฟอกอากาศ, ช่องทางจัดจำหน่าย, Cart, Warranty) โหลด CSS หลักของ Flatsome ไม่ทันเป็นครั้งคราว และโลโก้ header โหลดไม่ขึ้นในบาง capture ตรวจซ้ำด้วย direct fetch แล้วทุกไฟล์ตอบ 200 จึงยังไม่ถือเป็น bug ของเว็บ แต่ควรทดสอบซ้ำบน domain จริงหลังเปิด cache และตรวจว่า Hostinger ไม่ rate-limit static asset</div>
+  <div class="note">Method: crawl ทุกหน้าที่ลิงก์จากเมนู/footer/home (40 หน้า) + ตรวจ internal link 208 path (404 = 1) + external link 74 รายการ (รวม shop.bwell.co.th 40 SKU, ทั้งหมด 200 OK) + เทียบ sitemap staging vs live bwell.co.th (349 URL) + render ด้วย Chromium desktop 1440px / mobile 390px. ตัวเลขความเร็ววัดผ่าน proxy จึงเป็นค่าเปรียบเทียบ ไม่ใช่ค่าจริงจากไทย</div>
+
+  <h2 id="shots"><span class="n">09</span>Screenshots</h2>
+  <div class="shots">
+    <figure class="shot" style="margin:0"><img src="screenshots/desktop-home-fold.png" alt="Home — Desktop 1440px" loading="lazy"><figcaption class="cap"><b>Home — Desktop 1440px</b>Hero ใหม่ชัด ปุ่ม "เลือกซื้อสินค้า" ไป shop.bwell.co.th; "อ่านเพิ่มเติม" section เครื่องฟอกอากาศ → 404 (P0-2)</figcaption></figure>
+    <figure class="shot" style="margin:0"><img src="screenshots/mobile-home-fold.png" alt="Home — Mobile 390px" loading="lazy"><figcaption class="cap"><b>Home — Mobile 390px</b>Layout มือถือเรียบร้อย ไม่มี horizontal scroll</figcaption></figure>
+    <figure class="shot" style="margin:0"><img src="screenshots/desktop-product-fold.png" alt="Product: Bjorn — Desktop" loading="lazy"><figcaption class="cap"><b>Product: Bjorn — Desktop</b>ปุ่ม "สั่งซื้อสินค้า" สีฟ้า #159BD7 ไม่ใช่ navy; thumbnail แตก 2 รูป; ไม่มี spec (P1-5)</figcaption></figure>
+    <figure class="shot" style="margin:0"><img src="screenshots/mobile-product-fold.png" alt="Product: Bjorn — Mobile" loading="lazy"><figcaption class="cap"><b>Product: Bjorn — Mobile</b>รูปหลักเต็มจอ แต่ต้องเลื่อนไกลกว่าจะเจอราคาและปุ่มซื้อ</figcaption></figure>
+    <figure class="shot" style="margin:0"><img src="screenshots/mobile-air-fold.png" alt="Category: เครื่องฟอกอากาศ — Mobile" loading="lazy"><figcaption class="cap"><b>Category: เครื่องฟอกอากาศ — Mobile</b>Sub-category cards ชัด แต่หน้าแสดงสินค้าแค่ 4 SKU (P1-4)</figcaption></figure>
+    <figure class="shot" style="margin:0"><img src="screenshots/desktop-shop-fold.png" alt="Shop (/shop/) — Desktop" loading="lazy"><figcaption class="cap"><b>Shop (/shop/) — Desktop</b>Sidebar โชว์ Best seller / Bwell Subscription / Uncategorized; รูปแตก 1 รูป; "Products / Default sorting" ภาษาอังกฤษ (P1-9)</figcaption></figure>
+    <figure class="shot" style="margin:0"><img src="screenshots/desktop-contact-fold.png" alt="Contact — Desktop" loading="lazy"><figcaption class="cap"><b>Contact — Desktop</b>มีแค่ที่อยู่ + เบอร์ ไม่มี form / LINE / Email (P1-3)</figcaption></figure>
+    <figure class="shot" style="margin:0"><img src="screenshots/mobile-contact-fold.png" alt="Contact — Mobile" loading="lazy"><figcaption class="cap"><b>Contact — Mobile</b>โลโก้ header แสดงเป็นรูปแตกใน capture นี้ (เกิดเป็นครั้งคราว ต้อง verify บน domain จริง)</figcaption></figure>
+    <figure class="shot" style="margin:0"><img src="screenshots/mobile-find-fold.png" alt="Find Bwell (Store Locator) — Mobile" loading="lazy"><figcaption class="cap"><b>Find Bwell (Store Locator) — Mobile</b>แผนที่ว่างเพราะไม่มี Google Maps API key; label อังกฤษ; ไอคอน search หาย (P0-4)</figcaption></figure>
+    <figure class="shot" style="margin:0"><img src="screenshots/desktop-cart-fold.png" alt="Cart — Desktop" loading="lazy"><figcaption class="cap"><b>Cart — Desktop</b>หน้า Cart ยังเปิดอยู่ทั้งที่เป็น catalog mode; "Your cart is currently empty" อังกฤษ (P1-1)</figcaption></figure>
+    <figure class="shot" style="margin:0"><img src="screenshots/desktop-warranty-fold.png" alt="Warranty Registration — Desktop" loading="lazy"><figcaption class="cap"><b>Warranty Registration — Desktop</b>Form CF7 ครบ ใช้งานได้ ควรเพิ่ม tracking event submit_warranty</figcaption></figure>
+    <figure class="shot" style="margin:0"><img src="screenshots/desktop-blog-fold.png" alt="Blog post — Desktop" loading="lazy"><figcaption class="cap"><b>Blog post — Desktop</b>"Posted on July 13, 2026 by Pongsathorn" และ "Comments Off" ยังแสดง (P1-8)</figcaption></figure>
+  </div>
+
+  <div class="next">
+    <h2>Next action</h2>
+    <p>Bass ตัดสินใจ 2 เรื่องภายในสัปดาห์นี้ แล้วส่งรายงานนี้ให้ agency พร้อมกำหนด due date:</p>
+    <ol>
+      <li>Commerce model: catalog + shop.bwell.co.th (แนะนำ) หรือขายบนเว็บ</li>
+      <li>GA4 property ที่ทีมใช้จริง 1 ตัว และเพจ Facebook ทางการ 1 เพจ</li>
+    </ol>
+    <p style="margin-top:12px">Target: ปิด P0 ทั้ง 6 ข้อ → re-review รอบ 2 → กำหนดวัน launch</p>
+  </div>
+</div>

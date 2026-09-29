@@ -1,0 +1,379 @@
+<title>Bwell Website Blueprint</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&family=Kanit:wght@300;400;500;600&display=swap">
+<style>
+:root{
+  --ground:#F5F8FB; --surface:#FFFFFF; --surface-2:#EDF3F8; --line:#D5DFE8;
+  --ink:#10233A; --ink-2:#4A5C6E; --muted:#7A8A99;
+  --accent:#005D9D; --blue:#008AD0; --accent-soft:#E1EEF8; --accent-ink:#FFFFFF;
+  --warn:#B54708; --warn-soft:#FEF0E2; --ok:#067647; --ok-soft:#E3F5EA;
+  --wire-bg:#FFFFFF; --wire-line:#8FA3B5; --wire-fill:#E6EEF5; --wire-dark:#0E2A44; --wire-text:#1F3A55;
+  --display:"Poppins","Kanit",system-ui,sans-serif; --body:"Kanit","Poppins",system-ui,sans-serif;
+}
+@media (prefers-color-scheme: dark){ :root:not([data-theme="light"]){
+  --ground:#0E161F; --surface:#151F2B; --surface-2:#1C2937; --line:#2B3A4A;
+  --ink:#E7EEF5; --ink-2:#B4C2CF; --muted:#8395A6;
+  --accent:#4FA3E3; --blue:#5FB6EE; --accent-soft:#16304A; --accent-ink:#0B1420;
+  --warn:#F5A05C; --warn-soft:#3A2712; --ok:#5FD39A; --ok-soft:#12321F;
+  --wire-bg:#151F2B; --wire-line:#5C7186; --wire-fill:#1F2E3D; --wire-dark:#4FA3E3; --wire-text:#C6D3DF;
+}}
+:root[data-theme="dark"]{
+  --ground:#0E161F; --surface:#151F2B; --surface-2:#1C2937; --line:#2B3A4A;
+  --ink:#E7EEF5; --ink-2:#B4C2CF; --muted:#8395A6;
+  --accent:#4FA3E3; --blue:#5FB6EE; --accent-soft:#16304A; --accent-ink:#0B1420;
+  --warn:#F5A05C; --warn-soft:#3A2712; --ok:#5FD39A; --ok-soft:#12321F;
+  --wire-bg:#151F2B; --wire-line:#5C7186; --wire-fill:#1F2E3D; --wire-dark:#4FA3E3; --wire-text:#C6D3DF;
+}
+*{box-sizing:border-box}
+body{margin:0;background:var(--ground);color:var(--ink);font-family:var(--body);font-weight:300;font-size:15.5px;line-height:1.6}
+.wrap{max-width:1100px;margin:0 auto;padding-block:32px 72px;padding-inline:20px}
+h1,h2,h3{font-family:var(--display);font-weight:600;line-height:1.2;text-wrap:balance;margin:0}
+h1{font-size:clamp(26px,3.4vw,36px);letter-spacing:-.01em}
+h2{font-size:22px;margin-top:60px;padding-bottom:10px;border-bottom:2px solid var(--accent);display:flex;align-items:baseline;gap:12px}
+h2 .n{font-size:13px;color:var(--muted);font-weight:500;letter-spacing:.08em}
+h3{font-size:17px;margin-top:30px;font-family:var(--body);font-weight:500;color:var(--accent)}
+p{margin:12px 0;max-width:74ch}
+a{color:var(--accent)}
+code{font-family:ui-monospace,SFMono-Regular,Menlo,monospace;font-size:.86em;background:var(--surface-2);padding:1px 5px;border-radius:4px;word-break:break-all}
+.eyebrow{font-family:var(--display);font-size:12px;font-weight:500;letter-spacing:.12em;text-transform:uppercase;color:var(--accent)}
+.meta{display:flex;flex-wrap:wrap;gap:8px 24px;color:var(--ink-2);font-size:14px;margin-top:10px}
+.meta b{font-weight:500;color:var(--ink)}
+.lead{border:1px solid var(--line);background:var(--surface);border-left:6px solid var(--accent);padding:18px 22px;border-radius:6px;margin-top:26px}
+.lead .t{font-family:var(--display);font-weight:600;font-size:17px;color:var(--accent)}
+.lead p{margin:8px 0 0}
+.tablewrap{overflow-x:auto;margin-top:16px;border:1px solid var(--line);border-radius:6px;background:var(--surface)}
+table{border-collapse:collapse;width:100%;font-size:14px}
+th{font-family:var(--display);font-weight:500;font-size:12px;letter-spacing:.06em;text-transform:uppercase;text-align:left;color:var(--ink-2);background:var(--surface-2);padding:10px 12px;border-bottom:1px solid var(--line);white-space:nowrap}
+td{padding:10px 12px;border-bottom:1px solid var(--line);vertical-align:top}
+tr:last-child td{border-bottom:0}
+td.k{font-weight:500;white-space:nowrap}
+.pill{display:inline-block;font-family:var(--display);font-size:11px;font-weight:600;letter-spacing:.06em;padding:2px 8px;border-radius:999px;white-space:nowrap}
+.must{background:var(--warn-soft);color:var(--warn)} .nice{background:var(--accent-soft);color:var(--accent)} .done{background:var(--ok-soft);color:var(--ok)}
+.grid2{display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:18px;margin-top:16px}
+.card{background:var(--surface);border:1px solid var(--line);border-radius:6px;padding:16px 18px}
+.card h4{margin:0 0 6px;font-family:var(--display);font-weight:600;font-size:14px}
+.card p{margin:6px 0;font-size:14px}
+.wire{background:var(--wire-bg);border:1px solid var(--line);border-radius:6px;padding:12px;margin-top:16px;overflow-x:auto}
+.wire svg{display:block;width:100%;max-width:100%;height:auto;font-family:var(--display)}
+.wire .cap{font-size:13px;color:var(--ink-2);margin-top:8px}
+.ph{color:var(--warn);font-weight:500}
+ol.steps{padding-left:22px;margin:14px 0} ol.steps li{margin:8px 0}
+ul.tight{margin:8px 0;padding-left:20px} ul.tight li{margin:4px 0}
+.note{background:var(--accent-soft);border-radius:6px;padding:12px 16px;font-size:14px;margin-top:16px}
+.next{margin-top:56px;background:var(--accent);color:var(--accent-ink);border-radius:6px;padding:20px 24px}
+.next h2{border:0;margin:0 0 8px;color:var(--accent-ink);font-size:20px}
+.next p,.next li{color:var(--accent-ink)} .next p{max-width:none} .next ol{margin:8px 0 0;padding-left:20px}
+.toc{display:flex;flex-wrap:wrap;gap:6px 14px;margin-top:22px;font-size:14px}
+.toc a{text-decoration:none;border-bottom:1px solid var(--line)}
+.swatch{display:inline-block;width:14px;height:14px;border-radius:3px;vertical-align:-2px;margin-right:6px;border:1px solid var(--line)}
+@media (max-width:640px){ h2{font-size:19px;margin-top:44px} body{font-size:15px} }
+</style>
+
+<div class="wrap">
+  <div class="eyebrow">Website Blueprint · Redesign brief for agency</div>
+  <h1 style="margin-top:8px">Bwell Website Blueprint — Apple.com Framework, adapted for Home Environment Wellness</h1>
+  <div class="meta">
+    <span>Reference model: <b>apple.com (Home, Product, Category, Compare, Retail, Support)</b></span>
+    <span>Target platform: <b>WordPress + Flatsome (existing staging)</b></span>
+    <span>Date: <b>18 Sep 2026</b></span>
+    <span>Owner: <b>Bass (Marketing) → Web agency</b></span>
+  </div>
+
+  <div class="toc">
+    <a href="#how">How to use</a><a href="#principles">Apple framework decoded</a><a href="#ia">Site architecture</a><a href="#home">Homepage</a><a href="#product">Product page</a><a href="#category">Category &amp; Compare</a><a href="#support">Support &amp; Store locator</a><a href="#tokens">Design tokens</a><a href="#copy">Copy formulas</a><a href="#flatsome">Flatsome notes</a><a href="#accept">Acceptance criteria</a>
+  </div>
+
+  <h2 id="how"><span class="n">00</span>How to use this document</h2>
+  <div class="lead">
+    <div class="t">เอกสารนี้คือ "framework" ของ apple.com ที่ถอดออกมาเป็นโครงสร้าง ไม่ใช่การลอก design, รูป หรือ copy ของ Apple</div>
+    <p>สิ่งที่นำมาใช้คือ Information Architecture, ลำดับ section, UX pattern, สูตร headline/CTA และ design token ratio ส่วน visual identity ทั้งหมดใช้ของ Bwell (Brand Guidelines 2026) ทุกจุดที่ต้องการข้อมูลจริงจาก Bwell ทำเครื่องหมาย <span class="ph">[PLACEHOLDER]</span> ไว้ให้ Bass เติมก่อนส่ง agency</p>
+  </div>
+  <div class="tablewrap"><table>
+    <thead><tr><th>Section</th><th>ใครใช้</th><th>ผลลัพธ์ที่ต้องได้</th></tr></thead>
+    <tbody>
+      <tr><td>01–02 Framework + IA</td><td>Bass, Agency PM</td><td>ตกลง site map และ nav ใหม่ก่อนเริ่มงาน</td></tr>
+      <tr><td>03–06 Page blueprints</td><td>Agency UX/UI + Content</td><td>Wireframe ต่อหน้า พร้อม content spec และ CTA ทุก section</td></tr>
+      <tr><td>07–08 Tokens + Copy</td><td>Agency UI + Bwell Content</td><td>Type scale, spacing, button, headline formula ใช้ร่วมกันทั้งเว็บ</td></tr>
+      <tr><td>09–10 Flatsome + Acceptance</td><td>Agency Dev, Bass (QA)</td><td>รู้ว่าทำด้วย element ไหน และตรวจรับด้วยเกณฑ์อะไร</td></tr>
+    </tbody>
+  </table></div>
+
+  <h2 id="principles"><span class="n">01</span>Apple framework decoded — 10 principles</h2>
+  <p>สรุปจากการอ่านโครงสร้างจริงของ apple.com วันที่ 18 ก.ย. 2026 (Home, MacBook Air, iPhone, Compare Mac, Retail, Support) แต่ละข้อมี "Bwell translation" ที่ agency ต้องยึด</p>
+  <div class="tablewrap"><table>
+    <thead><tr><th>#</th><th>Apple principle</th><th>เห็นได้จาก</th><th>Bwell translation</th></tr></thead>
+    <tbody>
+      <tr><td class="k">1</td><td>One idea per screen</td><td>Home = stack ของ full-width unit ทีละ 1 สินค้า 1 headline 1 subhead 2 CTA ไม่มี slider</td><td>ยกเลิก carousel/slider ทั้งหมด ทุก section พูดเรื่องเดียว มี CTA ไม่เกิน 2 ปุ่ม</td></tr>
+      <tr><td class="k">2</td><td>Product-first hero</td><td>Hero ไม่มี lifestyle stock photo; สินค้าเป็นพระเอก headline 2–5 คำ</td><td>Hero ใช้ product render บนพื้นเรียบ (ขาว / navy gradient) headline ไม่เกิน 6 คำไทย</td></tr>
+      <tr><td class="k">3</td><td>Fixed CTA pair: Learn more + Buy</td><td>ทุก unit ใช้ "Learn more" (text link) + "Buy" (primary) ตำแหน่งเดิมเสมอ</td><td>"ดูรายละเอียด" (text link) + "สั่งซื้อ" (primary) ทุก section ทั้งเว็บ ไม่มีคำอื่น</td></tr>
+      <tr><td class="k">4</td><td>Global nav = product categories, ไม่ใช่ company pages</td><td>Nav 11 รายการ: Store, Mac, iPad, iPhone, Watch, Vision, AirPods, TV &amp; Home, Entertainment, Accessories, Support</td><td>Nav = Shop + 5 category pillars + Support (section 02) ย้าย About/Why/ลูกค้า ไป footer</td></tr>
+      <tr><td class="k">5</td><td>Local nav ต่อสินค้า (sticky)</td><td>หน้า product มี bar ติดด้านบน: ชื่อรุ่น | Overview · Tech Specs | ปุ่ม Buy</td><td>ทุก product page มี sticky bar: ชื่อรุ่น | ภาพรวม · สเปก · เปรียบเทียบ | ปุ่มสั่งซื้อ</td></tr>
+      <tr><td class="k">6</td><td>Chaptered storytelling</td><td>MacBook Air: Highlights → Design → Performance → AI → Display → Camera → Ports → Security → Which is right → Accessories → Environment</td><td>Product page แบ่งเป็น chapter ตาม benefit: Highlights → การกรอง → พื้นที่ครอบคลุม → เสียง → Smart → ดีไซน์ → ความปลอดภัย → รุ่นไหนเหมาะกับคุณ → ไส้กรอง → รับประกัน</td></tr>
+      <tr><td class="k">7</td><td>Router pattern "Which is right for you?"</td><td>การ์ด 2–3 ใบ เปรียบเทียบรุ่นแบบสั้น + link Compare all models</td><td>ทุก category page และ product page ปิดท้ายด้วย router 3 รุ่น (เล็ก / กลาง / ใหญ่) + ปุ่ม "เปรียบเทียบทุกรุ่น"</td></tr>
+      <tr><td class="k">8</td><td>Compare page เป็น tool ไม่ใช่ตาราง</td><td>Sticky product header, model picker, row group ตาม spec category, ค่าที่ต่างกันเน้นสี</td><td>Compare 1 หน้าต่อ category (เริ่มที่เครื่องฟอกอากาศ) เลือกได้สูงสุด 3 รุ่น</td></tr>
+      <tr><td class="k">9</td><td>Incentive strip "Why buy from Apple"</td><td>แถว 4 icon: Trade In, Financing, Delivery, Help buying</td><td>แถว 4 icon: รับประกันศูนย์ไทย · ส่งฟรี/ติดตั้ง · ผ่อน 0% · ปรึกษาผู้เชี่ยวชาญ (LINE) <span class="ph">[ยืนยันเงื่อนไขจริง]</span></td></tr>
+      <tr><td class="k">10</td><td>Footer = directory + legal, ไม่ใช่ marketing</td><td>Footer 11 column group: Shop and Learn, Account, Store, Business, Values, About</td><td>Footer 5 group: สินค้า · ซื้อที่ไหน · บริการหลังการขาย · เกี่ยวกับ Bwell · นโยบาย + social + app</td></tr>
+    </tbody>
+  </table></div>
+
+  <h2 id="ia"><span class="n">02</span>Site architecture (IA) — Apple → Bwell</h2>
+  <p><b>Decision (29 ก.ย. 2026):</b> Global nav ใช้โครงสร้าง <b>B+A</b>: bar แสดง 8 หมวดสินค้าเป็นภาษาไทยชื่อเต็ม (เครื่องฟอกอากาศ · เครื่องลดความชื้น · แอร์เคลื่อนที่ · เครื่องกรองน้ำ · เครื่องทำน้ำอุ่น · หุ่นยนต์ดูดฝุ่น · เก้าอี้เพื่อสุขภาพ · Beauty) + บริการช่วยเหลือ + ไอคอนค้นหา/ซื้อสินค้า ส่วน 5 pillar (Air · Water · Clean Home · Ergonomic · Beauty) ยังใช้เป็นชั้นกลุ่มใน flyout ("อยู่ในกลุ่ม Air ...") ในเมนูมือถือ และเป็นโครง URL หมวดลูก 4 หมวด (แผ่นฟอกอากาศ, เครื่องดูดฝุ่นไร้สาย, หมอนและเบาะรอง, อุปกรณ์ออกกำลังกาย) ย้ายไปอยู่ใน flyout ของหมวดแม่ Bar เป็นแบบ Light (ขาวโปร่ง + blur) เหตุผลและตัวเลขความกว้าง label อยู่ใน prototype: <code>website-review/bwell-nav-prototype.html</code> (section "ทางเลือกโครงสร้าง nav")</p>
+  <p>ตารางด้านล่างคือชั้น pillar ที่ใช้เป็น URL และการจัดกลุ่ม ไม่ใช่รายการที่โชว์ใน bar</p>
+  <div class="tablewrap"><table>
+    <thead><tr><th>Global nav (ซ้าย → ขวา)</th><th>Apple equivalent</th><th>Dropdown / landing</th><th>หมวดเดิมที่ยุบเข้าไป</th></tr></thead>
+    <tbody>
+      <tr><td class="k">Logo</td><td>Apple logo → Home</td><td>/</td><td>—</td></tr>
+      <tr><td class="k">Air (กลุ่ม) → bar: เครื่องฟอกอากาศ · เครื่องลดความชื้น · แอร์เคลื่อนที่</td><td>Mac</td><td>Category page: เครื่องฟอกอากาศ · เครื่องลดความชื้น · แอร์เคลื่อนที่ · แผ่นฟอกอากาศ (ใน flyout ของเครื่องฟอกอากาศ)</td><td>air-purifier, air-dehumidifier, portable-air-conditioner, air-purification-filters</td></tr>
+      <tr><td class="k">Water (กลุ่ม) → bar: เครื่องกรองน้ำ · เครื่องทำน้ำอุ่น</td><td>iPad</td><td>เครื่องกรองน้ำ · เครื่องทำน้ำอุ่น · ไส้กรอง</td><td>water-purifier, water-heater</td></tr>
+      <tr><td class="k">Clean Home (กลุ่ม) → bar: หุ่นยนต์ดูดฝุ่น</td><td>iPhone</td><td>หุ่นยนต์ดูดฝุ่น · เครื่องดูดฝุ่นไร้สาย (ใน flyout)</td><td>robot-vacuum, vacuum-cleaner</td></tr>
+      <tr><td class="k">Ergonomic (กลุ่ม) → bar: เก้าอี้เพื่อสุขภาพ</td><td>Watch</td><td>เก้าอี้เพื่อสุขภาพ · หมอนและเบาะรอง · อุปกรณ์ออกกำลังกาย (ใน flyout)</td><td>ergonomic-chair, ergonomic-cushion, sport-gadgets</td></tr>
+      <tr><td class="k">Beauty (กลุ่ม) → bar: Beauty</td><td>AirPods</td><td>อุปกรณ์จัดแต่งทรงผม (sub-brand Bwell Beauty)</td><td>hair-styling-tools</td></tr>
+      <tr><td class="k">Support</td><td>Support</td><td>Support hub: ลงทะเบียนรับประกัน · คู่มือ · FAQ · เคลม · ติดต่อ</td><td>warranty, user-manual, faq, warranty-policy, contact</td></tr>
+      <tr><td class="k">Store (icon / ขวาสุด)</td><td>Store</td><td>ซื้อที่ไหน: Bwell Shop · Shopee · Lazada · TikTok Shop · NocNoc · ค้นหาสาขา</td><td>ช่องทางจัดจำหน่าย, findbwell, สั่งซื้อออนไลน์</td></tr>
+      <tr><td class="k">Search (icon)</td><td>Search</td><td>Overlay search + quick links 5 รายการ</td><td>search</td></tr>
+    </tbody>
+  </table></div>
+  <div class="note">ย้ายไป footer: เกี่ยวกับ Bwell, ทำไมต้อง Bwell, ลูกค้าองค์กร, บทความ, สมัครตัวแทนจำหน่าย, นโยบายทั้งหมด · ซ่อนจาก nav: Cart, Checkout, My account, Login/Register (catalog mode ตาม Website Review P1-1)</div>
+
+  <h3>URL structure</h3>
+  <div class="tablewrap"><table>
+    <thead><tr><th>Level</th><th>Pattern</th><th>ตัวอย่าง</th><th>หมายเหตุ</th></tr></thead>
+    <tbody>
+      <tr><td>Pillar</td><td><code>/air/</code></td><td>/air/ · /water/ · /clean-home/ · /ergonomic/ · /beauty/</td><td>หน้าใหม่ (category landing แบบ iPhone page)</td></tr>
+      <tr><td>Product family</td><td><code>/air/air-purifier/</code></td><td>/air/air-purifier/ · /air/dehumidifier/</td><td>301 จาก /air-purifier-bwell/ เดิม</td></tr>
+      <tr><td>Product</td><td><code>/air/air-purifier/ap-h3029us/</code></td><td>slug = รหัสรุ่น ภาษาอังกฤษ</td><td>เลิกใช้ Thai slug ใน /product/ (301 ทุกตัว)</td></tr>
+      <tr><td>Compare</td><td><code>/air/air-purifier/compare/</code></td><td>1 หน้าต่อ product family</td><td>เริ่มที่เครื่องฟอกอากาศ</td></tr>
+      <tr><td>Support</td><td><code>/support/…</code></td><td>/support/warranty/ · /support/manuals/ · /support/faq/</td><td>รวมหน้าเดิม 5 หน้า</td></tr>
+      <tr><td>Store</td><td><code>/store/</code> · <code>/store/find/</code></td><td>ช่องทางซื้อ + store locator</td><td></td></tr>
+    </tbody>
+  </table></div>
+
+  <h2 id="home"><span class="n">03</span>Homepage blueprint</h2>
+  <p>Apple home = ribbon → hero unit 1 → hero unit 2 → promo grid 2×2 (4 units ครึ่งจอ) → gallery → footer ไม่มี about, ไม่มี testimonial, ไม่มี blog ทุก unit คือสินค้า Bwell ปรับให้มี trust strip 1 แถว เพราะเป็นแบรนด์ไทยที่ต้องสร้างความเชื่อมั่นมากกว่า Apple</p>
+  <div class="wire">
+    <svg viewBox="0 0 1000 1180" role="img" aria-label="Homepage wireframe">
+      <style>.b{fill:var(--wire-fill);stroke:var(--wire-line);stroke-width:1.5}.d{fill:var(--wire-dark);stroke:none}.t{fill:var(--wire-text);font-size:14px;font-weight:600}.s{fill:var(--wire-text);font-size:11px}.l{fill:var(--wire-line);font-size:10px;letter-spacing:.08em}</style>
+      <rect x="0" y="0" width="1000" height="44" class="b"/><text x="16" y="28" class="t">Bwell</text><text x="330" y="28" class="s">Air · Water · Clean Home · Ergonomic · Beauty · Support</text><text x="900" y="28" class="s">Store  Search</text>
+      <rect x="0" y="44" width="1000" height="34" class="b"/><text x="300" y="66" class="s">Ribbon: campaign 1 บรรทัด เช่น "9.9 ลดสูงสุด [X]% ที่ Bwell Shop" + link</text>
+      <rect x="0" y="78" width="1000" height="300" class="b"/><text x="380" y="130" class="t">HERO UNIT 1 — Hero SKU ประจำ season</text><text x="330" y="152" class="s">Headline 2–6 คำ · Subhead 1 บรรทัด · [ดูรายละเอียด]  [สั่งซื้อ]</text><rect x="360" y="180" width="280" height="170" class="b"/><text x="445" y="270" class="s">Product render</text><text x="16" y="370" class="l">FULL-WIDTH · BG ขาว</text>
+      <rect x="0" y="378" width="1000" height="300" class="d" opacity=".92"/><text x="380" y="430" class="t" fill="#fff" style="fill:#fff">HERO UNIT 2 — SKU ลำดับ 2 (คนละ pillar)</text><text x="340" y="452" class="s" style="fill:#fff">Headline · Subhead · [ดูรายละเอียด]  [สั่งซื้อ]</text><rect x="360" y="480" width="280" height="170" fill="none" stroke="#fff" stroke-width="1.5"/><text x="16" y="670" class="l" style="fill:#fff">FULL-WIDTH · BG navy gradient</text>
+      <rect x="0" y="678" width="498" height="230" class="b"/><text x="150" y="720" class="t">PROMO 3 — Water</text><text x="120" y="742" class="s">Headline · Subhead · 2 CTA</text><rect x="170" y="770" width="160" height="110" class="b"/>
+      <rect x="502" y="678" width="498" height="230" class="b"/><text x="650" y="720" class="t">PROMO 4 — Clean Home</text><rect x="672" y="770" width="160" height="110" class="b"/>
+      <rect x="0" y="912" width="498" height="230" class="b"/><text x="150" y="954" class="t">PROMO 5 — Ergonomic</text><rect x="170" y="1004" width="160" height="110" class="b"/>
+      <rect x="502" y="912" width="498" height="230" class="b"/><text x="650" y="954" class="t">PROMO 6 — Beauty</text><rect x="672" y="1004" width="160" height="110" class="b"/>
+      <text x="16" y="1168" class="l">ต่อด้วย: TRUST STRIP (4 icon) → BUY-FROM STRIP (marketplace logos) → FOOTER DIRECTORY</text>
+    </svg>
+    <div class="cap">Wireframe 1 — Homepage: 2 hero เต็มจอ + promo grid 2×2 + trust strip + footer (desktop). Mobile: ทุก unit stack เป็น 1 column, รูปอยู่ใต้ headline</div>
+  </div>
+  <div class="tablewrap"><table>
+    <thead><tr><th>#</th><th>Section</th><th>Apple pattern</th><th>Bwell content spec</th><th>CTA</th><th>Flatsome</th></tr></thead>
+    <tbody>
+      <tr><td class="k">H0</td><td>Ribbon</td><td>1 บรรทัดโปรโมชัน + link ปิดได้</td><td>Campaign ปัจจุบัน (Double Digit / Seasonal) 1 ข้อความ <span class="ph">[copy จาก campaign brief]</span></td><td>link 1</td><td>Top bar (header element)</td></tr>
+      <tr><td class="k">H1</td><td>Hero unit 1</td><td>Full-width, headline สั้น, subhead 1 บรรทัด, 2 CTA, product render</td><td>Hero SKU ประจำ season: Q4 = เครื่องฟอกอากาศ (PM2.5) <span class="ph">[ระบุรุ่น]</span> BG ขาว</td><td>ดูรายละเอียด · สั่งซื้อ</td><td>Section full-width + Banner (no slider)</td></tr>
+      <tr><td class="k">H2</td><td>Hero unit 2</td><td>เหมือน H1 สลับ BG dark</td><td>SKU ลำดับ 2 คนละ pillar เช่น เครื่องลดความชื้น (ฤดูฝน) BG navy gradient</td><td>ดูรายละเอียด · สั่งซื้อ</td><td>Section + Banner, dark</td></tr>
+      <tr><td class="k">H3–H6</td><td>Promo grid 2×2</td><td>4 unit ครึ่งจอ headline + subhead + 2 CTA</td><td>Water · Clean Home · Ergonomic · Beauty อย่างละ 1 SKU เด่น</td><td>ดูรายละเอียด · สั่งซื้อ</td><td>Row 2 col, Banner grid</td></tr>
+      <tr><td class="k">H7</td><td>Trust strip (Bwell เพิ่ม)</td><td>Apple ใช้ incentive strip ในหน้า category</td><td>4 icon: ดูแลสุขภาพคนไทยตั้งแต่ 2011 · โรงพยาบาลชั้นนำไว้วางใจ · รับประกันศูนย์ไทย · ปรึกษาผู้เชี่ยวชาญ <span class="ph">[ยืนยันข้อความ]</span></td><td>—</td><td>Icon box ×4</td></tr>
+      <tr><td class="k">H8</td><td>Buy-from strip</td><td>Apple "Shop" entry</td><td>โลโก้ Bwell Shop · Shopee · Lazada · TikTok Shop · NocNoc + "ค้นหาสาขา" (Central, HomePro, PowerBuy)</td><td>logo = link</td><td>Logo row</td></tr>
+      <tr><td class="k">H9</td><td>Footer directory</td><td>Column group + legal line</td><td>5 group (section 01 ข้อ 10) + social icons + app badges</td><td>—</td><td>Footer block</td></tr>
+    </tbody>
+  </table></div>
+  <div class="note"><b>ตัดออกจากหน้าแรกเดิม:</b> category grid 12 ช่อง (ย้ายไป nav dropdown), บทความ 4 ชิ้น (ย้ายไป pillar page), testimonial, โบรชัวร์, SEO text 700 คำท้ายหน้า (ย้ายไป /air/air-purifier/) เหตุผล: Apple home ไม่มี section ใดที่ไม่ใช่สินค้า</div>
+
+  <h2 id="product"><span class="n">04</span>Product page blueprint (ตัวอย่าง: เครื่องฟอกอากาศ)</h2>
+  <p>ต้นแบบ = apple.com/macbook-air (12 section) ทุก product page ของ Bwell ใช้ template เดียวกัน เปลี่ยนแค่ chapter ตาม category</p>
+  <div class="wire">
+    <svg viewBox="0 0 1000 1250" role="img" aria-label="Product page wireframe">
+      <style>.b{fill:var(--wire-fill);stroke:var(--wire-line);stroke-width:1.5}.d{fill:var(--wire-dark)}.t{fill:var(--wire-text);font-size:14px;font-weight:600}.s{fill:var(--wire-text);font-size:11px}.l{fill:var(--wire-line);font-size:10px;letter-spacing:.08em}</style>
+      <rect x="0" y="0" width="1000" height="40" class="b"/><text x="16" y="26" class="s">Global nav</text>
+      <rect x="0" y="40" width="1000" height="40" class="d"/><text x="16" y="65" class="t" style="fill:#fff">AP-H3029US</text><text x="520" y="65" class="s" style="fill:#fff">ภาพรวม · สเปก · เปรียบเทียบ</text><rect x="880" y="48" width="100" height="24" rx="12" fill="#fff"/><text x="905" y="65" class="s">สั่งซื้อ</text><text x="700" y="65" class="l" style="fill:#fff">STICKY</text>
+      <rect x="0" y="80" width="1000" height="280" class="b"/><text x="400" y="130" class="t">HERO — Headline benefit 2–6 คำ</text><text x="380" y="152" class="s">Subhead: ห้อง [X] ตร.ม. · กรอง [N] ขั้นตอน · [ราคา]</text><rect x="360" y="170" width="280" height="170" class="b"/>
+      <rect x="0" y="360" width="1000" height="130" class="b"/><text x="16" y="385" class="t">HIGHLIGHTS — การ์ดเลื่อนแนวนอน 5 ใบ (1 benefit + 1 ตัวเลข ต่อใบ)</text>
+      <rect x="20" y="400" width="180" height="70" class="b"/><rect x="215" y="400" width="180" height="70" class="b"/><rect x="410" y="400" width="180" height="70" class="b"/><rect x="605" y="400" width="180" height="70" class="b"/><rect x="800" y="400" width="180" height="70" class="b"/>
+      <rect x="0" y="490" width="1000" height="150" class="b"/><text x="16" y="515" class="t">CHAPTER 1 — การกรอง</text><text x="16" y="535" class="s">Eyebrow + headline + 1 ย่อหน้า ≤ 40 คำ + ภาพตัดขวางไส้กรอง + 3 stat</text>
+      <rect x="0" y="640" width="1000" height="150" class="d" opacity=".92"/><text x="16" y="665" class="t" style="fill:#fff">CHAPTER 2 — พื้นที่ครอบคลุม / CADR</text><text x="16" y="685" class="s" style="fill:#fff">สลับ BG dark · ตัวเลขใหญ่ (Poppins 64px) + คำอธิบาย</text>
+      <rect x="0" y="790" width="1000" height="150" class="b"/><text x="16" y="815" class="t">CHAPTER 3–6 — เสียง · Smart control · ดีไซน์ · ความปลอดภัย/มาตรฐาน</text><text x="16" y="835" class="s">รูปแบบเดียวกัน สลับสว่าง/มืด · ไม่มี chapter ไหนยาวเกิน 1 จอ</text>
+      <rect x="0" y="940" width="1000" height="120" class="b"/><text x="16" y="965" class="t">รุ่นไหนเหมาะกับคุณ — router 3 การ์ด + "เปรียบเทียบทุกรุ่น"</text>
+      <rect x="40" y="985" width="280" height="60" class="b"/><rect x="360" y="985" width="280" height="60" class="b"/><rect x="680" y="985" width="280" height="60" class="b"/>
+      <rect x="0" y="1060" width="1000" height="90" class="b"/><text x="16" y="1085" class="t">ไส้กรองและอุปกรณ์เสริม (Apple: Accessories)</text>
+      <rect x="0" y="1150" width="1000" height="90" class="b"/><text x="16" y="1175" class="t">BUY STRIP — รับประกัน · จัดส่ง · ผ่อน 0% · ปรึกษา LINE  →  FOOTER</text>
+    </svg>
+    <div class="cap">Wireframe 2 — Product page: sticky local nav + hero + highlights + chapters สลับพื้นสว่าง/มืด + router + accessories + buy strip</div>
+  </div>
+  <div class="tablewrap"><table>
+    <thead><tr><th>#</th><th>Section</th><th>Apple pattern</th><th>Bwell content spec (เครื่องฟอกอากาศ)</th><th>Chapter อื่นๆ ตาม category</th></tr></thead>
+    <tbody>
+      <tr><td class="k">P0</td><td>Local nav (sticky)</td><td>ชื่อรุ่น | Overview · Tech Specs | Buy</td><td>ชื่อรุ่น | ภาพรวม · สเปก · เปรียบเทียบ | สั่งซื้อ (ไป Bwell Shop) ติดบนสุดเมื่อ scroll ผ่าน hero</td><td>เหมือนกันทุก category</td></tr>
+      <tr><td class="k">P1</td><td>Hero</td><td>Headline สั้น + product + Buy</td><td>Headline benefit: <span class="ph">[เช่น "หายใจสะอาด ทั้งบ้าน"]</span> · Subhead: ห้อง [X] ตร.ม. · กรอง [N] ขั้นตอน · ราคา [X] บาท · product render 3 มุม</td><td>เครื่องกรองน้ำ: ลิตร/วัน · เก้าอี้: จุดปรับได้ · หุ่นยนต์: แรงดูด Pa</td></tr>
+      <tr><td class="k">P2</td><td>Get the highlights</td><td>การ์ดเลื่อน 6 ใบ 1 ประโยค + ตัวเลข</td><td>5 การ์ด: PM2.5 [X]% · CADR [X] m³/h · เสียง [X] dB · ไส้กรองใช้ได้ [X] เดือน · มาตรฐาน [ชื่อ cert] <span class="ph">[สเปกจริง]</span></td><td>เลือก 5 ตัวเลขที่ต่างจากคู่แข่งมากที่สุด</td></tr>
+      <tr><td class="k">P3</td><td>Chapter: Performance</td><td>Eyebrow + headline + copy + visual + stats</td><td><b>การกรอง</b> ภาพตัดขวางไส้กรองแต่ละชั้น (HEPA / Carbon / UV / PCO) + 3 stat</td><td>Water: ขั้นตอน RO · Chair: โครงสร้างรองรับ</td></tr>
+      <tr><td class="k">P4</td><td>Chapter: Display</td><td>ตัวเลขใหญ่ + คำอธิบาย</td><td><b>พื้นที่ครอบคลุม</b> [X] ตร.ม. · แนะนำห้องนอน / ห้องนั่งเล่น / ออฟฟิศ (ไอคอน 3)</td><td>Dehumidifier: ลิตร/วัน · AC: BTU</td></tr>
+      <tr><td class="k">P5</td><td>Chapter: Design</td><td>ภาพใหญ่ + copy สั้น</td><td><b>เสียงเงียบ</b> [X] dB เทียบ "เสียงกระซิบ" · Sleep mode</td><td>Vacuum: น้ำหนัก · Chair: วัสดุ</td></tr>
+      <tr><td class="k">P6</td><td>Chapter: Continuity</td><td>Ecosystem</td><td><b>Smart control</b> แอป Bwell Smart (Google Play / App Store) · sensor แสดงค่า PM2.5 real-time</td><td>Robot vacuum: แอป + map</td></tr>
+      <tr><td class="k">P7</td><td>Chapter: Security</td><td>Trust</td><td><b>ความปลอดภัย</b> ไม่สร้างโอโซนตกค้าง · มาตรฐาน <span class="ph">[cert]</span> · ใช้ในโรงพยาบาล <span class="ph">[ชื่อ รพ. ที่ยินยอม]</span></td><td>Water heater: ระบบตัดไฟ ELCB</td></tr>
+      <tr><td class="k">P8</td><td>Which is right for you?</td><td>Router 3 การ์ด + Compare link</td><td>รุ่นเล็ก / กลาง / ใหญ่ ของ family เดียวกัน: ชื่อ · พื้นที่ · ราคา · [ดูรายละเอียด] + ปุ่ม "เปรียบเทียบทุกรุ่น"</td><td>ทุก category</td></tr>
+      <tr><td class="k">P9</td><td>Accessories</td><td>สินค้าที่ใช้ร่วมกัน</td><td>ไส้กรองที่ใช้กับรุ่นนี้ (SKU ตรงรุ่น) + วิธีเปลี่ยน (link คู่มือ)</td><td>Water: ไส้กรอง · Vacuum: หัวแปรง</td></tr>
+      <tr><td class="k">P10</td><td>Tech Specs (หน้าย่อยหรือ tab)</td><td>Apple แยกหน้า /specs/</td><td>ตาราง 2 คอลัมน์: ขนาด · น้ำหนัก · กำลังไฟ · CADR · ระดับเสียง · ชั้นกรอง · ในกล่อง · รับประกัน</td><td>ตาม category</td></tr>
+      <tr><td class="k">P11</td><td>Buy strip</td><td>4 icon</td><td>รับประกันศูนย์ · จัดส่ง/ติดตั้ง · ผ่อน 0% · ปรึกษาผ่าน LINE <span class="ph">[เงื่อนไขจริง]</span></td><td>เหมือนกันทุกหน้า</td></tr>
+    </tbody>
+  </table></div>
+  <div class="note"><b>กติกาที่ agency ต้องยึด:</b> ไม่มี Description ยาวก้อนเดียว · ไม่มี tab "Description / Reviews" แบบ WooCommerce default · ทุก chapter มี 1 ภาพ 1 headline ≤ 40 คำ · ปุ่มสั่งซื้อทุกจุดเป็นสี Primary Blue #008AD0 ไปหน้าเดียวกัน (Bwell Shop) · ไม่มี "หยิบใส่ตะกร้า"</div>
+
+  <h2 id="category"><span class="n">05</span>Category page และ Compare page</h2>
+  <h3>5.1 Category page (ต้นแบบ apple.com/iphone)</h3>
+  <p>Apple iPhone page = hero → priority router (2 รุ่นใหม่) → explore the lineup (ทุกรุ่น) → why buy from Apple → get to know (accordion) → essentials → index footer ใช้กับ pillar page ของ Bwell ทั้ง 5</p>
+  <div class="tablewrap"><table>
+    <thead><tr><th>#</th><th>Section</th><th>Apple</th><th>Bwell: /air/</th></tr></thead>
+    <tbody>
+      <tr><td class="k">C0</td><td>Sub-nav (sticky)</td><td>iPhone Duo · 18 Pro · Air · 17 · Compare · Accessories · Shop</td><td>เครื่องฟอกอากาศ · เครื่องลดความชื้น · แอร์เคลื่อนที่ · แผ่นฟอกอากาศ · เปรียบเทียบ · ซื้อ</td></tr>
+      <tr><td class="k">C1</td><td>Hero</td><td>ชื่อ category + 1 บรรทัด</td><td>"Air" / "อากาศสะอาดทุกลมหายใจ" + subhead PM2.5 season</td></tr>
+      <tr><td class="k">C2</td><td>Priority router</td><td>2 รุ่นใหม่ล่าสุด ครึ่งจอ</td><td>2 SKU hero ของ pillar (เครื่องฟอกอากาศรุ่น top + เครื่องลดความชื้นรุ่น top)</td></tr>
+      <tr><td class="k">C3</td><td>Explore the lineup</td><td>การ์ดทุกรุ่น: รูป · ชื่อ · 1 บรรทัด · ราคาเริ่มต้น · Learn more / Buy</td><td>ทุก SKU ใน pillar เรียงตาม product family การ์ดขนาดเท่ากัน ราคาเริ่มต้น + 2 CTA</td></tr>
+      <tr><td class="k">C4</td><td>Why buy from Apple</td><td>Incentive 4 icon</td><td>Trust strip 4 icon (เหมือน home H7)</td></tr>
+      <tr><td class="k">C5</td><td>Get to know</td><td>Accordion 6 หัวข้อ</td><td>ความรู้: เลือกเครื่องฟอกอากาศอย่างไร · CADR คืออะไร · เปลี่ยนไส้กรองเมื่อไหร่ (ย้าย SEO text 700 คำจาก footer เดิมมาไว้ตรงนี้ + link บทความ)</td></tr>
+      <tr><td class="k">C6</td><td>Essentials</td><td>Accessories</td><td>แผ่นฟอกอากาศ / ไส้กรองทุกรุ่น</td></tr>
+      <tr><td class="k">C7</td><td>Index</td><td>รายชื่อรุ่นทั้งหมด (text link)</td><td>Index ทุก SKU + link compare + link support</td></tr>
+    </tbody>
+  </table></div>
+
+  <h3>5.2 Compare page (ต้นแบบ apple.com/mac/compare)</h3>
+  <div class="wire">
+    <svg viewBox="0 0 1000 560" role="img" aria-label="Compare page wireframe">
+      <style>.b{fill:var(--wire-fill);stroke:var(--wire-line);stroke-width:1.5}.d{fill:var(--wire-dark)}.t{fill:var(--wire-text);font-size:14px;font-weight:600}.s{fill:var(--wire-text);font-size:11px}.l{fill:var(--wire-line);font-size:10px;letter-spacing:.08em}</style>
+      <rect x="0" y="0" width="1000" height="60" class="b"/><text x="330" y="36" class="t">เปรียบเทียบเครื่องฟอกอากาศ Bwell ทุกรุ่น</text>
+      <rect x="0" y="60" width="1000" height="130" class="b"/><text x="16" y="80" class="l">STICKY HEADER ROW</text>
+      <rect x="250" y="90" width="220" height="90" class="b"/><text x="270" y="110" class="s">[เลือกรุ่น ▾]  รูป · ชื่อ · ราคา</text><text x="270" y="165" class="s">[สั่งซื้อ]</text>
+      <rect x="500" y="90" width="220" height="90" class="b"/><text x="520" y="110" class="s">[เลือกรุ่น ▾]</text><text x="520" y="165" class="s">[สั่งซื้อ]</text>
+      <rect x="750" y="90" width="220" height="90" class="b"/><text x="770" y="110" class="s">[เลือกรุ่น ▾]</text><text x="770" y="165" class="s">[สั่งซื้อ]</text>
+      <g><rect x="0" y="190" width="1000" height="60" class="b"/><text x="16" y="225" class="t">ขนาดห้องที่แนะนำ</text><text x="300" y="225" class="s">[X] ตร.ม.</text><text x="550" y="225" class="s">[X] ตร.ม.</text><text x="800" y="225" class="s">[X] ตร.ม.</text></g>
+      <g><rect x="0" y="250" width="1000" height="60" class="b"/><text x="16" y="285" class="t">CADR</text><text x="300" y="285" class="s">[X] m³/h</text><text x="550" y="285" class="s">[X] m³/h</text><text x="800" y="285" class="s">[X] m³/h</text></g>
+      <g><rect x="0" y="310" width="1000" height="60" class="b"/><text x="16" y="345" class="t">ขั้นตอนการกรอง</text><text x="300" y="345" class="s">icon ×[N]</text><text x="550" y="345" class="s">icon ×[N]</text><text x="800" y="345" class="s">icon ×[N]</text></g>
+      <g><rect x="0" y="370" width="1000" height="60" class="b"/><text x="16" y="405" class="t">ระดับเสียง / Sleep mode</text></g>
+      <g><rect x="0" y="430" width="1000" height="60" class="b"/><text x="16" y="465" class="t">Smart app / Sensor</text></g>
+      <g><rect x="0" y="490" width="1000" height="60" class="b"/><text x="16" y="525" class="t">ขนาด · น้ำหนัก · รับประกัน · ราคา</text></g>
+    </svg>
+    <div class="cap">Wireframe 3 — Compare: sticky header 3 คอลัมน์ เลือกรุ่นได้ + row group ตาม spec ค่าที่ดีที่สุดในแถวเน้นสี Primary Blue</div>
+  </div>
+  <div class="tablewrap"><table>
+    <thead><tr><th>Element</th><th>Apple behaviour</th><th>Bwell spec</th></tr></thead>
+    <tbody>
+      <tr><td class="k">Model picker</td><td>Dropdown เปลี่ยนรุ่นในคอลัมน์ได้ทันที ไม่ reload</td><td>Dropdown ต่อคอลัมน์ สูงสุด 3 รุ่น default = เล็ก / กลาง / ใหญ่</td></tr>
+      <tr><td class="k">Sticky header</td><td>รูป + ชื่อ + ราคา + Buy ติดบนตอน scroll</td><td>เหมือนกัน ปุ่มสั่งซื้อไป Bwell Shop ตรง SKU</td></tr>
+      <tr><td class="k">Row groups</td><td>แบ่งตามหมวด spec มี icon นำ</td><td>8 กลุ่ม: ห้อง · CADR · การกรอง · เสียง · Smart · ขนาด/น้ำหนัก · รับประกัน · ราคา <span class="ph">[ค่าจริงจาก spec sheet]</span></td></tr>
+      <tr><td class="k">Highlight difference</td><td>ค่าที่ต่างกันมี toggle "show differences only"</td><td>Phase 1: เน้นค่าดีที่สุดในแถวด้วยสี Primary Blue · Phase 2: toggle "แสดงเฉพาะที่ต่างกัน"</td></tr>
+      <tr><td class="k">Mobile</td><td>2 คอลัมน์ swipe</td><td>2 คอลัมน์ + swipe เพิ่มรุ่นที่ 3</td></tr>
+    </tbody>
+  </table></div>
+
+  <h2 id="support"><span class="n">06</span>Support hub และ Store locator</h2>
+  <div class="grid2">
+    <div class="card"><h4>Support hub — /support/ (ต้นแบบ support.apple.com)</h4>
+      <p><b>S1 Search:</b> ช่องค้นหาใหญ่กลางจอ "พิมพ์รุ่นหรือปัญหา" + quick chips: ลงทะเบียนรับประกัน · เปลี่ยนไส้กรอง · เคลมสินค้า</p>
+      <p><b>S2 Product grid:</b> ไอคอน 5 pillar → กดแล้วเห็น คู่มือ PDF · วิดีโอ · FAQ ของ category นั้น</p>
+      <p><b>S3 Service cards (3):</b> ลงทะเบียนรับประกัน (form เดิม CF7) · นโยบายเคลมและคืนเงิน · ซื้อไส้กรอง/อะไหล่</p>
+      <p><b>S4 Contact strip:</b> LINE OA (primary) · โทร 02-294-3211 · Email <span class="ph">[email]</span> · เวลาทำการ</p>
+      <p><b>S5 Warranty check (Phase 2):</b> กรอก serial → แสดงสถานะรับประกัน</p>
+    </div>
+    <div class="card"><h4>Store locator — /store/find/ (ต้นแบบ apple.com/retail)</h4>
+      <p><b>R1 Hero "ค้นหาสาขา":</b> ช่องค้นหาจังหวัด/เขต + ปุ่ม "ใช้ตำแหน่งปัจจุบัน" + filter ประเภทร้าน: Bwell Store · Central · HomePro · PowerBuy · โรงพยาบาล</p>
+      <p><b>R2 Map + list:</b> desktop = แผนที่ซ้าย 60% / list ขวา 40% · mobile = list ก่อน แผนที่พับได้</p>
+      <p><b>R3 Store card:</b> ชื่อ · ที่อยู่ · เวลาเปิด-ปิด (บอก "เปิดอยู่" real-time) · โทร (tel: link) · นำทาง (Google Maps deep link) · สินค้าที่มีโชว์ <span class="ph">[ข้อมูลสาขา]</span></p>
+      <p><b>R4 Bwell Showroom + Flagship:</b> 2 การ์ดพิเศษด้านบน มีรูปหน้าร้าน</p>
+      <p><b>R5 Online strip:</b> "ซื้อออนไลน์ได้ตลอด 24 ชม." + 5 marketplace logo</p>
+      <p>Technical: WP Store Locator ต้องใส่ Google Maps API key + restrict domain (Website Review P0-4)</p>
+    </div>
+  </div>
+
+  <h2 id="tokens"><span class="n">07</span>Design tokens สำหรับ Flatsome (Apple ratio × Bwell brand)</h2>
+  <p>Apple ใช้ type scale ใหญ่และ spacing กว้างเป็น "ความหรู" ของหน้า Bwell ใช้ ratio เดียวกันแต่ font และสีตาม Brand Guidelines 2026</p>
+  <div class="tablewrap"><table>
+    <thead><tr><th>Token</th><th>Apple reference</th><th>Bwell value</th><th>ใช้ที่</th></tr></thead>
+    <tbody>
+      <tr><td class="k">Font display</td><td>SF Pro Display 600</td><td>Poppins 600 (EN / ตัวเลข) · Kanit 600 (TH headline)</td><td>Hero, chapter headline, stat number</td></tr>
+      <tr><td class="k">Font body</td><td>SF Pro Text 400</td><td>Kanit 300/400</td><td>Body, subhead, table</td></tr>
+      <tr><td class="k">Font logo</td><td>—</td><td>DB Helvethaica X 900 (self-host TTF, license ของ Bwell)</td><td>Logo / wordmark เท่านั้น</td></tr>
+      <tr><td class="k">Hero headline</td><td>80px / 1.05 / -0.015em</td><td>Desktop 72px · Mobile 40px · line-height 1.1 · Kanit 600</td><td>H1, H2 unit</td></tr>
+      <tr><td class="k">Section headline</td><td>56px</td><td>Desktop 48px · Mobile 32px</td><td>Chapter h2</td></tr>
+      <tr><td class="k">Subhead</td><td>28px / 400</td><td>Desktop 24px · Mobile 19px · Kanit 300</td><td>ใต้ headline</td></tr>
+      <tr><td class="k">Body</td><td>17px / 1.47</td><td>17px / 1.6 (ไทยต้องการ line-height สูงกว่า)</td><td>ย่อหน้า</td></tr>
+      <tr><td class="k">Stat number</td><td>96–120px</td><td>Poppins 600 96px + unit 20px</td><td>CADR, ตร.ม., dB</td></tr>
+      <tr><td class="k">Section padding</td><td>120–160px top/bottom desktop</td><td>Desktop 120px · Mobile 64px</td><td>ทุก section</td></tr>
+      <tr><td class="k">Content width</td><td>980px text / 1440px visual</td><td>Text 980px · Visual full-bleed 1440px max</td><td>Flatsome container</td></tr>
+      <tr><td class="k">Color: BG light</td><td>#FFFFFF / #F5F5F7</td><td><span class="swatch" style="background:#FFFFFF"></span>#FFFFFF สลับ <span class="swatch" style="background:#F5F8FB"></span>#F5F8FB</td><td>Section สว่าง</td></tr>
+      <tr><td class="k">Color: BG dark</td><td>#000000 / #1D1D1F</td><td><span class="swatch" style="background:linear-gradient(135deg,#008ad0,#005D9D)"></span>Gradient #008AD0 → #005D9D (135°) หรือ <span class="swatch" style="background:#0E2A44"></span>Navy deep #0E2A44 สำหรับ contrast สูง</td><td>Section มืด (สลับทุก 2 section)</td></tr>
+      <tr><td class="k">Color: Primary CTA</td><td>#0071E3 pill</td><td><span class="swatch" style="background:#008AD0"></span>#008AD0 pill radius 999px · hover #005D9D</td><td>ปุ่ม "สั่งซื้อ"</td></tr>
+      <tr><td class="k">Color: Text link CTA</td><td>#0066CC + chevron</td><td><span class="swatch" style="background:#005D9D"></span>#005D9D + chevron ›</td><td>"ดูรายละเอียด ›"</td></tr>
+      <tr><td class="k">Color: Text</td><td>#1D1D1F / #86868B</td><td><span class="swatch" style="background:#10233A"></span>#10233A body · <span class="swatch" style="background:#A8AAAD"></span>#A8AAAD secondary (brand gray)</td><td>ตัวอักษร</td></tr>
+      <tr><td class="k">Button size</td><td>Pill 44px height, 17px text</td><td>Pill 48px · Poppins 500 16px · padding 0 24px · min tap 44px</td><td>ทุกปุ่ม</td></tr>
+      <tr><td class="k">Radius</td><td>Cards 18–28px, buttons pill</td><td>Card 20px · Button 999px · Image 12px</td><td>Card, tile</td></tr>
+      <tr><td class="k">Motion</td><td>Fade-up on scroll, 0.6s ease-out, ครั้งเดียว</td><td>Fade-up 0.5s ease-out เฉพาะ headline + image · ไม่มี parallax · เคารพ prefers-reduced-motion</td><td>ทุก section</td></tr>
+      <tr><td class="k">Image spec</td><td>Product render บนพื้นเรียบ, 2x retina, WebP</td><td>PNG โปร่ง → WebP 2x · hero 2880×1200 · promo 1440×900 · product 1600×1600 · ไม่มี stock lifestyle ในหน้าสินค้า</td><td>ทุกรูป</td></tr>
+    </tbody>
+  </table></div>
+
+  <h2 id="copy"><span class="n">08</span>Copy formulas (Apple pattern → Bwell voice)</h2>
+  <p>Apple headline = benefit เป็นคำสั้น + subhead อธิบายด้วยตัวเลขจริง Bwell voice: Trustworthy, Warm, Empowering ใช้ "คุณ" ห้ามโอเวอร์คลม ทุกตัวเลขต้องมี source</p>
+  <div class="tablewrap"><table>
+    <thead><tr><th>Slot</th><th>Formula</th><th>Apple example</th><th>Bwell example (draft)</th></tr></thead>
+    <tbody>
+      <tr><td class="k">Hero headline</td><td>[ผลลัพธ์ที่รู้สึกได้] 2–6 คำ ไม่มีชื่อรุ่น</td><td>"Might takes flight."</td><td>"หายใจสะอาด ทั้งบ้าน" · "อากาศแห้ง บ้านไม่อับ" · "นั่งนาน ไม่ปวดหลัง"</td></tr>
+      <tr><td class="k">Hero subhead</td><td>[spec เด่น 2 ตัว] + [ราคาเริ่มต้น]</td><td>"M5 chip. 18-hour battery. From $999."</td><td>"กรอง [N] ขั้นตอน ห้อง [X] ตร.ม. เริ่มต้น [ราคา] บาท" <span class="ph">[ตัวเลขจริง]</span></td></tr>
+      <tr><td class="k">CTA pair</td><td>text link + primary</td><td>Learn more › · Buy</td><td>ดูรายละเอียด › · สั่งซื้อ</td></tr>
+      <tr><td class="k">Highlight card</td><td>[ตัวเลข] + [ความหมายต่อชีวิต] 1 ประโยค</td><td>"Up to 18 hours of battery life."</td><td>"ดักฝุ่น PM2.5 ได้ [X]% ในเวลา [X] นาที" <span class="ph">[ผลทดสอบ]</span></td></tr>
+      <tr><td class="k">Chapter eyebrow</td><td>คำเดียว บอกหมวด</td><td>"Performance" / "Display"</td><td>"การกรอง" / "พื้นที่ครอบคลุม" / "เสียง" / "Smart" / "ความปลอดภัย"</td></tr>
+      <tr><td class="k">Chapter headline</td><td>[claim] . [ผลต่อผู้ใช้] .</td><td>"Superfast. And supersmooth."</td><td>"เงียบระดับกระซิบ นอนหลับสนิททั้งคืน"</td></tr>
+      <tr><td class="k">Chapter body</td><td>≤ 40 คำ 1 ย่อหน้า จบด้วยตัวเลข</td><td>—</td><td>"โหมด Sleep ลดเสียงเหลือ [X] dB ต่ำกว่าเสียงในห้องสมุด เครื่องทำงานทั้งคืนโดยไม่รบกวนคุณ"</td></tr>
+      <tr><td class="k">Router card</td><td>[ชื่อ] · [1 บรรทัด who it's for] · [ราคา]</td><td>"MacBook Air 13" and 15" — Strikingly thin and fast"</td><td>"[รุ่น] — สำหรับห้องนอน [X] ตร.ม. — [ราคา] บาท"</td></tr>
+      <tr><td class="k">Trust strip</td><td>[benefit] 3 คำ + 1 บรรทัด</td><td>"Fast delivery or pickup"</td><td>"รับประกันศูนย์ไทย — ศูนย์บริการ Bwell โดยตรง [X] ปี" <span class="ph">[เงื่อนไข]</span></td></tr>
+      <tr><td class="k">ห้ามใช้</td><td colspan="3">"ดีที่สุด", "อันดับ 1" โดยไม่มี source · "ราคาถูก / ประหยัด" (ขัด positioning) · "หยิบใส่ตะกร้า" · emoji · ประโยคเกิน 2 บรรทัดใน hero</td></tr>
+    </tbody>
+  </table></div>
+
+  <h2 id="flatsome"><span class="n">09</span>Flatsome implementation notes</h2>
+  <div class="tablewrap"><table>
+    <thead><tr><th>Component</th><th>Flatsome / WP approach</th><th>หมายเหตุ</th></tr></thead>
+    <tbody>
+      <tr><td class="k">Global nav (B+A)</td><td>Menu ใหม่ 8 หมวด + Support · Flatsome Mega menu 3 column (สำรวจ / ซื้อ / เพิ่มเติม) + แถว pillar ล่างสุด · Header: logo ซ้าย · nav กลาง · Search + Store icon ขวา · content width 1080px · ยุบเป็น hamburger ต่ำกว่า 1180px · CSS/JS อ้างอิงจาก prototype</td><td>ลบ Cart icon, Login จาก header (catalog mode)</td></tr>
+      <tr><td class="k">Hero / promo unit</td><td>UX Builder: Section (full-width, padding 120/64) → Row → Column: Text (headline, subhead), Button ×2, Image · ห้ามใช้ Slider element</td><td>ทำเป็น Flatsome "Block" reusable: <code>unit-hero-light</code>, <code>unit-hero-dark</code>, <code>unit-promo</code></td></tr>
+      <tr><td class="k">Sticky local nav (product)</td><td>Section แรกของ product template ตั้ง sticky ผ่าน custom class + CSS <code>position:sticky; top:0</code> หรือ Flatsome "Sticky section" ใน UX Builder · anchor link ไป #overview #specs #compare</td><td>ทำใน child theme ไม่ใช่ inline style</td></tr>
+      <tr><td class="k">Product page template</td><td>Flatsome Custom Product Layout (UX Builder) 1 template ต่อ category · ปิด tab Description/Reviews · ปิด related products default · ใช้ custom block ต่อ chapter</td><td>Spec table = ACF fields → render เป็นตาราง (ไม่พิมพ์ใน description)</td></tr>
+      <tr><td class="k">Highlights carousel</td><td>UX Builder "Slider" เฉพาะจุดนี้จุดเดียว (แนวนอน, ไม่ autoplay) หรือ CSS scroll-snap</td><td>Apple ใช้ horizontal scroll ที่ user ควบคุมเอง</td></tr>
+      <tr><td class="k">Router "รุ่นไหนเหมาะกับคุณ"</td><td>Block reusable 3 การ์ด ดึงจาก product attribute "ขนาดห้อง"</td><td>อัปเดตที่เดียวใช้ทุกหน้า</td></tr>
+      <tr><td class="k">Compare page</td><td>Phase 1: ตาราง HTML + JS เล็ก (select เปลี่ยนคอลัมน์จาก JSON ของ ACF) · Phase 2: plugin เช่น WPC Smart Compare ถ้าต้องเลือกข้าม family</td><td>ข้อมูลต้องมาจาก ACF ชุดเดียวกับ spec table</td></tr>
+      <tr><td class="k">Category (pillar) page</td><td>Page template ใหม่ ไม่ใช่ WooCommerce archive · "Explore the lineup" = Products element (grid, filter by category, show price) แต่ปุ่มเป็น "ดูรายละเอียด / สั่งซื้อ"</td><td>ซ่อน /shop/, /product-category/ archive จาก nav และ sitemap</td></tr>
+      <tr><td class="k">Support hub</td><td>Page + search (SearchWP หรือ Relevanssi จำกัด post type: manual, faq)</td><td>Warranty form = CF7 เดิม + event <code>submit_warranty</code> ไป GTM</td></tr>
+      <tr><td class="k">Store locator</td><td>WP Store Locator + Google Maps API key (restrict HTTP referrer) · custom template ให้ list ซ้าย/ขวาตาม wireframe · แปล label</td><td>Import สาขาจาก CSV <span class="ph">[ไฟล์สาขาจาก Sales]</span></td></tr>
+      <tr><td class="k">Fonts</td><td>Kanit + Poppins จาก Google Fonts (Flatsome Typography) · DB Helvethaica X self-host ใน child theme <code>@font-face</code></td><td>ลบ Lato, Dancing Script, Noto Sans Thai</td></tr>
+      <tr><td class="k">Tracking events</td><td>GTM click triggers: <code>click_buy</code> (ทุกปุ่มสั่งซื้อ + SKU), <code>click_learn_more</code>, <code>click_compare</code>, <code>click_marketplace</code>, <code>click_line</code>, <code>click_call</code>, <code>submit_warranty</code>, <code>store_search</code></td><td>ต้อง data attribute <code>data-sku</code> บนปุ่มสั่งซื้อทุกปุ่ม</td></tr>
+    </tbody>
+  </table></div>
+
+  <h2 id="accept"><span class="n">10</span>Acceptance criteria (ใช้ตรวจรับงาน agency)</h2>
+  <div class="tablewrap"><table>
+    <thead><tr><th>Area</th><th>เกณฑ์ผ่าน</th><th>Priority</th></tr></thead>
+    <tbody>
+      <tr><td class="k">IA</td><td>Nav = 8 หมวด (B+A) + Support + Store + Search ตรงตาม section 02 และ prototype · ทุก URL เดิม 301 ไป URL ใหม่ · ไม่มี 404 ใน Search Console หลัง launch 14 วัน</td><td><span class="pill must">Must</span></td></tr>
+      <tr><td class="k">Homepage</td><td>ไม่มี slider · 6 unit ตาม H1–H6 · ทุก unit มี CTA pair เดียวกัน · LCP มือถือ &lt; 2.5s</td><td><span class="pill must">Must</span></td></tr>
+      <tr><td class="k">Product page</td><td>Sticky local nav ทำงานทั้ง desktop/mobile · chapter ≥ 5 · spec table จาก ACF · router 3 การ์ด · ไม่มี tab WooCommerce default · ปุ่มสั่งซื้อทุกปุ่มมี data-sku</td><td><span class="pill must">Must</span></td></tr>
+      <tr><td class="k">Compare</td><td>เลือกรุ่นได้ 3 คอลัมน์ ไม่ reload · sticky header · mobile swipe ได้</td><td><span class="pill must">Must</span> (air) · <span class="pill nice">Phase 2</span> (category อื่น)</td></tr>
+      <tr><td class="k">Support / Store</td><td>Search ทำงาน · warranty form ยิง event · แผนที่แสดงสาขา ≥ <span class="ph">[N]</span> จุด · store card มี tel: และ Maps link</td><td><span class="pill must">Must</span></td></tr>
+      <tr><td class="k">Design tokens</td><td>ใช้ CSS variables จาก section 07 ใน child theme · ไม่มี inline color · font ตรง brand · contrast ≥ 4.5:1</td><td><span class="pill must">Must</span></td></tr>
+      <tr><td class="k">Copy</td><td>Headline ทุก unit ≤ 6 คำ · ไม่มีคำต้องห้าม · ทุกตัวเลขมี source ใน spec sheet</td><td><span class="pill must">Must</span></td></tr>
+      <tr><td class="k">Performance</td><td>PageSpeed มือถือ ≥ 80 · หน้า ≤ 1.5 MB · รูป WebP ทั้งหมด · script ≤ 25 ไฟล์</td><td><span class="pill nice">Target</span></td></tr>
+      <tr><td class="k">Tracking</td><td>GTM ตัวเดียว · GA4 1 property · 8 event ใน section 09 ยิงครบ ตรวจด้วย DebugView</td><td><span class="pill must">Must</span></td></tr>
+      <tr><td class="k">Accessibility</td><td>ทุกรูปมี alt · keyboard ใช้ nav ได้ · focus state มองเห็น · reduced-motion</td><td><span class="pill nice">Target</span></td></tr>
+    </tbody>
+  </table></div>
+
+  <div class="next">
+    <h2>Next action</h2>
+    <p>ก่อนส่ง blueprint นี้ให้ agency Bass ต้องเติม [PLACEHOLDER] 6 กลุ่ม:</p>
+    <ol>
+      <li>Hero SKU ของแต่ละ pillar (6 รุ่น) และ spec sheet จริง (CADR, ตร.ม., dB, ชั้นกรอง, cert)</li>
+      <li>ราคาเริ่มต้นทุกรุ่น และเงื่อนไข trust strip (รับประกันกี่ปี, ส่งฟรี, ผ่อน 0% ที่ไหน)</li>
+      <li>ไฟล์สาขาสำหรับ store locator (ชื่อ, ที่อยู่, พิกัด, เวลา, เบอร์)</li>
+      <li>Email support และ LINE OA ที่ใช้เป็นทางการ</li>
+      <li>รายชื่อโรงพยาบาล/องค์กรที่ยินยอมให้ใช้โลโก้</li>
+      <li>Copy campaign สำหรับ ribbon (Q4)</li>
+    </ol>
+    <p style="margin-top:12px">จากนั้น: kickoff กับ agency → agency ส่ง hi-fi mockup Home + Product (air) ก่อน → approve → build ทุกหน้าตาม template</p>
+  </div>
+</div>
