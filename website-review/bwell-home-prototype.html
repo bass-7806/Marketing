@@ -220,11 +220,15 @@ sup a{color:inherit;opacity:.8}
 .ft a{color:#424245} .ft a:hover{color:var(--navy);text-decoration:underline}
 .ft-notes{margin:0 0 18px;padding:0 0 16px 18px;border-bottom:1px solid #D2D2D7}
 .ft-notes li{margin:0 0 6px}
-.ft-dir{display:grid;grid-template-columns:repeat(5,1fr);gap:20px;padding:6px 0 18px;border-bottom:1px solid #D2D2D7}
-.ft-dir summary{list-style:none;font-weight:500;color:#1D1D1F;margin-bottom:8px;cursor:default}
+/* Directory: 5 columns, each column stacks one or more groups (apple.com/th footer pattern) */
+.ft-dir{display:grid;grid-template-columns:1.25fr 1fr 1fr 1.15fr 1fr;gap:0 24px;padding:10px 0 22px;border-bottom:1px solid #D2D2D7}
+.ft-col{min-width:0}
+.ft-sec+.ft-sec{margin-top:26px}
+.ft-dir summary{list-style:none;font-weight:600;font-size:12px;color:#1D1D1F;margin-bottom:10px;cursor:default}
 .ft-dir summary::-webkit-details-marker{display:none}
 .ft-dir ul{list-style:none;margin:0;padding:0}
-.ft-dir li{margin:0 0 7px}
+.ft-dir li{margin:0 0 9px;line-height:1.35}
+.ft-shop{margin:16px 0 0}
 .ft-legal p{margin:14px 0 0}
 .ft-legal-row{display:flex;flex-wrap:wrap;justify-content:space-between;gap:8px 20px;padding-top:12px;margin-top:12px;border-top:1px solid #D2D2D7}
 .ft-legal-row p{margin:0}
@@ -250,6 +254,7 @@ sup a{color:inherit;opacity:.8}
 
 /* Responsive */
 @media (max-width:1068px){
+  .ft-dir{grid-template-columns:repeat(3,1fr);gap:28px 24px}
   .hero,.hero-dark .hero-copy{min-height:620px}
   .tile{min-height:520px}
 }
@@ -265,12 +270,18 @@ sup a{color:inherit;opacity:.8}
   .g-slide{aspect-ratio:4/5;flex-basis:84vw}
   .g-cap{left:16px;right:16px;bottom:16px}
   .trust-list{grid-template-columns:1fr 1fr;gap:28px 16px}
-  .ft-dir{grid-template-columns:1fr;gap:0}
+  .ft-dir{grid-template-columns:1fr;gap:0;padding-top:0}
+  .ft-sec+.ft-sec{margin-top:0}
   .ft-dir details{border-bottom:1px solid #D2D2D7}
-  .ft-dir summary{padding:10px 0;margin:0;cursor:pointer;display:flex;justify-content:space-between}
-  .ft-dir summary::after{content:"+";font-weight:400}
+  .ft-col:last-child details:last-child{border-bottom:0}
+  .ft-dir summary{padding:11px 0;margin:0;font-weight:400;font-size:12px;cursor:pointer;display:flex;justify-content:space-between}
+  .ft-dir summary::after{content:"+";font-weight:400;color:#6E6E73}
   .ft-dir details[open] summary::after{content:"−"}
-  .ft-dir ul{padding:0 0 10px 10px}
+  .ft-dir ul{padding:0 0 12px 12px}
+  .ft-dir li{margin-bottom:11px}
+  .ft-legal-row{flex-direction:column}
+  .ft-legal-row ul{gap:8px 18px}
+  .ft-legal-row li+li::before{display:none}
 }
 @media (prefers-reduced-motion: reduce){ .reveal{opacity:1;transform:none} .g-track{transition:none} }
 
@@ -697,16 +708,30 @@ sup a{color:inherit;opacity:.8}
       <li id="fn1">ขนาดห้อง ขั้นตอนการกรอง อัตราลดความชื้น และ BTU อ้างอิงจากชื่อและรายละเอียดสินค้าบน bwell.co.th ณ วันที่ 29 ก.ย. 2026 ผลการใช้งานจริงขึ้นอยู่กับสภาพห้อง</li>
       <li>ภาพสินค้า Ultra T20 และภาพห้องในส่วนแกลเลอรีเป็นภาพประกอบ</li>
     </ol>
-    <nav class="ft-dir" aria-label="สารบัญเว็บไซต์">
-      <details open><summary>สินค้า</summary><ul><li><a href="#">เครื่องฟอกอากาศ</a></li><li><a href="#">เครื่องลดความชื้น</a></li><li><a href="#">แอร์เคลื่อนที่</a></li><li><a href="#">เครื่องกรองน้ำ</a></li><li><a href="#">เครื่องทำน้ำอุ่น</a></li><li><a href="#">หุ่นยนต์ดูดฝุ่น</a></li><li><a href="#">เก้าอี้เพื่อสุขภาพ</a></li><li><a href="#">Bwell Beauty</a></li><li><a href="#">ไส้กรองและอะไหล่</a></li></ul></details>
-      <details open><summary>ซื้อที่ไหน</summary><ul><li><a href="#">Bwell Shop</a></li><li><a href="#">Shopee</a></li><li><a href="#">Lazada</a></li><li><a href="#">TikTok Shop</a></li><li><a href="#">NocNoc</a></li><li><a href="#">ค้นหาสาขา</a></li><li><a href="#">สั่งซื้อในนามองค์กร</a></li></ul></details>
-      <details open><summary>บริการหลังการขาย</summary><ul><li><a href="#">ลงทะเบียนรับประกัน</a></li><li><a href="#">คู่มือการใช้งาน</a></li><li><a href="#">คำถามที่พบบ่อย</a></li><li><a href="#">เคลมสินค้าและคืนเงิน</a></li><li><a href="#">ติดต่อเรา</a></li></ul></details>
-      <details open><summary>เกี่ยวกับ Bwell</summary><ul><li><a href="#">เรื่องราวของเรา</a></li><li><a href="#">ทำไมต้อง Bwell</a></li><li><a href="#">ลูกค้าองค์กรและโรงพยาบาล</a></li><li><a href="#">บทความสุขภาพ</a></li><li><a href="#">สมัครตัวแทนจำหน่าย</a></li></ul></details>
-      <details open><summary>ติดตาม Bwell</summary><ul><li><a href="#">LINE Official Account</a></li><li><a href="#">Facebook</a></li><li><a href="#">TikTok</a></li><li><a href="#">แอป Bwell Smart [ยืนยันชื่อแอป]</a></li></ul></details>
+    <nav class="ft-dir" aria-label="สารบัญเว็บไซต์ Bwell">
+      <div class="ft-col">
+        <details class="ft-sec" open><summary>เลือกซื้อและเรียนรู้</summary><ul><li><a href="https://bwell.co.th/product-bwell/" data-nav="home/footer/เลือกซื้อและเรียนรู้/สินค้าทั้งหมด">สินค้าทั้งหมด</a></li><li><a href="https://bwell.co.th/air-purifier-bwell/" data-nav="home/footer/เลือกซื้อและเรียนรู้/เครื่องฟอกอากาศ">เครื่องฟอกอากาศ</a></li><li><a href="https://bwell.co.th/portable-air-purifiers/" data-nav="home/footer/เลือกซื้อและเรียนรู้/เครื่องฟอกอากาศพกพา">เครื่องฟอกอากาศพกพา</a></li><li><a href="https://bwell.co.th/air-purification-filters/" data-nav="home/footer/เลือกซื้อและเรียนรู้/แผ่นฟอกอากาศ">แผ่นฟอกอากาศ</a></li><li><a href="https://bwell.co.th/air-dehumidifier/" data-nav="home/footer/เลือกซื้อและเรียนรู้/เครื่องลดความชื้น">เครื่องลดความชื้น</a></li><li><a href="https://bwell.co.th/portable-air-conditioner/" data-nav="home/footer/เลือกซื้อและเรียนรู้/แอร์เคลื่อนที่">แอร์เคลื่อนที่</a></li><li><a href="https://bwell.co.th/water-purifier/" data-nav="home/footer/เลือกซื้อและเรียนรู้/เครื่องกรองน้ำ">เครื่องกรองน้ำ</a></li><li><a href="https://bwell.co.th/water-heater-bwell/" data-nav="home/footer/เลือกซื้อและเรียนรู้/เครื่องทำน้ำอุ่น-น้ำร้อน">เครื่องทำน้ำอุ่น น้ำร้อน</a></li><li><a href="https://bwell.co.th/robot-vacuum/" data-nav="home/footer/เลือกซื้อและเรียนรู้/หุ่นยนต์ดูดฝุ่น">หุ่นยนต์ดูดฝุ่น</a></li><li><a href="https://bwell.co.th/vacuum-cleaner/" data-nav="home/footer/เลือกซื้อและเรียนรู้/เครื่องดูดฝุ่นไร้สาย">เครื่องดูดฝุ่นไร้สาย</a></li><li><a href="https://bwell.co.th/bwell-ergonomic-chair/" data-nav="home/footer/เลือกซื้อและเรียนรู้/เก้าอี้เพื่อสุขภาพ">เก้าอี้เพื่อสุขภาพ</a></li><li><a href="https://bwell.co.th/ergonomic-cushion-bwell/" data-nav="home/footer/เลือกซื้อและเรียนรู้/หมอนและเบาะรองเพื่อสุขภาพ">หมอนและเบาะรองเพื่อสุขภาพ</a></li><li><a href="https://bwell.co.th/sport-gadgets/" data-nav="home/footer/เลือกซื้อและเรียนรู้/อุปกรณ์ออกกำลังกาย">อุปกรณ์ออกกำลังกาย</a></li><li><a href="https://bwell.co.th/hair-styling-tools/" data-nav="home/footer/เลือกซื้อและเรียนรู้/อุปกรณ์จัดแต่งทรงผม">อุปกรณ์จัดแต่งทรงผม</a></li></ul></details>
+      </div>
+      <div class="ft-col">
+        <details class="ft-sec" open><summary>ร้านค้าออนไลน์</summary><ul><li><a href="https://shop.bwell.co.th/" data-nav="home/footer/ร้านค้าออนไลน์/Bwell-Shop">Bwell Shop</a></li><li><a href="#" data-nav="home/footer/ร้านค้าออนไลน์/Shopee">Shopee</a></li><li><a href="#" data-nav="home/footer/ร้านค้าออนไลน์/Lazada">Lazada</a></li><li><a href="#" data-nav="home/footer/ร้านค้าออนไลน์/TikTok-Shop">TikTok Shop</a></li><li><a href="#" data-nav="home/footer/ร้านค้าออนไลน์/NocNoc">NocNoc</a></li></ul></details>
+        <details class="ft-sec" open><summary>แอป Bwell</summary><ul><li><a href="https://apps.apple.com/th/app/bwell/id6787315911?l=th" data-nav="home/footer/แอป-Bwell/ดาวน์โหลดบน-App-Store">ดาวน์โหลดบน App Store</a></li><li><a href="https://play.google.com/store/apps/details?id=com.bwell.smart" data-nav="home/footer/แอป-Bwell/ดาวน์โหลดบน-Google-Play">ดาวน์โหลดบน Google Play</a></li></ul></details>
+      </div>
+      <div class="ft-col">
+        <details class="ft-sec" open><summary>หน้าร้าน Bwell</summary><ul><li><a href="https://bwell.co.th/findbwell/" data-nav="home/footer/หน้าร้าน-Bwell/ค้นหาสาขาของ-Bwell">ค้นหาสาขาของ Bwell</a></li><li><a href="https://bwell.co.th/%e0%b8%8a%e0%b9%88%e0%b8%ad%e0%b8%87%e0%b8%97%e0%b8%b2%e0%b8%87%e0%b8%88%e0%b8%b1%e0%b8%94%e0%b8%88%e0%b8%b3%e0%b8%ab%e0%b8%99%e0%b9%88%e0%b8%b2%e0%b8%a2/" data-nav="home/footer/หน้าร้าน-Bwell/ช่องทางจัดจำหน่าย">ช่องทางจัดจำหน่าย</a></li><li><a href="https://bwell.co.th/findbwell/" data-nav="home/footer/หน้าร้าน-Bwell/Showroom-เจริญราษฎร์">Showroom เจริญราษฎร์</a></li><li><a href="https://bwell.co.th/findbwell/" data-nav="home/footer/หน้าร้าน-Bwell/Flagship-Store-CDC">Flagship Store CDC</a></li><li><a href="https://bwell.co.th/findbwell/" data-nav="home/footer/หน้าร้าน-Bwell/Central-·-HomePro-·-PowerBuy">Central · HomePro · PowerBuy</a></li></ul></details>
+      </div>
+      <div class="ft-col">
+        <details class="ft-sec" open><summary>บริการหลังการขาย</summary><ul><li><a href="https://bwell.co.th/warranty/" data-nav="home/footer/บริการหลังการขาย/ลงทะเบียนรับประกันสินค้า">ลงทะเบียนรับประกันสินค้า</a></li><li><a href="https://bwell.co.th/faq/" data-nav="home/footer/บริการหลังการขาย/คำถามที่พบบ่อย">คำถามที่พบบ่อย</a></li><li><a href="https://bwell.co.th/air-purifier-user-manual/" data-nav="home/footer/บริการหลังการขาย/คู่มือการใช้งานเครื่องฟอกอากาศ">คู่มือการใช้งานเครื่องฟอกอากาศ</a></li><li><a href="https://bwell.co.th/warranty-policy/" data-nav="home/footer/บริการหลังการขาย/นโยบายคืนเงินและรับประกันสินค้า">นโยบายคืนเงินและรับประกันสินค้า</a></li><li><a href="https://bwell.co.th/%e0%b8%99%e0%b9%82%e0%b8%a2%e0%b8%9a%e0%b8%b2%e0%b8%a2%e0%b8%81%e0%b8%b2%e0%b8%a3%e0%b8%88%e0%b8%b1%e0%b8%94%e0%b8%aa%e0%b9%88%e0%b8%87%e0%b8%aa%e0%b8%b4%e0%b8%99%e0%b8%84%e0%b9%89%e0%b8%b2/" data-nav="home/footer/บริการหลังการขาย/นโยบายการจัดส่งสินค้า">นโยบายการจัดส่งสินค้า</a></li></ul></details>
+        <details class="ft-sec" open><summary>บัญชี</summary><ul><li><a href="https://bwell.co.th/my-account/" data-nav="home/footer/บัญชี/เข้าสู่ระบบบัญชี-Bwell">เข้าสู่ระบบบัญชี Bwell</a></li></ul></details>
+        <details class="ft-sec" open><summary>สำหรับองค์กร</summary><ul><li><a href="https://bwell.co.th/%e0%b8%a5%e0%b8%b9%e0%b8%81%e0%b8%84%e0%b9%89%e0%b8%b2%e0%b8%82%e0%b8%ad%e0%b8%87%e0%b9%80%e0%b8%a3%e0%b8%b2/" data-nav="home/footer/สำหรับองค์กร/ลูกค้าของเรา">ลูกค้าของเรา</a></li></ul></details>
+      </div>
+      <div class="ft-col">
+        <details class="ft-sec" open><summary>เกี่ยวกับ Bwell</summary><ul><li><a href="https://bwell.co.th/about-us/" data-nav="home/footer/เกี่ยวกับ-Bwell/เกี่ยวกับแบรนด์">เกี่ยวกับแบรนด์</a></li><li><a href="https://bwell.co.th/whybwell/" data-nav="home/footer/เกี่ยวกับ-Bwell/ทำไมต้อง-Bwell">ทำไมต้อง Bwell</a></li><li><a href="https://bwell.co.th/blog/" data-nav="home/footer/เกี่ยวกับ-Bwell/บทความ">บทความ</a></li><li><a href="https://bwell.co.th/contact/" data-nav="home/footer/เกี่ยวกับ-Bwell/ติดต่อเรา">ติดต่อเรา</a></li></ul></details>
+        <details class="ft-sec" open><summary>ติดตาม Bwell</summary><ul><li><a href="https://lin.ee/xULzTdA" data-nav="home/footer/ติดตาม-Bwell/LINE-Official-Account">LINE Official Account</a></li><li><a href="https://www.facebook.com/bwellgroup/" data-nav="home/footer/ติดตาม-Bwell/Facebook">Facebook</a></li></ul></details>
+      </div>
     </nav>
     <div class="ft-legal">
-      <p>ช่องทางอื่นในการสั่งซื้อ: <a href="#">ค้นหาสาขา</a> หรือโทร 02-294-3211</p>
-      <div class="ft-legal-row"><p>© 2026 B-Well International Co., Ltd. สงวนลิขสิทธิ์</p><ul><li><a href="#">นโยบายความเป็นส่วนตัว</a></li><li><a href="#">นโยบายคุกกี้</a></li><li><a href="#">นโยบายการจัดส่ง</a></li><li><a href="#">นโยบายรับประกันและคืนเงิน</a></li></ul></div>
+      <p class="ft-shop">ช่องทางอื่นในการสั่งซื้อ: <a href="https://bwell.co.th/findbwell/" data-nav="home/footer/shop/findbwell">ค้นหาสาขาของ Bwell</a> หรือ<a href="https://bwell.co.th/%e0%b8%8a%e0%b9%88%e0%b8%ad%e0%b8%87%e0%b8%97%e0%b8%b2%e0%b8%87%e0%b8%88%e0%b8%b1%e0%b8%94%e0%b8%88%e0%b8%b3%e0%b8%ab%e0%b8%99%e0%b9%88%e0%b8%b2%e0%b8%a2/" data-nav="home/footer/shop/dealers">ช่องทางจัดจำหน่าย</a>ใกล้คุณ หรือโทร 02-294-3211</p>
+      <div class="ft-legal-row"><p>© 2026 B-Well International Co., Ltd. สงวนลิขสิทธิ์</p><ul><li><a href="https://bwell.co.th/privacy-policy/" data-nav="home/footer/legal/นโยบายความเป็นส่วนตัว">นโยบายความเป็นส่วนตัว</a></li><li><a href="https://bwell.co.th/cookies-policy/" data-nav="home/footer/legal/นโยบายการใช้คุกกี้">นโยบายการใช้คุกกี้</a></li><li><a href="https://bwell.co.th/%e0%b8%99%e0%b9%82%e0%b8%a2%e0%b8%9a%e0%b8%b2%e0%b8%a2%e0%b8%81%e0%b8%b2%e0%b8%a3%e0%b8%88%e0%b8%b1%e0%b8%94%e0%b8%aa%e0%b9%88%e0%b8%87%e0%b8%aa%e0%b8%b4%e0%b8%99%e0%b8%84%e0%b9%89%e0%b8%b2/" data-nav="home/footer/legal/นโยบายการจัดส่งสินค้า">นโยบายการจัดส่งสินค้า</a></li><li><a href="https://bwell.co.th/warranty-policy/" data-nav="home/footer/legal/นโยบายคืนเงินและรับประกันสินค้า">นโยบายคืนเงินและรับประกันสินค้า</a></li></ul></div>
     </div>
   </div>
 </footer>
@@ -730,7 +755,7 @@ sup a{color:inherit;opacity:.8}
       <tr><td>5</td><td>Gallery</td><td>สไลด์เต็มกว้าง เห็นขอบสไลด์ข้างเคียง · auto 6 วิ · ปุ่มหยุด · จุดนำทาง</td><td>3 ฉากไลฟ์สไตล์</td><td>สัดส่วน 16:9 max 1100px / 4:5</td><td>Flatsome Slider ได้เฉพาะจุดนี้ (ต้องมีปุ่มหยุดและ swipe)</td></tr>
       <tr><td>6</td><td>Trust strip</td><td>ส่วนเพิ่มของ Bwell</td><td>4 ข้อ</td><td>4 คอลัมน์ / 2×2</td><td>Icon Box ×4</td></tr>
       <tr><td>7</td><td>Buy-from strip</td><td>ส่วนเพิ่มของ Bwell</td><td>5 ร้านค้าทางการ + ค้นหาสาขา</td><td>1 แถว / wrap</td><td>Button row หรือ logo row</td></tr>
-      <tr><td>8</td><td>Footer</td><td>Footnote → directory 5 คอลัมน์ → legal</td><td>ตาม Blueprint</td><td>5 คอลัมน์ / accordion</td><td>Footer Block + Menu 5 ชุด</td></tr>
+      <tr><td>8</td><td>Footer</td><td>Footnote → directory 5 คอลัมน์ แต่ละคอลัมน์ซ้อนได้หลายกลุ่ม → ช่องทางซื้ออื่น → legal</td><td>9 กลุ่ม: เลือกซื้อและเรียนรู้ · ร้านค้าออนไลน์ · แอป Bwell · หน้าร้าน Bwell · บริการหลังการขาย · บัญชี · สำหรับองค์กร · เกี่ยวกับ Bwell · ติดตาม Bwell (+ legal) ลิงก์จริงจาก bwell.co.th</td><td>5 คอลัมน์ desktop · 3 คอลัมน์ tablet · accordion รายกลุ่มบนมือถือ</td><td>Footer Block + WP Menu 1 ชุดต่อกลุ่ม</td></tr>
     </tbody>
   </table></div>
 
@@ -759,7 +784,7 @@ sup a{color:inherit;opacity:.8}
     <tbody>
       <tr><td>ข้อความแคมเปญบน ribbon</td><td>Section 1</td></tr>
       <tr><td>ระยะเวลารับประกันตามรุ่น</td><td>Trust strip</td></tr>
-      <tr><td>ชื่อแอปที่ใช้จริง (Bwell Smart / Smart Life)</td><td>Footer</td></tr>
+      <tr><td>ลิงก์ร้าน Shopee · Lazada · TikTok Shop · NocNoc และลิงก์ TikTok ของแบรนด์ (footer เว็บปัจจุบันไม่มี)</td><td>Footer</td></tr>
       <tr><td>SKU ใน hero และ tile ตาม campaign calendar Q4 (ตอนนี้: T20, AP-H3029US, BDH-30A, RO, Bjorn, BSL-01, FELIX, BPAC)</td><td>Section 2–4</td></tr>
       <tr><td>ภาพ Ultra T20 ใช้ key visual ที่สร้างด้วย AI (ป้าย "Dust Box" ถูกต้องในภาพกว้าง) ควรให้ designer ตรวจรายละเอียดก่อนใช้จริง</td><td>Section 2</td></tr>
     </tbody>
