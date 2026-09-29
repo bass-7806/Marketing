@@ -11,7 +11,7 @@
   --ease:cubic-bezier(.4,0,.6,1);
   --nav-fs:13px; --nav-pad:10px;
 }
-:root[data-variant="hybrid"]{--content:1080px;--nav-fs:13px;--nav-pad:9px}
+:root[data-variant="hybrid"],:root[data-variant="ba"]{--content:1080px;--nav-fs:13px;--nav-pad:9px}
 :root[data-variant="flat"]{--content:1200px;--nav-fs:12px;--nav-pad:7px}
 :root[data-bar="dark"]{
   --bar-bg:rgba(14,42,68,.86); --bar-ink:#FFFFFF; --bar-ink-soft:rgba(255,255,255,.8); --bar-line:rgba(255,255,255,.08);
@@ -63,6 +63,13 @@ button{font:inherit;color:inherit;background:none;border:0;padding:0;cursor:poin
 .gn-group.is-primary a{font-family:var(--body);font-size:24px;font-weight:500;line-height:1.2;letter-spacing:-.015em}
 .gn-group .tag{display:inline-block;margin-left:8px;font-family:var(--display);font-size:9px;font-weight:600;letter-spacing:.08em;text-transform:uppercase;color:#fff;background:var(--blue);padding:2px 6px;border-radius:999px;vertical-align:middle}
 
+/* Pillar strip (variant B+A) */
+.gn-pillar-strip{grid-column:1/-1;margin-top:28px;padding-top:18px;border-top:1px solid var(--bar-line);display:none;align-items:baseline;gap:6px 18px;flex-wrap:wrap;font-size:12.5px}
+:root[data-variant="ba"] .gn-pillar-strip{display:flex}
+.gn-pillar-strip .lbl{color:var(--fly-soft)}
+.gn-pillar-strip a{color:var(--fly-ink)} .gn-pillar-strip a:hover{color:var(--fly-hover)} .gn-pillar-strip a[aria-current]{color:var(--blue);font-weight:500}
+body.gn-mobile .gn-drawer-root li.gn-grp{border-bottom:0;padding:18px 0 4px;font-family:var(--display);font-size:11px;font-weight:600;letter-spacing:.12em;text-transform:uppercase;color:var(--fly-soft)}
+body.gn-mobile .gn-drawer-root li.gn-grp:first-child{padding-top:6px}
 /* Search panel */
 .gn-search{max-width:980px;margin:0 auto;padding:36px 16px 56px}
 .gn-search form{display:flex;align-items:center;gap:14px;border-bottom:1px solid var(--bar-line);padding-bottom:12px}
@@ -321,62 +328,62 @@ code{font-family:ui-monospace,SFMono-Regular,Menlo,monospace;font-size:.86em;bac
       <li><a href="#">สมัครตัวแทนจำหน่าย</a></li>
     </ul></div>
   </div>
-  <div class="gn-panel" data-panel="c-airpurifier">
+  <div class="gn-panel" data-panel="c-airpurifier" data-pillar="Air">
     <div class="gn-group is-primary"><h3>สำรวจเครื่องฟอกอากาศ</h3><ul><li><a href="#">AP-H3029US 40–80 ตร.ม.</a></li><li><a href="#">CF-8428 20–40 ตร.ม.</a></li><li><a href="#">AP-8119US 10–30 ตร.ม.</a></li><li><a href="#">CF-8005 10–20 ตร.ม.</a></li><li><a href="#">เครื่องฟอกอากาศในรถยนต์</a></li><li><a href="#">เปรียบเทียบทุกรุ่น</a></li></ul></div>
     <div class="gn-group"><h3>ซื้อเครื่องฟอกอากาศ</h3><ul><li><a href="#">ซื้อเครื่องฟอกอากาศ</a></li><li><a href="#">ซื้อแผ่นฟอกอากาศตรงรุ่น</a></li><li><a href="#">ค้นหาสาขาใกล้คุณ</a></li></ul></div>
     <div class="gn-group"><h3>เพิ่มเติม</h3><ul><li><a href="#">เลือกเครื่องฟอกอากาศให้เหมาะกับห้อง</a></li><li><a href="#">CADR คืออะไร</a></li><li><a href="#">คู่มือการใช้งาน</a></li><li><a href="#">ลงทะเบียนรับประกัน</a></li></ul></div>
   </div>
-  <div class="gn-panel" data-panel="c-dehum">
+  <div class="gn-panel" data-panel="c-dehum" data-pillar="Air">
     <div class="gn-group is-primary"><h3>สำรวจเครื่องลดความชื้น</h3><ul><li><a href="#">BDH-53A 40–80 ตร.ม.</a></li><li><a href="#">BDH-30A 20–40 ตร.ม.</a></li><li><a href="#">BDH-12A 10–20 ตร.ม.</a></li><li><a href="#">เปรียบเทียบทุกรุ่น</a></li></ul></div>
     <div class="gn-group"><h3>ซื้อเครื่องลดความชื้น</h3><ul><li><a href="#">ซื้อเครื่องลดความชื้น</a></li><li><a href="#">ค้นหาสาขาใกล้คุณ</a></li></ul></div>
     <div class="gn-group"><h3>เพิ่มเติม</h3><ul><li><a href="#">ความชื้นเท่าไหร่ถึงต้องใช้</a></li><li><a href="#">ใช้ในห้องนอนอย่างไร</a></li><li><a href="#">คู่มือการใช้งาน</a></li><li><a href="#">ลงทะเบียนรับประกัน</a></li></ul></div>
   </div>
-  <div class="gn-panel" data-panel="c-pac">
+  <div class="gn-panel" data-panel="c-pac" data-pillar="Air">
     <div class="gn-group is-primary"><h3>สำรวจแอร์เคลื่อนที่</h3><ul><li><a href="#">BPAC-12B 12,000 BTU</a></li><li><a href="#">BPAC-09B 9,000 BTU</a></li><li><a href="#">เปรียบเทียบทุกรุ่น</a></li></ul></div>
     <div class="gn-group"><h3>ซื้อแอร์เคลื่อนที่</h3><ul><li><a href="#">ซื้อแอร์เคลื่อนที่</a></li><li><a href="#">ค้นหาสาขาใกล้คุณ</a></li></ul></div>
     <div class="gn-group"><h3>เพิ่มเติม</h3><ul><li><a href="#">เลือก BTU ให้พอดีห้อง</a></li><li><a href="#">ติดตั้งท่อระบายอากาศ</a></li><li><a href="#">คู่มือการใช้งาน</a></li><li><a href="#">ลงทะเบียนรับประกัน</a></li></ul></div>
   </div>
-  <div class="gn-panel" data-panel="c-water">
+  <div class="gn-panel" data-panel="c-water" data-pillar="Water">
     <div class="gn-group is-primary"><h3>สำรวจเครื่องกรองน้ำ</h3><ul><li><a href="#">เครื่องกรองน้ำ RO แบบไร้ถัง</a></li><li><a href="#">เครื่องกรองน้ำ BW-D103</a></li><li><a href="#">เครื่องกรองน้ำ AICSN-H3</a></li><li><a href="#">เครื่องกรองน้ำใช้ 20 นิ้ว</a></li><li><a href="#">ไส้กรองน้ำ</a></li></ul></div>
     <div class="gn-group"><h3>ซื้อเครื่องกรองน้ำ</h3><ul><li><a href="#">ซื้อเครื่องกรองน้ำ</a></li><li><a href="#">ซื้อไส้กรองน้ำ</a></li><li><a href="#">ค้นหาสาขาใกล้คุณ</a></li></ul></div>
     <div class="gn-group"><h3>เพิ่มเติม</h3><ul><li><a href="#">เลือกเครื่องกรองน้ำสำหรับบ้านและคอนโด</a></li><li><a href="#">RO กับ UF ต่างกันอย่างไร</a></li><li><a href="#">คู่มือการใช้งาน</a></li><li><a href="#">ลงทะเบียนรับประกัน</a></li></ul></div>
   </div>
-  <div class="gn-panel" data-panel="c-heater">
+  <div class="gn-panel" data-panel="c-heater" data-pillar="Water">
     <div class="gn-group is-primary"><h3>สำรวจเครื่องทำน้ำอุ่น</h3><ul><li><a href="#">FELIX 3,500 / 4,500 / 5,500 W</a></li><li><a href="#">LUKA 4,500 W</a></li><li><a href="#">ELKA 3,500 / 5,500 W</a></li><li><a href="#">Konrad น้ำร้อน 8,000 W</a></li><li><a href="#">เปรียบเทียบทุกรุ่น</a></li></ul></div>
     <div class="gn-group"><h3>ซื้อเครื่องทำน้ำอุ่น</h3><ul><li><a href="#">ซื้อเครื่องทำน้ำอุ่น</a></li><li><a href="#">ค้นหาสาขาใกล้คุณ</a></li></ul></div>
     <div class="gn-group"><h3>เพิ่มเติม</h3><ul><li><a href="#">เลือกกำลังวัตต์ให้เหมาะกับบ้าน</a></li><li><a href="#">ระบบตัดไฟ ELCB</a></li><li><a href="#">คู่มือการติดตั้ง</a></li><li><a href="#">ลงทะเบียนรับประกัน</a></li></ul></div>
   </div>
-  <div class="gn-panel" data-panel="c-robot">
+  <div class="gn-panel" data-panel="c-robot" data-pillar="Clean Home">
     <div class="gn-group is-primary"><h3>สำรวจหุ่นยนต์ดูดฝุ่น</h3><ul><li><a href="#">Ultra T20 OmniBase <span class="tag">New</span></a></li><li><a href="#">L6C</a></li><li><a href="#">L0</a></li><li><a href="#">Y1</a></li><li><a href="#">เปรียบเทียบทุกรุ่น</a></li></ul></div>
     <div class="gn-group"><h3>ซื้อหุ่นยนต์ดูดฝุ่น</h3><ul><li><a href="#">ซื้อหุ่นยนต์ดูดฝุ่น</a></li><li><a href="#">อะไหล่และแปรง</a></li><li><a href="#">ค้นหาสาขาใกล้คุณ</a></li></ul></div>
     <div class="gn-group"><h3>เพิ่มเติม</h3><ul><li><a href="#">รุ่นไหนเหมาะกับบ้านคุณ</a></li><li><a href="#">ดูแลแท่น OmniBase</a></li><li><a href="#">แอป Bwell Smart</a></li><li><a href="#">ลงทะเบียนรับประกัน</a></li></ul></div>
   </div>
-  <div class="gn-panel" data-panel="c-cordless">
+  <div class="gn-panel" data-panel="c-cordless" data-pillar="Clean Home">
     <div class="gn-group is-primary"><h3>สำรวจเครื่องดูดฝุ่นไร้สาย</h3><ul><li><a href="#">T12 Allergy Plus 120 AW</a></li><li><a href="#">201A</a></li><li><a href="#">เปรียบเทียบทุกรุ่น</a></li></ul></div>
     <div class="gn-group"><h3>ซื้อเครื่องดูดฝุ่นไร้สาย</h3><ul><li><a href="#">ซื้อเครื่องดูดฝุ่นไร้สาย</a></li><li><a href="#">หัวแปรงและไส้กรอง</a></li></ul></div>
     <div class="gn-group"><h3>เพิ่มเติม</h3><ul><li><a href="#">เครื่องดูดฝุ่นสำหรับคนเป็นภูมิแพ้</a></li><li><a href="#">คู่มือการใช้งาน</a></li><li><a href="#">ลงทะเบียนรับประกัน</a></li></ul></div>
   </div>
-  <div class="gn-panel" data-panel="c-chair">
+  <div class="gn-panel" data-panel="c-chair" data-pillar="Ergonomic">
     <div class="gn-group is-primary"><h3>สำรวจเก้าอี้เพื่อสุขภาพ</h3><ul><li><a href="#">Bjorn</a></li><li><a href="#">Stella</a></li><li><a href="#">Astrid</a></li><li><a href="#">Agnes</a></li><li><a href="#">เปรียบเทียบทุกรุ่น</a></li></ul></div>
     <div class="gn-group"><h3>ซื้อเก้าอี้เพื่อสุขภาพ</h3><ul><li><a href="#">ซื้อเก้าอี้เพื่อสุขภาพ</a></li><li><a href="#">ทดลองนั่งที่ Showroom</a></li><li><a href="#">สั่งซื้อในนามองค์กร</a></li></ul></div>
     <div class="gn-group"><h3>เพิ่มเติม</h3><ul><li><a href="#">ปรับเก้าอี้ให้พอดีตัว</a></li><li><a href="#">Office Syndrome และท่านั่ง</a></li><li><a href="#">คู่มือการประกอบ</a></li><li><a href="#">ลงทะเบียนรับประกัน</a></li></ul></div>
   </div>
-  <div class="gn-panel" data-panel="c-cushion">
+  <div class="gn-panel" data-panel="c-cushion" data-pillar="Ergonomic">
     <div class="gn-group is-primary"><h3>สำรวจหมอนและเบาะรอง</h3><ul><li><a href="#">หมอนรองคอเพื่อสุขภาพ</a></li><li><a href="#">เบาะรองหลังสำหรับรถยนต์</a></li><li><a href="#">หมอนรองคอสำหรับรถยนต์</a></li><li><a href="#">ที่วางเท้าเพื่อสุขภาพ</a></li></ul></div>
     <div class="gn-group"><h3>ซื้อหมอนและเบาะรอง</h3><ul><li><a href="#">ซื้อหมอนและเบาะรอง</a></li></ul></div>
     <div class="gn-group"><h3>เพิ่มเติม</h3><ul><li><a href="#">เลือกหมอนรองคอสำหรับเดินทาง</a></li><li><a href="#">ดูแลเมมโมรี่โฟม</a></li></ul></div>
   </div>
-  <div class="gn-panel" data-panel="c-sport">
+  <div class="gn-panel" data-panel="c-sport" data-pillar="Ergonomic">
     <div class="gn-group is-primary"><h3>สำรวจอุปกรณ์ออกกำลังกาย</h3><ul><li><a href="#">เสื่อโยคะหนาพิเศษ 12 มม.</a></li><li><a href="#">Foam Roller</a></li><li><a href="#">ดูทั้งหมด</a></li></ul></div>
     <div class="gn-group"><h3>ซื้ออุปกรณ์ออกกำลังกาย</h3><ul><li><a href="#">ซื้ออุปกรณ์ออกกำลังกาย</a></li></ul></div>
     <div class="gn-group"><h3>เพิ่มเติม</h3><ul><li><a href="#">คลายกล้ามเนื้อหลังออกกำลังกาย</a></li></ul></div>
   </div>
-  <div class="gn-panel" data-panel="c-beauty">
+  <div class="gn-panel" data-panel="c-beauty" data-pillar="Beauty">
     <div class="gn-group is-primary"><h3>สำรวจจัดแต่งทรงผม</h3><ul><li><a href="#">หวีลมร้อนดิจิตอล BSL-02</a></li><li><a href="#">ไดร์จัดแต่งทรงผม BLDC BSL-01</a></li><li><a href="#">เครื่องหนีบผม 23 / 40 มม.</a></li><li><a href="#">เครื่องหนีบผมลมร้อน</a></li><li><a href="#">ดูทั้งหมด</a></li></ul></div>
     <div class="gn-group"><h3>ซื้อจัดแต่งทรงผม</h3><ul><li><a href="#">ซื้อเครื่องจัดแต่งทรงผม</a></li><li><a href="#">ซื้อบน Shopee / Lazada</a></li></ul></div>
     <div class="gn-group"><h3>เพิ่มเติม</h3><ul><li><a href="#">หวีม้วนผมไฟฟ้า เลือกอย่างไร</a></li><li><a href="#">ไดร์เป่าผมแห้งไว ทำงานอย่างไร</a></li><li><a href="#">ลงทะเบียนรับประกัน</a></li></ul></div>
   </div>
-  <div class="gn-panel" data-panel="c-filters">
+  <div class="gn-panel" data-panel="c-filters" data-pillar="Air">
     <div class="gn-group is-primary"><h3>สำรวจแผ่นฟอกอากาศ</h3><ul><li><a href="#">ชุดแผ่นฟอก AP-H3029US</a></li><li><a href="#">ชุดแผ่นฟอก CF-8428</a></li><li><a href="#">ชุดแผ่นฟอก AP-8119US</a></li><li><a href="#">ชุดแผ่นฟอก CF-8005</a></li><li><a href="#">ชุดแผ่นฟอก AC-2103 / AC-2104</a></li><li><a href="#">ดูทั้งหมด</a></li></ul></div>
     <div class="gn-group"><h3>ซื้อแผ่นฟอกอากาศ</h3><ul><li><a href="#">ซื้อแผ่นฟอกอากาศ</a></li><li><a href="#">ค้นหาไส้กรองตรงรุ่น</a></li></ul></div>
     <div class="gn-group"><h3>เพิ่มเติม</h3><ul><li><a href="#">เปลี่ยนไส้กรองเมื่อไหร่</a></li><li><a href="#">วิธีเปลี่ยนและรีเซ็ตไส้กรอง</a></li></ul></div>
@@ -460,10 +467,11 @@ code{font-family:ui-monospace,SFMono-Regular,Menlo,monospace;font-size:.86em;bac
       <tbody>
         <tr><td class="k">A · 5 Pillars (Blueprint)</td><td>Air · Water · Clean Home · Ergonomic · Beauty · บริการช่วยเหลือ (6)</td><td>438px ที่ 13px</td><td>980px</td><td>1024px</td><td>โล่ง อ่านง่ายที่สุด แต่ต้องเปิด flyout ถึงจะเห็นชื่อสินค้า และชื่อ pillar เป็นภาษาอังกฤษ</td></tr>
         <tr><td class="k">B · 8 หมวด (แนะนำถ้าไม่กรุ๊ป)</td><td>เครื่องฟอกอากาศ · เครื่องลดความชื้น · แอร์เคลื่อนที่ · เครื่องกรองน้ำ · เครื่องทำน้ำอุ่น · หุ่นยนต์ดูดฝุ่น · เก้าอี้เพื่อสุขภาพ · Beauty · บริการช่วยเหลือ (9)</td><td>906px ที่ 13px</td><td>1080px</td><td>1180px</td><td>เห็นหมวดขายหลักทุกหมวดเป็นภาษาไทยชื่อเต็ม ยุบเฉพาะหมวดลูก 4 หมวดเข้า flyout ของแม่: แผ่นฟอกอากาศ → เครื่องฟอกอากาศ · เครื่องดูดฝุ่นไร้สาย → หุ่นยนต์ดูดฝุ่น · หมอนเบาะรอง + ออกกำลังกาย → เก้าอี้เพื่อสุขภาพ</td></tr>
-        <tr><td class="k">C · 12 หมวดตามเดิม</td><td>13 รายการ ต้องตัดชื่อเหลือ 2–4 พยางค์ (ฟอกอากาศ · ลดความชื้น · กรองน้ำ · น้ำอุ่น · เก้าอี้ · ไส้กรอง ...)</td><td>ชื่อเต็ม 1,338px (ไม่มีทางพอดี) · ชื่อย่อ 975px ที่ 12px</td><td>1200px</td><td>1300px</td><td>เห็นครบทุกหมวด แต่ชื่อถูกตัดจนกำกวม ("น้ำอุ่น", "เก้าอี้", "ไส้กรอง") ฟอนต์เล็กกว่า Apple และผู้ใช้ laptop 1280px ทั่วไปจะเห็น hamburger แทน bar ซึ่งเสียจุดเด่นของ pattern นี้ไปเลย</td></tr>
+        <tr><td class="k">B+A · 8 หมวด + กลุ่ม (Final)</td><td>เหมือน B ใน bar · ใน flyout เพิ่มแถว "อยู่ในกลุ่ม Air: เครื่องฟอกอากาศ · เครื่องลดความชื้น · แอร์เคลื่อนที่ · แผ่นฟอกอากาศ" · เมนูมือถือจัดกลุ่มใต้หัวข้อ Air / Water / Clean Home / Ergonomic / Beauty</td><td>906px ที่ 13px</td><td>1080px</td><td>1180px</td><td>ได้ทั้งชื่อหมวดไทยเต็มและแนวคิด Home Environment Wellness ของ A โดยไม่เพิ่มรายการใน bar</td></tr>
+        <tr><td class="k">C' · 12 หมวดตามเดิม (ปรับ)</td><td>12 รายการ ชื่อย่อ 2–4 พยางค์ · ไส้กรอง/แผ่นฟอกอากาศและอุปกรณ์เสริมย้ายไปคอลัมน์ "ซื้อ" ใน flyout ของแต่ละสินค้า</td><td>ชื่อเต็ม 1,338px (ไม่มีทางพอดี) · ชื่อย่อ ~900px ที่ 12px</td><td>1200px</td><td>1280px</td><td>เห็นครบทุกหมวด แต่ชื่อถูกตัดจนกำกวม ("น้ำอุ่น", "เก้าอี้", "ไส้กรอง") ฟอนต์เล็กกว่า Apple และผู้ใช้ laptop 1280px ทั่วไปจะเห็น hamburger แทน bar ซึ่งเสียจุดเด่นของ pattern นี้ไปเลย</td></tr>
       </tbody>
     </table></div>
-    <div class="note"><b>คำแนะนำ:</b> ถ้าไม่ต้องการกรุ๊ปเป็นภาษาอังกฤษ เลือก <b>B</b> ได้เลย ยังคงสัมผัสแบบ Apple ครบ (bar โปร่ง flyout 3 คอลัมน์ search overlay) และทุกหมวดที่มียอดขายหลักยังโชว์ชื่อเต็มภาษาไทย ส่วน C ควรใช้เฉพาะเมื่อยอมรับได้ว่าเว็บบน laptop ส่วนใหญ่จะขึ้น hamburger และชื่อเมนูจะสั้นกว่าที่ลูกค้าคุ้น</div>
+    <div class="note"><b>สถานะ:</b> Bar ล็อกเป็น Light แล้ว · Default ของ prototype คือ <b>B+A</b> · <b>คำแนะนำ:</b> ถ้าไม่ต้องการกรุ๊ปเป็นภาษาอังกฤษ เลือก <b>B+A</b> ได้เลย ยังคงสัมผัสแบบ Apple ครบ (bar โปร่ง flyout 3 คอลัมน์ search overlay) และทุกหมวดที่มียอดขายหลักยังโชว์ชื่อเต็มภาษาไทย ส่วน C ควรใช้เฉพาะเมื่อยอมรับได้ว่าเว็บบน laptop ส่วนใหญ่จะขึ้น hamburger และชื่อเมนูจะสั้นกว่าที่ลูกค้าคุ้น</div>
 
     <h2>Behavior checklist (ตรวจรับ)</h2>
     <div class="tablewrap"><table>
@@ -493,17 +501,15 @@ code{font-family:ui-monospace,SFMono-Regular,Menlo,monospace;font-size:.86em;bac
         <tr><td class="k">Content</td><td>ทุก link ใน flyout มาจาก WP Menus (Appearance › Menus) 1 menu ต่อ pillar ไม่ hard-code ใน block</td></tr>
       </tbody>
     </table></div>
-    <div class="note">ค่าที่ต้อง Bass ยืนยันก่อน production: (1) เงื่อนไขผ่อน 0% (2) อีเมล support ทางการ (3) ชื่อแอป (Bwell Smart / Smart Life) (4) จะเปิด Beauty เป็น pillar แยกหรือรวมใน Ergonomic (5) โหมดบาร์ Light หรือ Dark</div>
+    <div class="note">ค่าที่ต้อง Bass ยืนยันก่อน production: (1) เงื่อนไขผ่อน 0% (2) อีเมล support ทางการ (3) ชื่อแอป (Bwell Smart / Smart Life) · ตัดสินใจแล้ว: บาร์ Light, โครงสร้าง B+A</div>
   </section>
 </main>
 
 <div class="demo-controls" aria-label="ตัวเลือกตัวอย่าง">
-  <button data-variant="pillars" aria-pressed="true">A · 5 Pillars</button>
+  <button data-variant="ba" aria-pressed="true">B+A · 8 หมวด + กลุ่ม</button>
   <button data-variant="hybrid" aria-pressed="false">B · 8 หมวด</button>
-  <button data-variant="flat" aria-pressed="false">C · 12 หมวด</button>
-  <span style="width:1px;background:var(--line);margin:0 2px"></span>
-  <button id="modeLight" aria-pressed="true">Light</button>
-  <button id="modeDark" aria-pressed="false">Navy</button>
+  <button data-variant="pillars" aria-pressed="false">A · 5 Pillars</button>
+  <button data-variant="flat" aria-pressed="false">C' · 12 หมวด</button>
   <a href="#spec" style="align-self:center;padding:6px 10px;color:var(--navy)">Spec ›</a>
 </div>
 
@@ -518,10 +524,11 @@ code{font-family:ui-monospace,SFMono-Regular,Menlo,monospace;font-size:.86em;bac
   /* Variants: label + panel key. bp = viewport width below which the bar collapses to the mobile drawer */
   const VARIANTS={
     pillars:{bp:1024,items:[['Air','air'],['Water','water'],['Clean Home','clean'],['Ergonomic','ergo'],['Beauty','beauty'],['บริการช่วยเหลือ','support']]},
+    ba:{bp:1180,grouped:true,items:[['เครื่องฟอกอากาศ','c-airpurifier','Air'],['เครื่องลดความชื้น','c-dehum','Air'],['แอร์เคลื่อนที่','c-pac','Air'],['เครื่องกรองน้ำ','c-water','Water'],['เครื่องทำน้ำอุ่น','c-heater','Water'],['หุ่นยนต์ดูดฝุ่น','c-robot','Clean Home'],['เก้าอี้เพื่อสุขภาพ','c-chair','Ergonomic'],['Beauty','c-beauty','Beauty'],['บริการช่วยเหลือ','support','']]},
     hybrid:{bp:1180,items:[['เครื่องฟอกอากาศ','c-airpurifier'],['เครื่องลดความชื้น','c-dehum'],['แอร์เคลื่อนที่','c-pac'],['เครื่องกรองน้ำ','c-water'],['เครื่องทำน้ำอุ่น','c-heater'],['หุ่นยนต์ดูดฝุ่น','c-robot'],['เก้าอี้เพื่อสุขภาพ','c-chair'],['Beauty','c-beauty'],['บริการช่วยเหลือ','support']]},
-    flat:{bp:1300,items:[['ฟอกอากาศ','c-airpurifier'],['ลดความชื้น','c-dehum'],['แอร์เคลื่อนที่','c-pac'],['กรองน้ำ','c-water'],['น้ำอุ่น','c-heater'],['หุ่นยนต์ดูดฝุ่น','c-robot'],['ดูดฝุ่นไร้สาย','c-cordless'],['เก้าอี้','c-chair'],['หมอนเบาะรอง','c-cushion'],['ออกกำลังกาย','c-sport'],['จัดแต่งทรงผม','c-beauty'],['ไส้กรอง','c-filters'],['ช่วยเหลือ','support']]}
+    flat:{bp:1280,items:[['ฟอกอากาศ','c-airpurifier'],['ลดความชื้น','c-dehum'],['แอร์เคลื่อนที่','c-pac'],['กรองน้ำ','c-water'],['น้ำอุ่น','c-heater'],['หุ่นยนต์ดูดฝุ่น','c-robot'],['ดูดฝุ่นไร้สาย','c-cordless'],['เก้าอี้','c-chair'],['หมอนเบาะรอง','c-cushion'],['ออกกำลังกาย','c-sport'],['จัดแต่งทรงผม','c-beauty'],['ช่วยเหลือ','support']]}
   };
-  let variant='pillars', items=[], openKey=null, hoverTimer=null, closeTimer=null, lastTrigger=null;
+  let variant='ba', items=[], openKey=null, hoverTimer=null, closeTimer=null, lastTrigger=null;
   const isDesktop=()=>window.innerWidth>=VARIANTS[variant].bp;
   const panelFor=key=>panels.find(p=>p.dataset.panel===key);
 
@@ -569,12 +576,24 @@ code{font-family:ui-monospace,SFMono-Regular,Menlo,monospace;font-size:.86em;bac
   function buildNav(){
     close(false); closeDrawer();
     list.innerHTML=''; drawerRoot.innerHTML='';
-    VARIANTS[variant].items.forEach(([label,key])=>{
+    const cfg=VARIANTS[variant]; let lastGrp=null;
+    cfg.items.forEach(([label,key,grp])=>{
       const li=document.createElement('li'); li.className='gn-item'; li.dataset.menu=key;
       li.innerHTML=`<a class="gn-link" href="#${key}" role="menuitem" aria-haspopup="true" aria-expanded="false">${label}</a>`;
       list.appendChild(li);
+      if(cfg.grouped && grp && grp!==lastGrp){ const g=document.createElement('li'); g.className='gn-grp'; g.textContent=grp; drawerRoot.appendChild(g); lastGrp=grp; }
+      if(cfg.grouped && !grp && lastGrp){ const g=document.createElement('li'); g.className='gn-grp'; g.textContent='บริการ'; drawerRoot.appendChild(g); lastGrp=null; }
       const dli=document.createElement('li'); dli.innerHTML=`<button data-sub="${key}">${label}</button>`; drawerRoot.appendChild(dli);
     });
+    /* pillar strip inside each category flyout (variant B+A): siblings in the same pillar */
+    document.querySelectorAll('.gn-pillar-strip').forEach(e=>e.remove());
+    if(cfg.grouped){
+      const byPillar={}; panels.forEach(p=>{ if(p.dataset.pillar){ (byPillar[p.dataset.pillar]=byPillar[p.dataset.pillar]||[]).push(p); } });
+      const name=p=>p.querySelector('.gn-group.is-primary h3').textContent.replace(/^สำรวจ/,'').trim();
+      panels.forEach(p=>{ const pl=p.dataset.pillar; if(!pl) return; const strip=document.createElement('div'); strip.className='gn-pillar-strip';
+        strip.innerHTML=`<span class="lbl">อยู่ในกลุ่ม ${pl}</span>`+byPillar[pl].map(s=>`<a href="#${s.dataset.panel}" ${s===p?'aria-current="true"':''}>${name(s)}</a>`).join('');
+        p.appendChild(strip); });
+    }
     const dli=document.createElement('li'); dli.innerHTML='<button data-sub="store">ซื้อสินค้า</button>'; drawerRoot.appendChild(dli);
     items=[...list.querySelectorAll('.gn-item'),...document.querySelectorAll('.gn-actions [data-menu]')];
     items.forEach(bind);
@@ -603,12 +622,9 @@ code{font-family:ui-monospace,SFMono-Regular,Menlo,monospace;font-size:.86em;bac
   const vbtns=[...document.querySelectorAll('.demo-controls [data-variant]')];
   function setVariant(v){ variant=v; if(v==='pillars') root.removeAttribute('data-variant'); else root.setAttribute('data-variant',v); vbtns.forEach(b=>b.setAttribute('aria-pressed',String(b.dataset.variant===v))); buildNav(); try{localStorage.setItem('bwell-nav-variant',v)}catch(e){} }
   vbtns.forEach(b=>b.addEventListener('click',()=>setVariant(b.dataset.variant)));
-  const bl=document.getElementById('modeLight'), bd=document.getElementById('modeDark');
-  function mode(m){ if(m==='dark') root.setAttribute('data-bar','dark'); else root.removeAttribute('data-bar'); bl.setAttribute('aria-pressed',String(m!=='dark')); bd.setAttribute('aria-pressed',String(m==='dark')); try{localStorage.setItem('bwell-nav-mode',m)}catch(e){} }
-  bl.addEventListener('click',()=>mode('light')); bd.addEventListener('click',()=>mode('dark'));
-  let v='pillars', m='light'; try{ v=localStorage.getItem('bwell-nav-variant')||v; m=localStorage.getItem('bwell-nav-mode')||m; }catch(e){}
-  if(!VARIANTS[v]) v='pillars';
-  mode(m); setVariant(v);
+  let v='ba'; try{ v=localStorage.getItem('bwell-nav-variant')||v; }catch(e){}
+  if(!VARIANTS[v]) v='ba';
+  setVariant(v);
   const params=new URLSearchParams(location.search); if(VARIANTS[params.get('variant')]) setVariant(params.get('variant'));
 })();
 </script>
