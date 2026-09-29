@@ -33,9 +33,7 @@ button{font:inherit;color:inherit;background:none;border:0;padding:0;cursor:poin
 .gn{position:sticky;top:env(safe-area-inset-top,0px);z-index:50;height:var(--bar-h);background:var(--bar-bg);-webkit-backdrop-filter:saturate(1.8) blur(20px);backdrop-filter:saturate(1.8) blur(20px);border-bottom:1px solid var(--bar-line);color:var(--bar-ink)}
 .gn-inner{max-width:var(--content);margin:0 auto;height:100%;display:flex;align-items:center;padding-inline:16px}
 .gn-logo{display:flex;align-items:center;gap:6px;height:100%;padding-inline:8px;margin-left:-8px}
-.gn-logo svg{width:22px;height:22px;display:block}
-.gn-logo .word{font-family:var(--display);font-weight:600;font-size:15px;letter-spacing:-.01em;color:var(--blue)}
-:root[data-bar="dark"] .gn-logo .word{color:#fff}
+.gn-logo-img{height:19px;width:auto;display:block}
 .gn-list{list-style:none;margin:0;padding:0;display:flex;flex:1;justify-content:space-evenly;height:100%}
 .gn-item{height:100%}
 .gn-link{display:flex;align-items:center;height:100%;padding-inline:var(--nav-pad);font-size:var(--nav-fs);font-weight:400;color:var(--bar-ink-soft);letter-spacing:-.01em;white-space:nowrap;transition:color .2s var(--ease)}
@@ -156,8 +154,7 @@ code{font-family:ui-monospace,SFMono-Regular,Menlo,monospace;font-size:.86em;bac
   <div class="gn-inner">
     <button class="gn-icon gn-burger" id="gnBurger" aria-label="เปิดเมนู" aria-expanded="false" aria-controls="gnDrawer"><span class="bar"></span></button>
     <a class="gn-logo" href="#" aria-label="Bwell หน้าแรก">
-      <svg viewBox="0 0 56 56" aria-hidden="true"><circle cx="16" cy="16" r="13" fill="currentColor" style="color:var(--blue)"/><circle cx="40" cy="16" r="13" fill="none" stroke="var(--blue)" stroke-width="6"/><circle cx="16" cy="40" r="13" fill="none" stroke="var(--blue)" stroke-width="6"/><circle cx="40" cy="40" r="13" fill="var(--blue)"/></svg>
-      <span class="word">Bwell</span>
+      <img class="gn-logo-img" src="home-assets/bwell-logo.png" alt="" width="728" height="169">
     </a>
     <ul class="gn-list" id="gnList" role="menubar" aria-label="เมนูหลัก"></ul>
     <div class="gn-actions">

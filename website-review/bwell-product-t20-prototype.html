@@ -1,5 +1,5 @@
-<title>Bwell Homepage</title>
-<meta name="description" content="Bwell homepage prototype in apple.com/th layout pattern with the locked B+A global nav.">
+<title>Bwell Ultra T20</title>
+<meta name="description" content="Bwell product page prototype for Ultra T20 in the apple.com/th product-page layout pattern, with the locked B+A global nav and real Bwell logo.">
 <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Kanit:wght@300;400;500;600&family=Poppins:wght@400;500;600&display=swap" rel="stylesheet">
 <style>
@@ -118,7 +118,7 @@ body.gn-lock{overflow:hidden}
 body:not(.gn-mobile) .gn-drawer{display:none !important}
 
 
-/* ================= HOMEPAGE ================= */
+/* ================= SHARED PAGE SYSTEM ================= */
 
 /* ===== Homepage (apple.com/th layout pattern, Bwell identity) ===== */
 body{background:#FFFFFF}
@@ -273,6 +273,183 @@ sup a{color:inherit;opacity:.8}
   .ft-dir ul{padding:0 0 10px 10px}
 }
 @media (prefers-reduced-motion: reduce){ .reveal{opacity:1;transform:none} .g-track{transition:none} }
+
+/* ================= PRODUCT PAGE ================= */
+/* ===== Product page (apple.com/th product-page pattern, Bwell identity) ===== */
+/* Global nav scrolls away on product pages; the local nav is the sticky element */
+.gn{position:relative}
+
+/* Local nav */
+.ln{position:sticky;top:0;z-index:48;height:52px;background:rgba(255,255,255,.84);-webkit-backdrop-filter:saturate(1.8) blur(20px);backdrop-filter:saturate(1.8) blur(20px);border-bottom:1px solid rgba(0,0,0,.08);transition:box-shadow .3s var(--ease)}
+.ln.is-stuck{box-shadow:0 1px 0 rgba(0,0,0,.04)}
+.ln-inner{max-width:1080px;margin:0 auto;height:100%;display:flex;align-items:center;gap:8px;padding:0 16px}
+.ln-title{font-family:var(--display);font-weight:600;font-size:21px;letter-spacing:-.01em;color:#1D1D1F;margin-right:auto;white-space:nowrap}
+.ln-menu{list-style:none;margin:0;padding:0;display:flex;align-items:center;gap:22px}
+.ln-menu a{font-size:13px;color:#424245;white-space:nowrap;padding:6px 0;transition:color .2s}
+.ln-menu a:hover{color:var(--navy)}
+.ln-menu a[aria-current="true"]{color:#1D1D1F;font-weight:500}
+.ln-buy{display:inline-flex;align-items:center;min-height:30px;padding:0 13px;margin-left:18px;border-radius:999px;background:var(--blue);color:#fff;font-size:13px;font-weight:500;transition:background .2s}
+.ln-buy:hover{background:var(--navy)}
+.ln-toggle{display:none;width:32px;height:32px;align-items:center;justify-content:center}
+.ln-toggle span{width:9px;height:9px;border-right:1.6px solid #1D1D1F;border-bottom:1.6px solid #1D1D1F;transform:translateY(-2px) rotate(45deg);transition:transform .3s var(--ease)}
+.ln-toggle[aria-expanded="true"] span{transform:translateY(2px) rotate(-135deg)}
+
+/* Shared section rhythm */
+.pdp [id]{scroll-margin-top:52px}
+.pdp{background:#fff}
+.p-sec{padding:96px 0 104px}
+.p-head{max-width:1080px;margin:0 auto 40px;padding:0 16px}
+.p-h2{font-family:var(--body);font-weight:600;font-size:clamp(32px,4.2vw,56px);line-height:1.1;letter-spacing:-.015em;margin:0;text-wrap:balance}
+.p-body{font-size:clamp(17px,1.5vw,21px);font-weight:300;line-height:1.55;color:#424245;margin:16px 0 0;max-width:36em;text-wrap:pretty}
+.p-body b{color:#1D1D1F;font-weight:500}
+.eyebrow{color:var(--navy)}
+
+/* Hero */
+.p-hero{background:#F5F5F7;text-align:center;padding:56px 16px 64px;overflow:hidden}
+.p-new{color:#C2410C;margin:0 0 4px;letter-spacing:.1em}
+.p-title{font-family:var(--display);font-weight:600;font-size:clamp(56px,9vw,112px);line-height:1;letter-spacing:-.025em;margin:0;color:#1D1D1F}
+.p-sub{font-weight:400;font-size:clamp(22px,2.8vw,34px);line-height:1.25;margin:14px 0 0;color:#1D1D1F;text-wrap:balance}
+.br-m{display:none}
+.p-hero-art{position:relative;max-width:980px;margin:36px auto 0;height:clamp(300px,44vw,560px);display:flex;align-items:flex-end;justify-content:center}
+.p-hero-art img{mix-blend-mode:multiply;height:auto}
+.p-hero-art .p-hero-station{height:100%;width:auto;max-width:62%;transform:translateX(12%)}
+.p-hero-robot{position:absolute;bottom:-2%;left:calc(50% - 38%);width:40%;max-width:420px}
+.p-hero-buy{margin-top:28px;display:flex;flex-direction:column;align-items:center}
+.p-price{font-family:var(--display);font-size:21px;font-weight:500;margin:0;color:#1D1D1F}
+.p-hero .ctas{justify-content:center;margin-top:14px}
+
+/* Highlights scroller */
+#highlights{background:#fff}
+.hl{overflow:hidden}
+.hl-track{list-style:none;margin:0;display:flex;gap:20px;overflow-x:auto;scroll-snap-type:x mandatory;scroll-behavior:smooth;scrollbar-width:none;padding:0 max(16px,calc((100vw - 1080px)/2 + 16px));scroll-padding-inline:max(16px,calc((100vw - 1080px)/2 + 16px))}
+.hl-track::-webkit-scrollbar{display:none}
+.hl-card{flex:0 0 clamp(280px,31vw,400px);scroll-snap-align:start;background:#F5F5F7;border-radius:22px;overflow:hidden;display:flex;flex-direction:column}
+.hl-card img{width:100%;height:auto;aspect-ratio:1/1;object-fit:cover;display:block}
+.hl-card p{margin:0;padding:22px 24px 26px;font-size:17px;line-height:1.45;color:#424245;font-weight:300}
+.hl-card b{display:block;color:#1D1D1F;font-weight:600;font-size:19px;margin-bottom:2px}
+.hl-nav{max-width:1080px;margin:22px auto 0;padding:0 16px;display:flex;justify-content:flex-end;gap:12px}
+.hl-btn{width:40px;height:40px;border-radius:999px;background:#E8E8ED;color:#1D1D1F;display:flex;align-items:center;justify-content:center;transition:background .2s,opacity .2s}
+.hl-btn:hover{background:#DCDCE1}
+.hl-btn:disabled{opacity:.36;cursor:default}
+.hl-btn svg{width:18px;height:18px}
+
+/* Numbers band */
+.p-nums{background:#0B1C2C;color:#fff;padding:88px 16px}
+.p-nums ul{list-style:none;margin:0 auto;padding:0;max-width:1080px;display:grid;grid-template-columns:repeat(3,1fr);gap:32px;text-align:center}
+.p-nums .n,.omni-stats .n{display:block;font-family:var(--display);font-weight:600;font-size:clamp(44px,5.6vw,72px);line-height:1.05;letter-spacing:-.02em}
+.p-nums small,.omni-stats small{font-family:var(--body);font-size:.36em;font-weight:500;letter-spacing:0;margin:0 .25em}
+.p-nums .l{display:block;margin-top:10px;font-size:17px;color:rgba(255,255,255,.72);font-weight:300}
+.p-nums sup a{color:inherit}
+
+/* Closer look tiles */
+.look{max-width:1080px;margin:0 auto;padding:0 16px;display:grid;grid-template-columns:repeat(3,1fr);gap:20px}
+.look-card{position:relative;background:#F5F5F7;border-radius:22px;overflow:hidden;min-height:480px;display:flex;flex-direction:column;padding:32px 28px 28px}
+.look-copy h3{font-weight:600;font-size:clamp(24px,2.2vw,30px);line-height:1.15;margin:0;color:#1D1D1F;text-wrap:balance}
+.look-card img{margin:auto auto 52px;width:100%;height:auto;mix-blend-mode:multiply}
+.look-more{position:absolute;right:20px;bottom:20px;width:38px;height:38px;border-radius:999px;background:#1D1D1F;color:#fff;font-size:24px;line-height:1;display:flex;align-items:center;justify-content:center;transition:transform .25s var(--ease),background .2s}
+.look-more:hover{background:var(--navy);transform:scale(1.06)}
+.dlg{border:0;border-radius:24px;max-width:560px;width:calc(100% - 32px);padding:44px 40px 40px;color:#1D1D1F;box-shadow:0 30px 80px rgba(0,0,0,.28)}
+.dlg::backdrop{background:rgba(0,0,0,.44);-webkit-backdrop-filter:blur(8px);backdrop-filter:blur(8px)}
+.dlg h3{font-weight:600;font-size:30px;line-height:1.15;margin:0 0 16px}
+.dlg p{font-size:17px;line-height:1.6;font-weight:300;color:#424245;margin:0 0 12px}
+.dlg p b{color:#1D1D1F;font-weight:500}
+.dlg-x{position:absolute;top:14px;right:14px;width:36px;height:36px;border-radius:999px;background:#E8E8ED;font-size:22px;line-height:1}
+.dlg-x:hover{background:#DCDCE1}
+
+/* OmniBase */
+.p-omni{background:#F5F5F7;padding:104px 16px}
+.omni-grid{max-width:1080px;margin:0 auto;display:grid;grid-template-columns:1.05fr .95fr;gap:48px;align-items:center}
+.omni-stats{list-style:none;margin:40px 0 0;padding:0;display:grid;grid-template-columns:repeat(3,auto);justify-content:start;gap:28px 40px}
+.omni-stats .n{font-size:clamp(36px,4vw,52px);color:#1D1D1F}
+.omni-stats .l{display:block;margin-top:6px;font-size:15px;color:#5B6B7A;font-weight:300;max-width:12em}
+.omni-art img{width:100%;height:auto;mix-blend-mode:multiply;display:block}
+
+/* App */
+.p-app{background:#fff}
+.app-list{list-style:none;margin:0 auto;padding:0 16px;max-width:1080px;display:grid;grid-template-columns:repeat(5,1fr);gap:16px}
+.app-list li{background:#F5F5F7;border-radius:18px;padding:26px 20px;display:flex;flex-direction:column;gap:14px;font-size:17px;font-weight:500;color:#1D1D1F;line-height:1.35}
+.app-list svg{width:34px;height:34px;color:var(--blue)}
+
+/* In the box */
+.p-box{background:#fff;padding-top:24px}
+.box-fig{max-width:720px;margin:0 auto;padding:0 16px;text-align:center}
+.box-fig img{width:100%;height:auto;display:block;mix-blend-mode:multiply;background:#F5F5F7;border-radius:22px}
+.box-fig figcaption{font-size:14px;color:#6E6E73;margin-top:10px}
+
+/* Specs */
+.p-specs{background:#F5F5F7}
+.specs{max-width:1080px;margin:0 auto;padding:0 16px;display:grid;grid-template-columns:repeat(3,1fr);gap:20px}
+.specs section{background:#fff;border-radius:18px;padding:28px 26px}
+.specs h3{font-weight:600;font-size:21px;margin:0 0 14px}
+.specs dl{margin:0;display:grid;grid-template-columns:auto 1fr;gap:0}
+.specs dt,.specs dd{padding:11px 0;border-top:1px solid #E8E8ED;font-size:15px;line-height:1.45}
+.specs dt{color:#6E6E73;font-weight:300;padding-right:16px}
+.specs dd{margin:0;color:#1D1D1F;font-weight:400;text-align:right}
+
+/* Compare */
+.p-compare{background:#fff}
+.cmp-wrap{max-width:1080px;margin:0 auto;padding:0 16px;overflow-x:auto}
+.cmp{width:100%;min-width:760px;border-collapse:separate;border-spacing:0;table-layout:fixed}
+.cmp thead th{vertical-align:bottom;padding:0 12px 24px;text-align:center;font-weight:400}
+.cmp thead img{display:block;width:72%;max-width:180px;height:auto;margin:0 auto 14px;mix-blend-mode:multiply}
+.cmp-lead{width:18%}
+.cmp-new{display:block;min-height:18px;font-family:var(--display);font-size:12px;font-weight:600;letter-spacing:.08em;color:#C2410C}
+.cmp-name{display:block;font-family:var(--display);font-weight:600;font-size:24px;color:#1D1D1F}
+.cmp-price{display:block;font-size:15px;color:#424245;margin:4px 0 14px}
+.pill-sm{min-height:34px;padding:0 16px;font-size:14px}
+.cmp tbody th{text-align:left;font-weight:400;font-size:14px;color:#6E6E73;padding:16px 12px 16px 0;border-top:1px solid #E8E8ED;vertical-align:top}
+.cmp td{text-align:center;font-size:15px;line-height:1.45;color:#1D1D1F;padding:16px 12px;border-top:1px solid #E8E8ED;vertical-align:top}
+.cmp .is-this{background:#F2F8FC}
+.cmp tbody th,.cmp-lead{position:sticky;left:0;z-index:1;background:#fff}
+.cmp thead .is-this{border-radius:18px 18px 0 0;padding-top:20px}
+.cmp tbody tr:last-child .is-this{border-radius:0 0 18px 18px}
+.cmp td.na{color:#A1A1A6}
+.cmp sup a{color:inherit}
+
+/* Footer breadcrumb */
+.ft-bc{font-size:12px;padding:0 0 14px;margin-bottom:14px;border-bottom:1px solid #D2D2D7;color:#6E6E73}
+.ft-bc span{color:#424245}
+
+/* Responsive */
+@media (max-width:1068px){
+  .look{grid-template-columns:1fr 1fr}
+  .look-card:last-child{grid-column:1 / -1}
+  .look-card:last-child img{width:70%}
+  .app-list{grid-template-columns:repeat(3,1fr)}
+  .specs{grid-template-columns:1fr 1fr}
+  .specs section:last-child{grid-column:1 / -1}
+}
+@media (max-width:833px){
+  .ln-toggle{display:flex;order:2}
+  .ln-title{font-size:19px;margin-right:0}
+  .ln-inner{justify-content:flex-start}
+  .ln-buy{order:3;margin-left:auto}
+  .ln-menu{position:absolute;top:52px;left:0;right:0;flex-direction:column;align-items:stretch;gap:0;background:#fff;box-shadow:0 18px 30px rgba(0,0,0,.08);padding:4px 16px 18px;border-bottom:1px solid rgba(0,0,0,.08);transform:translateY(-8px);opacity:0;visibility:hidden;transition:opacity .25s var(--ease),transform .25s var(--ease),visibility 0s .25s}
+  .ln.is-open{background:#fff}
+  .ln.is-open .ln-menu{transform:none;opacity:1;visibility:visible;transition:opacity .25s var(--ease),transform .25s var(--ease)}
+  .ln-menu a{display:block;font-size:17px;padding:12px 0;border-bottom:1px solid #EEF1F5}
+  .omni-grid{grid-template-columns:1fr;gap:24px}
+  .omni-art{max-width:460px;margin:0 auto}
+}
+@media (max-width:734px){
+  .p-sec{padding:64px 0 72px}
+  .br-m{display:inline}
+  .p-hero{padding-top:40px}
+  .p-hero-art{height:clamp(260px,78vw,420px);margin-top:28px}
+  .p-hero-art .p-hero-station{max-width:74%;transform:translateX(16%)}
+  .p-hero-robot{width:50%;left:2%}
+  .p-nums{padding:64px 16px}
+  .p-nums ul{grid-template-columns:1fr;gap:40px}
+  .look{grid-template-columns:1fr}
+  .look-card{min-height:440px}
+  .look-card:last-child img{width:92%}
+  .p-omni{padding:72px 16px}
+  .omni-stats{grid-template-columns:1fr 1fr;gap:24px}
+  .app-list{grid-template-columns:1fr 1fr}
+  .specs{grid-template-columns:1fr}
+  .dlg{padding:40px 24px 28px}
+}
+@media (prefers-reduced-motion: reduce){ .hl-track{scroll-behavior:auto} }
 
 </style>
 <!-- ============ GLOBAL NAV ============ -->
@@ -545,147 +722,251 @@ sup a{color:inherit;opacity:.8}
 </div>
 
 
-<!-- ============ RIBBON ============ -->
-<div class="ribbon" role="region" aria-label="โปรโมชัน">
-  <p>[ข้อความแคมเปญ 1 บรรทัด เช่น 10.10 · ยืนยัน copy จาก Campaign Brief] <a href="#">ดูโปรโมชัน</a></p>
-</div>
 
-<main id="main">
-  <!-- ============ HERO 1 · Ultra T20 (dark, full-bleed art direction) ============ -->
-  <section class="hero hero-dark" aria-labelledby="h-t20">
-    <picture class="hero-art">
-      <source media="(max-width:734px)" srcset="home-assets/hero-t20-tall.webp">
-      <img src="home-assets/hero-t20-wide.webp" alt="หุ่นยนต์ดูดฝุ่น Bwell Ultra T20 บนแท่น OmniBase" width="2000" height="1116" fetchpriority="high">
-    </picture>
-    <div class="hero-copy">
-      <p class="eyebrow">ใหม่</p>
-      <h2 id="h-t20" class="headline">Ultra T20</h2>
-      <p class="subhead">บ้านสะอาด ไม่ต้องยกนิ้ว</p>
-      <p class="detail">ดูด ถู ซักม็อบ เป่าแห้ง และเก็บฝุ่นให้เองที่แท่น OmniBase</p>
-      <div class="ctas"><a class="pill pill-fill" href="#" data-nav="home/hero/t20/buy">สั่งซื้อ</a><a class="pill pill-line" href="#" data-nav="home/hero/t20/learn">ดูรายละเอียด</a></div>
+<!-- ============ LOCAL (PRODUCT) NAV · sticky ============ -->
+<nav class="ln" id="ln" aria-label="Ultra T20">
+  <div class="ln-inner">
+    <a class="ln-title" href="#overview" data-nav="pdp/t20/localnav/title">Ultra T20</a>
+    <button class="ln-toggle" id="lnToggle" aria-expanded="false" aria-controls="lnMenu" aria-label="เมนูของ Ultra T20"><span aria-hidden="true"></span></button>
+    <ul class="ln-menu" id="lnMenu">
+      <li><a href="#overview" data-nav="pdp/t20/localnav/overview">ภาพรวม</a></li>
+      <li><a href="#highlights" data-nav="pdp/t20/localnav/highlights">ไฮไลต์</a></li>
+      <li><a href="#omnibase" data-nav="pdp/t20/localnav/omnibase">OmniBase</a></li>
+      <li><a href="#specs" data-nav="pdp/t20/localnav/specs">สเปก</a></li>
+      <li><a href="#compare" data-nav="pdp/t20/localnav/compare">เปรียบเทียบ</a></li>
+    </ul>
+    <a class="ln-buy" href="https://bwell.co.th/product/robot-vacuum-cleaner-bwell-ultra-t20/" data-nav="pdp/t20/localnav/buy">สั่งซื้อ</a>
+  </div>
+</nav>
+
+<main id="main" class="pdp">
+
+  <!-- ============ 1 · HERO ============ -->
+  <section class="p-hero" id="overview" aria-labelledby="h-title">
+    <div class="p-hero-copy">
+      <p class="eyebrow p-new">ใหม่</p>
+      <h1 class="p-title" id="h-title">Ultra T20</h1>
+      <p class="p-sub">ดูด ถู ซัก เป่าแห้ง<br class="br-m"> จบในแท่นเดียว</p>
+    </div>
+    <div class="p-hero-art">
+      <img class="p-hero-station" src="product-assets/t20-station-left.webp" alt="แท่น OmniBase ของ Bwell Ultra T20 มุมเฉียงซ้าย" width="1009" height="1045" fetchpriority="high">
+      <img class="p-hero-robot" src="product-assets/t20-robot-front.webp" alt="หุ่นยนต์ดูดฝุ่น Bwell Ultra T20 มุมด้านหน้า" width="1100" height="841">
+    </div>
+    <div class="p-hero-buy">
+      <p class="p-price">฿17,990<sup><a href="#fn3" aria-label="เชิงอรรถ 3">3</a></sup></p>
+      <div class="ctas">
+        <a class="pill pill-fill" href="https://bwell.co.th/product/robot-vacuum-cleaner-bwell-ultra-t20/" data-nav="pdp/t20/hero/buy">สั่งซื้อ</a>
+        <a class="pill pill-line" href="#specs" data-nav="pdp/t20/hero/specs">ดูสเปก</a>
+      </div>
     </div>
   </section>
 
-  <!-- ============ HERO 2 · Air purifier (light) ============ -->
-  <section class="hero hero-light" aria-labelledby="h-air">
-    <div class="hero-copy center">
-      <h2 id="h-air" class="headline">เครื่องฟอกอากาศ AP-H3029US</h2>
-      <p class="subhead">หายใจสะอาด ทั้งบ้าน</p>
-      <p class="detail">สำหรับห้อง 40–80 ตร.ม. กรอง 8 ขั้นตอน<sup><a href="#fn1">1</a></sup></p>
-      <div class="ctas"><a class="pill pill-fill" href="#" data-nav="home/hero/air/buy">สั่งซื้อ</a><a class="pill pill-line" href="#" data-nav="home/hero/air/learn">ดูรายละเอียด</a></div>
+  <!-- ============ 2 · HIGHLIGHTS · card scroller ============ -->
+  <section class="p-sec" id="highlights" aria-labelledby="h-hl">
+    <div class="p-head">
+      <h2 class="p-h2" id="h-hl">ไฮไลต์</h2>
     </div>
-    <img class="hero-product" src="home-assets/air-ap-h3029us.webp" alt="เครื่องฟอกอากาศ Bwell AP-H3029US" width="425" height="789" loading="lazy">
-  </section>
-
-  <!-- ============ PROMO GRID · 2 × 3 ============ -->
-  <section class="grid" aria-label="สินค้าแนะนำ">
-    <article class="tile t-cool">
-      <div class="tile-copy">
-        <h3 class="tile-title">เครื่องลดความชื้น</h3>
-        <p class="tile-sub">บ้านแห้งสบาย ไม่อับชื้น</p>
-        <p class="tile-detail">BDH-30A · ห้อง 20–40 ตร.ม. · 30 ลิตร/วัน<sup><a href="#fn1">1</a></sup></p>
-        <div class="ctas sm"><a class="pill pill-fill" href="#" data-nav="home/tile/dehum/buy">สั่งซื้อ</a><a class="pill pill-line" href="#" data-nav="home/tile/dehum/learn">ดูรายละเอียด</a></div>
-      </div>
-      <img class="tile-img" src="home-assets/dehum-bdh-30a.webp" alt="เครื่องลดความชื้น Bwell BDH-30A" width="509" height="749" loading="lazy">
-    </article>
-
-    <article class="tile t-white">
-      <div class="tile-copy">
-        <h3 class="tile-title">เครื่องกรองน้ำ RO</h3>
-        <p class="tile-sub">น้ำดื่มสะอาด จากก๊อกในครัว</p>
-        <p class="tile-detail">ระบบ RO แบบไร้ถังพักน้ำ ประหยัดพื้นที่ใต้ซิงก์</p>
-        <div class="ctas sm"><a class="pill pill-fill" href="#" data-nav="home/tile/water/buy">สั่งซื้อ</a><a class="pill pill-line" href="#" data-nav="home/tile/water/learn">ดูรายละเอียด</a></div>
-      </div>
-      <img class="tile-img tile-img-sm" src="home-assets/water-ro.webp" alt="เครื่องกรองน้ำ Bwell RO แบบไร้ถัง" width="234" height="387" loading="lazy">
-    </article>
-
-    <article class="tile t-white">
-      <div class="tile-copy">
-        <h3 class="tile-title">เก้าอี้เพื่อสุขภาพ Bjorn</h3>
-        <p class="tile-sub">นั่งนาน ไม่ปวดหลัง</p>
-        <p class="tile-detail">พนักพิงศีรษะ 3D · Support Pad รองรับหลังล่าง 6 ชิ้น</p>
-        <div class="ctas sm"><a class="pill pill-fill" href="#" data-nav="home/tile/chair/buy">สั่งซื้อ</a><a class="pill pill-line" href="#" data-nav="home/tile/chair/learn">ดูรายละเอียด</a></div>
-      </div>
-      <img class="tile-img" src="home-assets/chair-bjorn.webp" alt="เก้าอี้เพื่อสุขภาพ Bwell Bjorn สีดำ" width="443" height="777" loading="lazy">
-    </article>
-
-    <article class="tile t-blush">
-      <div class="tile-copy">
-        <p class="tile-brand">Bwell Beauty</p>
-        <h3 class="tile-title">หวีไดร์ BLDC BSL-01</h3>
-        <p class="tile-sub">เป่าแห้งและจัดทรง ในขั้นตอนเดียว</p>
-        <div class="ctas sm"><a class="pill pill-fill" href="#" data-nav="home/tile/beauty/buy">สั่งซื้อ</a><a class="pill pill-line" href="#" data-nav="home/tile/beauty/learn">ดูรายละเอียด</a></div>
-      </div>
-      <img class="tile-img" src="home-assets/beauty-bsl01.webp" alt="หวีไดร์จัดแต่งทรงผม Bwell BSL-01" width="259" height="962" loading="lazy">
-    </article>
-
-    <article class="tile t-cool">
-      <div class="tile-copy">
-        <h3 class="tile-title">เครื่องทำน้ำอุ่น FELIX</h3>
-        <p class="tile-sub">อุ่นไว ปลอดภัยทุกครั้งที่อาบ</p>
-        <p class="tile-detail">3,500 / 4,500 / 5,500 วัตต์ · ระบบตัดไฟอัตโนมัติ</p>
-        <div class="ctas sm"><a class="pill pill-fill" href="#" data-nav="home/tile/heater/buy">สั่งซื้อ</a><a class="pill pill-line" href="#" data-nav="home/tile/heater/learn">ดูรายละเอียด</a></div>
-      </div>
-      <img class="tile-img" src="home-assets/heater-felix.webp" alt="เครื่องทำน้ำอุ่น Bwell FELIX" width="640" height="739" loading="lazy">
-    </article>
-
-    <article class="tile t-white">
-      <div class="tile-copy">
-        <h3 class="tile-title">แอร์เคลื่อนที่</h3>
-        <p class="tile-sub">เย็นทันที ไม่ต้องเจาะผนัง</p>
-        <p class="tile-detail">BPAC-12B 12,000 BTU · BPAC-09B 9,000 BTU<sup><a href="#fn1">1</a></sup></p>
-        <div class="ctas sm"><a class="pill pill-fill" href="#" data-nav="home/tile/pac/buy">สั่งซื้อ</a><a class="pill pill-line" href="#" data-nav="home/tile/pac/learn">ดูรายละเอียด</a></div>
-      </div>
-      <img class="tile-img" src="home-assets/pac-bpac.webp" alt="แอร์เคลื่อนที่ Bwell BPAC" width="416" height="768" loading="lazy">
-    </article>
-  </section>
-
-  <!-- ============ GALLERY · lifestyle carousel ============ -->
-  <section class="gallery" aria-roledescription="carousel" aria-label="Bwell ในทุกห้องของบ้าน">
-    <h2 class="gallery-title">ดีต่อสุขภาพ ในทุกห้องของบ้าน</h2>
-    <div class="g-viewport" id="gViewport">
-      <ul class="g-track" id="gTrack">
-        <li class="g-slide" aria-roledescription="slide" aria-label="1 จาก 3">
-          <img src="home-assets/life-living.webp" alt="ห้องนั่งเล่นกว้าง มีหุ่นยนต์ดูดฝุ่นทำงานบนพรม" loading="lazy">
-          <div class="g-cap"><p class="g-kicker">ห้องนั่งเล่น</p><p class="g-text">พื้นไม้กับพรมในห้องเดียว Ultra T20 ยกม็อบเองเมื่อขึ้นพรม</p><a class="pill pill-light" href="#" data-nav="home/gallery/living">ดูรายละเอียด</a></div>
-        </li>
-        <li class="g-slide" aria-roledescription="slide" aria-label="2 จาก 3">
-          <img src="home-assets/life-pet.webp" alt="สุนัขนอนบนโซฟาขณะหุ่นยนต์ดูดฝุ่นทำความสะอาด" loading="lazy">
-          <div class="g-cap"><p class="g-kicker">บ้านที่มีสัตว์เลี้ยง</p><p class="g-text">แปรงยางลดปัญหาขนพัน เก็บฝุ่นลงถุงให้อัตโนมัติ</p><a class="pill pill-light" href="#" data-nav="home/gallery/pet">ดูรายละเอียด</a></div>
-        </li>
-        <li class="g-slide" aria-roledescription="slide" aria-label="3 จาก 3">
-          <img src="home-assets/life-bluewall.webp" alt="ห้องนั่งเล่นโทนขาวน้ำเงิน แสงธรรมชาติ" loading="lazy">
-          <div class="g-cap"><p class="g-kicker">บ้านทั้งหลัง</p><p class="g-text">อากาศ น้ำ และพื้นบ้าน ดูแลครบด้วย Home Environment Wellness</p><a class="pill pill-light" href="#" data-nav="home/gallery/home">สำรวจสินค้าทั้งหมด</a></div>
-        </li>
+    <div class="hl" aria-roledescription="carousel" aria-label="ไฮไลต์ Ultra T20">
+      <ul class="hl-track" id="hlTrack">
+        <li class="hl-card"><img src="product-assets/t20-life-room.webp" alt="Ultra T20 ทำงานในห้องนั่งเล่น แท่น OmniBase อยู่ด้านหลัง" width="670" height="672" loading="lazy"><p><b>นำทางด้วยเลเซอร์</b> พร้อม Front Line Laser ตรวจจับสิ่งกีดขวางด้านหน้า</p></li>
+        <li class="hl-card"><img src="product-assets/t20-life-carpet.webp" alt="Ultra T20 กำลังขึ้นพรม" width="672" height="669" loading="lazy"><p><b>เจอพรม ยกม็อบเอง</b> ตรวจจับพรมด้วยเซ็นเซอร์ Ultrasonic</p></li>
+        <li class="hl-card"><img src="product-assets/t20-life-edge.webp" alt="แปรงข้างของ Ultra T20 เก็บฝุ่นตามแนวผนัง" width="670" height="669" loading="lazy"><p><b>ถึงขอบผนังและมุม</b> ด้วยแปรงข้างและม็อบที่ยืดออก</p></li>
+        <li class="hl-card"><img src="product-assets/t20-life-dock.webp" alt="Ultra T20 กลับเข้าแท่น OmniBase" width="667" height="670" loading="lazy"><p><b>กลับแท่นเอง</b> ซักและเป่าม็อบแห้งอัตโนมัติ</p></li>
+        <li class="hl-card"><img src="product-assets/t20-life-station.webp" alt="แท่น OmniBase ของ Ultra T20" width="670" height="670" loading="lazy"><p><b>แท่น All-in-One</b> เติมน้ำและเก็บฝุ่นจากตัวเครื่องให้เอง</p></li>
       </ul>
     </div>
-    <div class="g-controls">
-      <div class="g-dots" id="gDots" role="tablist" aria-label="เลือกสไลด์"></div>
-      <button class="g-play" id="gPlay" aria-label="หยุดเล่นอัตโนมัติ" data-state="playing"><span class="i-pause" aria-hidden="true"></span><span class="i-play" aria-hidden="true"></span></button>
+    <div class="hl-nav">
+      <button class="hl-btn" id="hlPrev" aria-label="ไฮไลต์ก่อนหน้า"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M14.5 5.5L8 12l6.5 6.5" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
+      <button class="hl-btn" id="hlNext" aria-label="ไฮไลต์ถัดไป"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M9.5 5.5L16 12l-6.5 6.5" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
     </div>
   </section>
 
-  <!-- ============ TRUST STRIP (Bwell addition) ============ -->
-  <section class="trust" aria-label="ทำไมต้องซื้อกับ Bwell">
-    <h2 class="trust-title">ทำไมต้องซื้อกับ Bwell</h2>
-    <ul class="trust-list">
-      <li><svg viewBox="0 0 32 32" aria-hidden="true"><path d="M16 4l10 4v7c0 6.5-4.3 11.2-10 13-5.7-1.8-10-6.5-10-13V8l10-4z" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/><path d="M11.5 16.2l3.2 3.2 6-6.4" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg><h3>ดูแลสุขภาพคนไทยตั้งแต่ปี 2011</h3><p>แบรนด์ไทยที่เริ่มจากการทำงานร่วมกับแพทย์</p></li>
-      <li><svg viewBox="0 0 32 32" aria-hidden="true"><rect x="6" y="9" width="20" height="16" rx="3" fill="none" stroke="currentColor" stroke-width="2"/><path d="M11 9V7a5 5 0 0 1 10 0v2M16 15v4" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg><h3>รับประกันศูนย์ Bwell</h3><p>[ระยะเวลารับประกันตามรุ่น · ยืนยันเงื่อนไข]</p></li>
-      <li><svg viewBox="0 0 32 32" aria-hidden="true"><path d="M6 8h20v13H13l-5 4v-4H6z" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/><path d="M11 13h10M11 17h6" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg><h3>ปรึกษาผู้เชี่ยวชาญผ่าน LINE</h3><p>ช่วยเลือกรุ่นให้พอดีกับห้องและการใช้งาน</p></li>
-      <li><svg viewBox="0 0 32 32" aria-hidden="true"><path d="M16 28s9-8.2 9-15a9 9 0 0 0-18 0c0 6.8 9 15 9 15z" fill="none" stroke="currentColor" stroke-width="2"/><circle cx="16" cy="13" r="3.2" fill="none" stroke="currentColor" stroke-width="2"/></svg><h3>ลองของจริงที่หน้าร้าน</h3><p>Showroom เจริญราษฎร์ · Flagship Store CDC · Central · HomePro · PowerBuy</p></li>
+  <!-- ============ 3 · BY THE NUMBERS · dark band ============ -->
+  <section class="p-nums" aria-label="ตัวเลขสำคัญ">
+    <ul>
+      <li><span class="n">22,000<small>Pa</small></span><span class="l">แรงดูดสูงสุด</span></li>
+      <li><span class="n"><small>มากกว่า</small>200<small>นาที</small></span><span class="l">ระยะเวลาทำงานในโหมด Quiet<sup><a href="#fn2">2</a></sup></span></li>
+      <li><span class="n">5,200<small>mAh</small></span><span class="l">แบตเตอรี่ Li-ion 14.4V</span></li>
     </ul>
   </section>
 
-  <!-- ============ BUY-FROM STRIP ============ -->
+  <!-- ============ 4 · CLOSER LOOK · tiles with "+" detail ============ -->
+  <section class="p-sec" aria-labelledby="h-look">
+    <div class="p-head">
+      <h2 class="p-h2" id="h-look">ทำความรู้จัก Ultra T20</h2>
+    </div>
+    <div class="look">
+      <article class="look-card">
+        <div class="look-copy"><p class="eyebrow">นำทาง</p><h3>เห็นทางก่อนชน</h3></div>
+        <img src="product-assets/t20-robot-top.webp" alt="Ultra T20 มุมบน เห็นป้อมเลเซอร์" width="954" height="636" loading="lazy">
+        <button class="look-more" data-dialog="dlg-nav" aria-label="อ่านเพิ่มเติม: ระบบนำทาง"><span aria-hidden="true">+</span></button>
+      </article>
+      <article class="look-card">
+        <div class="look-copy"><p class="eyebrow">ถูพื้น</p><h3>ม็อบคู่หมุน ถึงแนวผนัง</h3></div>
+        <img src="product-assets/t20-robot-angle.webp" alt="Ultra T20 มุมเฉียงด้านหน้า" width="1100" height="760" loading="lazy">
+        <button class="look-more" data-dialog="dlg-mop" aria-label="อ่านเพิ่มเติม: ระบบถูพื้น"><span aria-hidden="true">+</span></button>
+      </article>
+      <article class="look-card">
+        <div class="look-copy"><p class="eyebrow">บ้านที่มีสัตว์เลี้ยง</p><h3>แปรงยาง ลดผมพัน</h3></div>
+        <img src="product-assets/t20-robot-side.webp" alt="Ultra T20 มุมด้านข้าง" width="1400" height="568" loading="lazy">
+        <button class="look-more" data-dialog="dlg-brush" aria-label="อ่านเพิ่มเติม: แปรงยางและแรงดูด"><span aria-hidden="true">+</span></button>
+      </article>
+    </div>
+
+    <dialog class="dlg" id="dlg-nav" aria-labelledby="dlg-nav-t">
+      <button class="dlg-x" aria-label="ปิด">×</button>
+      <p class="eyebrow">นำทาง</p><h3 id="dlg-nav-t">เห็นทางก่อนชน</h3>
+      <p><b>ระบบนำทางด้วยเลเซอร์</b> สร้างแผนที่บ้าน แล้วใช้ <b>Front Line Laser</b> ตรวจจับสิ่งกีดขวางด้านหน้าระหว่างทำงาน</p>
+      <p>แผนที่ใช้งานต่อในแอป เลือกทำความสะอาดทีละห้องหรือเฉพาะโซน และกำหนดพื้นที่ห้ามเข้าได้</p>
+    </dialog>
+    <dialog class="dlg" id="dlg-mop" aria-labelledby="dlg-mop-t">
+      <button class="dlg-x" aria-label="ปิด">×</button>
+      <p class="eyebrow">ถูพื้น</p><h3 id="dlg-mop-t">ม็อบคู่หมุน ถึงแนวผนัง</h3>
+      <p><b>ม็อบคู่หมุน</b> ทำงานคู่กับแปรงข้าง และม็อบยืดออกเพื่อทำความสะอาดตามแนวผนังและมุมห้อง</p>
+      <p>เมื่อเซ็นเซอร์ <b>Ultrasonic</b> ตรวจพบพรม เครื่องจะยกชุดม็อบขึ้นอัตโนมัติขณะทำความสะอาดพรม</p>
+    </dialog>
+    <dialog class="dlg" id="dlg-brush" aria-labelledby="dlg-brush-t">
+      <button class="dlg-x" aria-label="ปิด">×</button>
+      <p class="eyebrow">บ้านที่มีสัตว์เลี้ยง</p><h3 id="dlg-brush-t">แปรงยาง ลดผมพัน</h3>
+      <p><b>แปรงยาง</b> ช่วยลดปัญหาเส้นผมพัน เหมาะกับบ้านที่มีสัตว์เลี้ยง</p>
+      <p>แรงดูดสูงสุด <b>22,000Pa</b> ถังเก็บฝุ่นในตัวเครื่อง 250 มล. และแท่นเก็บฝุ่นจากตัวเครื่องลงถุงให้อัตโนมัติ</p>
+    </dialog>
+  </section>
+
+  <!-- ============ 5 · OMNIBASE ============ -->
+  <section class="p-omni" id="omnibase" aria-labelledby="h-omni">
+    <div class="omni-grid">
+      <div class="omni-copy">
+        <p class="eyebrow">OmniBase</p>
+        <h2 class="p-h2" id="h-omni">แท่นเดียว<br>ดูแลตัวเองครบ</h2>
+        <p class="p-body">ทุกครั้งที่กลับแท่น Ultra T20 จะ<b>ซักและเป่าม็อบให้แห้ง</b> เติมน้ำสะอาดเข้าตัวเครื่อง และ<b>ดูดฝุ่นลงถุงเก็บฝุ่น</b> ลดการสัมผัสฝุ่นโดยตรง และแยกน้ำสะอาดกับน้ำเสียไว้คนละถัง</p>
+        <ul class="omni-stats">
+          <li><span class="n">5<small>ลิตร</small></span><span class="l">ถังน้ำสะอาด</span></li>
+          <li><span class="n">4.2<small>ลิตร</small></span><span class="l">ถังน้ำเสีย แยกจากน้ำสะอาด</span></li>
+          <li><span class="n"><small>ประมาณ</small>2.8<small>ลิตร</small></span><span class="l">ถุงเก็บฝุ่นอัตโนมัติ</span></li>
+        </ul>
+      </div>
+      <div class="omni-art">
+        <img src="product-assets/t20-station-center.webp" alt="แท่น OmniBase ของ Ultra T20 มุมด้านหน้า" width="1031" height="1100" loading="lazy">
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ 6 · APP ============ -->
+  <section class="p-sec p-app" aria-labelledby="h-app">
+    <div class="p-head">
+      <p class="eyebrow">แอป</p>
+      <h2 class="p-h2" id="h-app">สั่งงานได้จากมือถือ</h2>
+      <p class="p-body">ควบคุมผ่านแอป <b>Smart Mamibot</b> หรือ <b>Smart Life</b></p>
+    </div>
+    <ul class="app-list">
+      <li><svg viewBox="0 0 32 32" aria-hidden="true"><path d="M5 8l7-3 8 3 7-3v19l-7 3-8-3-7 3z M12 5v19 M20 8v19" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"/></svg><span>สร้างแผนที่บ้าน</span></li>
+      <li><svg viewBox="0 0 32 32" aria-hidden="true"><rect x="5" y="5" width="22" height="22" rx="2" fill="none" stroke="currentColor" stroke-width="1.8"/><path d="M5 16h11V5 M16 16v11" fill="none" stroke="currentColor" stroke-width="1.8"/></svg><span>เลือกห้องหรือโซน</span></li>
+      <li><svg viewBox="0 0 32 32" aria-hidden="true"><circle cx="16" cy="16" r="11" fill="none" stroke="currentColor" stroke-width="1.8"/><path d="M8.2 8.2l15.6 15.6" stroke="currentColor" stroke-width="1.8"/></svg><span>กำหนดพื้นที่ห้ามเข้า</span></li>
+      <li><svg viewBox="0 0 32 32" aria-hidden="true"><circle cx="16" cy="17" r="10" fill="none" stroke="currentColor" stroke-width="1.8"/><path d="M16 11v6l4 3 M12 4h8" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg><span>ตั้งเวลาทำความสะอาด</span></li>
+      <li><svg viewBox="0 0 32 32" aria-hidden="true"><path d="M6 10h20 M6 22h20" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/><circle cx="12" cy="10" r="3" fill="#fff" stroke="currentColor" stroke-width="1.8"/><circle cx="21" cy="22" r="3" fill="#fff" stroke="currentColor" stroke-width="1.8"/></svg><span>ปรับแรงดูดและปริมาณน้ำ</span></li>
+    </ul>
+  </section>
+
+  <!-- ============ 7 · IN THE BOX ============ -->
+  <section class="p-sec p-box" aria-labelledby="h-box">
+    <div class="p-head">
+      <h2 class="p-h2" id="h-box">ในชุดมีอะไรบ้าง</h2>
+    </div>
+    <figure class="box-fig">
+      <img src="product-assets/t20-inbox.webp" alt="ชุดสินค้า Ultra T20 หุ่นยนต์ แท่น OmniBase และอุปกรณ์เสริม" width="1254" height="1254" loading="lazy">
+      <figcaption>[รายการอุปกรณ์ในกล่อง · ยืนยันจาก packing list]</figcaption>
+    </figure>
+  </section>
+
+  <!-- ============ 8 · TECH SPECS ============ -->
+  <section class="p-sec p-specs" id="specs" aria-labelledby="h-specs">
+    <div class="p-head">
+      <h2 class="p-h2" id="h-specs">สเปก</h2>
+      <p class="p-body">Bwell Ultra T20 OmniBase<sup><a href="#fn1">1</a></sup></p>
+    </div>
+    <div class="specs">
+      <section><h3>หุ่นยนต์</h3><dl>
+        <dt>แรงดูดสูงสุด</dt><dd>22,000Pa</dd>
+        <dt>กำลังไฟ</dt><dd>75W</dd>
+        <dt>แบตเตอรี่</dt><dd>Li-ion 5,200mAh, 14.4V</dd>
+        <dt>ระยะเวลาทำงาน</dt><dd>มากกว่า 200 นาที (โหมด Quiet)</dd>
+        <dt>ระยะเวลาชาร์จ</dt><dd>น้อยกว่า 7 ชั่วโมง</dd>
+        <dt>ถังเก็บฝุ่นตัวเครื่อง</dt><dd>250 มล.</dd>
+        <dt>ถังน้ำตัวเครื่อง</dt><dd>70 มล.</dd>
+        <dt>ขนาด</dt><dd>Ø345 × สูง 103.5 มม.</dd>
+        <dt>น้ำหนัก</dt><dd>ประมาณ 3.8 กก.</dd>
+      </dl></section>
+      <section><h3>แท่น OmniBase</h3><dl>
+        <dt>ถังน้ำสะอาด</dt><dd>5 ลิตร</dd>
+        <dt>ถังน้ำเสีย</dt><dd>4.2 ลิตร</dd>
+        <dt>ถุงเก็บฝุ่น</dt><dd>ประมาณ 2.8 ลิตร</dd>
+        <dt>ขนาด</dt><dd>51 × 34.5 × 48.2 ซม.</dd>
+        <dt>น้ำหนัก</dt><dd>ประมาณ 7.6 กก.</dd>
+      </dl></section>
+      <section><h3>ระบบและการใช้งาน</h3><dl>
+        <dt>นำทาง</dt><dd>เลเซอร์ พร้อม Front Line Laser</dd>
+        <dt>ตรวจจับพรม</dt><dd>เซ็นเซอร์ Ultrasonic ยกม็อบอัตโนมัติ</dd>
+        <dt>ถูพื้น</dt><dd>ม็อบคู่หมุน ยืดออกตามแนวผนัง</dd>
+        <dt>แปรงหลัก</dt><dd>แปรงยาง</dd>
+        <dt>แอป</dt><dd>Smart Mamibot หรือ Smart Life</dd>
+        <dt>การรับประกัน</dt><dd>1 ปี</dd>
+      </dl></section>
+    </div>
+  </section>
+
+  <!-- ============ 9 · COMPARE ============ -->
+  <section class="p-sec p-compare" id="compare" aria-labelledby="h-cmp">
+    <div class="p-head">
+      <h2 class="p-h2" id="h-cmp">เลือกรุ่นที่ใช่สำหรับบ้านคุณ</h2>
+      <p class="p-body">หุ่นยนต์ดูดฝุ่น Bwell ทุกรุ่น<sup><a href="#fn1">1</a></sup></p>
+    </div>
+    <div class="cmp-wrap">
+      <table class="cmp">
+        <caption class="sr-only">เปรียบเทียบหุ่นยนต์ดูดฝุ่น Bwell</caption>
+        <thead><tr>
+          <th scope="col" class="cmp-lead"><span class="sr-only">คุณสมบัติ</span></th>
+          <th scope="col" class="is-this"><img src="product-assets/t20-robot-front.webp" alt="" width="1100" height="841" loading="lazy"><span class="cmp-new">ใหม่</span><span class="cmp-name">Ultra T20</span><span class="cmp-price">฿17,990</span><a class="pill pill-fill pill-sm" href="https://bwell.co.th/product/robot-vacuum-cleaner-bwell-ultra-t20/" data-nav="pdp/t20/compare/t20">สั่งซื้อ</a></th>
+          <th scope="col"><img src="product-assets/cmp-l6c.webp" alt="" width="700" height="700" loading="lazy"><span class="cmp-new"></span><span class="cmp-name">L6C</span><span class="cmp-price">฿17,990</span><a class="pill pill-line pill-sm" href="https://bwell.co.th/product/%e0%b8%ab%e0%b8%b8%e0%b9%88%e0%b8%99%e0%b8%a2%e0%b8%99%e0%b8%95%e0%b9%8c%e0%b8%94%e0%b8%b9%e0%b8%94%e0%b8%9d%e0%b8%b8%e0%b9%88%e0%b8%99-bwell-%e0%b8%a3%e0%b8%b8%e0%b9%88%e0%b8%99-l6c/" data-nav="pdp/t20/compare/l6c">ดูรายละเอียด</a></th>
+          <th scope="col"><img src="product-assets/cmp-l0.webp" alt="" width="700" height="700" loading="lazy"><span class="cmp-new"></span><span class="cmp-name">L0</span><span class="cmp-price">฿11,990</span><a class="pill pill-line pill-sm" href="https://bwell.co.th/product/%e0%b8%ab%e0%b8%b8%e0%b9%88%e0%b8%99%e0%b8%a2%e0%b8%99%e0%b8%95%e0%b9%8c%e0%b8%94%e0%b8%b9%e0%b8%94%e0%b8%9d%e0%b8%b8%e0%b9%88%e0%b8%99-bwell-l0/" data-nav="pdp/t20/compare/l0">ดูรายละเอียด</a></th>
+          <th scope="col"><img src="product-assets/cmp-y1.webp" alt="" width="700" height="634" loading="lazy"><span class="cmp-new"></span><span class="cmp-name">Y1</span><span class="cmp-price">฿7,990</span><a class="pill pill-line pill-sm" href="https://bwell.co.th/product/%e0%b8%ab%e0%b8%b8%e0%b9%88%e0%b8%99%e0%b8%a2%e0%b8%99%e0%b8%95%e0%b9%8c%e0%b8%94%e0%b8%b9%e0%b8%94%e0%b8%9d%e0%b8%b8%e0%b9%88%e0%b8%99-bwell-%e0%b8%a3%e0%b8%b8%e0%b9%88%e0%b8%99-y1/" data-nav="pdp/t20/compare/y1">ดูรายละเอียด</a></th>
+        </tr></thead>
+        <tbody>
+          <tr><th scope="row">แรงดูดสูงสุด</th><td class="is-this">22,000Pa</td><td>5,000Pa</td><td>2,000Pa</td><td>2,100Pa</td></tr>
+          <tr><th scope="row">ระบบนำทาง</th><td class="is-this">เลเซอร์ + Front Line Laser</td><td>LDS Mapping</td><td>LDS Mapping</td><td>Gyroscope (Zig-Zag)</td></tr>
+          <tr><th scope="row">แท่น</th><td class="is-this">ซักและเป่าม็อบแห้ง เติมน้ำ เก็บฝุ่นอัตโนมัติ</td><td>เก็บฝุ่นอัตโนมัติ</td><td class="na">ไม่ระบุ</td><td class="na">ไม่ระบุ</td></tr>
+          <tr><th scope="row">ถุงเก็บฝุ่น</th><td class="is-this">ประมาณ 2.8 ลิตร</td><td>3 ลิตร</td><td class="na">ไม่ระบุ</td><td class="na">ไม่ระบุ</td></tr>
+          <tr><th scope="row">ตรวจจับพรม</th><td class="is-this">Ultrasonic ยกม็อบอัตโนมัติ</td><td>Carpet Boost เพิ่มแรงดูดบนพรม</td><td class="na">ไม่ระบุ</td><td class="na">ไม่ระบุ</td></tr>
+          <tr><th scope="row">แบตเตอรี่</th><td class="is-this">5,200mAh</td><td>3,200mAh</td><td>2,600mAh</td><td>2,600mAh</td></tr>
+          <tr><th scope="row">ระยะเวลาทำงาน</th><td class="is-this">มากกว่า 200 นาที<sup><a href="#fn2">2</a></sup></td><td>สูงสุด 120 นาที</td><td>สูงสุด 120 นาที</td><td>สูงสุด 120 นาที</td></tr>
+          <tr><th scope="row">ถังเก็บฝุ่นตัวเครื่อง</th><td class="is-this">250 มล.</td><td>300 มล.</td><td>430 มล.</td><td>200 มล.</td></tr>
+          <tr><th scope="row">ถังน้ำตัวเครื่อง</th><td class="is-this">70 มล.</td><td>300 มล.</td><td>210 มล.</td><td>200 มล.</td></tr>
+          <tr><th scope="row">การรับประกัน</th><td class="is-this">1 ปี</td><td>2 ปี</td><td>2 ปี</td><td>2 ปี</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </section>
+
+  <!-- ============ 10 · TRUST ============ -->
+  <section class="trust" aria-label="ทำไมต้องซื้อกับ Bwell">
+    <h2 class="trust-title">ทำไมต้องซื้อกับ Bwell</h2>
+    <ul class="trust-list">
+      <li><svg viewBox="0 0 32 32" aria-hidden="true"><rect x="6" y="9" width="20" height="16" rx="3" fill="none" stroke="currentColor" stroke-width="2"/><path d="M11 9V7a5 5 0 0 1 10 0v2M16 15v4" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg><h3>รับประกัน 1 ปี</h3><p>ลงทะเบียนรับประกันออนไลน์ได้ที่ bwell.co.th</p></li>
+      <li><svg viewBox="0 0 32 32" aria-hidden="true"><path d="M6 8h20v13H13l-5 4v-4H6z" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/><path d="M11 13h10M11 17h6" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg><h3>ปรึกษาผู้เชี่ยวชาญผ่าน LINE</h3><p>ช่วยเลือกรุ่นให้พอดีกับบ้านและการใช้งาน</p></li>
+      <li><svg viewBox="0 0 32 32" aria-hidden="true"><path d="M16 28s9-8.2 9-15a9 9 0 0 0-18 0c0 6.8 9 15 9 15z" fill="none" stroke="currentColor" stroke-width="2"/><circle cx="16" cy="13" r="3.2" fill="none" stroke="currentColor" stroke-width="2"/></svg><h3>ลองของจริงที่หน้าร้าน</h3><p>[ยืนยันสาขาที่มี Ultra T20 จัดแสดง]</p></li>
+      <li><svg viewBox="0 0 32 32" aria-hidden="true"><path d="M16 4l10 4v7c0 6.5-4.3 11.2-10 13-5.7-1.8-10-6.5-10-13V8l10-4z" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/><path d="M11.5 16.2l3.2 3.2 6-6.4" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg><h3>ดูแลสุขภาพคนไทยตั้งแต่ปี 2011</h3><p>แบรนด์ไทยที่เริ่มจากการทำงานร่วมกับแพทย์</p></li>
+    </ul>
+  </section>
+
   <section class="buyfrom" aria-label="ช่องทางสั่งซื้อ">
-    <p class="buyfrom-title">สั่งซื้อได้ที่ร้านค้าทางการ</p>
+    <p class="buyfrom-title">สั่งซื้อ Ultra T20 ได้ที่ร้านค้าทางการ</p>
     <ul class="buyfrom-list">
-      <li><a href="#" data-nav="home/buyfrom/bwellshop">Bwell Shop</a></li>
-      <li><a href="#" data-nav="home/buyfrom/shopee">Shopee</a></li>
-      <li><a href="#" data-nav="home/buyfrom/lazada">Lazada</a></li>
-      <li><a href="#" data-nav="home/buyfrom/tiktok">TikTok Shop</a></li>
-      <li><a href="#" data-nav="home/buyfrom/nocnoc">NocNoc</a></li>
-      <li><a href="#" data-nav="home/buyfrom/stores">ค้นหาสาขา ›</a></li>
+      <li><a href="https://bwell.co.th/product/robot-vacuum-cleaner-bwell-ultra-t20/" data-nav="pdp/t20/buyfrom/bwellshop">Bwell Shop</a></li>
+      <li><a href="#" data-nav="pdp/t20/buyfrom/shopee">Shopee</a></li>
+      <li><a href="#" data-nav="pdp/t20/buyfrom/lazada">Lazada</a></li>
+      <li><a href="#" data-nav="pdp/t20/buyfrom/tiktok">TikTok Shop</a></li>
+      <li><a href="#" data-nav="pdp/t20/buyfrom/nocnoc">NocNoc</a></li>
+      <li><a href="#" data-nav="pdp/t20/buyfrom/stores">ค้นหาสาขา ›</a></li>
     </ul>
   </section>
 </main>
@@ -694,15 +975,17 @@ sup a{color:inherit;opacity:.8}
 <footer class="ft" aria-label="ส่วนท้าย">
   <div class="ft-inner">
     <ol class="ft-notes">
-      <li id="fn1">ขนาดห้อง ขั้นตอนการกรอง อัตราลดความชื้น และ BTU อ้างอิงจากชื่อและรายละเอียดสินค้าบน bwell.co.th ณ วันที่ 29 ก.ย. 2026 ผลการใช้งานจริงขึ้นอยู่กับสภาพห้อง</li>
-      <li>ภาพสินค้า Ultra T20 และภาพห้องในส่วนแกลเลอรีเป็นภาพประกอบ</li>
+      <li id="fn1">สเปกของทุกรุ่นอ้างอิงจากหน้าสินค้าบน bwell.co.th ณ วันที่ 29 ก.ย. 2026 คำว่า "ไม่ระบุ" หมายถึงหน้าสินค้าไม่ได้ระบุข้อมูลนี้</li>
+      <li id="fn2">ระยะเวลาทำงานวัดในโหมด Quiet ระยะเวลาจริงขึ้นอยู่กับโหมด แรงดูด และสภาพพื้น</li>
+      <li id="fn3">ราคาที่แสดงบน bwell.co.th ณ วันที่ 29 ก.ย. 2026 ราคาและโปรโมชันอาจต่างกันในแต่ละช่องทาง</li>
     </ol>
+    <nav class="ft-bc" aria-label="ตำแหน่งหน้า"><a href="#">Bwell</a> › <a href="#">หุ่นยนต์ดูดฝุ่น</a> › <span>Ultra T20</span></nav>
     <nav class="ft-dir" aria-label="สารบัญเว็บไซต์">
       <details open><summary>สินค้า</summary><ul><li><a href="#">เครื่องฟอกอากาศ</a></li><li><a href="#">เครื่องลดความชื้น</a></li><li><a href="#">แอร์เคลื่อนที่</a></li><li><a href="#">เครื่องกรองน้ำ</a></li><li><a href="#">เครื่องทำน้ำอุ่น</a></li><li><a href="#">หุ่นยนต์ดูดฝุ่น</a></li><li><a href="#">เก้าอี้เพื่อสุขภาพ</a></li><li><a href="#">Bwell Beauty</a></li><li><a href="#">ไส้กรองและอะไหล่</a></li></ul></details>
       <details open><summary>ซื้อที่ไหน</summary><ul><li><a href="#">Bwell Shop</a></li><li><a href="#">Shopee</a></li><li><a href="#">Lazada</a></li><li><a href="#">TikTok Shop</a></li><li><a href="#">NocNoc</a></li><li><a href="#">ค้นหาสาขา</a></li><li><a href="#">สั่งซื้อในนามองค์กร</a></li></ul></details>
       <details open><summary>บริการหลังการขาย</summary><ul><li><a href="#">ลงทะเบียนรับประกัน</a></li><li><a href="#">คู่มือการใช้งาน</a></li><li><a href="#">คำถามที่พบบ่อย</a></li><li><a href="#">เคลมสินค้าและคืนเงิน</a></li><li><a href="#">ติดต่อเรา</a></li></ul></details>
       <details open><summary>เกี่ยวกับ Bwell</summary><ul><li><a href="#">เรื่องราวของเรา</a></li><li><a href="#">ทำไมต้อง Bwell</a></li><li><a href="#">ลูกค้าองค์กรและโรงพยาบาล</a></li><li><a href="#">บทความสุขภาพ</a></li><li><a href="#">สมัครตัวแทนจำหน่าย</a></li></ul></details>
-      <details open><summary>ติดตาม Bwell</summary><ul><li><a href="#">LINE Official Account</a></li><li><a href="#">Facebook</a></li><li><a href="#">TikTok</a></li><li><a href="#">แอป Bwell Smart [ยืนยันชื่อแอป]</a></li></ul></details>
+      <details open><summary>ติดตาม Bwell</summary><ul><li><a href="#">LINE Official Account</a></li><li><a href="#">Facebook</a></li><li><a href="#">TikTok</a></li></ul></details>
     </nav>
     <div class="ft-legal">
       <p>ช่องทางอื่นในการสั่งซื้อ: <a href="#">ค้นหาสาขา</a> หรือโทร 02-294-3211</p>
@@ -715,53 +998,41 @@ sup a{color:inherit;opacity:.8}
 
 <!-- ============ SPEC (for agency) ============ -->
 <section class="spec" id="spec">
-  <h2>Spec: Bwell Homepage (apple.com/th layout pattern)</h2>
-  <p>หน้าแรกนี้ใช้ <b>ลำดับและจังหวะของ layout</b> แบบ apple.com/th: ribbon → hero เต็มจอ 2 ชุด (มืด 1 สว่าง 1) → promo grid 2 คอลัมน์ → แกลเลอรีเลื่อนได้ → footer แบบ directory โค้ด ภาพ และ copy ทั้งหมดเป็นของ Bwell เขียนใหม่ nav ใช้โครงสร้าง B+A ที่ล็อกแล้วโดยไม่เปลี่ยน ราคาไม่แสดงบนหน้าแรกตาม pattern (แสดงที่หน้าสินค้า)</p>
+  <h2>Spec: Bwell Product Page · Ultra T20 (apple.com/th layout pattern)</h2>
+  <p>หน้าสินค้านี้ใช้<b>ลำดับและจังหวะของ layout</b> แบบหน้าสินค้าของ apple.com/th ได้แก่ local nav แบบ sticky → hero พร้อมราคา → ไฮไลต์แบบเลื่อน → ตัวเลขสำคัญ → การ์ดรายละเอียดที่กด + → section ฟีเจอร์ → สเปก → ตารางเปรียบเทียบรุ่น โค้ด ภาพ และ copy เป็นของ Bwell ทั้งหมด ภาพสินค้าทุกภาพและโลโก้มาจากไฟล์จริงบน bwell.co.th สเปกทุกบรรทัดอ้างอิงหน้าสินค้าจริง ณ 29 ก.ย. 2026</p>
 
   <h3>Section map</h3>
   <div class="tablewrap"><table>
-    <thead><tr><th>#</th><th>Section</th><th>Pattern</th><th>Bwell content</th><th>ขนาด (desktop / mobile)</th><th>Flatsome</th></tr></thead>
+    <thead><tr><th>#</th><th>Section</th><th>Pattern</th><th>Bwell content</th><th>Flatsome build</th></tr></thead>
     <tbody>
-      <tr><td>0</td><td>Global nav</td><td>Bar 44px โปร่ง + flyout</td><td>B+A 8 หมวด (ไม่เปลี่ยน)</td><td>44 / 48px</td><td>Header Builder + Mega Menu + CSS/JS จาก nav prototype</td></tr>
-      <tr><td>1</td><td>Ribbon</td><td>1 บรรทัด + ลิงก์</td><td>แคมเปญปัจจุบัน [placeholder]</td><td>auto ~52px</td><td>Header "Top bar" หรือ UX Block ใต้ header</td></tr>
-      <tr><td>2</td><td>Hero 1 (มืด)</td><td>ภาพเต็มจอ + headline + 2 ปุ่ม</td><td>Ultra T20 · art direction: ภาพกว้าง desktop / ภาพสูง mobile</td><td>min 692px · text ซ้าย / 740px · text บนกลาง</td><td>Section full width + Banner (bg image responsive) ห้ามใช้ Slider</td></tr>
-      <tr><td>3</td><td>Hero 2 (สว่าง)</td><td>Headline บนกลาง + สินค้าด้านล่าง</td><td>AP-H3029US</td><td>min 692px / 620px</td><td>Section bg #F5F7FA · Text + Button ×2 + Image</td></tr>
-      <tr><td>4</td><td>Promo grid</td><td>2 คอลัมน์ gap 12px ขอบ 12px</td><td>BDH-30A · RO · Bjorn · BSL-01 · FELIX · BPAC</td><td>tile 580px / 500px เต็มความกว้าง</td><td>Row 2 col (gap 12) · UX Block "tile" reusable 6 ชิ้น</td></tr>
-      <tr><td>5</td><td>Gallery</td><td>สไลด์เต็มกว้าง เห็นขอบสไลด์ข้างเคียง · auto 6 วิ · ปุ่มหยุด · จุดนำทาง</td><td>3 ฉากไลฟ์สไตล์</td><td>สัดส่วน 16:9 max 1100px / 4:5</td><td>Flatsome Slider ได้เฉพาะจุดนี้ (ต้องมีปุ่มหยุดและ swipe)</td></tr>
-      <tr><td>6</td><td>Trust strip</td><td>ส่วนเพิ่มของ Bwell</td><td>4 ข้อ</td><td>4 คอลัมน์ / 2×2</td><td>Icon Box ×4</td></tr>
-      <tr><td>7</td><td>Buy-from strip</td><td>ส่วนเพิ่มของ Bwell</td><td>5 ร้านค้าทางการ + ค้นหาสาขา</td><td>1 แถว / wrap</td><td>Button row หรือ logo row</td></tr>
-      <tr><td>8</td><td>Footer</td><td>Footnote → directory 5 คอลัมน์ → legal</td><td>ตาม Blueprint</td><td>5 คอลัมน์ / accordion</td><td>Footer Block + Menu 5 ชุด</td></tr>
-    </tbody>
-  </table></div>
-
-  <h3>Design tokens</h3>
-  <div class="tablewrap"><table>
-    <thead><tr><th>Token</th><th>ค่า</th><th>ใช้ที่</th></tr></thead>
-    <tbody>
-      <tr><td>Headline hero</td><td>Kanit 600 · clamp(40px, 5.2vw, 64px) · line-height 1.1</td><td>Hero 1–2</td></tr>
-      <tr><td>Subhead</td><td>Kanit 400 · clamp(21px, 2.4vw, 28px)</td><td>ใต้ headline</td></tr>
-      <tr><td>Tile title / sub</td><td>Kanit 600 clamp(28px, 3.2vw, 40px) / Kanit 400 clamp(17px, 1.8vw, 21px)</td><td>Promo grid</td></tr>
-      <tr><td>Button</td><td>Pill 999px · สูง 44px · Poppins/Kanit 500 16px · เติม #008AD0 (hover #005D9D) · เส้น 1px #008AD0</td><td>ทุก CTA: "สั่งซื้อ" = เติม · "ดูรายละเอียด" = เส้น</td></tr>
-      <tr><td>Tile background</td><td>#F5F7FA · #FFFFFF · #EAF3FA · #F7F1EE (Beauty)</td><td>ภาพสินค้าพื้นขาวใช้ <code>mix-blend-mode: multiply</code> ให้กลืนกับพื้น tile</td></tr>
-      <tr><td>Hero มืด</td><td>#0B4F85 → #008AD0 (ตามภาพ key visual) · ตัวอักษรขาว</td><td>Hero 1</td></tr>
-      <tr><td>Spacing</td><td>ขอบ section 12px · gap tile 12px · padding บน copy 52px (desktop) / 44px (mobile)</td><td>ทุก section</td></tr>
-      <tr><td>Motion</td><td>ข้อความ fade-up 0.6s ครั้งเดียวเมื่อเข้าจอ · gallery เลื่อน 0.6s · ปิดทั้งหมดเมื่อ prefers-reduced-motion</td><td></td></tr>
-      <tr><td>ภาพ</td><td>WebP · hero กว้าง 2000px · tile 900px · ภาพแรก fetchpriority="high" ที่เหลือ lazy</td><td>รวมทั้งหน้าประมาณ 0.55MB</td></tr>
+      <tr><td>0</td><td>Global nav</td><td>B+A 44px ไม่ sticky บนหน้าสินค้า</td><td>โลโก้จริง (PNG) · 8 หมวด</td><td>Header builder เดิม</td></tr>
+      <tr><td>1</td><td>Local nav</td><td>Sticky 52px · ชื่อรุ่น + anchor + ปุ่มสั่งซื้อ</td><td>ภาพรวม · ไฮไลต์ · OmniBase · สเปก · เปรียบเทียบ</td><td>UX Block + sticky CSS</td></tr>
+      <tr><td>2</td><td>Hero</td><td>ชื่อรุ่นใหญ่ · ภาพสินค้า · ราคา + 2 ปุ่ม</td><td>แท่น + หุ่นยนต์ ฿17,990</td><td>Section + Row</td></tr>
+      <tr><td>3</td><td>ไฮไลต์</td><td>การ์ดเลื่อนแนวนอน + ปุ่มลูกศร</td><td>5 ภาพจากหน้าสินค้า</td><td>Slider (Flickity) ตั้ง cell align left</td></tr>
+      <tr><td>4</td><td>ตัวเลขสำคัญ</td><td>แถบมืด 3 ตัวเลข</td><td>22,000Pa · มากกว่า 200 นาที · 5,200mAh</td><td>Section bg #0B1C2C</td></tr>
+      <tr><td>5</td><td>ทำความรู้จัก</td><td>การ์ด + ปุ่ม + เปิด modal</td><td>นำทาง · ถูพื้น · แปรงยาง</td><td>Lightbox element</td></tr>
+      <tr><td>6</td><td>OmniBase</td><td>ข้อความ + stats + ภาพ</td><td>5 / 4.2 / ประมาณ 2.8 ลิตร</td><td>Row 2 คอลัมน์</td></tr>
+      <tr><td>7</td><td>แอป</td><td>ไอคอน 5 ความสามารถ</td><td>Smart Mamibot หรือ Smart Life</td><td>Icon box</td></tr>
+      <tr><td>8</td><td>ในชุด</td><td>ภาพ packshot เต็ม</td><td>ภาพอุปกรณ์จริง</td><td>Image element</td></tr>
+      <tr><td>9</td><td>สเปก</td><td>3 กลุ่ม dl</td><td>สเปกครบจากหน้าสินค้า</td><td>WooCommerce attributes</td></tr>
+      <tr><td>10</td><td>เปรียบเทียบ</td><td>ตาราง 4 รุ่น · รุ่นนี้ไฮไลต์</td><td>T20 · L6C · L0 · Y1</td><td>Table + sticky header</td></tr>
+      <tr><td>11</td><td>Trust · Buy-from · Footer</td><td>เหมือนหน้าแรก + breadcrumb</td><td>รับประกัน 1 ปี</td><td>Global footer</td></tr>
     </tbody>
   </table></div>
 
   <h3>Tracking</h3>
-  <p>ทุกปุ่มและลิงก์บนหน้ามี <code>data-nav</code> เช่น <code>home/hero/t20/buy</code> · <code>home/tile/dehum/learn</code> · <code>home/buyfrom/shopee</code> ให้ GTM ยิง event <code>home_click</code> พร้อมค่า data-nav เพื่อวัดว่า section ไหนพาไปซื้อได้มากที่สุด</p>
+  <p>ทุกลิงก์มี <code>data-nav</code> รูปแบบ <code>pdp/t20/section/item</code> ส่งเข้า GTM เป็น event <code>pdp_click</code> ปุ่มสั่งซื้อทุกจุดควรยิง <code>begin_checkout</code> หรือ <code>outbound_marketplace</code> ตามปลายทาง การเปิด modal ยิง <code>pdp_detail_open</code></p>
 
-  <h3>ต้องยืนยันก่อน production</h3>
+  <h3>รอยืนยันก่อน build</h3>
   <div class="tablewrap"><table>
     <thead><tr><th>รายการ</th><th>ตำแหน่ง</th></tr></thead>
     <tbody>
-      <tr><td>ข้อความแคมเปญบน ribbon</td><td>Section 1</td></tr>
-      <tr><td>ระยะเวลารับประกันตามรุ่น</td><td>Trust strip</td></tr>
-      <tr><td>ชื่อแอปที่ใช้จริง (Bwell Smart / Smart Life)</td><td>Footer</td></tr>
-      <tr><td>SKU ใน hero และ tile ตาม campaign calendar Q4 (ตอนนี้: T20, AP-H3029US, BDH-30A, RO, Bjorn, BSL-01, FELIX, BPAC)</td><td>Section 2–4</td></tr>
-      <tr><td>ภาพ Ultra T20 ใช้ key visual ที่สร้างด้วย AI (ป้าย "Dust Box" ถูกต้องในภาพกว้าง) ควรให้ designer ตรวจรายละเอียดก่อนใช้จริง</td><td>Section 2</td></tr>
+      <tr><td>T20 รับประกัน 1 ปี แต่ L6C, L0, Y1 รับประกัน 2 ปี ตามหน้าสินค้า</td><td>สเปก · เปรียบเทียบ · Trust</td></tr>
+      <tr><td>T20 และ L6C ราคาเท่ากัน ฿17,990</td><td>Hero · เปรียบเทียบ</td></tr>
+      <tr><td>รายการอุปกรณ์ในกล่อง</td><td>Section 8</td></tr>
+      <tr><td>สาขาที่มี Ultra T20 จัดแสดง</td><td>Trust</td></tr>
+      <tr><td>ลิงก์ร้าน Shopee · Lazada · TikTok Shop · NocNoc ของ T20</td><td>Buy-from</td></tr>
+      <tr><td>ภาพไฮไลต์ 5 ภาพมีขนาด 670px จากเว็บ ต้องการไฟล์ต้นฉบับความละเอียดสูง</td><td>Section 3</td></tr>
     </tbody>
   </table></div>
 </section>
@@ -878,46 +1149,56 @@ sup a{color:inherit;opacity:.8}
 </script>
 <script>
 (function(){
-  /* ---- Gallery carousel: centered slide, peeking neighbours ---- */
-  const vp=document.getElementById('gViewport'), track=document.getElementById('gTrack');
-  const slides=[...track.querySelectorAll('.g-slide')], dotsWrap=document.getElementById('gDots'), play=document.getElementById('gPlay');
   const reduce=window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-  let cur=0, timer=null, playing=!reduce;
-  const dots=slides.map((s,i)=>{ const b=document.createElement('button'); b.type='button'; b.setAttribute('role','tab'); b.setAttribute('aria-label','สไลด์ '+(i+1)); b.addEventListener('click',()=>{ go(i); restart(); }); dotsWrap.appendChild(b); return b; });
-  function go(i){
-    cur=(i+slides.length)%slides.length;
-    const s=slides[cur], offset=s.offsetLeft-(vp.clientWidth-s.offsetWidth)/2;
-    track.style.transform='translateX('+(-offset)+'px)';
-    slides.forEach((el,k)=>{ el.classList.toggle('is-current',k===cur); el.setAttribute('aria-hidden',String(k!==cur)); el.querySelectorAll('a').forEach(a=>a.tabIndex=k===cur?0:-1); });
-    dots.forEach((d,k)=>{ d.setAttribute('aria-selected',String(k===cur)); d.tabIndex=k===cur?0:-1; });
-  }
-  function start(){ stop(); if(playing) timer=setInterval(()=>go(cur+1),6000); }
-  function stop(){ if(timer){ clearInterval(timer); timer=null; } }
-  function restart(){ if(playing) start(); }
-  function setPlaying(p){ playing=p; play.dataset.state=p?'playing':'paused'; play.setAttribute('aria-label',p?'หยุดเล่นอัตโนมัติ':'เล่นอัตโนมัติ'); p?start():stop(); }
-  play.addEventListener('click',()=>setPlaying(!playing));
-  slides.forEach((s,k)=>s.addEventListener('click',e=>{ if(k!==cur){ e.preventDefault(); go(k); restart(); } }));
-  dotsWrap.addEventListener('keydown',e=>{ if(e.key==='ArrowRight'||e.key==='ArrowLeft'){ go(cur+(e.key==='ArrowRight'?1:-1)); dots[cur].focus(); restart(); } });
-  let x0=null;
-  vp.addEventListener('pointerdown',e=>{ x0=e.clientX; },{passive:true});
-  vp.addEventListener('pointerup',e=>{ if(x0===null) return; const dx=e.clientX-x0; x0=null; if(Math.abs(dx)>40){ go(cur+(dx<0?1:-1)); restart(); } },{passive:true});
-  vp.addEventListener('mouseenter',stop); vp.addEventListener('mouseleave',restart);
-  vp.addEventListener('focusin',stop); vp.addEventListener('focusout',restart);
-  window.addEventListener('resize',()=>go(cur));
-  if('IntersectionObserver' in window){ new IntersectionObserver(es=>es.forEach(en=>{ en.isIntersecting?restart():stop(); }),{threshold:.3}).observe(vp); }
-  go(0); setPlaying(playing);
 
-  /* ---- Footer directory: open columns on desktop, collapsed accordion on phones ---- */
+  /* ---- Global nav scrolls away on product pages: snap to top before its menus open ---- */
+  const gn=document.getElementById('gn'), barH=()=>gn.offsetHeight;
+  function toTop(){ if(scrollY>0 && scrollY<barH()) window.scrollTo(0,0); }
+  gn.addEventListener('pointerenter',toTop);
+  const burger=document.getElementById('gnBurger'); if(burger) burger.addEventListener('click',toTop,true);
+
+  /* ---- Local nav: stuck state, scroll-spy, mobile menu ---- */
+  const ln=document.getElementById('ln'), tog=document.getElementById('lnToggle'), links=[...ln.querySelectorAll('.ln-menu a')];
+  const onScroll=()=>ln.classList.toggle('is-stuck',ln.getBoundingClientRect().top<=0 && scrollY>barH());
+  addEventListener('scroll',onScroll,{passive:true}); onScroll();
+  function setMenu(open){ ln.classList.toggle('is-open',open); tog.setAttribute('aria-expanded',String(open)); }
+  tog.addEventListener('click',()=>setMenu(!ln.classList.contains('is-open')));
+  links.forEach(a=>a.addEventListener('click',()=>setMenu(false)));
+  document.addEventListener('keydown',e=>{ if(e.key==='Escape') setMenu(false); });
+  if('IntersectionObserver' in window){
+    const secs=links.map(a=>document.querySelector(a.getAttribute('href'))).filter(Boolean);
+    const spy=new IntersectionObserver(es=>es.forEach(en=>{ if(en.isIntersecting){ links.forEach(a=>a.setAttribute('aria-current',String(a.getAttribute('href')==='#'+en.target.id))); } }),{rootMargin:'-45% 0px -50% 0px'});
+    secs.forEach(s=>spy.observe(s));
+  }
+
+  /* ---- Highlights scroller ---- */
+  const track=document.getElementById('hlTrack'), prev=document.getElementById('hlPrev'), next=document.getElementById('hlNext');
+  const step=()=>{ const c=track.querySelector('.hl-card'); return c.offsetWidth+20; };
+  function upd(){ prev.disabled=track.scrollLeft<=4; next.disabled=track.scrollLeft+track.clientWidth>=track.scrollWidth-4; }
+  prev.addEventListener('click',()=>track.scrollBy({left:-step(),behavior:reduce?'auto':'smooth'}));
+  next.addEventListener('click',()=>track.scrollBy({left:step(),behavior:reduce?'auto':'smooth'}));
+  track.addEventListener('scroll',upd,{passive:true}); addEventListener('resize',upd); upd();
+
+  /* ---- "+" detail dialogs ---- */
+  document.querySelectorAll('.look-more').forEach(btn=>{
+    const d=document.getElementById(btn.dataset.dialog); if(!d || !d.showModal) return;
+    btn.addEventListener('click',()=>d.showModal());
+    d.querySelector('.dlg-x').addEventListener('click',()=>d.close());
+    d.addEventListener('click',e=>{ if(e.target===d) d.close(); });
+    d.addEventListener('close',()=>btn.focus());
+  });
+
+  /* ---- Footer directory: columns on desktop, accordion on phones ---- */
   const mq=window.matchMedia('(max-width:734px)'), det=[...document.querySelectorAll('.ft-dir details')];
   function syncFt(){ det.forEach(d=>{ d.open=!mq.matches; }); }
   syncFt(); mq.addEventListener('change',syncFt);
   det.forEach(d=>d.querySelector('summary').addEventListener('click',e=>{ if(!mq.matches) e.preventDefault(); }));
 
-  /* ---- Reveal on scroll (class added only when JS + observer exist, so content is visible without JS) ---- */
+  /* ---- Reveal on scroll (added only by JS, so content shows without it) ---- */
   if(!reduce && 'IntersectionObserver' in window){
-    const els=document.querySelectorAll('.hero-copy, .tile-copy, .gallery-title, .trust-item');
+    const els=document.querySelectorAll('.p-head, .look-card, .omni-copy, .omni-art, .p-nums li, .app-list li, .specs section');
     const io=new IntersectionObserver(es=>es.forEach(en=>{ if(en.isIntersecting){ en.target.classList.add('is-in'); io.unobserve(en.target); } }),{rootMargin:'0px 0px -8% 0px'});
-    els.forEach(el=>{ const r=el.getBoundingClientRect(); if(r.top<innerHeight){ return; } el.classList.add('reveal'); io.observe(el); });
+    els.forEach(el=>{ if(el.getBoundingClientRect().top<innerHeight) return; el.classList.add('reveal'); io.observe(el); });
   }
 })();
 
