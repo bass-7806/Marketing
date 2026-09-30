@@ -122,6 +122,7 @@ body:not(.gn-mobile) .gn-drawer{display:none !important}
 
 /* ===== Homepage (apple.com/th layout pattern, Bwell identity) ===== */
 body{background:#FFFFFF}
+.nw{white-space:nowrap}
 .sr-only{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}
 .ribbon{background:#EAF3FA;text-align:center;padding:14px 16px;font-size:14px;line-height:1.5;color:#1D1D1F}
 .ribbon p{margin:0;max-width:980px;margin-inline:auto}
@@ -185,6 +186,10 @@ sup a{color:inherit;opacity:.8}
 .g-slide{position:relative;flex:0 0 min(1100px,86vw);aspect-ratio:16/9;border-radius:18px;overflow:hidden;background:#EAF3FA;opacity:.55;transition:opacity .6s var(--ease)}
 .g-slide.is-current{opacity:1}
 .g-slide img{width:100%;height:100%;object-fit:cover;display:block}
+.g-slide picture{display:block;width:100%;height:100%}
+.g-slot{background:repeating-linear-gradient(135deg,#EAF3FA 0 18px,#E1ECF6 18px 36px)}
+.g-slot-note{position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:6px;padding:24px 24px 120px;text-align:center;color:#3E5873;font-size:15px}
+.g-slot-note b{font-family:var(--display);font-size:18px;font-weight:600;color:#1D1D1F}
 .g-cap{position:absolute;z-index:1;left:24px;bottom:24px;right:24px;display:flex;align-items:center;gap:14px 18px;flex-wrap:wrap;color:#fff;text-shadow:0 1px 12px rgba(0,0,0,.35)}
 .g-cap::before{content:"";position:absolute;inset:-140px -24px -24px;background:linear-gradient(0deg,rgba(0,0,0,.62),rgba(0,0,0,.28) 55%,rgba(0,0,0,0));z-index:-1;border-radius:0 0 18px 18px}
 .g-kicker{margin:0;font-family:var(--display);font-weight:600;font-size:13px;letter-spacing:.1em;text-transform:uppercase;flex-basis:100%}
@@ -556,8 +561,8 @@ sup a{color:inherit;opacity:.8}
 
 
 <!-- ============ RIBBON ============ -->
-<div class="ribbon" role="region" aria-label="โปรโมชัน">
-  <p>[ข้อความแคมเปญ 1 บรรทัด เช่น 10.10 · ยืนยัน copy จาก Campaign Brief] <a href="#">ดูโปรโมชัน</a></p>
+<div class="ribbon" role="region" aria-label="ข่าวสาร">
+  <p>ใหม่ Ultra T20 OmniBase <span class="nw">ดูด ถู ซัก เป่าแห้ง</span> <span class="nw">จบในแท่นเดียว</span> <a href="https://bwell.co.th/product/robot-vacuum-cleaner-bwell-ultra-t20/" data-nav="home/ribbon/t20">ดูรายละเอียด</a></p>
 </div>
 
 <main id="main">
@@ -652,20 +657,20 @@ sup a{color:inherit;opacity:.8}
 
   <!-- ============ GALLERY · lifestyle carousel ============ -->
   <section class="gallery" aria-roledescription="carousel" aria-label="Bwell ในทุกห้องของบ้าน">
-    <h2 class="gallery-title">ดีต่อสุขภาพ ในทุกห้องของบ้าน</h2>
+    <h2 class="gallery-title">ดีต่อสุขภาพ <span class="nw">ในทุกห้องของบ้าน</span></h2>
     <div class="g-viewport" id="gViewport">
       <ul class="g-track" id="gTrack">
         <li class="g-slide" aria-roledescription="slide" aria-label="1 จาก 3">
-          <img src="home-assets/life-living.webp" alt="ห้องนั่งเล่นกว้าง มีหุ่นยนต์ดูดฝุ่นทำงานบนพรม" loading="lazy">
-          <div class="g-cap"><p class="g-kicker">ห้องนั่งเล่น</p><p class="g-text">พื้นไม้กับพรมในห้องเดียว Ultra T20 ยกม็อบเองเมื่อขึ้นพรม</p><a class="pill pill-light" href="#" data-nav="home/gallery/living">ดูรายละเอียด</a></div>
+          <picture><source media="(max-width:734px)" srcset="home-assets/gal-t20-tall.webp"><img src="home-assets/gal-t20-wide.webp" alt="หุ่นยนต์ดูดฝุ่น Bwell Ultra T20 คู่กับแท่น OmniBase" width="2200" height="1238" loading="lazy"></picture>
+          <div class="g-cap"><p class="g-kicker">ใหม่ · Ultra T20</p><p class="g-text">แรงดูดสูงสุด 22,000Pa แท่น OmniBase ซักและเป่าม็อบแห้งให้อัตโนมัติ</p><a class="pill pill-light" href="https://bwell.co.th/product/robot-vacuum-cleaner-bwell-ultra-t20/" data-nav="home/gallery/t20">ดูรายละเอียด</a></div>
         </li>
         <li class="g-slide" aria-roledescription="slide" aria-label="2 จาก 3">
-          <img src="home-assets/life-pet.webp" alt="สุนัขนอนบนโซฟาขณะหุ่นยนต์ดูดฝุ่นทำความสะอาด" loading="lazy">
-          <div class="g-cap"><p class="g-kicker">บ้านที่มีสัตว์เลี้ยง</p><p class="g-text">แปรงยางลดปัญหาขนพัน เก็บฝุ่นลงถุงให้อัตโนมัติ</p><a class="pill pill-light" href="#" data-nav="home/gallery/pet">ดูรายละเอียด</a></div>
+          <picture><source media="(max-width:734px)" srcset="home-assets/gal-lineup-tall.webp"><img src="home-assets/gal-lineup-wide.webp" alt="สินค้า Bwell แอร์เคลื่อนที่ เก้าอี้เพื่อสุขภาพ อุปกรณ์จัดแต่งทรงผม เครื่องลดความชื้น เครื่องกรองน้ำ เครื่องฟอกอากาศ เครื่องทำน้ำอุ่น เครื่องดูดฝุ่นไร้สาย และหุ่นยนต์ดูดฝุ่น" width="2200" height="1238" loading="lazy"></picture>
+          <div class="g-cap"><p class="g-kicker">บ้านทั้งหลัง</p><p class="g-text">อากาศ น้ำ และพื้นบ้าน ดูแลครบด้วย Home Environment Wellness</p><a class="pill pill-light" href="https://bwell.co.th/product-bwell/" data-nav="home/gallery/home">สำรวจสินค้าทั้งหมด</a></div>
         </li>
-        <li class="g-slide" aria-roledescription="slide" aria-label="3 จาก 3">
-          <img src="home-assets/life-bluewall.webp" alt="ห้องนั่งเล่นโทนขาวน้ำเงิน แสงธรรมชาติ" loading="lazy">
-          <div class="g-cap"><p class="g-kicker">บ้านทั้งหลัง</p><p class="g-text">อากาศ น้ำ และพื้นบ้าน ดูแลครบด้วย Home Environment Wellness</p><a class="pill pill-light" href="#" data-nav="home/gallery/home">สำรวจสินค้าทั้งหมด</a></div>
+        <li class="g-slide g-slot" aria-roledescription="slide" aria-label="3 จาก 3">
+          <div class="g-slot-note"><b>ช่องภาพ lifestyle จริง</b><span>[รอภาพจาก shoot ตาม brief ใน Spec · desktop 2200×1238 · mobile 656×820 ขึ้นไป]</span></div>
+          <div class="g-cap"><p class="g-kicker">ในบ้านจริง</p><p class="g-text">[copy ตามฉากที่ได้จาก shoot]</p></div>
         </li>
       </ul>
     </div>
@@ -704,7 +709,7 @@ sup a{color:inherit;opacity:.8}
   <div class="ft-inner">
     <ol class="ft-notes">
       <li id="fn1">ขนาดห้อง ขั้นตอนการกรอง อัตราลดความชื้น และ BTU อ้างอิงจากชื่อและรายละเอียดสินค้าบน bwell.co.th ณ วันที่ 29 ก.ย. 2026 ผลการใช้งานจริงขึ้นอยู่กับสภาพห้อง</li>
-      <li>ภาพสินค้า Ultra T20 และภาพห้องในส่วนแกลเลอรีเป็นภาพประกอบ</li>
+      <li>ภาพ Ultra T20 ในส่วนหัวของหน้าเป็นภาพประกอบ</li>
     </ol>
     <nav class="ft-dir" aria-label="สารบัญเว็บไซต์ Bwell">
       <div class="ft-col">
@@ -746,11 +751,11 @@ sup a{color:inherit;opacity:.8}
     <thead><tr><th>#</th><th>Section</th><th>Pattern</th><th>Bwell content</th><th>ขนาด (desktop / mobile)</th><th>Flatsome</th></tr></thead>
     <tbody>
       <tr><td>0</td><td>Global nav</td><td>Bar 44px โปร่ง + flyout</td><td>B+A 8 หมวด (ไม่เปลี่ยน)</td><td>44 / 48px</td><td>Header Builder + Mega Menu + CSS/JS จาก nav prototype</td></tr>
-      <tr><td>1</td><td>Ribbon</td><td>1 บรรทัด + ลิงก์</td><td>แคมเปญปัจจุบัน [placeholder]</td><td>auto ~52px</td><td>Header "Top bar" หรือ UX Block ใต้ header</td></tr>
+      <tr><td>1</td><td>Ribbon</td><td>1 บรรทัด + ลิงก์</td><td>Ultra T20 launch ลิงก์ไปหน้าสินค้า (เปลี่ยนตาม Campaign Brief เมื่อมีแคมเปญ)</td><td>auto ~52px</td><td>Header "Top bar" หรือ UX Block ใต้ header</td></tr>
       <tr><td>2</td><td>Hero 1 (มืด)</td><td>ภาพเต็มจอ + headline + 2 ปุ่ม</td><td>Ultra T20 · art direction: ภาพกว้าง desktop / ภาพสูง mobile</td><td>min 692px · text ซ้าย / 740px · text บนกลาง</td><td>Section full width + Banner (bg image responsive) ห้ามใช้ Slider</td></tr>
       <tr><td>3</td><td>Hero 2 (สว่าง)</td><td>Headline บนกลาง + สินค้าด้านล่าง</td><td>AP-H3029US</td><td>min 692px / 620px</td><td>Section bg #F5F7FA · Text + Button ×2 + Image</td></tr>
       <tr><td>4</td><td>Promo grid</td><td>2 คอลัมน์ gap 12px ขอบ 12px</td><td>BDH-30A · RO · Bjorn · BSL-01 · FELIX · BPAC</td><td>tile 580px / 500px เต็มความกว้าง</td><td>Row 2 col (gap 12) · UX Block "tile" reusable 6 ชิ้น</td></tr>
-      <tr><td>5</td><td>Gallery</td><td>สไลด์เต็มกว้าง เห็นขอบสไลด์ข้างเคียง · auto 6 วิ · ปุ่มหยุด · จุดนำทาง</td><td>3 ฉากไลฟ์สไตล์</td><td>สัดส่วน 16:9 max 1100px / 4:5</td><td>Flatsome Slider ได้เฉพาะจุดนี้ (ต้องมีปุ่มหยุดและ swipe)</td></tr>
+      <tr><td>5</td><td>Gallery</td><td>สไลด์เต็มกว้าง เห็นขอบสไลด์ข้างเคียง · auto 6 วิ · ปุ่มหยุด · จุดนำทาง</td><td>1 · T20 packshot จริงบนพื้นสีแบรนด์ · 2 · lineup สินค้าจริงจากแบนเนอร์ Bwell Shop · 3 · ช่องรอภาพ lifestyle จาก shoot</td><td>สัดส่วน 16:9 max 1100px / 4:5</td><td>Flatsome Slider ได้เฉพาะจุดนี้ (ต้องมีปุ่มหยุดและ swipe)</td></tr>
       <tr><td>6</td><td>Trust strip</td><td>ส่วนเพิ่มของ Bwell</td><td>4 ข้อ</td><td>4 คอลัมน์ / 2×2</td><td>Icon Box ×4</td></tr>
       <tr><td>7</td><td>Buy-from strip</td><td>ส่วนเพิ่มของ Bwell</td><td>4 ร้านค้าทางการ (Bwell Shop · Shopee · Lazada · TikTok Shop) + ค้นหาสาขา</td><td>1 แถว / wrap</td><td>Button row หรือ logo row</td></tr>
       <tr><td>8</td><td>Footer</td><td>Footnote → directory 5 คอลัมน์ แต่ละคอลัมน์ซ้อนได้หลายกลุ่ม → ช่องทางซื้ออื่น → legal</td><td>9 กลุ่ม: เลือกซื้อและเรียนรู้ · ร้านค้าออนไลน์ · แอป Bwell · หน้าร้าน Bwell · บริการหลังการขาย · บัญชี · สำหรับองค์กร · เกี่ยวกับ Bwell · ติดตาม Bwell (+ legal) ลิงก์จริงจาก bwell.co.th</td><td>5 คอลัมน์ desktop · 3 คอลัมน์ tablet · accordion รายกลุ่มบนมือถือ</td><td>Footer Block + WP Menu 1 ชุดต่อกลุ่ม</td></tr>
@@ -780,11 +785,32 @@ sup a{color:inherit;opacity:.8}
   <div class="tablewrap"><table>
     <thead><tr><th>รายการ</th><th>ตำแหน่ง</th></tr></thead>
     <tbody>
-      <tr><td>ข้อความแคมเปญบน ribbon</td><td>Section 1</td></tr>
-      <tr><td>ระยะเวลารับประกันตามรุ่น</td><td>Trust strip</td></tr>
+            <tr><td>ระยะเวลารับประกันตามรุ่น</td><td>Trust strip</td></tr>
       <tr><td>ลิงก์ TikTok ของแบรนด์ในกลุ่ม "ติดตาม Bwell" ของ footer (footer เว็บปัจจุบันไม่มี)</td><td>Footer</td></tr>
       <tr><td>SKU ใน hero และ tile ตาม campaign calendar Q4 (ตอนนี้: T20, AP-H3029US, BDH-30A, RO, Bjorn, BSL-01, FELIX, BPAC)</td><td>Section 2–4</td></tr>
+      <tr><td>ภาพ lifestyle จริงสำหรับ gallery สไลด์ 3 (ดู Shoot brief ด้านล่าง)</td><td>Section 5</td></tr>
+      <tr><td>พื้นหลังห้องในแบนเนอร์ lineup ของ Bwell Shop (สไลด์ 2) ยืนยันที่มาของภาพและสิทธิ์การใช้กับทีมกราฟิก</td><td>Section 5</td></tr>
       <tr><td>ภาพ Ultra T20 ใช้ key visual ที่สร้างด้วย AI (ป้าย "Dust Box" ถูกต้องในภาพกว้าง) ควรให้ designer ตรวจรายละเอียดก่อนใช้จริง</td><td>Section 2</td></tr>
+    </tbody>
+  </table></div>
+
+  <h3>Shoot brief · gallery (ภาพ lifestyle จริง)</h3>
+  <div class="tablewrap"><table>
+    <thead><tr><th>#</th><th>ฉาก</th><th>สินค้า</th><th>สิ่งที่ภาพต้องเล่า (ตามสเปกบนหน้าสินค้า)</th></tr></thead>
+    <tbody>
+      <tr><td>1</td><td>ห้องนั่งเล่น พื้นไม้ต่อพรม</td><td>Ultra T20 + แท่น OmniBase</td><td>หุ่นยนต์กำลังขึ้นพรม (ยกม็อบอัตโนมัติ) แท่นอยู่ในเฟรมแบบไม่ถูกบัง</td></tr>
+      <tr><td>2</td><td>บ้านที่มีสัตว์เลี้ยง</td><td>Ultra T20</td><td>ทำความสะอาดบริเวณที่มีขนสัตว์ (แปรงยาง ลดปัญหาเส้นผมพัน)</td></tr>
+      <tr><td>3</td><td>ห้องนอนหรือห้องนั่งเล่น แสงธรรมชาติ</td><td>เครื่องฟอกอากาศ AP-H3029US + หุ่นยนต์ดูดฝุ่น</td><td>ดูแลทั้งอากาศและพื้นในห้องเดียว (Home Environment Wellness)</td></tr>
+    </tbody>
+  </table></div>
+  <div class="tablewrap"><table>
+    <thead><tr><th>ข้อกำหนดไฟล์</th><th>ค่า</th></tr></thead>
+    <tbody>
+      <tr><td>Desktop</td><td>16:9 · ส่งอย่างน้อย 2200×1238 (ไฟล์ต้นฉบับยาว 4000px ขึ้นไป)</td></tr>
+      <tr><td>Mobile</td><td>4:5 · ส่งอย่างน้อย 656×820 (แนะนำ 1312×1640) ถ่ายแยกเฟรมหรือเผื่อพื้นที่ให้ครอปจากภาพเดียวกันได้</td></tr>
+      <tr><td>พื้นที่ข้อความ</td><td>เว้นมุมซ้ายล่างประมาณ 45% ของความกว้าง × 25% ของความสูง สำหรับ caption และปุ่ม</td></tr>
+      <tr><td>สินค้า</td><td>ใช้เครื่องจริง ห้ามใช้ภาพ AI หรือ render แทนสินค้า โลโก้ Bwell บนเครื่องต้องอ่านได้</td></tr>
+      <tr><td>บุคคลและสัตว์</td><td>ต้องมี model release และสิทธิ์ใช้ภาพบนเว็บและ social</td></tr>
     </tbody>
   </table></div>
 </section>

@@ -58,7 +58,7 @@ def rewire(name: str, html: str) -> str:
     html = set_href(html, r"[a-z0-9/]+/footer/เลือกซื้อและเรียนรู้/หุ่นยนต์ดูดฝุ่น", "robot-vacuum.html")
     html = set_href(html, r"[a-z0-9/]+/footer/breadcrumb/home", "index.html")
     if name == "index.html":
-        html = set_href(html, r"home/hero/t20/learn|home/gallery/living|home/gallery/pet", "ultra-t20.html")
+        html = set_href(html, r"home/hero/t20/learn|home/ribbon/t20|home/gallery/t20", "ultra-t20.html")
         html = set_href(html, r"home/hero/t20/buy", T20_LIVE)
     elif name == "robot-vacuum.html":
         html = set_href(html, r"cat/robot/(chapter/t20|prio/learn|lineup/t20/learn)", "ultra-t20.html")
