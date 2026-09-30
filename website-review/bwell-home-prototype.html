@@ -16,6 +16,11 @@
 }
 :root[data-variant="hybrid"],:root[data-variant="ba"]{--content:1080px;--nav-fs:13px;--nav-pad:9px}
 :root[data-variant="flat"]{--content:1200px;--nav-fs:12px;--nav-pad:7px}
+/* B+A: 8 categories + support up to 1559px; all 11 bwell.co.th categories from 1560px */
+.gn-item.gn-wide{display:none}
+@media (min-width:1180px) and (max-width:1379px){:root[data-variant="ba"]{--content:1180px;--nav-fs:12px;--nav-pad:6px}}
+@media (min-width:1380px){:root[data-variant="ba"]{--content:1280px}}
+@media (min-width:1560px){:root[data-variant="ba"]{--content:1600px;--nav-pad:6px}:root[data-variant="ba"] .gn-item.gn-wide{display:block}}
 :root[data-bar="dark"]{
   --bar-bg:rgba(14,42,68,.86); --bar-ink:#FFFFFF; --bar-ink-soft:rgba(255,255,255,.8); --bar-line:rgba(255,255,255,.08);
   --fly-bg:rgba(14,42,68,.96); --fly-ink:#FFFFFF; --fly-soft:rgba(255,255,255,.62); --fly-hover:#8FD0FF;
@@ -487,8 +492,8 @@ sup a{color:inherit;opacity:.8}
     <div class="gn-group"><h3>เพิ่มเติม</h3><ul><li><a href="#">เลือกเครื่องกรองน้ำสำหรับบ้านและคอนโด</a></li><li><a href="#">RO กับ UF ต่างกันอย่างไร</a></li><li><a href="#">คู่มือการใช้งาน</a></li><li><a href="#">ลงทะเบียนรับประกัน</a></li></ul></div>
   </div>
   <div class="gn-panel" data-panel="c-heater" data-pillar="Water">
-    <div class="gn-group is-primary"><h3>สำรวจเครื่องทำน้ำอุ่น</h3><ul><li><a href="#">FELIX 3,500 / 4,500 / 5,500 W</a></li><li><a href="#">LUKA 4,500 W</a></li><li><a href="#">ELKA 3,500 / 5,500 W</a></li><li><a href="#">Konrad น้ำร้อน 8,000 W</a></li><li><a href="#">เปรียบเทียบทุกรุ่น</a></li></ul></div>
-    <div class="gn-group"><h3>ซื้อเครื่องทำน้ำอุ่น</h3><ul><li><a href="#">ซื้อเครื่องทำน้ำอุ่น</a></li><li><a href="#">ค้นหาสาขาใกล้คุณ</a></li></ul></div>
+    <div class="gn-group is-primary"><h3>สำรวจเครื่องทำน้ำอุ่น น้ำร้อน</h3><ul><li><a href="#">FELIX 3,500 / 4,500 / 5,500 W</a></li><li><a href="#">LUKA 4,500 W</a></li><li><a href="#">ELKA 3,500 / 5,500 W</a></li><li><a href="#">Konrad น้ำร้อน 8,000 W</a></li><li><a href="#">เปรียบเทียบทุกรุ่น</a></li></ul></div>
+    <div class="gn-group"><h3>ซื้อเครื่องทำน้ำอุ่น น้ำร้อน</h3><ul><li><a href="#">ซื้อเครื่องทำน้ำอุ่น</a></li><li><a href="#">ค้นหาสาขาใกล้คุณ</a></li></ul></div>
     <div class="gn-group"><h3>เพิ่มเติม</h3><ul><li><a href="#">เลือกกำลังวัตต์ให้เหมาะกับบ้าน</a></li><li><a href="#">ระบบตัดไฟ ELCB</a></li><li><a href="#">คู่มือการติดตั้ง</a></li><li><a href="#">ลงทะเบียนรับประกัน</a></li></ul></div>
   </div>
   <div class="gn-panel" data-panel="c-robot" data-pillar="Clean Home">
@@ -507,8 +512,8 @@ sup a{color:inherit;opacity:.8}
     <div class="gn-group"><h3>เพิ่มเติม</h3><ul><li><a href="#">ปรับเก้าอี้ให้พอดีตัว</a></li><li><a href="#">Office Syndrome และท่านั่ง</a></li><li><a href="#">คู่มือการประกอบ</a></li><li><a href="#">ลงทะเบียนรับประกัน</a></li></ul></div>
   </div>
   <div class="gn-panel" data-panel="c-cushion" data-pillar="Ergonomic">
-    <div class="gn-group is-primary"><h3>สำรวจหมอนและเบาะรอง</h3><ul><li><a href="#">หมอนรองคอเพื่อสุขภาพ</a></li><li><a href="#">เบาะรองหลังสำหรับรถยนต์</a></li><li><a href="#">หมอนรองคอสำหรับรถยนต์</a></li><li><a href="#">ที่วางเท้าเพื่อสุขภาพ</a></li></ul></div>
-    <div class="gn-group"><h3>ซื้อหมอนและเบาะรอง</h3><ul><li><a href="#">ซื้อหมอนและเบาะรอง</a></li></ul></div>
+    <div class="gn-group is-primary"><h3>สำรวจหมอนและเบาะรองเพื่อสุขภาพ</h3><ul><li><a href="#">หมอนรองคอเพื่อสุขภาพ</a></li><li><a href="#">เบาะรองหลังสำหรับรถยนต์</a></li><li><a href="#">หมอนรองคอสำหรับรถยนต์</a></li><li><a href="#">ที่วางเท้าเพื่อสุขภาพ</a></li></ul></div>
+    <div class="gn-group"><h3>ซื้อหมอนและเบาะรองเพื่อสุขภาพ</h3><ul><li><a href="#">ซื้อหมอนและเบาะรอง</a></li></ul></div>
     <div class="gn-group"><h3>เพิ่มเติม</h3><ul><li><a href="#">เลือกหมอนรองคอสำหรับเดินทาง</a></li><li><a href="#">ดูแลเมมโมรี่โฟม</a></li></ul></div>
   </div>
   <div class="gn-panel" data-panel="c-sport" data-pillar="Ergonomic">
@@ -517,8 +522,8 @@ sup a{color:inherit;opacity:.8}
     <div class="gn-group"><h3>เพิ่มเติม</h3><ul><li><a href="#">คลายกล้ามเนื้อหลังออกกำลังกาย</a></li></ul></div>
   </div>
   <div class="gn-panel" data-panel="c-beauty" data-pillar="Beauty">
-    <div class="gn-group is-primary"><h3>สำรวจจัดแต่งทรงผม</h3><ul><li><a href="#">หวีลมร้อนดิจิตอล BSL-02</a></li><li><a href="#">ไดร์จัดแต่งทรงผม BLDC BSL-01</a></li><li><a href="#">เครื่องหนีบผม 23 / 40 มม.</a></li><li><a href="#">เครื่องหนีบผมลมร้อน</a></li><li><a href="#">ดูทั้งหมด</a></li></ul></div>
-    <div class="gn-group"><h3>ซื้อจัดแต่งทรงผม</h3><ul><li><a href="#">ซื้อเครื่องจัดแต่งทรงผม</a></li><li><a href="#">ซื้อบน Shopee / Lazada</a></li></ul></div>
+    <div class="gn-group is-primary"><h3>สำรวจอุปกรณ์จัดแต่งทรงผม</h3><ul><li><a href="#">หวีลมร้อนดิจิตอล BSL-02</a></li><li><a href="#">ไดร์จัดแต่งทรงผม BLDC BSL-01</a></li><li><a href="#">เครื่องหนีบผม 23 / 40 มม.</a></li><li><a href="#">เครื่องหนีบผมลมร้อน</a></li><li><a href="#">ดูทั้งหมด</a></li></ul></div>
+    <div class="gn-group"><h3>ซื้ออุปกรณ์จัดแต่งทรงผม</h3><ul><li><a href="#">ซื้อเครื่องจัดแต่งทรงผม</a></li><li><a href="#">ซื้อบน Shopee / Lazada</a></li></ul></div>
     <div class="gn-group"><h3>เพิ่มเติม</h3><ul><li><a href="#">หวีม้วนผมไฟฟ้า เลือกอย่างไร</a></li><li><a href="#">ไดร์เป่าผมแห้งไว ทำงานอย่างไร</a></li><li><a href="#">ลงทะเบียนรับประกัน</a></li></ul></div>
   </div>
   <div class="gn-panel" data-panel="c-filters" data-pillar="Air">
@@ -826,7 +831,7 @@ sup a{color:inherit;opacity:.8}
   /* Variants: label + panel key. bp = viewport width below which the bar collapses to the mobile drawer */
   const VARIANTS={
     pillars:{bp:1024,items:[['Air','air'],['Water','water'],['Clean Home','clean'],['Ergonomic','ergo'],['Beauty','beauty'],['บริการช่วยเหลือ','support']]},
-    ba:{bp:1180,grouped:true,items:[['เครื่องฟอกอากาศ','c-airpurifier','Air'],['เครื่องลดความชื้น','c-dehum','Air'],['แอร์เคลื่อนที่','c-pac','Air'],['เครื่องกรองน้ำ','c-water','Water'],['เครื่องทำน้ำอุ่น','c-heater','Water'],['หุ่นยนต์ดูดฝุ่น','c-robot','Clean Home'],['เก้าอี้เพื่อสุขภาพ','c-chair','Ergonomic'],['Beauty','c-beauty','Beauty'],['บริการช่วยเหลือ','support','']]},
+    ba:{bp:1180,grouped:true,items:[['เครื่องฟอกอากาศ','c-airpurifier'],['อุปกรณ์จัดแต่งทรงผม','c-beauty'],['เก้าอี้เพื่อสุขภาพ','c-chair'],['หมอนและเบาะรองเพื่อสุขภาพ','c-cushion','wide'],['เครื่องทำน้ำอุ่น น้ำร้อน','c-heater'],['เครื่องกรองน้ำ','c-water'],['เครื่องลดความชื้น','c-dehum'],['แอร์เคลื่อนที่','c-pac'],['เครื่องดูดฝุ่นไร้สาย','c-cordless','wide'],['หุ่นยนต์ดูดฝุ่น','c-robot'],['อุปกรณ์ออกกำลังกาย','c-sport','wide'],['บริการช่วยเหลือ','support']]},
     hybrid:{bp:1180,items:[['เครื่องฟอกอากาศ','c-airpurifier'],['เครื่องลดความชื้น','c-dehum'],['แอร์เคลื่อนที่','c-pac'],['เครื่องกรองน้ำ','c-water'],['เครื่องทำน้ำอุ่น','c-heater'],['หุ่นยนต์ดูดฝุ่น','c-robot'],['เก้าอี้เพื่อสุขภาพ','c-chair'],['Beauty','c-beauty'],['บริการช่วยเหลือ','support']]},
     flat:{bp:1280,items:[['ฟอกอากาศ','c-airpurifier'],['ลดความชื้น','c-dehum'],['แอร์เคลื่อนที่','c-pac'],['กรองน้ำ','c-water'],['น้ำอุ่น','c-heater'],['หุ่นยนต์ดูดฝุ่น','c-robot'],['ดูดฝุ่นไร้สาย','c-cordless'],['เก้าอี้','c-chair'],['หมอนเบาะรอง','c-cushion'],['ออกกำลังกาย','c-sport'],['จัดแต่งทรงผม','c-beauty'],['ช่วยเหลือ','support']]}
   };
@@ -878,13 +883,11 @@ sup a{color:inherit;opacity:.8}
   function buildNav(){
     close(false); closeDrawer();
     list.innerHTML=''; drawerRoot.innerHTML='';
-    const cfg=VARIANTS[variant]; let lastGrp=null;
-    cfg.items.forEach(([label,key,grp])=>{
-      const li=document.createElement('li'); li.className='gn-item'; li.dataset.menu=key;
+    const cfg=VARIANTS[variant];
+    cfg.items.forEach(([label,key,tier])=>{
+      const li=document.createElement('li'); li.className='gn-item'+(tier==='wide'?' gn-wide':''); li.dataset.menu=key;
       li.innerHTML=`<a class="gn-link" href="#${key}" role="menuitem" aria-haspopup="true" aria-expanded="false">${label}</a>`;
       list.appendChild(li);
-      if(cfg.grouped && grp && grp!==lastGrp){ const g=document.createElement('li'); g.className='gn-grp'; g.textContent=grp; drawerRoot.appendChild(g); lastGrp=grp; }
-      if(cfg.grouped && !grp && lastGrp){ const g=document.createElement('li'); g.className='gn-grp'; g.textContent='บริการ'; drawerRoot.appendChild(g); lastGrp=null; }
       const dli=document.createElement('li'); dli.innerHTML=`<button data-sub="${key}">${label}</button>`; drawerRoot.appendChild(dli);
     });
     /* pillar strip inside each category flyout (variant B+A): siblings in the same pillar */
