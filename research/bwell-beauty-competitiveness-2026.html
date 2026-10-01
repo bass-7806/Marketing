@@ -1,0 +1,381 @@
+<title>Bwell Beauty Battle Map</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Kanit:wght@300;400;500;600;700&family=Poppins:wght@400;600;700&display=swap">
+<style>
+  /* ---------- tokens: light (default) ---------- */
+  :root{
+    color-scheme: light;
+    --bg:#f4f8fb; --card:#ffffff; --card2:#eef4f8;
+    --ink:#14212b; --ink2:#5a6b78; --muted:#8595a1; --border:#dce5ec;
+    --accent:#008ad0; --navy:#005D9D; --accent-soft:#e3f2fb;
+    --grad:linear-gradient(135deg,#008ad0 0%,#005D9D 100%);
+    --cat-bwell:#008ad0; --cat-china:#d97a2b; --cat-premium:#8a5cc4; --cat-mass:#b34a68;
+    --ok:#1f8f5a; --ok-bg:#e2f4ea; --warn:#c07b0d; --warn-bg:#faf0da; --bad:#c23b2e; --bad-bg:#fbe7e4;
+    --gapband:rgba(0,138,208,.09); --gapline:rgba(0,138,208,.35);
+    --shadow:0 1px 2px rgba(20,33,43,.05),0 4px 14px rgba(20,33,43,.06);
+  }
+  @media (prefers-color-scheme: dark){
+    :root:not([data-theme="light"]){
+      --bg:#0e161d; --card:#16212b; --card2:#1c2934;
+      --ink:#e8eef3; --ink2:#9db0bd; --muted:#71828f; --border:#263440;
+      --accent:#3aa5e0; --navy:#7cc3ec; --accent-soft:#123146;
+      --cat-bwell:#2e9bd8; --cat-china:#cf7a2e; --cat-premium:#9d74d0; --cat-mass:#c65e72;
+      --ok:#34b378; --ok-bg:#0f2e20; --warn:#d9971f; --warn-bg:#33260c; --bad:#e05c4e; --bad-bg:#391511;
+      --gapband:rgba(58,165,224,.12); --gapline:rgba(58,165,224,.45);
+      --shadow:0 1px 2px rgba(0,0,0,.4),0 4px 14px rgba(0,0,0,.35);
+      color-scheme: dark;
+    }
+  }
+  :root[data-theme="dark"]{
+    --bg:#0e161d; --card:#16212b; --card2:#1c2934;
+    --ink:#e8eef3; --ink2:#9db0bd; --muted:#71828f; --border:#263440;
+    --accent:#3aa5e0; --navy:#7cc3ec; --accent-soft:#123146;
+    --cat-bwell:#2e9bd8; --cat-china:#cf7a2e; --cat-premium:#9d74d0; --cat-mass:#c65e72;
+    --ok:#34b378; --ok-bg:#0f2e20; --warn:#d9971f; --warn-bg:#33260c; --bad:#e05c4e; --bad-bg:#391511;
+    --gapband:rgba(58,165,224,.12); --gapline:rgba(58,165,224,.45);
+    --shadow:0 1px 2px rgba(0,0,0,.4),0 4px 14px rgba(0,0,0,.35);
+    color-scheme: dark;
+  }
+
+  *{box-sizing:border-box;margin:0;padding:0}
+  body{
+    background:var(--bg); color:var(--ink);
+    font-family:'Kanit',Arial,sans-serif; font-weight:300;
+    line-height:1.65; -webkit-font-smoothing:antialiased;
+  }
+  .wrap{max-width:1080px;margin:0 auto;padding:28px 22px 64px}
+
+  /* ---------- header ---------- */
+  header{display:flex;align-items:center;gap:16px;flex-wrap:wrap;padding:10px 0 26px}
+  .logo{width:46px;height:46px;flex:none}
+  .brand h1{font-size:1.55rem;font-weight:600;line-height:1.25;color:var(--ink)}
+  .brand h1 b{color:var(--accent);font-weight:700}
+  .brand p{font-size:.85rem;color:var(--ink2)}
+  .chip{margin-left:auto;font-family:'Poppins',Arial,sans-serif;font-size:.72rem;letter-spacing:.05em;
+    background:var(--card);border:1px solid var(--border);border-radius:999px;padding:6px 14px;color:var(--ink2)}
+
+  /* ---------- verdict banner ---------- */
+  .banner{background:var(--grad);border-radius:14px;padding:22px 26px;color:#fff;box-shadow:var(--shadow)}
+  .banner .eyebrow{font-family:'Poppins',Arial,sans-serif;font-size:.7rem;letter-spacing:.14em;text-transform:uppercase;opacity:.85}
+  .banner h2{font-size:1.3rem;font-weight:600;margin:4px 0 6px;text-wrap:balance}
+  .banner p{font-size:.92rem;font-weight:300;opacity:.94;max-width:70ch}
+
+  /* ---------- KPI row ---------- */
+  .kpis{display:grid;grid-template-columns:repeat(auto-fit,minmax(210px,1fr));gap:14px;margin:18px 0 8px}
+  .kpi{background:var(--card);border:1px solid var(--border);border-radius:12px;padding:16px 18px;box-shadow:var(--shadow)}
+  .kpi .lab{font-size:.78rem;color:var(--ink2);letter-spacing:.02em}
+  .kpi .num{font-family:'Poppins','Kanit',Arial,sans-serif;font-size:1.7rem;font-weight:700;color:var(--ink);
+    font-variant-numeric:tabular-nums;line-height:1.2;margin:2px 0}
+  .kpi .num small{font-size:.95rem;font-weight:600;color:var(--ink2)}
+  .kpi .sub{font-size:.76rem;color:var(--muted)}
+  .kpi.hi .num{color:var(--accent)}
+
+  /* ---------- sections ---------- */
+  section{margin-top:34px}
+  .sec-head{display:flex;align-items:baseline;gap:12px;margin-bottom:6px;flex-wrap:wrap}
+  .sec-head h3{font-size:1.12rem;font-weight:600;color:var(--navy)}
+  .sec-head span{font-size:.8rem;color:var(--muted)}
+  .note{font-size:.78rem;color:var(--muted);margin-top:8px}
+
+  /* ---------- verdict SKU cards ---------- */
+  .skus{display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:14px;margin-top:12px}
+  .sku{background:var(--card);border:1px solid var(--border);border-radius:12px;padding:16px 18px;box-shadow:var(--shadow);
+    display:flex;flex-direction:column;gap:6px}
+  .sku .top{display:flex;align-items:center;gap:10px;flex-wrap:wrap}
+  .sku .name{font-weight:600;font-size:1rem}
+  .sku .price{font-family:'Poppins',Arial,sans-serif;font-weight:600;font-size:.85rem;color:var(--ink2);
+    font-variant-numeric:tabular-nums;margin-left:auto}
+  .pill{display:inline-flex;align-items:center;gap:5px;font-size:.72rem;font-weight:500;border-radius:999px;padding:3px 10px;white-space:nowrap}
+  .pill.ok{color:var(--ok);background:var(--ok-bg)} .pill.warn{color:var(--warn);background:var(--warn-bg)} .pill.bad{color:var(--bad);background:var(--bad-bg)}
+  .sku .why{font-size:.83rem;color:var(--ink2)}
+  .sku .vs{font-size:.74rem;color:var(--muted)}
+  .sku.hero{border-color:var(--accent);border-width:1.5px}
+
+  /* ---------- price ladder chart ---------- */
+  .chart-card{background:var(--card);border:1px solid var(--border);border-radius:12px;padding:20px 22px 14px;box-shadow:var(--shadow);margin-top:12px}
+  .legend{display:flex;gap:16px;flex-wrap:wrap;font-size:.76rem;color:var(--ink2);margin-bottom:14px}
+  .legend i{display:inline-block;width:11px;height:11px;border-radius:3px;margin-right:6px;vertical-align:-1px}
+  .ladder{position:relative;overflow-x:auto}
+  .ladder-inner{position:relative;min-width:640px}
+  .gridlines{position:absolute;inset:0 0 26px 118px;pointer-events:none}
+  .gl{position:absolute;top:0;bottom:0;width:1px;background:var(--border)}
+  .gl span{position:absolute;bottom:-24px;left:0;transform:translateX(-50%);font-family:'Poppins',Arial,sans-serif;
+    font-size:.66rem;color:var(--muted);font-variant-numeric:tabular-nums;white-space:nowrap}
+  .gapzone{position:absolute;top:-6px;bottom:-4px;background:var(--gapband);border-left:1.5px dashed var(--gapline);border-right:1.5px dashed var(--gapline);pointer-events:none}
+  .gapzone em{position:absolute;top:0;left:50%;transform:translateX(-50%);font-style:normal;font-size:.66rem;
+    color:var(--accent);white-space:nowrap;font-weight:500}
+  .rows{position:relative;padding:22px 0 26px}
+  .row{display:flex;align-items:center;height:30px}
+  .row .bl{width:118px;flex:none;font-size:.8rem;color:var(--ink2);padding-right:10px;text-align:right;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+  .row.me .bl{color:var(--accent);font-weight:600}
+  .track{position:relative;flex:1;height:100%}
+  .bar{position:absolute;top:50%;transform:translateY(-50%);height:10px;border-radius:4px;min-width:10px;cursor:default;
+    transition:height .12s ease}
+  .bar:hover,.bar:focus-visible{height:14px;outline:none}
+  .bar:focus-visible{box-shadow:0 0 0 2px var(--bg),0 0 0 4px var(--accent)}
+  .row.me .bar{height:14px;box-shadow:0 0 0 2px var(--bg)}
+  .dot{position:absolute;top:50%;width:8px;height:8px;border-radius:50%;transform:translate(-50%,-50%);background:var(--ink);
+    box-shadow:0 0 0 2px var(--card);pointer-events:none}
+  .tip{position:fixed;z-index:40;background:var(--ink);color:var(--bg);font-size:.75rem;line-height:1.5;
+    padding:8px 12px;border-radius:8px;pointer-events:none;opacity:0;transition:opacity .1s;max-width:260px;box-shadow:var(--shadow)}
+  .tip b{font-weight:600}
+  .tip.show{opacity:1}
+
+  /* ---------- entry matchup table ---------- */
+  .tbl-wrap{overflow-x:auto;background:var(--card);border:1px solid var(--border);border-radius:12px;box-shadow:var(--shadow);margin-top:12px}
+  table{border-collapse:collapse;width:100%;min-width:620px;font-size:.83rem}
+  th,td{padding:10px 14px;text-align:left;border-bottom:1px solid var(--border);vertical-align:top}
+  thead th{font-size:.74rem;letter-spacing:.04em;color:var(--ink2);font-weight:500;background:var(--card2)}
+  tbody tr:last-child td{border-bottom:none}
+  td.num,th.num{font-family:'Poppins','Kanit',Arial,sans-serif;font-variant-numeric:tabular-nums}
+  td.win{color:var(--ok);font-weight:500}
+  td.lose{color:var(--bad);font-weight:500}
+  .colme{background:var(--accent-soft)}
+
+  /* ---------- gap cards ---------- */
+  .gaps{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:14px;margin-top:12px}
+  .gap{background:var(--card);border:1px solid var(--border);border-radius:12px;padding:16px 18px;box-shadow:var(--shadow);
+    display:flex;flex-direction:column;gap:7px}
+  .gap .rank{display:flex;align-items:center;gap:10px}
+  .gap .n{font-family:'Poppins',Arial,sans-serif;font-weight:700;font-size:.8rem;color:var(--accent);
+    background:var(--accent-soft);border-radius:8px;padding:2px 9px}
+  .gap h4{font-size:.95rem;font-weight:600}
+  .gap .pr{font-family:'Poppins','Kanit',Arial,sans-serif;font-weight:600;font-size:1.05rem;color:var(--navy);font-variant-numeric:tabular-nums}
+  .gap p{font-size:.8rem;color:var(--ink2)}
+  .gap .act{font-size:.78rem;color:var(--ink);background:var(--card2);border-radius:8px;padding:7px 10px;margin-top:auto}
+  .gap .act b{font-weight:500;color:var(--accent)}
+
+  /* ---------- roadmap ---------- */
+  .road{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:0;margin-top:12px;
+    background:var(--card);border:1px solid var(--border);border-radius:12px;overflow:hidden;box-shadow:var(--shadow)}
+  .q{padding:16px 18px;border-left:1px solid var(--border)}
+  .q:first-child{border-left:none}
+  .q .t{font-family:'Poppins',Arial,sans-serif;font-size:.72rem;font-weight:600;letter-spacing:.08em;color:var(--accent)}
+  .q ul{margin:8px 0 0 16px;font-size:.79rem;color:var(--ink2)}
+  .q li{margin-bottom:4px}
+
+  footer{margin-top:40px;padding-top:16px;border-top:1px solid var(--border);font-size:.74rem;color:var(--muted)}
+  footer a{color:var(--accent)}
+  @media (prefers-reduced-motion: reduce){ *{transition:none!important} }
+  @media (max-width:640px){ .banner h2{font-size:1.1rem} .q{border-left:none;border-top:1px solid var(--border)} }
+</style>
+
+<div class="wrap">
+  <header>
+    <svg class="logo" viewBox="0 0 56 56" aria-label="Bwell logo">
+      <circle cx="16" cy="16" r="13" fill="var(--accent)"/>
+      <circle cx="40" cy="16" r="13" fill="none" stroke="var(--accent)" stroke-width="6"/>
+      <circle cx="16" cy="40" r="13" fill="none" stroke="var(--accent)" stroke-width="6"/>
+      <circle cx="40" cy="40" r="13" fill="var(--accent)"/>
+    </svg>
+    <div class="brand">
+      <h1><b>Bwell Beauty</b> — วิเคราะห์ความสามารถในการแข่งขัน</h1>
+      <p>Hair Styling & Beauty Devices · ตลาดประเทศไทย</p>
+    </div>
+    <span class="chip">DATA AS OF 28 AUG 2026</span>
+  </header>
+
+  <div class="banner">
+    <div class="eyebrow">Verdict</div>
+    <h2>แข่งได้แบบมีเงื่อนไข — ปัญหาหลักไม่ใช่ตัวสินค้า แต่คือการมองเห็น</h2>
+    <p>เทคโนโลยี BLDC 110,000 rpm เท่าคู่แข่งจีน และ BDR-04 มี positioning ที่ไม่มีใครชนตรงตัว
+       แต่ Bwell ไม่ติดบทความ "ไดร์ยี่ห้อไหนดี 2026" แม้แต่ลิสต์เดียว และไม่เผยแพร่สเปคลม (m/s)
+       ที่คู่แข่งใช้เป็นพระเอก — แก้การสื่อสารก่อน แล้วค่อยเติมสินค้าใหม่ลงใน gap ที่ยังว่าง</p>
+  </div>
+
+  <div class="kpis">
+    <div class="kpi"><div class="lab">พอร์ต Beauty ปัจจุบัน</div>
+      <div class="num">13 <small>SKU</small></div><div class="sub">ช่วงราคา ฿1,690–5,990 (Value → Mid)</div></div>
+    <div class="kpi hi"><div class="lab">SKU ที่แข่งได้เต็มตัว</div>
+      <div class="num">1<small>/6 กลุ่มหลัก</small></div><div class="sub">BDR-04 — "Airstrait ราคาเข้าถึงได้"</div></div>
+    <div class="kpi"><div class="lab">ที่ยืนใน Earned Media</div>
+      <div class="num">0<small>/3 roundups</small></div><div class="sub">my-best · Kapook · Shopee Blog ปี 2026</div></div>
+    <div class="kpi"><div class="lab">โอกาสหมวดใหม่ (Device)</div>
+      <div class="num">19.6<small>%/ปี</small></div><div class="sub">vs Hair ~3.3%/ปี — โตต่างกัน ~6 เท่า</div></div>
+  </div>
+
+  <section>
+    <div class="sec-head"><h3>Verdict ราย SKU</h3><span>🟢 แข่งได้ · 🟡 แข่งได้แต่ต้องปรับ · 🔴 เสียเปรียบ</span></div>
+    <div class="skus">
+      <div class="sku hero">
+        <div class="top"><span class="name">BDR-04 Air Straightener</span><span class="pill ok">🟢 แข่งได้ · ยกเป็น HERO</span><span class="price">฿5,990</span></div>
+        <div class="why">"Dyson Airstrait ฉบับเข้าถึงได้" (ถูกกว่า 3.3 เท่า) — ยังไม่มีคู่แข่งจีน form factor นี้ในไทย และเป็นรุ่นเดียวที่ KOL เริ่มรีวิว</div>
+        <div class="vs">เทียบ: Dyson Airstrait ฿19,900 · ไร้คู่ชนตรงจาก Dreame/Laifen</div>
+      </div>
+      <div class="sku">
+        <div class="top"><span class="name">BAW-02 Multi-styler 7 หัว</span><span class="pill warn">🟡 ถูกประกบ</span><span class="price">฿5,990</span></div>
+        <div class="why">จุดเหนือจริง: 7 หัว (มากกว่า Dreame 5) + เบากว่า (389g) — แต่ต้องตีเป็นประเด็นให้ชัดก่อนโดนบีบ</div>
+        <div class="vs">เทียบ: Dreame AirStyle ฿6,490 (ลดปลอมจาก 21,990) · Dyson Origin ฿10,900</div>
+      </div>
+      <div class="sku">
+        <div class="top"><span class="name">BDR-03 ไดร์ BLDC Digital</span><span class="pill warn">🟡 ต้องสื่อสาร</span><span class="price">฿2,690</span></div>
+        <div class="why">แพงกว่า Dreame Glory เล็กน้อยโดยไม่มีตัวเลข m/s มาสู้ — จุดต่างจริงคือจอ digital + diffuser + ศูนย์ไทย</div>
+        <div class="vs">เทียบ: Dreame Hair Glory ฿2,490 (70 m/s · 300M ions)</div>
+      </div>
+      <div class="sku">
+        <div class="top"><span class="name">BSL-01 Hot Air Styler</span><span class="pill warn">🟡 พอมีที่ยืน</span><span class="price">฿2,990</span></div>
+        <div class="why">หมวด hot-air styler คู่แข่งเบาบางกว่าไดร์ — เป็นพื้นที่หายใจของพอร์ต</div>
+        <div class="vs">คู่แข่งกระจัดกระจาย ไม่มีเจ้าตลาดชัด</div>
+      </div>
+      <div class="sku">
+        <div class="top"><span class="name">BST / BCL Series</span><span class="pill warn">🟡 อย่าแข่งราคา</span><span class="price">฿1,690–2,790</span></div>
+        <div class="why">Lesasha กดราคาต่ำมาก (หนีบเริ่ม ~฿490) — ต้องขายด้วยดีไซน์+ประกัน และระวังชน BaByliss ที่จัดจำหน่ายเอง</div>
+        <div class="vs">เทียบ: Lesasha ฿490–759 · BaByliss ~฿2,000–3,300</div>
+      </div>
+      <div class="sku">
+        <div class="top"><span class="name">BDR-02 ไดร์ BLDC</span><span class="pill bad">🔴 เสียเปรียบ</span><span class="price">฿1,690</span></div>
+        <div class="why">Dreame Gleam ชนะทุกมิติที่เผยแพร่: ถูกกว่า เบากว่า เคลม 65 m/s ประกัน 2 ปี — ต้อง reposition (ลดราคา หรือ refresh + ยกประกัน)</div>
+        <div class="vs">เทียบ: Dreame Hair Gleam ฿1,359 (65 m/s · 330g · 2 ปี) vs BDR-02 (ไม่เผย m/s · 410g · 1 ปี)</div>
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <div class="sec-head"><h3>แผนที่ราคาไดร์ & สไตล์เลอร์ในไทย</h3><span>ช่วงราคาต่อแบรนด์ (บาท) · แถบฟ้า = gap ที่ Bwell ควรยึด</span></div>
+    <div class="chart-card">
+      <div class="legend" aria-hidden="true">
+        <span><i style="background:var(--cat-bwell)"></i>Bwell</span>
+        <span><i style="background:var(--cat-china)"></i>จีน High-speed</span>
+        <span><i style="background:var(--cat-premium)"></i>Premium / Inter</span>
+        <span><i style="background:var(--cat-mass)"></i>Mass / Legacy</span>
+      </div>
+      <div class="ladder"><div class="ladder-inner">
+        <div class="rows" id="rows"></div>
+      </div></div>
+      <div class="note">แท่ง = ช่วงราคา list/street ของไลน์ hair ในไทย · จุดดำ = hero SKU · ชี้/แตะที่แท่งเพื่อดูรายละเอียด · ราคา ณ 28 ส.ค. 2026 ผันผวนตามแคมเปญ</div>
+    </div>
+  </section>
+
+  <section>
+    <div class="sec-head"><h3>สมรภูมิ Entry ที่แพ้อยู่ — BDR-02 vs คู่ชนตรง</h3></div>
+    <div class="tbl-wrap"><table>
+      <thead><tr><th>สเปคที่ผู้บริโภคเห็น</th><th class="colme">Bwell BDR-02</th><th>Dreame Hair Gleam</th><th>Xiaomi H501</th></tr></thead>
+      <tbody>
+        <tr><td>ราคา</td><td class="num colme">฿1,690</td><td class="num win">฿1,359</td><td class="num">฿1,490</td></tr>
+        <tr><td>มอเตอร์</td><td class="colme">BLDC 110,000 rpm</td><td>110,000 rpm</td><td>110,000 rpm</td></tr>
+        <tr><td>ความเร็วลม (เคลม)</td><td class="lose colme">ไม่เผยแพร่</td><td class="win">65 m/s</td><td>62 m/s</td></tr>
+        <tr><td>น้ำหนัก</td><td class="num colme">410 g</td><td class="num win">330 g</td><td class="num">400 g</td></tr>
+        <tr><td>ประกัน</td><td class="lose colme">1 ปี</td><td class="win">2 ปี</td><td>n/s</td></tr>
+        <tr><td>จุดที่ Bwell มีแต่ไม่ได้ใช้</td><td class="colme" colspan="3">ศูนย์บริการไทย · แบรนด์ wellness · ราคาตรงไม่ลดปลอม — ไม่ปรากฏใน listing/สื่อสารเลย</td></tr>
+      </tbody>
+    </table></div>
+  </section>
+
+  <section>
+    <div class="sec-head"><h3>สินค้าใหม่ควรเข้าตรงไหน — 4 Gap เรียงตามลำดับ</h3></div>
+    <div class="gaps">
+      <div class="gap">
+        <div class="rank"><span class="n">1</span><h4>ยึด ฿4,000–7,500 Hair</h4></div>
+        <div class="pr">ใช้ BDR-04 / BAW-02 เดิม</div>
+        <p>gap เดียวที่มีสินค้านั่งอยู่แล้ว ระหว่าง Laifen ฿3,299 กับ Shark ฿7,900 — แต่ Dreame กำลังรุก (฿6,490) ต้องปิดเกมก่อน 11.11</p>
+        <div class="act"><b>ทำเลย:</b> KOL blitz 30-50 ราย + เผยแพร่ m/s + ผ่อน 0% + เจรจา Power Buy</div>
+      </div>
+      <div class="gap">
+        <div class="rank"><span class="n">2</span><h4>IPL ใต้ราคา Ulike</h4></div>
+        <div class="pr">฿3,990–5,990</div>
+        <p>Ulike ตั้ง trust floor ฿7,999 (เข้าไทย ก.ค. 2025) ใต้ลงมามีแค่ no-name — whitespace เปิดในหมวดที่โต ~19.6%/ปี</p>
+        <div class="act"><b>Q1 2027:</b> เปิดบน TikTok Shop ก่อนสงกรานต์ · อย./มอก. + ประกันไทย 2 ปี เป็นจุดขาย</div>
+      </div>
+      <div class="gap">
+        <div class="rank"><span class="n">3</span><h4>LED Mask กลางตลาด</h4></div>
+        <div class="pr">฿4,990–6,990</div>
+        <p>ว่างสนิทระหว่าง Parin ฿1,490 กับเกาหลี/Shark ~฿12,000+ — Shark พิสูจน์แล้วหมวดนี้สเกลเร็ว (#1 US)</p>
+        <div class="act"><b>รอจังหวะ:</b> ดูผลตอบรับ FOREO/CryoGlow 2-3 ไตรมาส แล้วเข้าเป็นรายที่ 2-3 ราคาครึ่งเดียว</div>
+      </div>
+      <div class="gap">
+        <div class="rank"><span class="n">4</span><h4>หนีบเกรดซาลอน</h4></div>
+        <div class="pr">฿6,000–9,000 · BaByliss</div>
+        <p>ghd/ReFa ไม่มี official distribution แข็งแรงในไทย — Bwell ถือสิทธิ์ BaByliss อยู่แล้ว ไม่ต้องพัฒนาใหม่</p>
+        <div class="act"><b>เกมสองแบรนด์:</b> salon partnership แบบ Shark×Prine · แบ่ง tier ไม่ให้ชน BST</div>
+      </div>
+    </div>
+    <div class="note">❌ ไม่ควรทำ: ออกไดร์ entry สู้ราคาจีน (race to the bottom) · ขึ้นชน Premium ฿8,000-15,000 (Dyson Origin ยึดแล้ว) · device ราคาถูกแบบหว่าน</div>
+  </section>
+
+  <section>
+    <div class="sec-head"><h3>Roadmap 12 เดือน</h3></div>
+    <div class="road">
+      <div class="q"><div class="t">Q3–Q4 2026</div><ul>
+        <li>Hero campaign BDR-04/BAW-02 (9.9 → 12.12)</li><li>เผยแพร่สเปค m/s ทุกรุ่น</li><li>ยกประกัน BDR-02 → 2 ปี</li></ul></div>
+      <div class="q"><div class="t">Q4 2026</div><ul>
+        <li>Sourcing + อย. IPL</li><li>เจรจา Power Buy 5-10 สาขา</li><li>ติดตามผล FOREO/CryoGlow</li></ul></div>
+      <div class="q"><div class="t">Q1 2027</div><ul>
+        <li>เปิดตัว IPL ฿3,990–5,990 บน TikTok Shop</li><li>BaByliss × salon partnership</li></ul></div>
+      <div class="q"><div class="t">Q2 2027</div><ul>
+        <li>Scale IPL → Watsons/EVEANDBOY</li><li>ตัดสินใจ LED Mask จากข้อมูลจริง</li></ul></div>
+    </div>
+    <div class="note">เป้ารวม: ติด ≥1 roundup ปี 2027 · รีวิว ≥4.7★ ต่อ hero SKU · รายได้ device ใหม่ ≥15% ของหมวด Beauty สิ้นปี 2027</div>
+  </section>
+
+  <footer>
+    ข้อมูลราคา/สเปคเข้าถึง 28 ส.ค. 2026 — รายละเอียดและแหล่งอ้างอิงครบถ้วนใน
+    <a href="https://github.com/bass-7806/Marketing/blob/claude/beauty-market-data-c0nqg4/research/bwell-beauty-competitiveness-2026.md">รายงานวิเคราะห์ฉบับเต็ม</a> ·
+    <a href="https://github.com/bass-7806/Marketing/blob/claude/beauty-market-data-c0nqg4/research/beauty-market-thailand-2026.md">รายงานตลาด Beauty ประเทศไทย</a><br>
+    ตัวเลขจากแหล่งสาธารณะ — ราคา marketplace ผันผวนตามแคมเปญ ควร snapshot ใหม่ก่อนตัดสินใจเชิงราคา · คะแนนรีวิว/ยอดขาย Shopee/Lazada ไม่สามารถดึงอัตโนมัติได้
+  </footer>
+</div>
+
+<div class="tip" id="tip" role="status"></div>
+
+<script>
+(function(){
+  var MAX = 30000;
+  var brands = [
+    {n:"Lesasha",      g:"mass",    lo:490,   hi:759,   hero:719,   d:"Maxi Air ฿599–719 · ครอง 23% volume share ไทย (Kuron)"},
+    {n:"Dreame",       g:"china",   lo:759,   hi:12990, hero:1359,  d:"Gleam ฿1,359 (65 m/s) → Miracle Pro ฿12,990 · ลดปลอม 57–74%"},
+    {n:"Panasonic",    g:"premium", lo:990,   hi:10990, hero:10990, d:"NE66 ฿990 → nanoe EH-NA0J RRP ฿10,990"},
+    {n:"Xiaomi",       g:"china",   lo:1490,  hi:2490,  hero:1490,  d:"High-Speed Ionic ฿1,490 (62 m/s)"},
+    {n:"Laifen",       g:"china",   lo:1600,  hi:3299,  hero:3299,  d:"Mini ฿3,299 (299g) · Swift SE ~฿2,x00 (unverified)"},
+    {n:"Bwell",        g:"bwell",   lo:1690,  hi:5990,  hero:5990,  d:"BDR-02 ฿1,690 → BDR-04/BAW-02 ฿5,990 (BLDC 110,000 rpm)", me:true},
+    {n:"BaByliss",     g:"mass",    lo:1990,  hi:7990,  hero:7990,  d:"จัดจำหน่ายโดย Bwell Group · Wave Secret Air ฿7,990"},
+    {n:"Philips",      g:"premium", lo:3290,  hi:3990,  hero:3290,  d:"BHD720 Water & Mineral ฿3,290–3,990"},
+    {n:"Shark",        g:"premium", lo:7900,  hi:12900, hero:7900,  d:"SpeedStyle ฿7,900 · FlexStyle ฿12,900 · ขยาย Power Buy ต่างจังหวัด"},
+    {n:"Dyson",        g:"premium", lo:10900, hi:29900, hero:10900, d:"Airwrap Origin ฿10,900 (ลดจาก 18,900) → Co-anda 2x ฿29,900"}
+  ];
+  var colors = {bwell:"var(--cat-bwell)", china:"var(--cat-china)", premium:"var(--cat-premium)", mass:"var(--cat-mass)"};
+  var rows = document.getElementById("rows");
+
+  // gridlines + gap zone live inside the rows container so they align with tracks
+  var grid = document.createElement("div"); grid.className = "gridlines";
+  [0,5000,10000,15000,20000,25000,30000].forEach(function(v){
+    var gl = document.createElement("div"); gl.className = "gl"; gl.style.left = (v/MAX*100) + "%";
+    gl.innerHTML = "<span" + (v===MAX ? ' style="transform:translateX(-90%)"' : "") + ">" + (v===0 ? "0" : "฿" + (v/1000) + "k") + "</span>";
+    grid.appendChild(gl);
+  });
+  var gz = document.createElement("div"); gz.className = "gapzone";
+  gz.style.left = (4000/MAX*100) + "%"; gz.style.width = ((7500-4000)/MAX*100) + "%";
+  gz.innerHTML = "<em>GAP ฿4,000–7,500</em>";
+  grid.appendChild(gz);
+  rows.appendChild(grid);
+
+  var tip = document.getElementById("tip");
+  function showTip(e, b){
+    tip.innerHTML = "<b>" + b.n + "</b> ฿" + b.lo.toLocaleString() + "–" + b.hi.toLocaleString() + "<br>" + b.d;
+    tip.classList.add("show");
+    var x = Math.min(e.clientX + 14, window.innerWidth - 280), y = e.clientY + 14;
+    tip.style.left = x + "px"; tip.style.top = y + "px";
+  }
+  function hideTip(){ tip.classList.remove("show"); }
+
+  brands.forEach(function(b){
+    var row = document.createElement("div"); row.className = "row" + (b.me ? " me" : "");
+    var bl = document.createElement("div"); bl.className = "bl"; bl.textContent = b.n; row.appendChild(bl);
+    var tr = document.createElement("div"); tr.className = "track";
+    var bar = document.createElement("div"); bar.className = "bar";
+    bar.style.left = (b.lo/MAX*100) + "%";
+    bar.style.width = Math.max((b.hi-b.lo)/MAX*100, 1.2) + "%";
+    bar.style.background = colors[b.g];
+    bar.tabIndex = 0;
+    bar.setAttribute("aria-label", b.n + " ช่วงราคา " + b.lo + " ถึง " + b.hi + " บาท — " + b.d);
+    bar.addEventListener("mousemove", function(e){ showTip(e, b); });
+    bar.addEventListener("mouseleave", hideTip);
+    bar.addEventListener("focus", function(){ var r = bar.getBoundingClientRect(); showTip({clientX:r.left+r.width/2, clientY:r.top}, b); });
+    bar.addEventListener("blur", hideTip);
+    tr.appendChild(bar);
+    var dot = document.createElement("div"); dot.className = "dot"; dot.style.left = (b.hero/MAX*100) + "%";
+    tr.appendChild(dot);
+    row.appendChild(tr);
+    rows.appendChild(row);
+  });
+})();
+</script>
