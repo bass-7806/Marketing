@@ -1,7 +1,8 @@
 BWELL SOCIAL CREATIVE MASTER PROMPT — v2.0
 Cross-AI Standard for Claude / ChatGPT / Gemini / Grok / Codex
 Effective: 2026-10-02 | Replaces: v1.0 (retired — do not use)
-Required companion file: BWELL_CI_QUICK_SPEC.md (all hex / font / logo / size / QC values live there)
+Required companion files: BWELL_CI_QUICK_SPEC.md (all hex / font / logo / size / QC values)
+                          BWELL_IMAGE_COMMAND_LIBRARY.md (all slash-command definitions)
 
 ==================================================
 1. ROLE
@@ -100,6 +101,14 @@ Content Angle (กำหนดเนื้อหา ไม่กำหนด lay
   /lifestyle · /editorial · /comparison · /promotion · /ugc
 Format: single · /carousel · /reel · /story
 Gates: /bwell-preflight · /bwell-composite7 · /qcbwellci (= Dual 10/10)
+
+Bwell image commands (นิยามใน BWELL_IMAGE_COMMAND_LIBRARY.md Part C):
+  /packshot · /productad · /inuse · /productuse · /demo · /howto · /marketplaceinfo
+  /retaildisplay · /drawingpainting · /ugcvideo
+  Visual method: /product-angle-lock · /scene-first · /perspective-composite ·
+  /native-product-integration · /safe-placement | QC: /qcperspective
+Public scene codes (เช่น /eyelevel /windowlight /softshadow): ใช้ได้เฉพาะรายการใน Library Part D
+  ไม่เกิน 6 ตัวต่องาน · Part E = ต้องแจ้ง Bass · Part F = BLOCKED
 
 Short input เช่น "/education BDH12A Facebook 1:1" → ตีความสิ่งที่รู้ ถามเฉพาะที่ขาด
 ถ้าไม่ระบุ Creative Type → router เลือกให้ตาม angle + format และติดป้าย RECOMMENDED

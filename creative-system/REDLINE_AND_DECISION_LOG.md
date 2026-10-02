@@ -52,6 +52,7 @@ Scope: ทำให้ทุก AI และ designer ใช้กฎชุด�
 | เลข section | มี "21)" สองหัวข้อ | เปลี่ยน /bwell-composite7 เป็น 21A หรือเลื่อนเลข |
 | §19 อ้าง Source Index | "2026-09-16" | ใช้ชื่อปัจจุบัน "Bwell Social Creative SOP & Source Index" |
 | Router §22 | ใช้ /perspective-composite, /safe-placement | เพิ่ม: "ทุกคำสั่ง composite = /bwell-composite7; /safe-placement คือ variant ของ composite7" |
+| §16 + §22 คำสั่งที่ไม่มีนิยาม (16 ตัว) | /drawingpainting /marketplaceinfo /productad /retaildisplay /inuse /demo /howto /productuse /packshot /ugcvideo /product-angle-lock /scene-first /perspective-composite /native-product-integration /safe-placement /qcperspective | เพิ่ม pointer: "นิยามอยู่ใน BWELL_IMAGE_COMMAND_LIBRARY.md Part C" (หลัง Bass approve) |
 | Section ใหม่ | — | เพิ่ม pointer: "Quick Spec 1 หน้า = BWELL_CI_QUICK_SPEC.md (ค่าตัวเลขทั้งหมด)" |
 
 ### 3.2 Bwell Brand DNA 2026
@@ -103,7 +104,10 @@ Scope: ทำให้ทุก AI และ designer ใช้กฎชุด�
 |---|---|---|
 | 1 | ตัดสิน O1–O5 — DONE 2026-10-02 | Bass |
 | 2 | แก้ CI, Brand DNA, Product Intelligence, Command Menu ตามส่วนที่ 3 | Bass |
-| 3 | อัปโหลด v2.0 + Quick Spec ขึ้น Drive (01_RULES) | Bass |
+| 2a | Review + approve `BWELL_IMAGE_COMMAND_LIBRARY.md` (Part C นิยาม 16 คำสั่ง, Part F รายการ BLOCKED) | Bass |
+| 2b | แก้ `Bwell_Prompt_Library.xlsx`: Base Prompt ห้ามส่งโลโก้เข้า image model → เปลี่ยนเป็น scene-only + composite7 | Bass |
+| 2c | ย้าย `_TMP_BWELL_CI_SYNC_COMMAND` (Command Menu ฉบับเก่าที่กฎขัดกัน) ไป 99_Archive | Bass |
+| 3 | อัปโหลด v2.0 + Quick Spec + Image Command Library ขึ้น Drive (01_RULES) และวาง Library Part A เป็น Custom Instruction ในทุก AI | Bass |
 | 4 | เปลี่ยน Knowledge ใน ChatGPT / Gemini / Grok / Claude Project | Bass |
 | 5 | แก้ user preferences ทุก AI | Bass |
 | 6 | Test: สั่ง `/bwell-create AP-P4019US + /creativeads + /problemsolution + Facebook + Awareness + 4:5` ใน AI ทุกตัว แล้วเทียบ font / สี / โลโก้ / QC ว่าตรงกัน | Bass + Claude |
