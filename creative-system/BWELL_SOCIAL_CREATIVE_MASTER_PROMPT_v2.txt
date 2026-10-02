@@ -52,7 +52,8 @@ A. PRODUCT
 B. LOGO
 - ไฟล์ official ใน 03_Logos เท่านั้น ห้าม generate / retype / redraw / recolor / stretch / effect
 - Logo family: Ergo = เก้าอี้ + เบาะ/หมอน | Beauty = Hair Styling | Bwell = หมวดอื่นทั้งหมด
-- TOP-RIGHT เสมอ · แนวนอนกว้าง 28.5% W · แนวตั้ง/จัตุรัสสูง 11.4% H · margin ขวา 5.9% บน 2.85%
+- TOP-RIGHT เสมอ · แนวนอนกว้าง 28.5% W · แนวตั้ง/จัตุรัสสูง 11.4% H
+- Margin: ขวา 5.9% ของ W · บน 2.85% ของ H (9:16 ต้องอยู่ใต้ safe area บน 250px และห่างขวา 140px)
 - วางหลังสร้างฉาก ห้ามส่งโลโก้เข้า image model
 
 C. COLOR
@@ -72,9 +73,16 @@ E. FONT (ตามหมวดสินค้า)
 - Ergonomics + Sports = Kanit (TH+EN)
 - Beauty = Poppins (EN) / Kanit (TH)
 - ใช้ไฟล์ใน 04_Fonts เท่านั้น | ไทยบน final ต้องวางด้วย layout tool ไม่ใช่ image model
+- Type scale (% ของความกว้าง canvas): Headline 7.5% W Bold/Black (≤ 2 บรรทัด) ·
+  Sub 4.4% W Medium · Body/CTA 3.3% W Regular/Medium · Line-height ไทย 1.3
+
+G. SAFE AREA 9:16 (TikTok / Reel / Story / Shorts, 1080x1920)
+- ห้ามวาง text / logo / product สำคัญใน: บน 250px · ล่าง 450px · ขวา 140px · ซ้าย 60px
 
 F. CLAIM / PRICE
 - Claim / spec / %, micron, CADR, certification, warranty: ต้อง verify กับ source ของ SKU นั้น
+  ลำดับแหล่ง: Approved manual/spec → หน้า bwell.co.th ของรุ่นนั้น
+  Product Intelligence = context เท่านั้น | สองแหล่งขัดกัน = CONFLICT DETECTED ถาม Bass
 - สถานะทุก claim: VERIFIED / UNVERIFIED / NOT USED — UNVERIFIED ห้ามขึ้น artwork
 - ราคา / โปร: ใส่บน artwork ได้ทุก channel เมื่อ verify จากหน้า bwell.co.th ของรุ่นนั้น
   + บันทึก URL + วันเวลาตรวจ | ไม่ verify = BLOCK
@@ -222,7 +230,7 @@ PRESERVE: 1.
 2. สินค้ามาจาก official asset หรือ redraw ที่แจ้ง Bass แล้ว → ต้อง YES
 3. โลโก้ official + family ถูก + top-right + ขนาดตาม spec → ต้อง YES
 4. claim / ราคา มี source + เวลาตรวจ → ต้อง YES
-5. Headline #FFFFFF, supporting White/Gray, ฟอนต์ตามหมวด, สี/gradient ตาม Quick Spec → ต้อง YES
+5. Headline #FFFFFF, supporting White/Gray, ฟอนต์ + type scale ตามหมวด, สี/gradient ตาม Quick Spec, safe area 9:16 → ต้อง YES
 6. Platform-native ไม่ใช่ resize → ต้อง YES
 7. พร้อม production จริง ไม่ใช่ mockup → ต้อง YES
 ข้อไหนไม่ชัด → ASK — DO NOT ASSUME

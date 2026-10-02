@@ -22,15 +22,17 @@ Scope: ทำให้ทุก AI และ designer ใช้กฎชุด�
 | Q9 | Master Prompt v1.0 | Rewrite เป็น v2.0 และเลิกใช้ v1.0 |
 | Q10 | ส่งมอบ | Repo + redline (ไม่แก้ไฟล์ Drive) |
 
-## 2. OPEN ITEMS — ต้องให้ Bass ตัดสินเพิ่ม
+## 2. ADDITIONAL DECISIONS (Bass ตัดสิน 2026-10-02 รอบ 2)
 
-| # | หัวข้อ | ทำไมต้องตัดสิน | ตอนนี้ใน v2.0 ใช้ |
-|---|---|---|---|
-| O1 | Type scale (ขนาด headline / sub / body / CTA ต่อ canvas) | ไม่มีในเอกสารใดเลย = ต้นเหตุตรงของ hierarchy ไม่เท่ากันทุกงาน | `[Bass กำหนด]` |
-| O2 | Safe area ของ TikTok / Reel / Story (พื้นที่ UI บัง) | ไม่มีในเอกสารใด | `[Bass กำหนด]` |
-| O3 | ฐานคำนวณ margin โลโก้ — 5.9% และ 2.85% คิดจากความกว้างหรือความสูง canvas | Brand DNA ไม่ระบุฐาน ทำให้ pixel ต่างกันในงาน 4:5 และ 9:16 | ระบุเป็น % ตามเดิม |
-| O4 | ลำดับแหล่ง claim | CI §21 ให้ Product Intelligence สูงกว่า bwell.co.th แต่ตัว Product Intelligence และ SOP Index บอกว่าเป็นแค่ context | PROPOSED: Approved manual/spec → bwell.co.th exact-model page; Product Intelligence = context เท่านั้น |
-| O5 | ทิศ gradient | CI §23.5 เขียน "Navy → Brand Blue" แต่ Bass ล็อก `#0D99DB` → `#005D9D` | ใช้ตามที่ Bass ล็อก: บน `#0D99DB` ล่าง `#005D9D` (`linear-gradient(180deg, ...)`) |
+| # | หัวข้อ | Decision |
+|---|---|---|
+| O1 | Type scale | Standard: Headline 7.5% W Bold/Black (≤ 2 บรรทัด) · Sub 4.4% W Medium · Body/CTA 3.3% W Regular/Medium · Line-height ไทย 1.3 |
+| O2 | Safe area 9:16 | Conservative ค่าเดียวทุก platform: บน 250px · ล่าง 450px · ขวา 140px · ซ้าย 60px |
+| O3 | Logo margin base | ขวา 5.9% ของความกว้าง · บน 2.85% ของความสูง; 9:16 ให้ safe area ชนะ margin |
+| O4 | Claim source | Approved manual/spec → bwell.co.th exact-model page · Product Intelligence = context เท่านั้น · ขัดกัน = ถาม Bass |
+| O5 | ทิศ gradient | ตามที่ Bass ล็อก: บน `#0D99DB` → ล่าง `#005D9D` (`linear-gradient(180deg, ...)`) |
+
+ไม่มี open item เหลือในระดับ spec
 
 ## 3. REDLINE — สิ่งที่ Bass ต้องแก้ในไฟล์ Drive / ไฟล์อื่น
 
@@ -43,7 +45,10 @@ Scope: ทำให้ทุก AI และ designer ใช้กฎชุด�
 | §6 Logo Lock | บอกแค่ TOP-RIGHT | เพิ่ม: ขนาด 28.5% W (แนวนอน) / 11.4% H (แนวตั้ง-จัตุรัส), margin ขวา 5.9% บน 2.85%, Logo family Ergo / Beauty / Bwell ตามหมวด |
 | §12 vs §23.10 | QC สองระบบ ไม่บอกว่าใช้อันไหน | เพิ่มประโยค: "§12 = Bwell CI QC scorecard ภายใต้ Dual 10/10 ใน §23.10; QC_PASS = CI 10 + Beauty 10" |
 | §23.8 Badge / §9 Claim | ไม่ระบุเรื่องราคาบน artwork | เพิ่ม: "ราคา/โปรใส่บน artwork ได้ทุก channel เมื่อ verify จาก bwell.co.th exact-model page + URL + เวลาตรวจ" |
-| §21 Claim Authority | Manual → Product Intelligence → bwell.co.th | แก้ตาม O4 หลัง Bass ตัดสิน |
+| §21 Claim Authority | Manual → Product Intelligence → bwell.co.th | Approved manual/spec → bwell.co.th exact-model page; Product Intelligence = context เท่านั้น; ขัดกัน = ถาม Bass |
+| §23.4 Typography | ไม่มี type scale | เพิ่ม: Headline 7.5% W · Sub 4.4% W · Body/CTA 3.3% W · Line-height ไทย 1.3 · Headline ≤ 2 บรรทัด |
+| §23.12 Final Gate | "safe area verified" ไม่มีค่า | เพิ่ม: 9:16 safe area บน 250 / ล่าง 450 / ขวา 140 / ซ้าย 60 px |
+| §6 Logo margin | — | ระบุฐาน: ขวา 5.9% ของ W, บน 2.85% ของ H; 9:16 ให้ safe area ชนะ |
 | เลข section | มี "21)" สองหัวข้อ | เปลี่ยน /bwell-composite7 เป็น 21A หรือเลื่อนเลข |
 | §19 อ้าง Source Index | "2026-09-16" | ใช้ชื่อปัจจุบัน "Bwell Social Creative SOP & Source Index" |
 | Router §22 | ใช้ /perspective-composite, /safe-placement | เพิ่ม: "ทุกคำสั่ง composite = /bwell-composite7; /safe-placement คือ variant ของ composite7" |
@@ -96,7 +101,7 @@ Scope: ทำให้ทุก AI และ designer ใช้กฎชุด�
 
 | # | งาน | Owner |
 |---|---|---|
-| 1 | ตัดสิน O1–O5 | Bass |
+| 1 | ตัดสิน O1–O5 — DONE 2026-10-02 | Bass |
 | 2 | แก้ CI, Brand DNA, Product Intelligence, Command Menu ตามส่วนที่ 3 | Bass |
 | 3 | อัปโหลด v2.0 + Quick Spec ขึ้น Drive (01_RULES) | Bass |
 | 4 | เปลี่ยน Knowledge ใน ChatGPT / Gemini / Grok / Claude Project | Bass |

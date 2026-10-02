@@ -52,11 +52,13 @@ Priority เมื่อขัดกัน: คำสั่งล่าสุด
 - ห้ามใช้ Poppins กับข้อความไทย
 - ข้อความไทยบน final artwork ต้องวางด้วย layout tool (Canva/Figma/PIL) — ตัวอักษรที่ image model สร้างไม่นับเป็น final
 
-| Type scale | ค่า |
-|---|---|
-| Headline size / line-height | `[Bass กำหนด]` |
-| Subheadline size | `[Bass กำหนด]` |
-| Body / CTA size | `[Bass กำหนด]` |
+| Type scale (% ของความกว้าง canvas) | Size | ที่ 1080px | Weight |
+|---|---|---|---|
+| Headline | 7.5% W | ≈81px | Bold / Black (Kanit, Poppins: Bold) |
+| Subheadline | 4.4% W | ≈48px | Medium (Poppins: SemiBold) |
+| Body / CTA / label | 3.3% W | ≈36px | Regular / Medium |
+| Line-height ไทย | 1.3 | — | — |
+| Headline สูงสุด | 2 บรรทัด | — | — |
 
 ## 4. LOGO
 
@@ -68,7 +70,8 @@ Priority เมื่อขัดกัน: คำสั่งล่าสุด
 | Position | TOP-RIGHT เสมอ (เปลี่ยนได้เฉพาะคำสั่ง Bass ของงานนั้น) |
 | Size — แนวนอน | กว้าง 28.5% ของความกว้าง canvas |
 | Size — แนวตั้ง / จัตุรัส | สูง 11.4% ของความสูง canvas |
-| Margin | ขวา 5.9% · บน 2.85% |
+| Margin | ขวา 5.9% ของความกว้าง · บน 2.85% ของความสูง (1080×1080 = ขวา 64px บน 31px · 1080×1350 = ขวา 64px บน 38px · 1080×1920 = ขวา 64px บน 55px) |
+| 9:16 | วางโลโก้ใต้ safe area บน (y ≥ 250px) ขวา 140px — safe area ชนะ margin |
 | Minimum | Digital 80px · Print 20mm |
 | ขั้นตอน | วางโลโก้หลังสร้างฉากเสมอ ห้ามส่งโลโก้เข้า image model |
 
@@ -86,7 +89,7 @@ Priority เมื่อขัดกัน: คำสั่งล่าสุด
 
 | หัวข้อ | Rule |
 |---|---|
-| Claim / spec | ใช้ได้เมื่อ verify กับ source ของ SKU นั้นตรงๆ — ไม่ verify = ตัดออกหรือถาม |
+| Claim / spec | ลำดับแหล่ง: Approved manual/spec ของ SKU → หน้า bwell.co.th ของรุ่นนั้น · Product Intelligence = context เท่านั้น · สองแหล่งขัดกัน = ถาม Bass · ไม่ verify = ตัดออก |
 | ราคา / โปร | ใส่บน artwork ได้ทุก channel เมื่อ verify จากหน้า bwell.co.th ของรุ่นนั้น + บันทึก URL + วันเวลาตรวจ |
 | Banned | "ป้องกัน COVID", "รักษาโรคภูมิแพ้", "ป้องกันโรค", ชื่อคู่แข่ง, fear-based copy |
 
@@ -99,7 +102,7 @@ Priority เมื่อขัดกัน: คำสั่งล่าสุด
 | IG Story / Reel, TikTok, YouTube Shorts | 9:16 | 1080×1920 |
 | Threads | 4:5 | 1080×1350 |
 | X | 16:9 | 1600×900 |
-| Platform UI safe area (TikTok/Reel) | — | `[Bass กำหนด]` |
+| Safe area 9:16 (TikTok / Reel / Story / Shorts) | — | ห้ามวาง text, logo, product สำคัญใน: บน 250px · ล่าง 450px · ขวา 140px · ซ้าย 60px |
 
 ## 8. QC — DUAL 10/10 (ระบบเดียว)
 
