@@ -29,23 +29,32 @@ def product(bg,H,x_off,y):
     x=(bg.width-p.width)//2+x_off
     sh=Image.new('RGBA',p.size,(0,0,0,0)); sh.putalpha(p.split()[3].point(lambda v:int(v*0.5))); sh=sh.filter(ImageFilter.GaussianBlur(28))
     bg.alpha_composite(sh,(x+35,y+40)); bg.alpha_composite(p,(x,y)); return bg
+def finish(im,seed):
+    # photographic finish so the scene reads as a camera photo: softer saturation, highlight roll-off, vignette, luma grain
+    a=np.asarray(im.convert('RGB')).astype(np.float32)/255; h,w=a.shape[:2]
+    g=a.mean(2,keepdims=True); a=g+(a-g)*0.90
+    a=np.where(a>0.75,0.75+(a-0.75)*0.7,a); a=0.015+a*0.985
+    yy,xx=np.mgrid[0:h,0:w]; r=np.hypot((xx-w/2)/(w/2),(yy-h/2)/(h/2)); a=a*(1-0.10*np.clip(r-0.55,0,1)[...,None]**1.5)
+    n=np.random.default_rng(seed).normal(0,1,(h,w)).astype(np.float32); n=(n+np.roll(n,1,0)*0.35+np.roll(n,1,1)*0.35)/1.3
+    a=a+n[...,None]*0.016
+    return Image.fromarray(np.clip(a*255,0,255).astype(np.uint8)).convert('RGBA')
 out={}
 for i in (1,2,3,4):
     # 9:16
     if i==2: base=product(Image.open(f'{D}/bg2.png').convert('RGBA'),1300,110,380)
-    else: base=Image.open(f'{D}/c{i}.png').convert('RGBA')
-    out[(i,'916')]=overlay(base.copy(),i,70,199,1782)
+    else: base=Image.open(f'{D}/'+('c4r.png' if i==4 else f'c{i}.png')).convert('RGBA')
+    out[(i,'916')]=overlay(finish(base,i),i,70,199,1782)
     # 4:5
     if i==2:
         bg=Image.open(f'{D}/bg2.png').convert('RGBA').crop((0,330,1080,1680))
         b45=product(bg,960,190,300)
     elif i==4:
-        src=Image.open(f'{D}/c4.png').convert('RGBA').crop((0,140,1080,1840)); sc=1350/1700
+        src=Image.open(f'{D}/c4r.png').convert('RGBA').crop((0,140,1080,1840)); sc=1350/1700
         fg=src.resize((round(1080*sc),1350),Image.LANCZOS)
         b45=src.resize((1080,1350)).filter(ImageFilter.GaussianBlur(30)); m=Image.new('L',fg.size,255); import numpy as _n; ma=_n.array(m).astype(float); ma[:,:120]*=_n.linspace(0,1,120)[None,:]; fg.putalpha(Image.fromarray(ma.astype('uint8'))); b45.alpha_composite(fg,(1080-fg.width,0))
     else:
         y0={1:150,3:60}[i]; b45=Image.open(f'{D}/c{i}.png').convert('RGBA').crop((0,y0,1080,y0+1350))
-    out[(i,'45')]=overlay(b45,i,60,150,1262)
+    out[(i,'45')]=overlay(finish(b45,10+i),i,60,150,1262)
 import os; os.makedirs(f'{D}/out',exist_ok=True)
 for (i,k),im in out.items(): im.convert('RGB').save(f'{D}/out/BSL-01_set_{i}_{"9x16" if k=="916" else "4x5"}.png')
 ims=[out[(i,'916')].convert('RGB').resize((270,480)) for i in (1,2,3,4)]
