@@ -4,8 +4,8 @@ W,H=1080,1920
 def F(n,s): return ImageFont.truetype(A+n,s)
 logo=Image.open(A+'bwell_beauty_logo_blue.png'); lw=300; logo=logo.resize((lw,round(logo.height*lw/logo.width)),Image.LANCZOS)
 segs=[(None,'เลือกหัวให้ตรงลุค','7 in 1 Multi Styler'),
-      ('01','แปรงกลม','เพิ่มวอลลุ่ม จัดปลายผมให้โค้ง'),
-      ('02','แกนม้วน','ลุคลอนสวยเป็นธรรมชาติ'),
+      (None,'แปรงกลม','เพิ่มวอลลุ่ม จัดปลายผมให้โค้ง'),
+      (None,'แกนม้วน','ลุคลอนสวยเป็นธรรมชาติ'),
       ('BAW-02','BLDC Multi Hair Styler',None)]
 WHITE=(255,255,255,255); GRAY=(222,222,222,255)
 for i,(k,h,s) in enumerate(segs,1):
