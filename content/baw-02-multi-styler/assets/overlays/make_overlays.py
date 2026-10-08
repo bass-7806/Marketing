@@ -2,10 +2,10 @@ from PIL import Image, ImageDraw, ImageFont, ImageFilter
 A='/home/user/Marketing/content/baw-02-multi-styler/assets/'
 W,H=1080,1920
 def F(n,s): return ImageFont.truetype(A+n,s)
-logo=Image.open(A+'bwell_logo_navy.png'); lw=120; logo=logo.resize((lw,round(logo.height*lw/logo.width)),Image.LANCZOS)
+logo=Image.open(A+'bwell_beauty_logo_blue.png'); lw=300; logo=logo.resize((lw,round(logo.height*lw/logo.width)),Image.LANCZOS)
 segs=[(None,'เลือกหัวให้ตรงลุค','7 in 1 Multi Styler'),
       ('01','แปรงกลม','เพิ่มวอลลุ่ม จัดปลายผมให้โค้ง'),
-      ('02','แกนม้วน','ลุคลอนสวยแบบอัตโนมัติ'),
+      ('02','แกนม้วน','ลุคลอนสวยเป็นธรรมชาติ'),
       ('BAW-02','BLDC Multi Hair Styler',None)]
 WHITE=(255,255,255,255); GRAY=(222,222,222,255)
 for i,(k,h,s) in enumerate(segs,1):
@@ -30,6 +30,6 @@ for i,(k,h,s) in enumerate(segs,1):
     sh=Image.new('RGBA',(W,H),(0,0,0,0)); sh.putalpha(txt.split()[3].point(lambda v:int(v*0.45)))
     sh=sh.filter(ImageFilter.GaussianBlur(6))
     im=Image.alpha_composite(im,sh); im=Image.alpha_composite(im,txt)
-    im.paste(logo,((W-lw)//2,120),logo)
+    im.paste(logo,((W-lw)//2,130),logo)
     im.save(f'ov{i}.png')
 print('done')
