@@ -2,7 +2,8 @@ from PIL import Image, ImageDraw, ImageFont, ImageFilter
 A='/home/user/Marketing/content/baw-02-multi-styler/assets/'
 W,H=1080,1920
 def F(n,s): return ImageFont.truetype(A+n,s)
-logo=Image.open(A+'bwell_beauty_logo_blue.png'); lw=300; logo=logo.resize((lw,round(logo.height*lw/logo.width)),Image.LANCZOS)
+logo=Image.open(A+'bwell_beauty_logo_blue.png').convert('RGBA'); _a=logo.split()[3]; logo=Image.new('RGBA',logo.size,(0x0D,0x99,0xDB,255)); logo.putalpha(_a)  # CI Primary Blue #0D99DB
+lw=300; logo=logo.resize((lw,round(logo.height*lw/logo.width)),Image.LANCZOS)
 segs=[(None,'เลือกหัวให้ตรงลุค','7 in 1 Multi Styler'),
       (None,'แปรงกลม','เพิ่มวอลลุ่ม จัดปลายผมให้โค้ง'),
       (None,'แกนม้วน','ลุคลอนสวยเป็นธรรมชาติ'),
