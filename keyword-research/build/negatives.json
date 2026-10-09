@@ -1,0 +1,82 @@
+[
+ {
+  "group": "Brand confusion",
+  "keywords": "bewell; be well; บีเวล; บีเวลล์",
+  "match": "Phrase",
+  "level": "Account-level negative list (ทุก campaign รวม PMax)",
+  "reason": "คนตั้งใจหา Bewell (แบรนด์ ergonomic คนละบริษัท) txn 0",
+  "sessions": 1799,
+  "txn": 0,
+  "queries": 191
+ },
+ {
+  "group": "Bewell product names",
+  "keywords": "frozen; glory; enlight; enfold; foster; topper; ที่นอน; ผ้าห่มเย็น; หมอนหนุน; โต๊ะปรับระดับ; เตียงไฟฟ้า",
+  "match": "Phrase",
+  "level": "Ergonomic + Brand campaigns",
+  "reason": "ชื่อสินค้า/รุ่นของ Bewell ที่เจอใน site search และ Ads query",
+  "sessions": 193,
+  "txn": 0,
+  "queries": 50
+ },
+ {
+  "group": "Bargain / used",
+  "keywords": "มือสอง; เช่า; ราคาถูก; ราคาไม่เกิน; รับซื้อ",
+  "match": "Phrase",
+  "level": "Account-level",
+  "reason": "ไม่ตรง positioning premium health",
+  "sessions": 80,
+  "txn": 0,
+  "queries": 48
+ },
+ {
+  "group": "Informational / DIY",
+  "keywords": "ช่วยอะไร; ดียังไง; วิธี; ทำงานยังไง; ซ่อม; ล้าง; ติดตั้งเอง; คู่มือ",
+  "match": "Phrase",
+  "level": "Generic campaigns (ย้ายไปทำ SEO)",
+  "reason": "Research intent, 0 txn",
+  "sessions": 308,
+  "txn": 0,
+  "queries": 71
+ },
+ {
+  "group": "Wrong product",
+  "keywords": "พัดลมแอร์; แอร์มุ้ง; ตู้แอร์; พัดลมไอเย็น",
+  "match": "Phrase",
+  "level": "Portable AC ad group",
+  "reason": "คนละ product",
+  "sessions": 24,
+  "txn": 0,
+  "queries": 8
+ },
+ {
+  "group": "Competitor brands (decision required)",
+  "keywords": "xiaomi; dyson; philips; sharp; coway; panasonic; roborock; dreame; samsung; electrolux; mazuma; stiebel; safe; amway",
+  "match": "Phrase",
+  "level": "Generic campaigns (ถ้าไม่ทำ conquest)",
+  "reason": "คนตั้งใจหาแบรนด์คู่แข่ง txn 0 ถ้าจะทำ conquest ให้แยก campaign ตั้ง budget cap",
+  "sessions": 879,
+  "txn": 0,
+  "queries": 391
+ },
+ {
+  "group": "Retailers",
+  "keywords": "homepro; โฮมโปร; powerbuy; central; makro; lotus; big c",
+  "match": "Phrase",
+  "level": "Generic campaigns",
+  "reason": "เป็น retail partner ไม่ควรประมูลแข่งกับ partner",
+  "sessions": 94,
+  "txn": 0,
+  "queries": 52
+ },
+ {
+  "group": "Out of category (site search)",
+  "keywords": "ไม้เท้า; ถุงเท้า; sofa; โต๊ะ",
+  "match": "Phrase",
+  "level": "PMax / Shopping brand exclusions",
+  "reason": "Traffic ไม่ตรง product line",
+  "sessions": 63,
+  "txn": 0,
+  "queries": 30
+ }
+]
