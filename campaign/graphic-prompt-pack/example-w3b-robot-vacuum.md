@@ -10,7 +10,7 @@ Campaign: Bwell Home Check-up Q4 2026
 Calendar slot: W3-B
 Objective / Funnel: Awareness / TOFU
 Platform: TikTok cover + Reels cover
-Product / Model: Robot vacuum (L6C / L0 / Y1 รอ product team เลือกรุ่นในคลิป)
+Product / Model: Robot vacuum L6C
 Target persona: Family Protector
 Key message: ฝุ่นที่มองไม่เห็นใต้เตียง ให้หุ่นยนต์ดูดฝุ่นช่วยดูแลทุกวัน
 Headline / copy บนภาพ: ใต้เตียงคุณหน้าตาแบบนี้ไหม
@@ -32,7 +32,7 @@ Approver: [ ]
 | Campaign / Slot | Bwell Home Check-up Q4 2026 / W3-B |
 | Objective / Funnel | Awareness / TOFU |
 | Platform | TikTok cover, Reels cover (9:16) |
-| Product | Robot vacuum [รุ่นที่ใช้ในคลิป] |
+| Product | Robot vacuum L6C |
 | Deadline | 13 ต.ค. 2026 (โพส 14 ต.ค. เลี่ยงวันที่ 13 ต.ค.) |
 | Approver | [ ] |
 
@@ -61,7 +61,7 @@ Headline ทางเลือก (ถ้าอยากทดสอบ A/B):
 |---|---|
 | Scene | ห้องนอนคอนโดหรือบ้าน มุมกล้องต่ำระดับพื้น มองเข้าใต้เตียง |
 | Mood | สะอาด สว่าง premium แต่เห็นความจริงของฝุ่นใต้เตียง |
-| Product placement | หุ่นยนต์ดูดฝุ่นกำลังเข้าใต้เตียง ใช้รูปสินค้าจริงเท่านั้น |
+| Product placement | หุ่นยนต์ดูดฝุ่น L6C กำลังเข้าใต้เตียง ใช้รูปสินค้าจริงเท่านั้น |
 | Background treatment | Photo + Navy band ด้านล่างสำหรับ CTA (ตามกฎ text บน photo) |
 
 ### 5. Layout (9:16, 1080x1920)
@@ -104,7 +104,6 @@ Headline ทางเลือก (ถ้าอยากทดสอบ A/B):
 
 ### 9. Open questions
 
-- รุ่นที่ใช้ในคลิป: L6C, L0 หรือ Y1
 - Approver
 - จะใช้ภาพ cover จากคลิปจริง หรือถ่ายภาพนิ่งแยก
 
@@ -139,4 +138,4 @@ Close-up floor-level photo of the gap under a white bed in a bright modern condo
 
 **Avoid:** logo หรือตัวหนังสือในภาพ, เครื่องใช้ไฟฟ้าที่หน้าตาเหมือนสินค้าคู่แข่ง, ห้องรก, สีจัดเกินจริง, ลำแสงเฉียงสีน้ำเงิน, มือหรือเท้าที่ผิดรูป
 
-**วางสินค้าและ logo:** วางรูปหุ่นยนต์ดูดฝุ่นจริงที่ช่องว่างใต้เตียงด้านซ้าย ปรับเงาให้ตรงกับแสงจากหน้าต่าง วาง logo สีขาวบน Navy band ด้านล่างใน Figma / Photoshop ห้ามแก้ logo ด้วย AI
+**วางสินค้าและ logo:** วางรูป L6C จริงที่ช่องว่างใต้เตียงด้านซ้าย ปรับเงาให้ตรงกับแสงจากหน้าต่าง วาง logo สีขาวบน Navy band ด้านล่างใน Figma / Photoshop ห้ามแก้ logo ด้วย AI
