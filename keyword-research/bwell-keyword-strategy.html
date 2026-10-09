@@ -1,0 +1,271 @@
+<title>Bwell Search Keyword Plan</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Kanit:wght@300;400;500;600&family=Poppins:wght@400;500;600;700&display=swap">
+<style>
+/* Layout: single reading column (max 980px), decision summary first, evidence sections after, wide tables scroll in their own box */
+:root{
+  --navy:#005D9D; --navy-ink:#003F6B; --bg:#F6F8FA; --surface:#FFFFFF; --fg:#14212B; --muted:#5A6B78; --line:#DCE3E9;
+  --tint:#E6F0F7; --good:#1F7A4D; --good-bg:#E4F3EA; --warn:#9A5B00; --warn-bg:#FBF0DC; --bad:#A3271F; --bad-bg:#FBE5E3;
+  --bar:#005D9D; --bar2:#9DB9CF;
+  --display:"Poppins","Kanit",system-ui,sans-serif; --body:"Kanit","Poppins",system-ui,sans-serif;
+}
+@media (prefers-color-scheme: dark){:root:not([data-theme="light"]){
+  --navy:#5AA9E0; --navy-ink:#9CCBEE; --bg:#0D151C; --surface:#131E27; --fg:#E4ECF2; --muted:#93A5B3; --line:#24333F;
+  --tint:#16293A; --good:#6FCF9B; --good-bg:#14301F; --warn:#F0B95C; --warn-bg:#33270F; --bad:#F08A80; --bad-bg:#3A1A17;
+  --bar:#5AA9E0; --bar2:#35526A; color-scheme:dark}}
+:root[data-theme="dark"]{
+  --navy:#5AA9E0; --navy-ink:#9CCBEE; --bg:#0D151C; --surface:#131E27; --fg:#E4ECF2; --muted:#93A5B3; --line:#24333F;
+  --tint:#16293A; --good:#6FCF9B; --good-bg:#14301F; --warn:#F0B95C; --warn-bg:#33270F; --bad:#F08A80; --bad-bg:#3A1A17;
+  --bar:#5AA9E0; --bar2:#35526A; color-scheme:dark}
+*{box-sizing:border-box}
+body{background:var(--bg);color:var(--fg);font-family:var(--body);font-weight:300;font-size:16px;line-height:1.65;padding:0 16px}
+.wrap{max-width:980px;margin:0 auto;padding-block:40px 72px;display:flex;flex-direction:column;gap:48px}
+h1,h2,h3{font-family:var(--display);color:var(--fg);text-wrap:balance;margin:0;line-height:1.25}
+h1{font-size:clamp(28px,4.4vw,40px);font-weight:700;letter-spacing:-.01em}
+h2{font-size:24px;font-weight:600}
+h3{font-size:17px;font-weight:600}
+p{margin:0;max-width:68ch}
+strong{font-weight:500;color:var(--fg)}
+.eyebrow{font-family:var(--display);font-size:12px;font-weight:600;letter-spacing:.12em;text-transform:uppercase;color:var(--navy)}
+.muted{color:var(--muted)}
+.small{font-size:14px}
+section{display:flex;flex-direction:column;gap:18px}
+header{display:flex;flex-direction:column;gap:14px;border-bottom:2px solid var(--navy);padding-bottom:24px}
+.meta{display:flex;flex-wrap:wrap;gap:8px 24px;font-size:14px;color:var(--muted)}
+.meta b{font-weight:500;color:var(--fg)}
+.verdict{background:var(--navy);color:#fff;border-radius:10px;padding:24px;display:flex;flex-direction:column;gap:12px}
+.verdict h2,.verdict p,.verdict strong{color:#fff}
+.verdict p{max-width:none}
+@media (prefers-color-scheme: dark){:root:not([data-theme="light"]) .verdict{background:var(--tint);border:1px solid var(--navy)}}
+:root[data-theme="dark"] .verdict{background:var(--tint);border:1px solid var(--navy)}
+.kpis{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:12px}
+@media (max-width:760px){.kpis{grid-template-columns:repeat(2,minmax(0,1fr))}}
+.kpi{background:var(--surface);border:1px solid var(--line);border-radius:8px;padding:16px;display:flex;flex-direction:column;gap:4px;min-width:0}
+.kpi .n{font-family:var(--display);font-size:28px;font-weight:600;font-variant-numeric:tabular-nums;color:var(--navy);line-height:1.1}
+.kpi .l{font-size:13px;color:var(--muted);line-height:1.4}
+ol.actions{margin:0;padding:0;list-style:none;display:flex;flex-direction:column;gap:10px;counter-reset:a}
+ol.actions li{counter-increment:a;display:grid;grid-template-columns:32px minmax(0,1fr);gap:12px;background:var(--surface);border:1px solid var(--line);border-radius:8px;padding:14px 16px}
+ol.actions li::before{content:counter(a);font-family:var(--display);font-weight:600;color:var(--navy);font-size:20px;line-height:1.3}
+ol.actions li div{display:flex;flex-direction:column;gap:2px;min-width:0}
+.tbl{overflow-x:auto;border:1px solid var(--line);border-radius:8px;background:var(--surface)}
+table{border-collapse:collapse;width:100%;font-size:14px;min-width:640px}
+th,td{text-align:left;padding:10px 12px;border-bottom:1px solid var(--line);vertical-align:top}
+th{font-family:var(--display);font-weight:600;font-size:12px;letter-spacing:.06em;text-transform:uppercase;color:var(--muted);background:var(--tint)}
+tr:last-child td{border-bottom:0}
+td.num,th.num{text-align:right;font-variant-numeric:tabular-nums;white-space:nowrap}
+.pill{display:inline-block;font-family:var(--display);font-size:11px;font-weight:600;letter-spacing:.04em;padding:2px 8px;border-radius:999px;white-space:nowrap}
+.p1{background:var(--good-bg);color:var(--good)} .p2{background:var(--tint);color:var(--navy)} .p3{background:var(--warn-bg);color:var(--warn)} .neg{background:var(--bad-bg);color:var(--bad)}
+.chart{background:var(--surface);border:1px solid var(--line);border-radius:8px;padding:18px;display:flex;flex-direction:column;gap:10px}
+.row{display:grid;grid-template-columns:minmax(150px,210px) minmax(0,1fr) 120px;gap:12px;align-items:center;font-size:14px}
+@media (max-width:560px){.row{grid-template-columns:minmax(0,1fr) 92px}.row .track{grid-column:1 / -1;order:3}}
+.track{height:14px;background:var(--tint);border-radius:3px;position:relative;overflow:hidden}
+.fill{position:absolute;inset:0 auto 0 0;background:var(--bar);border-radius:3px}
+.fill.alt{background:var(--bar2)}
+.row .v{text-align:right;font-variant-numeric:tabular-nums;color:var(--muted);font-size:13px}
+.row .v b{color:var(--fg);font-weight:500}
+.axis{display:grid;grid-template-columns:minmax(150px,210px) minmax(0,1fr) 120px;gap:12px;font-size:11px;color:var(--muted)}
+.axis div:nth-child(2){display:flex;justify-content:space-between;font-variant-numeric:tabular-nums}
+@media (max-width:560px){.axis{display:none}}
+.note{border-left:3px solid var(--navy);background:var(--tint);padding:12px 16px;border-radius:0 6px 6px 0;font-size:14px}
+.note.warn{border-color:var(--warn);background:var(--warn-bg)}
+.grid2{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:16px}
+@media (max-width:760px){.grid2{grid-template-columns:minmax(0,1fr)}}
+.card{background:var(--surface);border:1px solid var(--line);border-radius:8px;padding:16px;display:flex;flex-direction:column;gap:8px;min-width:0}
+ul.clean{margin:0;padding-left:18px;display:flex;flex-direction:column;gap:4px}
+a{color:var(--navy);text-underline-offset:3px}
+a:focus-visible{outline:2px solid var(--navy);outline-offset:2px}
+.kw{font-size:13px;color:var(--muted)}
+footer{font-size:13px;color:var(--muted);border-top:1px solid var(--line);padding-top:16px;display:flex;flex-direction:column;gap:4px}
+</style>
+
+<div class="wrap">
+<header>
+  <span class="eyebrow">Keyword Strategy · Home Environment Wellness</span>
+  <h1>Bwell Search Keyword Plan</h1>
+  <p class="muted">Master keyword map สำหรับ Google Search, Shopping, Marketplace และ SEO ทั้ง 5 category ทำจาก data จริงของ Bwell (GA4 + Google Merchant Center)</p>
+  <div class="meta">
+    <span>Data window <b>11 Jul – 8 Oct 2026 (90 วัน)</b></span>
+    <span>Prepared <b>9 Oct 2026</b></span>
+    <span>Owner <b>Marketing, Bwell</b></span>
+  </div>
+</header>
+
+<section class="verdict">
+  <span class="eyebrow" style="color:#fff;opacity:.8">Recommendation</span>
+  <h2>ลด spend ที่หลุดไป Bewell และ query ที่ไม่ใช่ลูกค้าก่อน แล้วย้ายเงินไปที่ brand, model และ health need-state</h2>
+  <p>Paid search ของ Bwell ใช้เงินไปกับคำกว้างๆ (generic) และคนที่ตั้งใจหาแบรนด์อื่นเกินครึ่ง ส่วน transactions ที่ track ได้แทบทั้งหมดมาจากคนที่ค้นชื่อ Bwell อยู่แล้ว เงินที่ประหยัดได้ควรย้ายไปที่ keyword ซึ่งตรงกับ positioning ด้าน health และ safety (PM2.5, ภูมิแพ้, RO, ไรฝุ่น) แทนที่จะลงไปแข่งราคากับแบรนด์จีน</p>
+</section>
+
+<section>
+  <div class="kpis">
+    <div class="kpi"><span class="n">12,883</span><span class="l">Paid sessions ที่ GA4 ผูกกับ Google Ads query ได้ (จาก google/cpc ทั้งหมด 21,762)</span></div>
+    <div class="kpi"><span class="n">14.0%</span><span class="l">ของ paid sessions เป็นคนค้นหา Bewell (1,799 sessions, 0 txn)</span></div>
+    <div class="kpi"><span class="n">5 / 6</span><span class="l">Transactions ระดับ query ที่มาจาก query ชื่อแบรนด์ Bwell เอง</span></div>
+    <div class="kpi"><span class="n">0.47%</span><span class="l">Shopping CTR เฉลี่ย ของ 43 SKU ที่มี impressions ≥ 1,000</span></div>
+  </div>
+</section>
+
+<section>
+  <span class="eyebrow">Action plan · 30 วัน</span>
+  <h2>5 อย่างที่ต้องทำ เรียงตาม impact ต่อต้นทุน</h2>
+  <ol class="actions">
+    <li><div><strong>ใส่ account-level negative list วันนี้</strong><span class="small muted">bewell, บีเวล, ชื่อสินค้า Bewell (frozen, glory, enlight, topper, ที่นอน), มือสอง, เช่า, ราคาถูก, ช่วยอะไร, วิธี รวมแล้วตัดได้กว่า 2,000 paid sessions ต่อ 90 วัน ซึ่งมี 0 transactions ทั้งหมด</span></div></li>
+    <li><div><strong>แยก campaign Brand ออกมา (Bwell + category + model + filter)</strong><span class="small muted">ใช้ Exact/Phrase เพิ่ม exact keyword สำหรับชื่อรุ่น (CF-8608, AP-M1536S, BDH-30A, BPAC-12B ฯลฯ) ซึ่งตอนนี้ยังไม่มี keyword ของตัวเอง แล้วได้ traffic ผ่าน generic match</span></div></li>
+    <li><div><strong>ปรับ generic ad groups เป็น Phrase และแยก ad group ตาม need-state</strong><span class="small muted">PM2.5 / ภูมิแพ้ / ห้องนอน / ตากผ้า / RO / ไรฝุ่น / ปวดหลัง เขียน ad copy เรื่อง health benefit ไม่ใช้ราคาเป็นจุดขาย ลด bid ที่ robot vacuum และ hair generic</span></div></li>
+    <li><div><strong>แก้ Merchant feed</strong><span class="small muted">brand ว่าง 291 จาก 300 SKU, product_type ว่าง, title มี suffix "| Bwell จำหน่าย..." และมี listing ซ้ำ ให้เริ่มที่ SKU ที่ impressions สูงแต่ CTR ต่ำก่อน (AP-M1536S, BW-D10RO5, 201A, ELKA)</span></div></li>
+    <li><div><strong>ติด conversion ที่จับยอดขายนอกเว็บได้</strong><span class="small muted">Click-to-Shopee/Lazada, LINE add friend, โทร และ store visit ก่อนจะเปิด Broad match หรือ Smart Bidding เพิ่ม เพราะเว็บทั้งเว็บมีแค่ 42 transactions ใน 90 วัน</span></div></li>
+  </ol>
+</section>
+
+<section>
+  <span class="eyebrow">Finding 1 · Search intent</span>
+  <h2>Paid traffic ส่วนใหญ่ยังไม่ใช่คนที่พร้อมซื้อ Bwell</h2>
+  <p>จัดกลุ่ม 3,586 search queries ที่พาคนเข้าเว็บจาก Google Ads ตาม intent พบว่า generic, Bewell และคู่แข่งรวมกันเป็น 67% ของ paid sessions และ transactions ที่ track ได้อยู่ที่ own brand เกือบทั้งหมด</p>
+  <div class="chart" role="img" aria-label="Paid sessions by search intent, 90 days">
+    <div class="axis"><div></div><div><span>0</span><span>1,000</span><span>2,000</span><span>3,000</span><span>4,000</span><span>5,000</span><span>6,000</span></div><div></div></div>
+    <div class="row"><span>Generic category (TOFU)</span><div class="track"><div class="fill alt" style="width:89.95%"></div></div><span class="v"><b>5,397</b> · 1 txn</span></div>
+    <div class="row"><span>Bewell confusion</span><div class="track"><div class="fill alt" style="width:29.98%"></div></div><span class="v"><b>1,799</b> · 0 txn</span></div>
+    <div class="row"><span><strong>Own brand (Bwell)</strong></span><div class="track"><div class="fill" style="width:24.52%"></div></div><span class="v"><b>1,471</b> · 5 txn</span></div>
+    <div class="row"><span>Competitor / retailer</span><div class="track"><div class="fill alt" style="width:23.45%"></div></div><span class="v"><b>1,407</b> · 0 txn</span></div>
+    <div class="row"><span>Comparison (MOFU)</span><div class="track"><div class="fill alt" style="width:15.22%"></div></div><span class="v"><b>913</b> · 0 txn</span></div>
+    <div class="row"><span>Need-state / spec (MOFU)</span><div class="track"><div class="fill" style="width:14.68%"></div></div><span class="v"><b>881</b> · 0 txn</span></div>
+    <div class="row"><span>Purchase intent (BOFU)</span><div class="track"><div class="fill alt" style="width:8.27%"></div></div><span class="v"><b>496</b> · 0 txn</span></div>
+    <div class="row"><span>Informational</span><div class="track"><div class="fill alt" style="width:5.32%"></div></div><span class="v"><b>319</b> · 0 txn</span></div>
+    <div class="row"><span><strong>Own brand + model</strong></span><div class="track"><div class="fill" style="width:1.68%"></div></div><span class="v"><b>101</b> · 0 txn</span></div>
+    <div class="row"><span>Bargain / used</span><div class="track"><div class="fill alt" style="width:1.35%"></div></div><span class="v"><b>81</b> · 0 txn</span></div>
+    <span class="small muted">สีเข้ม = intent ที่ควร protect หรือ scale · Source: GA4 session Google Ads query, 11 Jul – 8 Oct 2026</span>
+  </div>
+  <div class="note warn"><strong>ข้อควรระวังในการอ่าน:</strong> 0 transactions บนเว็บไม่ได้แปลว่า keyword นั้นขายไม่ได้ ลูกค้าอาจไปซื้อต่อที่ Shopee, Lazada หรือหน้าร้าน ซึ่ง GA4 มองไม่เห็น การตัดสินใจรอบนี้จึงตัดเฉพาะ query ที่ผิด intent ชัดเจน (Bewell, มือสอง, DIY) ส่วน generic ให้ tighten match ไว้ก่อน แล้วค่อยตัดสินใจหลังติด conversion นอกเว็บ</div>
+</section>
+
+<section>
+  <span class="eyebrow">Finding 2 · Brand confusion</span>
+  <h2>Bwell ซื้อ traffic ให้ Bewell อยู่</h2>
+  <div class="grid2">
+    <div class="card">
+      <h3>Keyword "bewell" ยังได้ traffic</h3>
+      <p class="small">ใน 90 วันที่ผ่านมา keyword นี้ได้ 1,229 sessions และ 0 transactions โดย query เป็น bewell, bewell สาขา, เก้าอี้ bewell, หมอน bewell, bewell เชียงใหม่ คนกลุ่มนี้ตั้งใจหาร้าน Bewell</p>
+    </div>
+    <div class="card">
+      <h3>"ergonomic chair" ก็โดน</h3>
+      <p class="small">41% ของ traffic ที่ keyword "ergonomic chair" (358 จาก 877 sessions) เป็น query ที่มีคำว่า bewell อยู่ด้วย และใน site search ของเว็บ Bwell เองก็มีคนพิมพ์ชื่อสินค้า Bewell เช่น Frozen, Glory, Enlight, Foster, T-10</p>
+    </div>
+  </div>
+  <p class="small muted">คำแนะนำ: pause keyword "bewell" ใส่ negative ระดับ account (รวม PMax brand exclusion) และอย่าใช้ "เก้าอี้เพื่อสุขภาพ" เป็นคำหลักของ ergonomic ให้ไปเน้น pain-point แทน (ปวดหลัง, ออฟฟิศซินโดรม, เบาะรองนั่ง)</p>
+</section>
+
+<section>
+  <span class="eyebrow">Finding 3 · Google Shopping</span>
+  <h2>Retailers รวมถึง partner อย่าง PowerBuy และ HomePro มองเห็นได้มากกว่า Bwell ใน category ของ Bwell เอง</h2>
+  <p>Merchant Center Competitive Visibility (TH, 30 วัน) แสดงว่าหมวด air purifier Bwell อยู่อันดับ 5 โดย PowerBuy, HomePro, Makro และ Thai Watsadu นำอยู่ ส่วนหมวด dehumidifier ห่างกันน้อยกว่ามาก</p>
+  <div class="tbl"><table>
+    <thead><tr><th>Category</th><th>Domain</th><th class="num">Rank</th><th class="num">Relative visibility</th><th class="num">อยู่ตำแหน่งสูงกว่า Bwell</th></tr></thead>
+    <tbody>
+      <tr><td>Air purifier</td><td>powerbuy.co.th</td><td class="num">1</td><td class="num">150</td><td class="num">91%</td></tr>
+      <tr><td>Air purifier</td><td>homepro.co.th</td><td class="num">2</td><td class="num">75</td><td class="num">94%</td></tr>
+      <tr><td>Air purifier</td><td>makro.pro</td><td class="num">3</td><td class="num">70</td><td class="num">78%</td></tr>
+      <tr><td>Air purifier</td><td><strong>bwell.co.th</strong></td><td class="num">5</td><td class="num">-</td><td class="num">-</td></tr>
+      <tr><td>Dehumidifier</td><td>homepro.co.th</td><td class="num">1</td><td class="num">7</td><td class="num">81%</td></tr>
+      <tr><td>Dehumidifier</td><td>powerbuy.co.th</td><td class="num">2</td><td class="num">3.5</td><td class="num">76%</td></tr>
+      <tr><td>Dehumidifier</td><td><strong>bwell.co.th</strong></td><td class="num">5</td><td class="num">-</td><td class="num">-</td></tr>
+    </tbody>
+  </table></div>
+  <p class="small muted">Relative visibility เป็นค่าจาก Merchant Center ที่วัดเทียบกับ Bwell ค่ายิ่งสูงยิ่งมองเห็นได้มากกว่า Bwell ส่วนหมวด vacuum และ water filter ไม่มีข้อมูลในช่วงนี้ ซึ่งอาจเกี่ยวกับการที่ feed ยังไม่ได้ใส่ google_product_category</p>
+
+  <h3>SKU ที่ควรแก้ก่อน (impressions สูง แต่ CTR ต่ำกว่าค่าเฉลี่ย 0.47%)</h3>
+  <div class="tbl"><table>
+    <thead><tr><th>Product</th><th class="num">Impr. 90d</th><th class="num">Clicks</th><th class="num">CTR</th><th>Action</th></tr></thead>
+    <tbody>
+      <tr><td>เครื่องฟอกอากาศ PM2.5 AP-M1536S</td><td class="num">23,254</td><td class="num">96</td><td class="num">0.41%</td><td>Title + image + price check (SKU ที่ impressions สูงสุด)</td></tr>
+      <tr><td>เครื่องทำน้ำอุ่น ELKA 3,500W</td><td class="num">10,431</td><td class="num">16</td><td class="num">0.15%</td><td>ตัดสินใจว่ายังเป็น focus หรือไม่</td></tr>
+      <tr><td>เครื่องกรองน้ำ UV BW-D10UV5</td><td class="num">10,211</td><td class="num">42</td><td class="num">0.41%</td><td>รวม listing ซ้ำ ใส่ "UV ฆ่าเชื้อ" ใน title</td></tr>
+      <tr><td>เครื่องดูดฝุ่นไร้สาย 201A</td><td class="num">8,814</td><td class="num">13</td><td class="num">0.15%</td><td>เพิ่ม spec / benefit ใน title</td></tr>
+      <tr><td>เครื่องกรองน้ำ RO BW-D10RO5</td><td class="num">6,568</td><td class="num">3</td><td class="num">0.05%</td><td>ใช้ title แบบ "RO แบบไร้ถัง" (CTR 1.73%) เป็นต้นแบบ</td></tr>
+      <tr><td>(ไม่มี title ใน feed)</td><td class="num">8,820</td><td class="num">35</td><td class="num">0.40%</td><td>แก้ feed error</td></tr>
+    </tbody>
+  </table></div>
+  <p class="small muted">Title ที่ CTR ดีอยู่แล้ว: BDH-30A 2.79%, RO แบบไร้ถัง 1.73%, ฟอกอากาศพกพา/ในรถ 1.44%, BDH-53 1.39%, CF-8005 1.30%</p>
+</section>
+
+<section>
+  <span class="eyebrow">Keyword map · Priority 1</span>
+  <h2>คลัสเตอร์ที่ต้อง protect หรือ scale</h2>
+  <p class="small muted">ทั้งหมด 30 clusters อยู่ใน Google Sheet ส่วนช่อง search volume และ CPC เว้นไว้ [รอ data] จนกว่าจะ connect Google Ads หรือ Keyword Planner</p>
+  <div class="tbl"><table>
+    <thead><tr><th>Category</th><th>Cluster</th><th>Funnel</th><th>Seed keywords</th><th>Channel</th><th class="num">Paid sessions</th></tr></thead>
+    <tbody>
+      <tr><td>Brand</td><td>Bwell core + category</td><td>BOFU</td><td class="kw">bwell, bwell เครื่องฟอกอากาศ, bwell air purifier, เครื่องดูดความชื้น bwell</td><td>Search, Marketplace</td><td class="num">1,523</td></tr>
+      <tr><td>Brand</td><td>Model numbers</td><td>BOFU</td><td class="kw">CF-8608, AP-M1536S, AP-P4019US, BDH-30A, BPAC-12B, BW-D10RO5, G8</td><td>Search, Shopping, Marketplace</td><td class="num">89</td></tr>
+      <tr><td>Brand</td><td>Filter / spare part</td><td>BOFU</td><td class="kw">แผ่นกรองอากาศ bwell, filter CF-8005, ไส้กรองน้ำ RO-500</td><td>Search, Shopping, LINE</td><td class="num">53</td></tr>
+      <tr><td>Air purifier</td><td>Health need-state</td><td>MOFU</td><td class="kw">เครื่องฟอกอากาศ pm2.5, ภูมิแพ้, ห้องนอน, เด็ก, ขนสัตว์</td><td>Search, SEO, Marketplace</td><td class="num">109</td></tr>
+      <tr><td>Dehumidifier</td><td>Generic + use-case</td><td>TOFU–MOFU</td><td class="kw">เครื่องดูดความชื้น, เครื่องลดความชื้น, ตากผ้า, ห้องนอน</td><td>Search, Shopping, Marketplace</td><td class="num">484</td></tr>
+      <tr><td>Portable AC</td><td>BTU spec</td><td>MOFU</td><td class="kw">แอร์เคลื่อนที่ 12000 btu, 9000 btu, ประหยัดไฟ</td><td>Search, Shopping, Marketplace</td><td class="num">149</td></tr>
+      <tr><td>Water purifier</td><td>RO / UV / UF</td><td>MOFU</td><td class="kw">เครื่องกรองน้ำ RO, ระบบ RO, UV, UF, RO แบบไร้ถัง</td><td>Search, Shopping, Marketplace</td><td class="num">328</td></tr>
+      <tr><td>Clean Home</td><td>Allergy / dust mite</td><td>MOFU</td><td class="kw">เครื่องดูดไรฝุ่น, ดูดไรฝุ่นที่นอน, เครื่องดูดฝุ่น ภูมิแพ้</td><td>Search, SEO, Marketplace</td><td class="num">164</td></tr>
+      <tr><td>Ergonomic</td><td>Pain / office syndrome</td><td>MOFU</td><td class="kw">เก้าอี้แก้ปวดหลัง, ออฟฟิศซินโดรม, เบาะรองนั่ง, หมอนรองคอรถยนต์</td><td>Search, Shopping, Marketplace</td><td class="num">31</td></tr>
+    </tbody>
+  </table></div>
+</section>
+
+<section>
+  <span class="eyebrow">Channel role by category</span>
+  <h2>แต่ละ category ควรใช้เงินช่องทางไหน</h2>
+  <div class="tbl"><table>
+    <thead><tr><th>Category</th><th>Google Search</th><th>Shopping</th><th>Marketplace ads</th><th>SEO</th></tr></thead>
+    <tbody>
+      <tr><td>Air purifier</td><td><span class="pill p1">Scale</span> need-state</td><td><span class="pill p2">Fix feed</span></td><td><span class="pill p1">Scale</span></td><td><span class="pill p1">Comparison + PM2.5</span></td></tr>
+      <tr><td>Dehumidifier</td><td><span class="pill p1">Scale</span> ฤดูฝน</td><td><span class="pill p1">Scale</span></td><td><span class="pill p1">Scale</span></td><td><span class="pill p1">"ช่วยอะไร"</span></td></tr>
+      <tr><td>Portable AC</td><td><span class="pill p2">Seasonal</span> BTU</td><td><span class="pill p2">Keep</span></td><td><span class="pill p2">Seasonal</span></td><td><span class="pill p3">Low</span></td></tr>
+      <tr><td>Water purifier</td><td><span class="pill p1">Scale</span> RO/UV/UF</td><td><span class="pill p2">Fix feed</span></td><td><span class="pill p2">Keep</span></td><td><span class="pill p1">RO vs UV vs UF</span></td></tr>
+      <tr><td>Robot / vacuum</td><td><span class="pill p3">Reduce</span> generic, keep ไรฝุ่น</td><td><span class="pill p2">Keep</span></td><td><span class="pill p1">Main</span></td><td><span class="pill p2">ไรฝุ่น / ภูมิแพ้</span></td></tr>
+      <tr><td>Hair styling</td><td><span class="pill p3">Reduce</span> test BLDC</td><td><span class="pill p2">Keep</span></td><td><span class="pill p1">Main</span></td><td><span class="pill p3">Low</span></td></tr>
+      <tr><td>Ergonomic</td><td><span class="pill p2">Restructure</span> pain-point</td><td><span class="pill p1">Scale</span> accessories</td><td><span class="pill p2">Keep</span></td><td><span class="pill p2">Office syndrome</span></td></tr>
+      <tr><td>Water heater</td><td colspan="4"><span class="pill neg">Decision needed</span> ไม่อยู่ใน pillar Air / Water / Clean แต่ได้ 564 paid sessions, 0 txn</td></tr>
+    </tbody>
+  </table></div>
+</section>
+
+<section>
+  <span class="eyebrow">SEO backlog</span>
+  <h2>Informational queries ที่ควรย้ายจาก paid ไปเป็น content</h2>
+  <div class="tbl"><table>
+    <thead><tr><th>Article topic</th><th>Query evidence (paid sessions 90d)</th><th>Map to</th></tr></thead>
+    <tbody>
+      <tr><td>เครื่องลดความชื้น / ดูดความชื้น ช่วยอะไร</td><td class="num">162</td><td>BDH series</td></tr>
+      <tr><td>เครื่องฟอกอากาศ ยี่ห้อไหนดี (เลือกตาม CADR, HEPA, ขนาดห้อง)</td><td class="num">192</td><td>CF / AP series</td></tr>
+      <tr><td>เครื่องฟอกอากาศ ช่วยอะไร / ประโยชน์</td><td class="num">110</td><td>Air pillar page</td></tr>
+      <tr><td>เครื่องกรองน้ำ RO, UV, UF ต่างกันอย่างไร</td><td class="num">87</td><td>BW-D10 series</td></tr>
+      <tr><td>เครื่องดูดความชื้น ยี่ห้อไหนดี</td><td class="num">60</td><td>BDH series</td></tr>
+    </tbody>
+  </table></div>
+</section>
+
+<section>
+  <span class="eyebrow">Decisions & data gaps</span>
+  <h2>สิ่งที่ต้องตัดสินใจ และ data ที่ยังขาด</h2>
+  <div class="grid2">
+    <div class="card">
+      <h3>ต้องตัดสินใจ</h3>
+      <ul class="clean small">
+        <li>Competitor brands (Xiaomi, Dyson, Philips, Coway ฯลฯ) จะ negate ทั้งหมด หรือแยก conquest campaign และตั้ง budget cap</li>
+        <li>Water heater ยังเป็น focus category อยู่หรือไม่</li>
+        <li>Hair styling จะลด Google Search แล้วไปเน้น Marketplace หรือไม่</li>
+      </ul>
+    </div>
+    <div class="card">
+      <h3>Data ที่ยังขาด</h3>
+      <ul class="clean small">
+        <li>Google Ads cost / CPC: ยังคำนวณ CPA / ROAS ราย keyword ไม่ได้</li>
+        <li>Search volume ตลาด: Semrush API units หมด และ Ahrefs plan ไม่รองรับ</li>
+        <li>Search Console, Shopee, Lazada และ TikTok Shop keyword report</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <span>Sources: GA4 property "Bwell (International) Co., Ltd." (Google Ads query, sessions, transactions, site search) และ Google Merchant Center 582512023 (catalog, Shopping performance, Competitive Visibility TH) ดึงผ่าน Windsor.ai เมื่อ 9 Oct 2026</span>
+  <span>การจัดกลุ่ม intent ใช้ rule-based classification บน query ภาษาไทย/อังกฤษ ตัวเลขแต่ละ cluster จึงเป็นค่าประมาณ และบาง query อาจนับซ้ำได้มากกว่า 1 cluster</span>
+</footer>
+</div>
