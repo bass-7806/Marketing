@@ -42,14 +42,14 @@ out={}
 for i in (1,2,3,4):
     # 9:16
     if i==2: base=product(Image.open(f'{D}/bg2.png').convert('RGBA'),1300,110,380)
-    else: base=Image.open(f'{D}/'+('c4r.png' if i==4 else f'c{i}.png')).convert('RGBA')
+    else: base=Image.open(f'{D}/'+(f'c{i}r.png' if i in (1,3,4) else f'c{i}.png')).convert('RGBA')
     out[(i,'916')]=overlay(finish(base,i),i,70,199,1782)
     # 4:5
     if i==2:
         bg=Image.open(f'{D}/bg2.png').convert('RGBA').crop((0,330,1080,1680))
         b45=product(bg,960,190,300)
-    elif i==4:
-        src=Image.open(f'{D}/c4r.png').convert('RGBA').crop((0,140,1080,1840)); sc=1350/1700
+    elif i in (1,3,4):
+        src=Image.open(f'{D}/c{i}r.png').convert('RGBA').crop((0,140,1080,1840)); sc=1350/1700
         fg=src.resize((round(1080*sc),1350),Image.LANCZOS)
         b45=src.resize((1080,1350)).filter(ImageFilter.GaussianBlur(30)); m=Image.new('L',fg.size,255); import numpy as _n; ma=_n.array(m).astype(float); ma[:,:120]*=_n.linspace(0,1,120)[None,:]; fg.putalpha(Image.fromarray(ma.astype('uint8'))); b45.alpha_composite(fg,(1080-fg.width,0))
     else:
