@@ -5,7 +5,7 @@ from PIL import Image
 BG, LD = sys.argv[1], sys.argv[2]
 W,H,FPS,N=1080,1920,30,300
 L={k:Image.open(f'{LD}/{k}.png').convert('RGBA') for k in
-   ['logo','head1','head2','head3','card','foot','disc','brackets','cta','scanline']}
+   ['logo','head1','head2','head3','card','foot','disc','brackets','scanline']}
 def cl(x): return max(0.,min(1.,x))
 def eo(x): x=cl(x); return 1-(1-x)**3
 def back(x):
@@ -41,13 +41,5 @@ for f in range(N):
         u=(t-1.8)/2.0; u=u-int(u); y=650+(975-650)*(0.5-0.5*math.cos(2*math.pi*u))
         put(c,L['scanline'],334,y-30,0.85*cl((t-1.8)/0.3)*cl((5.8-t)/0.3))
     k=eo((t-1.7)/0.5);  put(c,L['foot'],170,1290+30*(1-k),k)
-    k=(t-2.2)/0.6
-    if k>0:
-        y=1395+140*(1-back(k)); bob=4*math.sin(2*math.pi*(t-2.8)/1.2) if t>2.8 else 0
-        im=L['cta']
-        if t>2.8:
-            s=1+0.035*max(0,math.sin(2*math.pi*(t-2.8)/1.2))
-            im=im.resize((int(im.size[0]*s),int(im.size[1]*s)),Image.LANCZOS)
-        put(c,im,144+396-im.size[0]/2,y+bob-(im.size[1]-132)/2,cl(k*2))
     k=eo((t-2.4)/0.5);  put(c,L['disc'],305,1495,k)
     sys.stdout.buffer.write(c.convert('RGB').tobytes())
