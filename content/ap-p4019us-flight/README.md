@@ -14,3 +14,9 @@
 
 Storyboard: 0-2s thrusters ignite on a glowing blue ring / 2-5s liftoff with vapour trail / 5-8s flying through clouds / 8-10s hero hover above the clouds.
 Note: the Seedance source is 606x1080 (preview), upscaled to 1080x1920.
+
+## Kickflip v1 (reference: Tesla X post "Do a kickflip!", 2026-10-16)
+- Video: https://d2ol7oe51mr4n9.cloudfront.net/user_3Dy6Z3ucZX6ucLB5u9pTBF68wRy/bd2080e2-e902-4ba2-ae3a-3c162449ac0d.mp4
+- Reference used only for direction (night stage, red LED bars, floodlights, smoke, thrusters, mid-air kickflip). Tesla footage was NOT fed into the AI; no Tesla car/logo/name in output.
+- Timeline: 0-2s thrusters ignite in smoke / 2-4s lift-off and hover / 4-7s 360-degree kickflip mid-air / 7-10s soft landing, hero push-in
+- Credits: night-stage background 50 + 9:16 expand 50 + Seedance 10s 1080p 7,900 = 8,000 (music reused from Flight v1)
