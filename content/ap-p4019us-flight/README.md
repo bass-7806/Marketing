@@ -27,3 +27,12 @@ Note: the Seedance source is 606x1080 (preview), upscaled to 1080x1920.
 - Reference used only for direction (handheld POV, wet European boulevard, bus, vertical blast-off, sky loop with ring vapor trail). Reference footage was NOT fed into the AI; no Tesla car/logo/name in output.
 - Timeline: 0-3s product on wet autumn boulevard, bus passes / 3-5s thrusters ignite, vapor plume, blasts up / 5-9s full loop in overcast sky, ring vapor trail / 9-10s disappears, ring hangs in sky
 - Credits: background replace 50 + 9:16 expand 50 + Seedance 10s 1080p 7,900 = 8,000 (music reused from Flight v1)
+
+## Loop Reel v2 — CI blue #0D99DB + Bwell logo end card (2026-10-18)
+- Video: https://d2ol7oe51mr4n9.cloudfront.net/user_3Dy6Z3ucZX6ucLB5u9pTBF68wRy/d5f0f8d8-86f3-445a-803b-4708a3fcc601.mp4
+- Spec: 1080x1920, 9:16, 13s (10s flight + 3s logo end card), H.264 + AAC
+- Timeline: 0-3s boulevard + bus / 3-5s blue jet + blue smoke blast-off / 5-9s blue smoke ring loop / 9-10s product holds inside ring / 10-13s blue smoke condenses into Bwell logo inside the ring
+- Color: AI smoke came out teal; graded cyan/green hues +26 deg toward #0D99DB in post
+- Logo: official wordmark from bwell.co.th header (logoBwell_pantone), recolored to #0D99DB, composited in post (not AI-drawn)
+- Audio: native SFX + Flight v1 music time-stretched to 13s + whoosh at 9.8s + soft chime at 11s
+- Credits: Seedance 10s 1080p 7,900 (start frame reused from v1)
