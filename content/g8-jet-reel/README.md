@@ -1,5 +1,5 @@
 # Bwell G8 Jet Reel — QC fix v2 (2026-10-19)
-Source: `19-10-Bwell_G8_Jet_SFX_Preview_1080canvas.mp4` (Drive) · Output: `19-10-Bwell_G8_Jet_v2_1080x1920.mp4` (not committed, 7.3 MB)
+Source: `19-10-Bwell_G8_Jet_SFX_Preview_1080canvas.mp4` (Drive) · Output: `19-10-Bwell_G8_Jet_v2_1080x1920.mp4` (7.3 MB, in this folder)
 
 ## Fixes
 | # | Issue (QC) | Fix |
