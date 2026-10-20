@@ -1,7 +1,9 @@
 # BW2-P08 / Air Purifier: Storyboard Video (FB / IG)
 
-- Final: `20-10-Bwell_BW2-P08_AirPurifier_36s_4x5.mp4`. Hosted at https://d2ol7oe51mr4n9.cloudfront.net/user_3Dy6Z3ucZX6ucLB5u9pTBF68wRy/2d2eed20-ddf3-4bdf-928b-22b37a55772e.mp4
-- Spec: 1080x1350 (4:5), 30fps, 36.0s, H.264 + AAC 48kHz. Audio is -14.5 LUFS with a -1.5 dBTP peak. md5 d36612bbdd7af54ed4daa13eea69ef94
+- Final (v2, CI font): `20-10-Bwell_BW2-P08_AirPurifier_36s_4x5_v2.mp4`. Hosted at https://d2ol7oe51mr4n9.cloudfront.net/user_3Dy6Z3ucZX6ucLB5u9pTBF68wRy/25354640-4317-4220-a557-487805d1000f.mp4 (md5 40e432b35e258a63f3f1d2835f1a8f89)
+- v2 change (Bass, 2026-10-20): all on-screen text switched to DB Helvethaica X per CI. Headlines and model names are Bold (96px; end card 108px). Sub-lines are Medium (54px). Font files come from Drive and are not committed to the repo. Rendered text layers are in `text/`.
+- Superseded v1 (Kanit/Poppins, off-CI): https://d2ol7oe51mr4n9.cloudfront.net/user_3Dy6Z3ucZX6ucLB5u9pTBF68wRy/2d2eed20-ddf3-4bdf-928b-22b37a55772e.mp4
+- Spec: 1080x1350 (4:5), 30fps, 36.0s, H.264 + AAC 48kHz. Audio is -14.5 LUFS with a -1.5 dBTP peak.
 - Per Bass (2026-10-20):
   - AI video on every shot.
   - On-screen text only, no VO.
@@ -14,7 +16,7 @@
   1. Keyframes: GPT Image 2.5 at 3:4, using the storyboard crop and the packshot as references.
   2. Shots: Seedance 2.0 image-to-video, 1080p, no audio.
   3. Edit: center-crop to 4:5, 0.25s dissolves.
-  4. Overlays: Kanit / Poppins text plus the official bwell.co.th logo (white), composited in post rather than drawn by AI.
+  4. Overlays: DB Helvethaica X text plus the official bwell.co.th logo (white), composited in post rather than drawn by AI.
 - Music: ElevenLabs Music v2 via Magnific, instrumental ambient piano, 37s, trimmed with a 2.5s fade-out.
 
 | # | Time | Camera | On-screen text |
