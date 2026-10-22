@@ -14,7 +14,8 @@ Scope: ทำให้ทุก AI และ designer ใช้กฎชุด�
 | Q1 | Brand Blue | `#0D99DB` |
 | Q2 | Font | แยกตามหมวด: Electronics = DB Helvethaica X / Ergo + Sports = Kanit / Beauty EN = Poppins, TH = Kanit |
 | Q3 | Gradient | Blue: `#0D99DB` → `#005D9D` แนวตั้ง 180° · Gray: `#D3D3D4` → `#A8AAAD` แนวตั้ง 180° |
-| Q4 | Logo size | แนวนอนกว้าง 28.5% W · แนวตั้ง/จัตุรัสสูง 11.4% H · margin ขวา 5.9% บน 2.85% |
+| Q4 | Logo size | แนวนอนกว้าง 28.5% W · แนวตั้ง/จัตุรัสสูง 11.4% H · margin ข้าง 5.9% บน 2.85% |
+| Q11 (2026-10-22) | Logo position | **TOP-LEFT ทุกงาน** แทน top-right · margin ซ้าย 5.9% W / บน 2.85% H · ขนาดเดิม · 9:16 อยู่ใต้ safe area บน 250px |
 | Q5 | Sub-brand logo | Ergo = เก้าอี้ + เบาะ · Beauty = Hair Styling · Bwell = ที่เหลือ |
 | Q6 | ราคาบน artwork | ได้ทุก channel เมื่อ verify จาก bwell.co.th + URL + เวลาตรวจ |
 | Q7 | QC | Dual 10/10 (Bwell CI QC แบบถ่วงน้ำหนัก §12 + Beauty QC §23.10) |
@@ -28,7 +29,7 @@ Scope: ทำให้ทุก AI และ designer ใช้กฎชุด�
 |---|---|---|
 | O1 | Type scale | Standard: Headline 7.5% W Bold/Black (≤ 2 บรรทัด) · Sub 4.4% W Medium · Body/CTA 3.3% W Regular/Medium · Line-height ไทย 1.3 |
 | O2 | Safe area 9:16 | Conservative ค่าเดียวทุก platform: บน 250px · ล่าง 450px · ขวา 140px · ซ้าย 60px |
-| O3 | Logo margin base | ขวา 5.9% ของความกว้าง · บน 2.85% ของความสูง; 9:16 ให้ safe area ชนะ margin |
+| O3 | Logo margin base | ข้าง 5.9% ของความกว้าง (ซ้าย ตาม Q11) · บน 2.85% ของความสูง; 9:16 ให้ safe area ชนะ margin |
 | O4 | Claim source | Approved manual/spec → bwell.co.th exact-model page · Product Intelligence = context เท่านั้น · ขัดกัน = ถาม Bass |
 | O5 | ทิศ gradient | ตามที่ Bass ล็อก: บน `#0D99DB` → ล่าง `#005D9D` (`linear-gradient(180deg, ...)`) |
 
@@ -42,13 +43,14 @@ Scope: ทำให้ทุก AI และ designer ใช้กฎชุด�
 |---|---|---|
 | หัวเอกสาร "CI COLOR OVERRIDE 2026-09-27" | `#008AD0` และ `#005D9D` DEPRECATED | `#008AD0` DEPRECATED · `#005D9D` ใช้ได้เฉพาะปลาย Blue Gradient (`#0D99DB` → `#005D9D` 180°) ห้ามใช้เป็น Brand Blue เดี่ยวหรือสีตัวอักษร |
 | §23.5 Color Lock | Navy → `#0D99DB` 180° เมื่อ brief ระบุ; ไม่มี hex navy | แทนด้วย 2 gradient ที่อนุมัติ: Blue `#0D99DB` → `#005D9D` 180° และ Gray `#D3D3D4` → `#A8AAAD` 180° ห้ามสร้าง gradient อื่น |
-| §6 Logo Lock | บอกแค่ TOP-RIGHT | เพิ่ม: ขนาด 28.5% W (แนวนอน) / 11.4% H (แนวตั้ง-จัตุรัส), margin ขวา 5.9% บน 2.85%, Logo family Ergo / Beauty / Bwell ตามหมวด |
+| §6 Logo Lock | "Logo position is LOCKED at the TOP-RIGHT corner" | **เปลี่ยนเป็น TOP-LEFT** (Q11) + เพิ่ม: ขนาด 28.5% W (แนวนอน) / 11.4% H (แนวตั้ง-จัตุรัส), margin ซ้าย 5.9% บน 2.85%, Logo family Ergo / Beauty / Bwell ตามหมวด |
+| §13, §15, §17, §18 F + I + J, §23.10 B, §23.12 | "TOP-RIGHT" / "non-top-right placement = CRITICAL FAIL" | เปลี่ยนทุกจุดเป็น TOP-LEFT และ "non-top-left placement = CRITICAL FAIL" |
 | §12 vs §23.10 | QC สองระบบ ไม่บอกว่าใช้อันไหน | เพิ่มประโยค: "§12 = Bwell CI QC scorecard ภายใต้ Dual 10/10 ใน §23.10; QC_PASS = CI 10 + Beauty 10" |
 | §23.8 Badge / §9 Claim | ไม่ระบุเรื่องราคาบน artwork | เพิ่ม: "ราคา/โปรใส่บน artwork ได้ทุก channel เมื่อ verify จาก bwell.co.th exact-model page + URL + เวลาตรวจ" |
 | §21 Claim Authority | Manual → Product Intelligence → bwell.co.th | Approved manual/spec → bwell.co.th exact-model page; Product Intelligence = context เท่านั้น; ขัดกัน = ถาม Bass |
 | §23.4 Typography | ไม่มี type scale | เพิ่ม: Headline 7.5% W · Sub 4.4% W · Body/CTA 3.3% W · Line-height ไทย 1.3 · Headline ≤ 2 บรรทัด |
 | §23.12 Final Gate | "safe area verified" ไม่มีค่า | เพิ่ม: 9:16 safe area บน 250 / ล่าง 450 / ขวา 140 / ซ้าย 60 px |
-| §6 Logo margin | — | ระบุฐาน: ขวา 5.9% ของ W, บน 2.85% ของ H; 9:16 ให้ safe area ชนะ |
+| §6 Logo margin | — | ระบุฐาน: ซ้าย 5.9% ของ W, บน 2.85% ของ H; 9:16 ให้ safe area ชนะ |
 | เลข section | มี "21)" สองหัวข้อ | เปลี่ยน /bwell-composite7 เป็น 21A หรือเลื่อนเลข |
 | §19 อ้าง Source Index | "2026-09-16" | ใช้ชื่อปัจจุบัน "Bwell Social Creative SOP & Source Index" |
 | Router §22 | ใช้ /perspective-composite, /safe-placement | เพิ่ม: "ทุกคำสั่ง composite = /bwell-composite7; /safe-placement คือ variant ของ composite7" |
@@ -63,6 +65,7 @@ Scope: ทำให้ทุก AI และ designer ใช้กฎชุด�
 | Gradient rule | ใช้ 2 gradient ตาม Quick Spec |
 | Positioning | เพิ่มบรรทัด Category umbrella: Home Environment Wellness (Air / Water / Clean Home) |
 | Logo System | เพิ่ม Logo family Ergo / Beauty / Bwell |
+| Logo System "Priority Default: มุมขวาบน ... margin ขวา 5.9%" | เปลี่ยนเป็น "มุมซ้ายบน ... margin ซ้าย 5.9% / บน 2.85%" (Q11) |
 | Shopee/Lazada Banner template | ใช้ได้ (ราคาบน artwork อนุญาตแล้ว) แต่ตัด emoji ออกจากข้อความบน artwork |
 | Tone by Platform — TikTok | คง "3 วิแรก" (ตรงกับ v2.0) |
 
@@ -80,6 +83,8 @@ Scope: ทำให้ทุก AI และ designer ใช้กฎชุด�
 | §1 ตารางติดตั้ง — ไฟล์ Knowledge | แทน `BWELL SOCIAL CREATIVE MASTER PROMPT.txt` ด้วย `BWELL_SOCIAL_CREATIVE_MASTER_PROMPT_v2.txt` + `BWELL_CI_QUICK_SPEC.md` |
 | §2 System Prompt | แทนทั้งบล็อกด้วย Master Prompt v2.0 (ไม่มี system prompt สองชุด) |
 | §2 ข้อ 6 Typography | เพิ่ม gradient 2 แบบ |
+| §2 ข้อ 7 โลโก้ "มุมขวาบน · margin ขวา 5.9%" | เปลี่ยนเป็น "มุมซ้ายบน · margin ซ้าย 5.9% บน 2.85%" (Q11) |
+| CLAUDE.md (2 สำเนาใน Drive) Pipeline A "Logo Priority Default: top-right" | เปลี่ยนเป็น top-left (Q11) และแก้ `tools/bwell_compose.py` ให้วางโลโก้ซ้ายบน |
 | §4 Angle → Pipeline | เพิ่มหมายเหตุ: Creative Type เป็นตัวกำหนด layout family; pipeline เป็นแค่ทางผลิต ผลลัพธ์ต้องผ่าน Quick Spec เท่ากันทุก pipeline |
 | QC Output | เปลี่ยนเป็น Dual 10/10 ตาม v2.0 §11 |
 

@@ -67,11 +67,11 @@ Priority เมื่อขัดกัน: คำสั่งล่าสุด
 | Source | ไฟล์ official ใน Drive `03_Logos` เท่านั้น — ห้าม generate / retype / redraw / recolor / stretch / shadow / outline / glow |
 | Logo family | Ergo logo = เก้าอี้ + เบาะ/หมอน · Beauty logo = Hair Styling · Bwell logo = หมวดอื่นทั้งหมด (รวม Sports) |
 | Variant | พื้นสว่าง = Blue/Gray official · พื้นเข้ม = White/reversed official |
-| Position | TOP-RIGHT เสมอ (เปลี่ยนได้เฉพาะคำสั่ง Bass ของงานนั้น) |
+| Position | TOP-LEFT เสมอ (เปลี่ยนจาก top-right ตามคำสั่ง Bass 2026-10-22; เปลี่ยนได้เฉพาะคำสั่ง Bass ของงานนั้น) |
 | Size — แนวนอน | กว้าง 28.5% ของความกว้าง canvas |
 | Size — แนวตั้ง / จัตุรัส | สูง 11.4% ของความสูง canvas |
-| Margin | ขวา 5.9% ของความกว้าง · บน 2.85% ของความสูง (1080×1080 = ขวา 64px บน 31px · 1080×1350 = ขวา 64px บน 38px · 1080×1920 = ขวา 64px บน 55px) |
-| 9:16 | วางโลโก้ใต้ safe area บน (y ≥ 250px) ขวา 140px — safe area ชนะ margin |
+| Margin | ซ้าย 5.9% ของความกว้าง · บน 2.85% ของความสูง (1080×1080 = ซ้าย 64px บน 31px · 1080×1350 = ซ้าย 64px บน 38px · 1080×1920 = ซ้าย 64px บน 55px) |
+| 9:16 | วางโลโก้ใต้ safe area บน (y ≥ 250px) ซ้าย 64px — safe area ชนะ margin |
 | Minimum | Digital 80px · Print 20mm |
 | ขั้นตอน | วางโลโก้หลังสร้างฉากเสมอ ห้ามส่งโลโก้เข้า image model |
 
@@ -124,4 +124,4 @@ Priority เมื่อขัดกัน: คำสั่งล่าสุด
 QC_PASS = CI 10/10 **และ** Beauty 10/10 **และ** ไม่มี Critical Fail → ส่ง BASS_REVIEW
 QC_PASS ไม่ใช่การอนุมัติโพสต์ — ต้องมี Bass approve exact version ก่อนทุกครั้ง
 
-**Critical Fail (ข้อเดียว = FAIL):** ผิด SKU/variant · geometry ผิด · ฟีเจอร์ที่แต่งขึ้น · โลโก้ AI/ถูกแก้/ไม่อยู่ top-right · ฟอนต์ผิดหมวด · Headline ไม่ใช่ `#FFFFFF` · ตัวอักษรสี · ใช้สีนอก palette/gradient นอก spec · claim/ราคาไม่ verify · redraw ไม่แจ้ง · ไม่ได้ Bass approve exact version
+**Critical Fail (ข้อเดียว = FAIL):** ผิด SKU/variant · geometry ผิด · ฟีเจอร์ที่แต่งขึ้น · โลโก้ AI/ถูกแก้/ไม่อยู่ top-left · ฟอนต์ผิดหมวด · Headline ไม่ใช่ `#FFFFFF` · ตัวอักษรสี · ใช้สีนอก palette/gradient นอก spec · claim/ราคาไม่ verify · redraw ไม่แจ้ง · ไม่ได้ Bass approve exact version

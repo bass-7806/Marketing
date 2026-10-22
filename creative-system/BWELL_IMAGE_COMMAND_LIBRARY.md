@@ -86,7 +86,7 @@ Syntax: `/bwell-create [SKU] [Platform] [Ratio] [Objective] + [Bwell command] + 
 | Lighting | /studiolight /softlight /naturallight /windowlight /rimlight /backlight /sidelight /toplight /frontlight /goldenhour /bluehour /sunrise /sunset /cinematiclight /productlight /highkey /lowkey | ห้าม /neonlight (cheap neon = forbidden characteristic CI §24.10) |
 | Shadow & reflection | /softshadow /contactshadow /reflection /floorreflection /glassreflection | ใช้ใน layer 2 และ 6 ของ composite7 |
 | Depth | /depthoffield /shallowdof /deepfocus /bokeh /foregroundblur /softfocus | ห้าม blur ทับ SKU-defining details |
-| Composition | /ruleofthirds /negativespace /symmetry /asymmetry /offcenter /minimalcomposition /tightcomposition /widecomposition /dynamiccomposition | เว้นที่ headline + logo top-right |
+| Composition | /ruleofthirds /negativespace /symmetry /asymmetry /offcenter /minimalcomposition /tightcomposition /widecomposition /dynamiccomposition | เว้นที่ headline + logo top-left |
 | Ratio | /square /portrait /landscape /story /reel /banner /widescreen | ต้องตรง Output Size + safe area ใน Quick Spec |
 | Style | /photoreal /cinematic /editorial /minimal /luxury /futuristic /watercolor /oilpainting /illustration /3drender | style ที่ไม่ใช่ photoreal ใช้กับฉากเท่านั้น (ดู `/drawingpainting`) |
 | Scene | /daytonight /nighttoday /sunny /cloudy /rain /fog /mist /changeseason /changeenvironment | — |

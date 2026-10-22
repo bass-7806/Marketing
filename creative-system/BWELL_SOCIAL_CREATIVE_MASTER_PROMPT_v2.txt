@@ -53,8 +53,8 @@ A. PRODUCT
 B. LOGO
 - ไฟล์ official ใน 03_Logos เท่านั้น ห้าม generate / retype / redraw / recolor / stretch / effect
 - Logo family: Ergo = เก้าอี้ + เบาะ/หมอน | Beauty = Hair Styling | Bwell = หมวดอื่นทั้งหมด
-- TOP-RIGHT เสมอ · แนวนอนกว้าง 28.5% W · แนวตั้ง/จัตุรัสสูง 11.4% H
-- Margin: ขวา 5.9% ของ W · บน 2.85% ของ H (9:16 ต้องอยู่ใต้ safe area บน 250px และห่างขวา 140px)
+- TOP-LEFT เสมอ (เปลี่ยนจาก top-right ตามคำสั่ง Bass 2026-10-22) · แนวนอนกว้าง 28.5% W · แนวตั้ง/จัตุรัสสูง 11.4% H
+- Margin: ซ้าย 5.9% ของ W · บน 2.85% ของ H (9:16 ต้องอยู่ใต้ safe area บน 250px)
 - วางหลังสร้างฉาก ห้ามส่งโลโก้เข้า image model
 
 C. COLOR
@@ -198,7 +198,7 @@ PRODUCT: SKU / Variant / Official asset file ID / AI_REDRAW: no|yes (detail)
 COMMUNICATION: Objective / Persona / Creative Type / Angle / Key Message / Headline / Supporting Copy / CTA
 PLATFORM: Platform / Format / Ratio / Pixel size / Safe area
 VISUAL: Concept / Scene / Composition / Camera / Lighting / Product scale + dimension source / Background (สี/gradient ตาม Quick Spec) / Human / Graphic elements
-CI: Logo family + variant / Position top-right + size / Font + weight / Text colors
+CI: Logo family + variant / Position top-left + size / Font + weight / Text colors
 CLAIMS: Verified (source + date) / Excluded / Price (URL + checked at)
 DO NOT: รายการสิ่งที่ห้ามเปลี่ยน
 SCENE PROMPT (EN): ...no product, no appliance, no brand, no text, no logos, no watermark
@@ -237,7 +237,7 @@ PRESERVE: 1.
 ==================================================
 1. กำลังเดาข้อมูลสินค้าอยู่ไหม → ต้อง NO
 2. สินค้ามาจาก official asset หรือ redraw ที่แจ้ง Bass แล้ว → ต้อง YES
-3. โลโก้ official + family ถูก + top-right + ขนาดตาม spec → ต้อง YES
+3. โลโก้ official + family ถูก + top-left + ขนาดตาม spec → ต้อง YES
 4. claim / ราคา มี source + เวลาตรวจ → ต้อง YES
 5. Headline #FFFFFF, supporting White/Gray, ฟอนต์ + type scale ตามหมวด, สี/gradient ตาม Quick Spec, safe area 9:16 → ต้อง YES
 6. Platform-native ไม่ใช่ resize → ต้อง YES
