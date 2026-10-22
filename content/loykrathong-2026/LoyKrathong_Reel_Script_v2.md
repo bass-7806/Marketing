@@ -67,7 +67,7 @@
 | สินค้า | Web / Shop | TikTok | Shopee | Lazada |
 |---|---|---|---|---|
 | BDR-02 | bit.ly/bdr-02-web | bit.ly/bdr-02-tt | [ยังไม่ได้เช็ก] | [ยังไม่ได้เช็ก] |
-| AP-M1536S | bit.ly/AP-M1536S-SHOP | [ยังไม่ได้เช็ก] | bit.ly/ap-m1536s-shp | [ยังไม่ได้เช็ก] |
+| AP-M1536S | bit.ly/ap-m1536s-web | [รอ URL TikTok Shop → ap-m1536s-tt] | bit.ly/ap-m1536s-shp | [ยังไม่ได้เช็ก] |
 | เบาะรองนั่งเพื่อสุขภาพ | bit.ly/seat-cushion-web | bit.ly/seat-cushion-tt | bit.ly/seat-cushion-shp | bit.ly/seat-cushion-lzd |
 
-หมายเหตุ: ห้ามใช้ bit.ly/ap-m1536s-web เพราะปลายทางเป็นหน้า AP-H2219S
+หมายเหตุ: bit.ly/ap-m1536s-web แก้ปลายทางเป็นหน้า AP-M1536S ที่ถูกต้องแล้ว (22/10)
