@@ -24,3 +24,15 @@
 - 1920×1080, 24fps, 30.0 วินาที · เพลง AI (ElevenLabs Music v2 ผ่าน Magnific, 600 credits) · ความดังวัดได้ -14 LUFS / True Peak -1.4 dBTP
 - Super DB Helvethaica X มีพื้นหลังเงาจาง ๆ ให้อ่านได้ในฉากสว่าง · โลโก้ขาวมุมซ้ายบนตั้งแต่ 0:03 · end card: ชื่อรุ่น + Home Environment Wellness + bwell.co.th
 - เครดิต Magnific รวมทั้งงาน: 29,830 credits (วิดีโอ 29,230 + เพลง 600)
+
+## Cut-down 15 วิ 9:16 v1 (22/10/2569)
+| ไฟล์ | ใช้กับ | ลิงก์ |
+|---|---|---|
+| Bwell_UltraT20_15s_9x16_v1_music.mp4 | Reels / TikTok / Shorts / Stories | https://d2ol7oe51mr4n9.cloudfront.net/user_3Dy6Z3ucZX6ucLB5u9pTBF68wRy/2595984e-8921-4d62-bb9d-86e7cc4ff5f3.mp4 |
+| Bwell_UltraT20_15s_9x16_v1_silent.mp4 | จอแนวตั้งในห้าง / หน้าร้าน | https://d2ol7oe51mr4n9.cloudfront.net/user_3Dy6Z3ucZX6ucLB5u9pTBF68wRy/640f610a-40bd-469a-a43a-52d1a48497ae.mp4 |
+
+- 1080×1920, 15.0 วินาที · ตัดจากคลิปชุดเดิม ไม่ใช้เครดิตเพิ่ม
+- ลำดับ: เลเซอร์ (1.5s) → Hero + "Bwell Ultra T20 / OmniBase" → เลเซอร์จับขาเก้าอี้ → ขึ้นพรม → ขนแมว → แท่น OmniBase → end card (3.5s) · ตัดช็อต 4 ออก
+- Layout: วิดีโอ 16:9 วางกลางจอ พื้นหลังเป็นภาพเดียวกันเบลอ+มืดลง (ไม่ crop เต็มจอ เพื่อไม่ให้ตัวสินค้า/แท่นถูกตัด) · super อยู่ใต้วิดีโอ (y≈1330) · โลโก้มุมซ้ายบนตั้งแต่ 0:01.5
+- เพลง: ช่วง 15–30 วิ ของเพลง 30 วิ fade in/out, loudnorm -14 LUFS
+- Overlay: content/ultra-t20-tvc/text916/
