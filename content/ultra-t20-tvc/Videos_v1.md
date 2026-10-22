@@ -14,3 +14,13 @@
 | 8 | End card | https://www.magnific.com/app/creation/If7BzZ5tvE | ผ่าน: แสงหลังสินค้าค่อย ๆ สว่าง สินค้านิ่ง |
 
 สถานะ: วิดีโอครบ 8 ช็อต ผ่าน QC พร้อมตัดต่อ
+
+## ไฟล์ TVC ตัดต่อ v1 (22/10/2569)
+| ไฟล์ | ใช้กับ | ลิงก์ |
+|---|---|---|
+| Bwell_UltraT20_TVC30_16x9_v1_music.mp4 | YouTube / Social | https://d2ol7oe51mr4n9.cloudfront.net/user_3Dy6Z3ucZX6ucLB5u9pTBF68wRy/44381230-a1c8-44d5-aa5e-bbaefb95d363.mp4 |
+| Bwell_UltraT20_TVC30_16x9_v1_silent.mp4 | จอในห้าง / หน้าร้าน | https://d2ol7oe51mr4n9.cloudfront.net/user_3Dy6Z3ucZX6ucLB5u9pTBF68wRy/2fbea1f7-d8ba-45ef-9f30-98019457a37f.mp4 |
+
+- 1920×1080, 24fps, 30.0 วินาที · เพลง AI (ElevenLabs Music v2 ผ่าน Magnific, 600 credits) · ความดังวัดได้ -14 LUFS / True Peak -1.4 dBTP
+- Super DB Helvethaica X มีพื้นหลังเงาจาง ๆ ให้อ่านได้ในฉากสว่าง · โลโก้ขาวมุมซ้ายบนตั้งแต่ 0:03 · end card: ชื่อรุ่น + Home Environment Wellness + bwell.co.th
+- เครดิต Magnific รวมทั้งงาน: 29,830 credits (วิดีโอ 29,230 + เพลง 600)
