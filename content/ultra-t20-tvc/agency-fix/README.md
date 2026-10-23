@@ -15,3 +15,16 @@
 ยังไม่ได้แก้ (นอกขอบเขตข้อ 1–4): "ระบบนำทาง LiDAR" (เว็บใช้ "นำทางด้วยเลเซอร์"), tagline "ให้บ้านสะอาด เป็นเรื่องง่าย" (ยังรอยืนยัน), แปรงหลักสีแดง/ไฟหน้าเครื่องตอนจอดแท่น (ยืนยันไม่ได้)
 
 Overlay: text/ (a–g = super, endcard.png, logo_tl.png)
+
+## Fix v2 (2026-10-23)
+URL: https://d2ol7oe51mr4n9.cloudfront.net/user_3Dy6Z3ucZX6ucLB5u9pTBF68wRy/4d21e21b-f9d7-4ad7-887c-a9a511bf82b9.mp4
+
+| Item | Change |
+|---|---|
+| Voiceover | Removed. Audio = stereo side + low-end (<110Hz) of original mix; whisper finds no speech. Loudnorm -14 LUFS, fade out 28.8s |
+| Underside shots | Replaced with 2 Seedance 2.5 clips (11.2-14.2s, 15.2-18.2s): teal main brush, teal side brush, 2 rear mops, wheels on floor |
+| Logo top-left | Bwell Electric white |
+| Disclaimer | "ภาพจำลองการทำงาน" removed everywhere |
+| Supers | Bwell Ultra T20 / นำทางด้วยเลเซอร์ / วางแผนเส้นทางทำความสะอาด / ดูดฝุ่น / ถูพื้นด้วยผ้าม็อบหมุนคู่ / ซักและเป่าม็อบแห้งอัตโนมัติ / All-in-One Station |
+| Purple light | Re-graded to CI blue via 3D LUT |
+| End | 25.9s end card (logo + Ultra T20 + tagline + www.bwell.co.th), 28.2s Bwell logo slate |
