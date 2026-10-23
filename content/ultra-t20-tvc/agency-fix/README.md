@@ -28,3 +28,13 @@ URL: https://d2ol7oe51mr4n9.cloudfront.net/user_3Dy6Z3ucZX6ucLB5u9pTBF68wRy/4d21
 | Supers | Bwell Ultra T20 / นำทางด้วยเลเซอร์ / วางแผนเส้นทางทำความสะอาด / ดูดฝุ่น / ถูพื้นด้วยผ้าม็อบหมุนคู่ / ซักและเป่าม็อบแห้งอัตโนมัติ / All-in-One Station |
 | Purple light | Re-graded to CI blue via 3D LUT |
 | End | 25.9s end card (logo + Ultra T20 + tagline + www.bwell.co.th), 28.2s Bwell logo slate |
+
+## Fix v3 (2026-10-23)
+URL: https://d2ol7oe51mr4n9.cloudfront.net/user_3Dy6Z3ucZX6ucLB5u9pTBF68wRy/4d21e21b-f9d7-4ad7-887c-a9a511bf82b9.mp4 -> superseded by
+https://d2ol7oe51mr4n9.cloudfront.net/user_3Dy6Z3ucZX6ucLB5u9pTBF68wRy/7b4d8dbf-4d3d-49ed-ad39-938325879ddf.mp4
+
+| Item | Change |
+|---|---|
+| Underside 11.2-14.2s | Replaced v2 AI shot with brand reference clip `ref/refclip_brush.mp4` (side-brush light), crop 944x531 -> 1920x1080 |
+| Underside 15.2-18.2s | Replaced v2 AI shot (showed 4 wheels) with `ref/refclip_mop.mp4` (mop light): 2 drive wheels + front caster, teal brush, 1 side brush, 2 mops |
+| Logo top-left | Added soft dark shadow so white logo reads on bright reference backgrounds |
