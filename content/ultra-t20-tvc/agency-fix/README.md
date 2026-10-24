@@ -38,3 +38,14 @@ https://d2ol7oe51mr4n9.cloudfront.net/user_3Dy6Z3ucZX6ucLB5u9pTBF68wRy/7b4d8dbf-
 | Underside 11.2-14.2s | Replaced v2 AI shot with brand reference clip `ref/refclip_brush.mp4` (side-brush light), crop 944x531 -> 1920x1080 |
 | Underside 15.2-18.2s | Replaced v2 AI shot (showed 4 wheels) with `ref/refclip_mop.mp4` (mop light): 2 drive wheels + front caster, teal brush, 1 side brush, 2 mops |
 | Logo top-left | Added soft dark shadow so white logo reads on bright reference backgrounds |
+
+## Fix v4 (2026-10-24)
+URL: https://d2ol7oe51mr4n9.cloudfront.net/user_3Dy6Z3ucZX6ucLB5u9pTBF68wRy/bcdf3bc3-2a47-488d-8117-9bb9f3fe89fc.mp4
+
+| Item | Change |
+|---|---|
+| 14.2-15.2s hflip corridor shot | Removed (mirrored floor logo, no mop on screen); mop reference clip extended to cover 14-18.2s |
+| Reference clips grade | Exposure down, highlights rolled to ~105 (was ~225), warm balance, sat x1.3, vignette, film grain; measured Y avg ~60 vs neighbouring shots 45-100 |
+| Transitions | 0.25s dissolves at 10.96s, 13.96s, 18.17s |
+| End card -> logo slate | End card fades out 27.8-28.2s before slate fades in 28.25s (no double logo) |
+| Audio | Side + Haas 9ms (no antiphase), bass trimmed, +2.5dB @1.8kHz, 2-pass loudnorm: -14.3 LUFS, TP -1.5; phase corr 0.14 -> 0.28; mono loss 4.6 -> 2.2 dB |
