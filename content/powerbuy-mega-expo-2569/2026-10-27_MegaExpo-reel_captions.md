@@ -1,4 +1,4 @@
-# Power Buy MEGA EXPO Reel v2: แคปชั่น 4 ช่องทาง (DRAFT)
+# Power Buy MEGA EXPO Reel v2: แคปชั่น 4 ช่องทาง (SCHEDULED)
 <!-- job
 brand: 6941044
 product: Bwell ดีลบูธ Power Buy MEGA EXPO (เครื่องทำน้ำอุ่น, CF-8005, BPAC-12B, เครื่องกรองน้ำ, Luka 4500 วัตต์, L6C)
@@ -57,7 +57,7 @@ MEGA EXPO มาแล้ว ดีล Bwell เฉพาะที่บูธ �
 #Shorts #Bwell #MegaExpo
 
 ## TikTok
-<!-- network: tiktok | date: 2026-10-27 18:00 | media: MegaExpo_reel_v2 | ownBrand: true -->
+<!-- network: tiktok | date: 2026-10-27 18:00 | media: MegaExpo_reel_v2 | title: ดีล Bwell ที่บูธ MEGA EXPO อิมแพ็ค | ownBrand: true -->
 ไปอิมแพ็คช่วงนี้ แวะบูธ Bwell ก่อนนะ 🛍️ น้ำอุ่นลดสูงสุด 48% Luka ลดเหลือ ฿2,670 จาก ฿5,190 หุ่นยนต์ L6C ลดเหลือ ฿14,390 จาก ฿17,990
 📍 บูธ PC3 Challenger 2 อิมแพ็ค 23 ต.ค.–1 พ.ย. 69
 *เงื่อนไขตามที่ Power Buy กำหนด
