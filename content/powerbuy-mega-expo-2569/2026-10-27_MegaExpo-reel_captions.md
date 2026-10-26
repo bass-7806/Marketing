@@ -1,4 +1,4 @@
-# Power Buy MEGA EXPO Reel v2: แคปชั่น 4 ช่องทาง (SCHEDULED)
+# Power Buy MEGA EXPO Reel v1: แคปชั่น 4 ช่องทาง (SCHEDULED)
 <!-- job
 brand: 6941044
 product: Bwell ดีลบูธ Power Buy MEGA EXPO (เครื่องทำน้ำอุ่น, CF-8005, BPAC-12B, เครื่องกรองน้ำ, Luka 4500 วัตต์, L6C)
@@ -64,6 +64,6 @@ MEGA EXPO มาแล้ว ดีล Bwell เฉพาะที่บูธ �
 #Bwell #PowerBuy #MegaExpo #ของดีบอกต่อ #เครื่องทำน้ำอุ่น
 
 ## Checklist
-- สื่อ: Mega Expo Reel v2 (9:16, 15 วินาที, ไม่มีเสียง) https://d2ol7oe51mr4n9.cloudfront.net/user_3Dy6Z3ucZX6ucLB5u9pTBF68wRy/16176945-ee6b-472c-b4d1-789472a45a53.mp4
+- สื่อ: Mega Expo Reel v1 (9:16, 15 วินาที, ไม่มีเสียง) https://d2ol7oe51mr4n9.cloudfront.net/user_3Dy6Z3ucZX6ucLB5u9pTBF68wRy/50810ff8-c498-4924-b427-4ca5d59f7bb1.mp4
 - ไม่ใส่ลิงก์ร้านออนไลน์ เพราะเป็นดีลเฉพาะที่บูธ
 - เวลาเลี่ยงโพสต์เดิมของวันที่ 27 ต.ค. (09:00 โปสเตอร์ MEGA EXPO, 10:00 ฝุ่น/ชื้น/ร้อน)
