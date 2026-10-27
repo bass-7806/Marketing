@@ -17,3 +17,9 @@
 อัปเดต 2026-10-27 12:58: เปลี่ยนสื่อ YouTube / Instagram / TikTok เป็นคลิป final 3.5 วิ (MegaExpo_reel_final_3s.mp4, https://d2ol7oe51mr4n9.cloudfront.net/user_3Dy6Z3ucZX6ucLB5u9pTBF68wRy/14009188-2314-4950-b0ed-c94a5d5f84ca.mp4)
 Facebook Reel โพสต์ไปแล้วตอน 12:00 ด้วยคลิป v1 (https://facebook.com/reel/2543494646158454) แก้ผ่าน Metricool ไม่ได้
 ผู้ใช้เลือก A: เก็บ Facebook Reel v1 ไว้ ไม่ลบ/ไม่โพสต์ซ้ำ
+
+เพิ่ม 2026-10-27 13:19 (คลิป final 3.5 วิ):
+| วันเวลา | ช่องทาง | รูปแบบ | id | uuid |
+|---|---|---|---|---|
+| 2026-10-27 19:00 | Threads | วิดีโอ | 407470024 | 2369042885419157143 |
+| 2026-10-27 19:00 | X | วิดีโอ | 407470052 | -693813037283589076 |
