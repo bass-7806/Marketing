@@ -63,6 +63,18 @@ MEGA EXPO มาแล้ว ดีล Bwell เฉพาะที่บูธ �
 *เงื่อนไขตามที่ Power Buy กำหนด
 #Bwell #PowerBuy #MegaExpo #ของดีบอกต่อ #เครื่องทำน้ำอุ่น
 
+## Threads
+<!-- network: threads | date: 2026-10-27 19:00 | media: MegaExpo_reel_final_3s -->
+ใครแวะอิมแพ็คช่วงนี้ อย่าลืมแวะบูธ Bwell 🛍️ ในงาน MEGA EXPO มีดีลเฉพาะที่บูธ เครื่องทำน้ำอุ่นลดสูงสุด 48% Luka 4,500 วัตต์ ลดเหลือ ฿2,670 จาก ฿5,190 หุ่นยนต์ดูดฝุ่น L6C ลดเหลือ ฿14,390 จาก ฿17,990
+📍 บูธ PC3 • Challenger 2 อิมแพ็ค เมืองทองธานี ถึง 1 พ.ย. 2569 | 10.00–21.00 น.
+*ราคาและเงื่อนไขเป็นไปตามที่ Power Buy กำหนด
+ไปงานวันไหนกันบ้าง?
+#Bwell
+
+## X
+<!-- network: twitter | date: 2026-10-27 19:00 | media: MegaExpo_reel_final_3s -->
+MEGA EXPO ดีล Bwell เฉพาะที่บูธ PC3 อิมแพ็ค 🛍️ น้ำอุ่นลดสูงสุด 48% · Luka ลดเหลือ ฿2,670 จาก ฿5,190 · L6C ลดเหลือ ฿14,390 จาก ฿17,990 ถึง 1 พ.ย. 69 (เงื่อนไขตาม Power Buy) #Bwell #MegaExpo
+
 ## Checklist
 - สื่อ: Mega Expo Reel v1 (9:16, 15 วินาที, ไม่มีเสียง) https://d2ol7oe51mr4n9.cloudfront.net/user_3Dy6Z3ucZX6ucLB5u9pTBF68wRy/50810ff8-c498-4924-b427-4ca5d59f7bb1.mp4
 - ไม่ใส่ลิงก์ร้านออนไลน์ เพราะเป็นดีลเฉพาะที่บูธ
