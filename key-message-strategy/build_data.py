@@ -66,6 +66,7 @@ CLAIM_RULES = {
         ["UNVERIFIED", "ยังไม่มีหลักฐานตรงรุ่น เติมค่าห้ามใช้ ต้องส่ง Product Owner ตรวจ", "risk"],
         ["CONFLICT", "แหล่งข้อมูลขัดกัน ห้ามใช้จนกว่าจะตัดสิน", "risk"],
         ["BANNED", "ห้ามใช้จนกว่าจะมีผลแล็บ / legal อนุมัติ", "risk"],
+        ["EXEC-DIRECTED", "Key message ที่ผู้บริหารสั่ง (5 พ.ย.) ใช้เป็นแกนสื่อสารได้ แต่ต้องแนบหลักฐาน (ใบรับรอง/สเปก) ก่อนขึ้นแอดและ Marketplace", "info"],
     ],
     "banned": [
         ["CADR / ตร.ม. / 99.9% / 99.97%", "สั่งงดตามสรุปผู้บริหาร 3 ต.ค. 2026 จนกว่าจะมีผลแล็บ แม้ CF-8428 จะมีค่า CADR ในหน้าเว็บ"],
@@ -648,8 +649,264 @@ for sku, nm, price, role, push, headline, sub, hook, icons, note in BEAUTY:
         kol="ใส่ชื่อ Bwell Beauty + โลโก้ · สาธิตก่อน-หลังจริง · ห้ามเคลมปกป้องผมจากความร้อนแบบไม่มีหลักฐาน",
         specs=[S("ช่วงอุณหภูมิ / ระดับความร้อน", "", "UNVERIFIED")], note=note))
 
+# ---------------------------------------------------------------- EXECUTIVE DIRECTION (สรุปแนวทางทำ Content @5/11/69)
+# Source: Key_Message.docx from management, 5 Nov 2026. Overrides category key messages, focus SKUs and FB/IG + TikTok formats.
+EXEC_DATE = "5 พ.ย. 2026"
+EXEC = [
+ dict(cats=["ap"], name="เครื่องฟอกอากาศ",
+      km=["เครื่องฟอกอากาศสำหรับเด็กและคนเป็นภูมิแพ้โดยเฉพาะ", "ปลอดภัย ไม่ปล่อยประจุไฟฟ้าระคายระบบทางเดินหายใจ"],
+      focus=["AP-M1536S", "AP-H2219S", "AP-P4019US"],
+      series=["PM2.5 Series (AP-M1536S, AP-H2219S): กรอง PM2.5 · ดูดกลิ่นไม่พึงประสงค์ · เชื่อมต่อ WiFi",
+              "Virus Series (AP-P4019US): ฟอกอากาศ 8 ขั้นตอน · กรองฝุ่น ดูดกลิ่น ฆ่าเชื้อ จบในเครื่องเดียว"],
+      fbig="3D แสดงขั้นตอนการฟอกภายในเครื่อง (อากาศไหลผ่านทีละชั้น)", tt="บรรยายสรรพคุณ (presenter/voice-over อธิบายจุดเด่นทีละข้อ)",
+      mp="Bwell + เครื่องฟอกอากาศ + สำหรับเด็ก/ภูมิแพ้ + รุ่น + กรอง PM2.5/8 ขั้นตอน + ไม่ปล่อยประจุ",
+      posm="Headline: \"สำหรับเด็กและคนเป็นภูมิแพ้\" · Icons: กรอง PM2.5 | ดูดกลิ่น | WiFi (PM2.5 Series) / 8 ขั้นตอน | ฆ่าเชื้อ | ดูดกลิ่น (Virus Series)",
+      kol="แม่ลูกอ่อน/ครอบครัวมีคนแพ้ง่าย · พูดครบ 2 ข้อ: สำหรับเด็ก-ภูมิแพ้ และไม่ปล่อยประจุไฟฟ้า",
+      line="ต้นฤดูฝุ่น: แนะนำรุ่นตามห้องลูก + เตือนเปลี่ยนไส้กรอง",
+      flags=["\"8 ขั้นตอน\": เว็บบางหน้าเขียน 7 ขั้นตอน ต้องยืนยันว่า AP-P4019US = 8 พร้อมรายชื่อแต่ละชั้น",
+             "\"ฆ่าเชื้อ\": health claim ห้ามใส่ % จนกว่าจะมีผลแล็บ",
+             "\"ไม่ปล่อยประจุไฟฟ้า\": ยืนยันรายรุ่นว่าไม่มี ionizer/plasma",
+             "WiFi: ยืนยันว่าทั้ง AP-M1536S และ AP-H2219S มี WiFi",
+             "สต็อก AP-M1536S (~6) และ AP-H2219S (~36, ไส้กรอง 1) ต่ำ ต้อง restock ก่อนยิงแอด"]),
+ dict(cats=["beauty"], name="Beauty (อุปกรณ์จัดแต่งทรงผม)",
+      km=["Digital", "มอเตอร์ BLDC 110,000 รอบต่อนาที"],
+      focus=["BDR-03", "BDR-04", "BAW-02", "BSL-01"], series=[],
+      fbig="3D โชว์เทคโนโลยี (มอเตอร์ BLDC + ระบบดิจิทัล)", tt="สาธิตการใช้งาน Before/After",
+      mp="Bwell Beauty + ประเภทเครื่อง + รุ่น + ดิจิทัล + มอเตอร์ BLDC 110,000 รอบ/นาที",
+      posm="Headline: \"BLDC 110,000 รอบ/นาที\" · Icons: Digital | BLDC 110,000 rpm | น้ำหนักเบา",
+      kol="Beauty creator · Before/After จริงในคลิปเดียว · พูด Digital + BLDC 110,000 รอบ/นาที",
+      line="ของขวัญ (Mother's Day/12.12) + bundle ไดร์ + หวีไดร์",
+      flags=["BLDC 110,000 รอบ/นาที: ยืนยันว่าใช้ได้ทั้ง 4 รุ่น (ชื่อสินค้าระบุดิจิทัลเฉพาะ BDR-03)",
+             "สต็อก BAW-02 (~12) และ BDR-04 (~56) ต่ำ"]),
+ dict(cats=["dh"], name="เครื่องลดความชื้น",
+      km=["มี Compressor", "ขนาดเล็ก ประหยัดพื้นที่", "เชื่อมต่อ WiFi ได้"],
+      focus=["BDH-12A", "BDH-30A", "BDH-53A"], series=[],
+      fbig="3D โชว์เทคโนโลยี (ระบบ Compressor ภายในเครื่อง)", tt="บรรยายสรรพคุณ",
+      mp="Bwell + เครื่องลดความชื้น + รุ่น + Compressor + ขนาดเล็ก + WiFi",
+      posm="Headline: \"Compressor ในเครื่องเล็ก\" · Icons: Compressor | ประหยัดพื้นที่ | WiFi",
+      kol="คอนโด/บ้านหลังน้ำลด · โชว์ขนาดเครื่องเทียบมุมห้อง + สั่งผ่านแอป",
+      line="ปลายฝน/หลังน้ำลด: เลือกรุ่นตามพื้นที่",
+      flags=["WiFi: ยืนยันรายรุ่น (เอกสารเดิมระบุ WiFi เฉพาะ BDH-53)", "\"ขนาดเล็ก\" กับ BDH-53A (ความจุสูง) ควรใช้คำว่า \"ประหยัดพื้นที่\""]),
+ dict(cats=["ac"], name="แอร์เคลื่อนที่",
+      km=["ขนาดเล็ก ประหยัดพื้นที่", "เย็นเต็ม BTU", "ประหยัดไฟ"],
+      focus=["BPAC-09B", "BPAC-12B"], series=[],
+      fbig="3D โชว์เทคโนโลยี (ระบบทำความเย็น + ขนาดตัวเครื่อง)", tt="บรรยายสรรพคุณ",
+      mp="Bwell + แอร์เคลื่อนที่ + รุ่น + [BTU] + เย็นเต็ม BTU + ประหยัดไฟ + ขนาดเล็ก",
+      posm="Headline: \"เย็นเต็ม BTU\" · Icons: ประหยัดพื้นที่ | เย็นเต็ม BTU | ประหยัดไฟ",
+      kol="คอนโด/ห้องทำงาน · โชว์ห้องเย็นจริง + ค่าไฟต่อเดือน (ถ้ามีตัวเลขยืนยัน)",
+      line="ก่อนหน้าร้อน (ก.พ.–มี.ค.)",
+      flags=["\"ประหยัดไฟ\": ต้องมีฐานอ้างอิง (ฉลากประหยัดไฟ/ค่า EER/ค่าไฟต่อชั่วโมง)", "\"เย็นเต็ม BTU\": ยืนยัน BTU ของ 09B / 12B (หน้าเว็บ BPAC-12 แสดงสเปก 09)"]),
+ dict(cats=["vac"], name="เครื่องดูดฝุ่น",
+      km=["เครื่องดูดฝุ่นสำหรับคนเป็นภูมิแพ้"],
+      focus=["201A", "Flomo Lite"], series=[],
+      fbig="3D โชว์เทคโนโลยี (ระบบกรองฝุ่น)", tt="โชว์การทำงานจริง (ที่นอน/โซฟา/พื้น)",
+      mp="Bwell + เครื่องดูดฝุ่น + สำหรับคนเป็นภูมิแพ้ + รุ่น + ไร้สาย/ดูด+ถู",
+      posm="Headline: \"สำหรับคนเป็นภูมิแพ้\" · Icons: ภูมิแพ้ | ไร้สาย | ดูด+ถู (Flomo Lite)",
+      kol="บ้านมีสัตว์เลี้ยง/คนแพ้ฝุ่น · ดูดจริงให้เห็นฝุ่นในถัง",
+      line="ทำความสะอาดปีใหม่ + bundle ไส้กรอง",
+      flags=["T12 Allergy Plus/Pro ไม่อยู่ใน Focus แล้ว"]),
+ dict(cats=["robot"], name="หุ่นยนต์ดูดฝุ่น",
+      km=["หุ่นยนต์ที่ดูดขอบมุมได้ชิดที่สุด"],
+      focus=["Ultra T20"], series=[],
+      fbig="3D โชว์เทคโนโลยี (การเข้าขอบมุม + แท่น OmniBase)", tt="โชว์การทำงานจริง (มุมห้อง/ขอบผนัง)",
+      mp="Bwell + หุ่นยนต์ดูดฝุ่นถูพื้น + Ultra T20 OmniBase + ดูดขอบมุม + ซัก-เป่าม็อบอัตโนมัติ",
+      posm="Headline: \"ชิดขอบ ชิดมุม\" · Icons: ดูดขอบมุม | ซัก-เป่าม็อบเอง | เก็บฝุ่นอัตโนมัติ",
+      kol="ถ่ายมุมห้องก่อน-หลัง · ต่อยอดจาก KOL clip (PAT) ที่มีอยู่",
+      line="11.11 / 12.12 / ของขวัญปีใหม่",
+      flags=["\"ชิดที่สุด\" เป็น superlative (ขัด Words to Avoid) ต้องมีผลทดสอบเทียบ หรือใช้ \"ชิดขอบ ชิดมุม\" แทน",
+             "Product_Facts ยังไม่มี fact เรื่องการดูดขอบมุม (แปรงข้าง/ม็อบยืด) ต้องเพิ่มก่อนใช้"]),
+ dict(cats=["wp", "wh"], name="เครื่องกรองน้ำ",
+      km=["มี NSF มาตรฐานอเมริกา"],
+      focus=["BW-D10UF5", "BW-D10RO5", "BW-BB20PP"], series=[],
+      fbig="3D โชว์เทคโนโลยี (ไส้กรองแต่ละชั้น)", tt="บรรยายสรรพคุณ",
+      mp="Bwell + เครื่องกรองน้ำ + ระบบ (UF/RO/น้ำใช้) + รุ่น + มาตรฐาน NSF อเมริกา",
+      posm="Headline: \"มาตรฐาน NSF อเมริกา\" · Icons: NSF | ระบบกรอง | ไม่ผูกสัญญา",
+      kol="ครอบครัว/คอนโด · โชว์ใบรับรอง NSF จริง + ติดตั้งจริง",
+      line="เตือนเปลี่ยนไส้กรองตามรอบ",
+      flags=["NSF: ต้องระบุมาตรฐาน (เช่น NSF/ANSI 42/53/58) และว่ารับรองตัวเครื่องหรือไส้กรอง พร้อมเลข listing",
+             "BW-BB20PP เป็นเครื่องกรองน้ำใช้ ห้ามสื่อว่าดื่มได้",
+             "ราคา Power Buy ของ UF5 (+33%) และ RO5 (+38%) ยังไม่ตรงเว็บ"]),
+ dict(cats=["heat"], name="เครื่องทำน้ำอุ่น",
+      km=["EV Charger Design", "ระบบความปลอดภัย 10 จุด", "ร้อนเร็ว อุณหภูมิสม่ำเสมอ"],
+      focus=["LUKA", "ELKA", "FELIX", "Konrad"], series=["ทุกรุ่นมีหลายขนาดให้เลือก (วัตต์สูง = ร้อนเร็ว)"],
+      fbig="3D โชว์เทคโนโลยี (ดีไซน์ EV Charger + จุดความปลอดภัย 10 จุด)", tt="บรรยายสรรพคุณ",
+      mp="Bwell + เครื่องทำน้ำอุ่น + รุ่น + วัตต์ + ดีไซน์ EV Charger + ปลอดภัย 10 จุด",
+      posm="Headline: \"ปลอดภัย 10 จุด\" · Icons: EV Charger Design | ปลอดภัย 10 จุด | ร้อนเร็ว",
+      kol="ครอบครัวมีผู้สูงอายุ/เด็ก · ชี้จุดความปลอดภัยบนเครื่องจริง",
+      line="หน้าหนาว + ช่วงย้ายบ้าน/รีโนเวท",
+      flags=["ต้องมีรายการ 10 จุดความปลอดภัยเป็นลายลักษณ์อักษร (ตอนนี้ verify แล้วแค่ ELSD + IP25 บางรุ่น)",
+             "ยืนยันว่าทั้ง 4 ซีรีส์ใช้ EV Charger Design", "LUKA 3500W สต็อกต่ำ · ราคาห้างต่ำกว่าเว็บ"]),
+ dict(cats=["chair"], name="เก้าอี้เพื่อสุขภาพ",
+      km=["ลิขสิทธิ์แท้", "ขาเหล็กแข็งแรงทนทาน", "ผ่านมาตรฐาน BIFMA"],
+      focus=["Stella เทา", "Astrid ขาว", "Agnes เทา", "Bjorn เทา", "Greta เทา"], series=[],
+      fbig="โชว์เทคโนโลยี Lumbar Support", tt="สาธิตการใช้งาน (ปรับจริง นั่งจริง)",
+      mp="Bwell Ergo + เก้าอี้เพื่อสุขภาพ + รุ่น + สี + ลิขสิทธิ์แท้ + BIFMA + ขาเหล็ก",
+      posm="Headline: \"ผ่านมาตรฐาน BIFMA\" · Icons: ลิขสิทธิ์แท้ | ขาเหล็ก | Lumbar Support",
+      kol="WFH/ออฟฟิศ · ปรับ Lumbar ให้ดู · ชื่อ Bwell Ergo ในช่วง 3 วินาทีแรก",
+      line="ลองนั่งที่ Showroom CDC + โปรผ่อน",
+      flags=["\"ลิขสิทธิ์แท้\": ระบุความหมายให้ชัด (สินค้าแท้จากเจ้าของแบรนด์/ลิขสิทธิ์ดีไซน์) และหลักฐาน",
+             "BIFMA: ต้องมีเอกสารรับรองรายรุ่น", "ขาเหล็ก: ยืนยันทุก 5 รุ่น", "คำอธิบายสั้นบนหน้าเว็บเก้าอี้ยังเป็นข้อความเครื่องฟอกอากาศ (CMS bug)"]),
+ dict(cats=["cush"], name="หมอนเพื่อสุขภาพ",
+      km=["ลิขสิทธิ์แท้"],
+      focus=["ทุกรุ่น"], series=["จุดขายรายรุ่น: Cool Gel, Cool Fabric"],
+      fbig="เน้นจุดขายรายรุ่น (Cool Gel, Cool Fabric) + ภาพการใช้งานจริง", tt="สาธิตการใช้งาน",
+      mp="Bwell Ergo + หมอน/เบาะ + จุดใช้งาน + ลิขสิทธิ์แท้ + Cool Gel/Cool Fabric (ถ้ารุ่นนั้นมี)",
+      posm="Headline: \"ลิขสิทธิ์แท้\" · Icons: ลิขสิทธิ์แท้ | Cool Gel/Cool Fabric | รองรับสรีระ",
+      kol="ใช้จริงในรถ/บนเครื่องบิน/ที่โต๊ะทำงาน",
+      line="Add-on กับเก้าอี้ + ของขวัญ",
+      flags=["\"ทุกรุ่น\": ยืนยันว่ารวมเบาะรองนั่ง เบาะรองหลัง และที่วางเท้าด้วย หรือเฉพาะหมอนรองคอ", "Cool Gel / Cool Fabric: ระบุว่ารุ่นไหนมี (ยังไม่มีใน Product_Facts)", "\"ลิขสิทธิ์แท้\": ความหมายเดียวกับหมวดเก้าอี้"]),
+ dict(cats=["sport"], name="เสื่อออกกำลังกาย",
+      km=["ลิขสิทธิ์แท้", "ความหนาแน่นสูง รับน้ำหนักได้ดีกว่า ป้องกันการบาดเจ็บ"],
+      focus=["Move"], series=["Proof: ซูมเทียบกับเสื่อยี่ห้ออื่นราคา 199 ให้เห็นรูพรุนน้อยกว่า"],
+      fbig="เน้นจุดขายความหนาแน่น (ภาพซูมเนื้อเสื่อเทียบ)", tt="เน้นจุดขายความหนาแน่น (ซูมเทียบ + กดน้ำหนักให้ดู)",
+      mp="Bwell + เสื่อโยคะ Move + ลิขสิทธิ์แท้ + NBR ความหนาแน่นสูง + รับน้ำหนักดี",
+      posm="Headline: \"ความหนาแน่นสูง\" · Icons: ลิขสิทธิ์แท้ | NBR หนาแน่นสูง | รับน้ำหนักดี",
+      kol="ฟิตเนส/โยคะ · ซูมเนื้อเสื่อ + ท่าที่ลงน้ำหนัก",
+      line="New year resolution (ม.ค.)",
+      flags=["คลิปเทียบห้ามระบุชื่อหรือโลโก้ยี่ห้ออื่น ใช้ \"เสื่อทั่วไปราคา 199\"",
+             "\"ป้องกันการบาดเจ็บ\" เป็น health claim แนะนำใช้ \"ช่วยลดแรงกระแทก\" หรือต้องมีผลทดสอบ",
+             "Foam Roller Matrix ไม่อยู่ใน Focus"]),
+]
+
+def _o(**k): return k
+SKU_EXEC = {
+ "AP-M1536S": _o(headline="ห้องนอนลูก หายใจสบาย ไม่ระคายจมูก", sub="PM2.5 Series กรอง PM2.5 ดูดกลิ่นไม่พึงประสงค์ เชื่อมต่อ WiFi ไม่ปล่อยประจุไฟฟ้า",
+      hook="เครื่องฟอกบางแบบปล่อยประจุไฟฟ้า ห้องลูกควรใช้แบบไหน", mp="Bwell เครื่องฟอกอากาศ PM2.5 AP-M1536S สำหรับเด็ก ภูมิแพ้ กรอง PM2.5 ดูดกลิ่น WiFi",
+      icons="กรอง PM2.5 | ดูดกลิ่น | WiFi", kol="สำหรับเด็กและคนเป็นภูมิแพ้ · ไม่ปล่อยประจุไฟฟ้าระคายทางเดินหายใจ · สั่งผ่าน WiFi"),
+ "AP-H2219S": _o(headline="เครื่องฟอกอากาศสำหรับเด็กและคนเป็นภูมิแพ้", sub="PM2.5 Series กรอง PM2.5 ดูดกลิ่นไม่พึงประสงค์ เชื่อมต่อ WiFi ไม่ปล่อยประจุไฟฟ้า",
+      hook="ค่าฝุ่นสีแดง ห้องลูกคุณปลอดภัยแค่ไหน", mp="Bwell เครื่องฟอกอากาศ PM2.5 AP-H2219S สำหรับเด็ก ภูมิแพ้ กรอง PM2.5 ดูดกลิ่น WiFi",
+      icons="กรอง PM2.5 | ดูดกลิ่น | WiFi", kol="สำหรับเด็กและคนเป็นภูมิแพ้ · ไม่ปล่อยประจุไฟฟ้า · กรอง PM2.5 ดูดกลิ่น สั่งผ่าน WiFi"),
+ "AP-P4019US": _o(headline="8 ขั้นตอน จบในเครื่องเดียว", sub="Virus Series กรองฝุ่น ดูดกลิ่น ฆ่าเชื้อ สำหรับบ้านที่มีเด็กและคนเป็นภูมิแพ้",
+      hook="อากาศผ่านเครื่องนี้ 8 ชั้นก่อนถึงลูกคุณ", mp="Bwell เครื่องฟอกอากาศ Virus Series AP-P4019US 8 ขั้นตอน กรองฝุ่น ดูดกลิ่น ฆ่าเชื้อ เด็ก ภูมิแพ้",
+      icons="8 ขั้นตอน | ฆ่าเชื้อ | ดูดกลิ่น", kol="ฟอก 8 ขั้นตอนจบในเครื่องเดียว · สำหรับเด็กและคนเป็นภูมิแพ้ · ไม่ปล่อยประจุไฟฟ้า"),
+ "BDR-03": _o(headline="แห้งไว ด้วยมอเตอร์ BLDC 110,000 รอบ/นาที", sub="ไดร์เป่าผมดิจิทัล BDR-03 น้ำหนักเบา ใช้ได้ทุกเช้า",
+      hook="ผมแห้งในกี่นาที ถ้ามอเตอร์หมุน 110,000 รอบ", mp="Bwell Beauty ไดร์เป่าผม ดิจิทัล BDR-03 มอเตอร์ BLDC 110,000 รอบ/นาที น้ำหนักเบา",
+      icons="Digital | BLDC 110,000 rpm | น้ำหนักเบา", kol="Before/After ผมเปียกถึงแห้ง · พูด Digital + BLDC 110,000 รอบ/นาที"),
+ "BDR-04": _o(headline="เป่าแห้งและยืดตรงในขั้นตอนเดียว", sub="เครื่องหนีบลมร้อนดิจิทัล BDR-04 มอเตอร์ BLDC 110,000 รอบ/นาที",
+      hook="ผมเปียกถึงผมตรง ไม่ต้องเปลี่ยนเครื่อง", mp="Bwell Beauty เครื่องหนีบลมร้อน เป่าผม BDR-04 ดิจิทัล BLDC 110,000 รอบ/นาที",
+      icons="Digital | BLDC 110,000 rpm | เป่า+ยืด", kol="Before/After ผมเปียกถึงตรง · Digital + BLDC 110,000 รอบ/นาที"),
+ "BAW-02": _o(headline="7 หัว จบทุกทรง ด้วย BLDC 110,000 รอบ/นาที", sub="เครื่องจัดแต่งทรงผมดิจิทัล BAW-02 ม้วน เป่า แปรง ยืด ในเครื่องเดียว",
+      hook="เช้าเดียว 3 ทรง ด้วยเครื่องเดียว", mp="Bwell Beauty เครื่องจัดแต่งทรงผม BAW-02 7 หัว ดิจิทัล BLDC 110,000 รอบ/นาที",
+      icons="7 หัว | Digital | BLDC 110,000 rpm", kol="Before/After หลายทรง · Digital + BLDC 110,000 รอบ/นาที"),
+ "BSL-01": _o(headline="เป่าและจัดทรงพร้อมกัน", sub="หวีไดร์ดิจิทัล BSL-01 มอเตอร์ BLDC 110,000 รอบ/นาที เพิ่มวอลลุ่มในขั้นตอนเดียว",
+      hook="ผมแบนทั้งวัน แก้ได้ใน 5 นาที", mp="Bwell Beauty หวีไดร์จัดแต่งทรงผม BSL-01 ดิจิทัล BLDC 110,000 รอบ/นาที",
+      icons="Digital | BLDC 110,000 rpm | วอลลุ่ม", kol="Before/After วอลลุ่ม · Digital + BLDC 110,000 รอบ/นาที"),
+ "BDH-12A": _o(headline="เล็ก แต่มี Compressor", sub="เครื่องลดความชื้น BDH-12A ขนาดเล็กประหยัดพื้นที่ เชื่อมต่อ WiFi สำหรับห้องนอนและคอนโด",
+      hook="เครื่องลดความชื้นตัวเล็ก ทำไมต้องมี Compressor", mp="Bwell เครื่องลดความชื้น BDH-12A Compressor ขนาดเล็ก ประหยัดพื้นที่ WiFi คอนโด",
+      icons="Compressor | ประหยัดพื้นที่ | WiFi", kol="ระบบ Compressor · ขนาดเล็กวางมุมห้องได้ · สั่งผ่าน WiFi"),
+ "BDH-30A": _o(headline="ห้องแห้ง ผ้าแห้ง ด้วยระบบ Compressor", sub="เครื่องลดความชื้น BDH-30A ดีไซน์ประหยัดพื้นที่ เชื่อมต่อ WiFi",
+      hook="ฝนตกทั้งสัปดาห์ ผ้าไม่แห้งสักตัว", mp="Bwell เครื่องลดความชื้น BDH-30A Compressor ประหยัดพื้นที่ WiFi ตากผ้าในบ้าน",
+      icons="Compressor | ประหยัดพื้นที่ | WiFi", kol="ระบบ Compressor · ประหยัดพื้นที่ · สั่งผ่าน WiFi"),
+ "BDH-53A": _o(headline="ความจุสูง ในดีไซน์ประหยัดพื้นที่", sub="เครื่องลดความชื้น BDH-53A ระบบ Compressor เชื่อมต่อ WiFi สำหรับบ้านเดี่ยวและพื้นที่หลังน้ำลด",
+      hook="หลังน้ำลด ผนังยังชื้น", mp="Bwell เครื่องลดความชื้น BDH-53A Compressor ความจุสูง ประหยัดพื้นที่ WiFi บ้านเดี่ยว",
+      icons="Compressor | ประหยัดพื้นที่ | WiFi", kol="ระบบ Compressor · ความจุสูงแต่ไม่กินที่ · สั่งผ่าน WiFi"),
+ "BPAC-12B": _o(headline="เย็นเต็ม BTU ในตัวเครื่องกะทัดรัด", sub="แอร์เคลื่อนที่ BPAC-12B ขนาดเล็กประหยัดพื้นที่ ประหยัดไฟ ไม่ต้องติดตั้ง",
+      hook="แอร์เคลื่อนที่เย็นจริงไหม วัดให้ดู", mp="Bwell แอร์เคลื่อนที่ BPAC-12B เย็นเต็ม BTU ประหยัดไฟ ประหยัดพื้นที่ ไม่ต้องติดตั้ง",
+      icons="ประหยัดพื้นที่ | เย็นเต็ม BTU | ประหยัดไฟ", kol="เย็นเต็ม BTU · ประหยัดไฟ · ตัวเล็กไม่กินที่"),
+ "BPAC-09B": _o(headline="เล็ก ประหยัดพื้นที่ เย็นเต็ม BTU", sub="แอร์เคลื่อนที่ BPAC-09B ประหยัดไฟ สำหรับห้องนอนและห้องทำงาน",
+      hook="ห้องนอนติดแอร์ไม่ได้ ใช้ตัวนี้แทน", mp="Bwell แอร์เคลื่อนที่ BPAC-09B เย็นเต็ม BTU ประหยัดไฟ ขนาดเล็ก ห้องนอน",
+      icons="ประหยัดพื้นที่ | เย็นเต็ม BTU | ประหยัดไฟ", kol="ขนาดเล็ก · เย็นเต็ม BTU · ประหยัดไฟ"),
+ "201A": _o(headline="เครื่องดูดฝุ่นสำหรับคนเป็นภูมิแพ้", sub="เครื่องดูดฝุ่นไร้สาย 201A หยิบใช้ได้ทันที ดูดฝุ่นที่ทำให้แพ้ได้ทุกวัน",
+      hook="ดูดที่นอน 1 รอบ ฝุ่นออกมาเท่านี้", mp="Bwell เครื่องดูดฝุ่นไร้สาย 201A สำหรับคนเป็นภูมิแพ้ ไรฝุ่น ใช้ทุกวัน",
+      icons="สำหรับภูมิแพ้ | ไร้สาย | ใช้ทุกวัน", kol="สำหรับคนเป็นภูมิแพ้ · ดูดจริงให้เห็นฝุ่นในถัง"),
+ "Flomo Lite": _o(headline="ดูดและถู สำหรับบ้านคนเป็นภูมิแพ้", sub="เครื่องดูดฝุ่นพร้อมถูพื้น Flomo Lite เก็บฝุ่นที่ทำให้แพ้และถูพื้นในเครื่องเดียว",
+      hook="ดูดเสร็จไม่ต้องถูต่อ", mp="Bwell เครื่องดูดฝุ่นพร้อมถูพื้น Flomo Lite สำหรับคนเป็นภูมิแพ้ ดูดและถูในเครื่องเดียว",
+      icons="สำหรับภูมิแพ้ | ดูด+ถู | ประหยัดเวลา", kol="สำหรับคนเป็นภูมิแพ้ · ดูดและถูจริงบนพื้นบ้าน"),
+ "Ultra T20": _o(headline="ดูดขอบมุมได้ชิดที่สุด", sub="Bwell Ultra T20 OmniBase ชิดขอบ ชิดมุม พร้อมแท่นซัก-เป่าม็อบและเก็บฝุ่นอัตโนมัติ",
+      hook="มุมห้องที่หุ่นยนต์ทั่วไปเข้าไม่ถึง", mp="Bwell หุ่นยนต์ดูดฝุ่นถูพื้น Ultra T20 OmniBase ดูดขอบมุมชิด ซัก-เป่าม็อบ เก็บฝุ่นอัตโนมัติ",
+      icons="ดูดขอบมุม | ซัก-เป่าม็อบเอง | เก็บฝุ่นอัตโนมัติ", kol="ถ่ายมุมห้องก่อน-หลัง · พูดเรื่องขอบมุมเป็นข้อแรก"),
+ "BW-D10UF5": _o(headline="น้ำดื่มสะอาด มาตรฐาน NSF อเมริกา", sub="เครื่องกรองน้ำระบบ UF BW-D10UF5 ติดตั้งง่าย คุ้มค่า ไม่ผูกสัญญา",
+      hook="เครื่องกรองน้ำของคุณมีมาตรฐานอะไรรับรอง", mp="Bwell เครื่องกรองน้ำ ระบบ UF BW-D10UF5 มาตรฐาน NSF อเมริกา น้ำดื่ม ติดตั้งง่าย",
+      icons="NSF | ระบบ UF | ติดตั้งง่าย", kol="โชว์ใบรับรอง NSF · ติดตั้งจริงในครัว"),
+ "BW-D10RO5": _o(headline="น้ำดื่มระบบ RO มาตรฐาน NSF อเมริกา", sub="เครื่องกรองน้ำระบบ RO BW-D10RO5 สำหรับทั้งครอบครัว จ่ายครั้งเดียว ไม่ผูกสัญญา",
+      hook="RO ที่มีมาตรฐาน NSF ต่างจากทั่วไปอย่างไร", mp="Bwell เครื่องกรองน้ำ ระบบ RO BW-D10RO5 มาตรฐาน NSF อเมริกา น้ำดื่ม ครอบครัว",
+      icons="NSF | ระบบ RO | ไม่ผูกสัญญา", kol="โชว์ใบรับรอง NSF · ระบบ RO สำหรับครอบครัว"),
+ "BW-BB20PP": _o(headline="กรองน้ำใช้ทั้งบ้าน มาตรฐาน NSF อเมริกา", sub="เครื่องกรองน้ำใช้ 20 นิ้ว BW-BB20PP ดักตะกอนก่อนเข้าทุกก๊อก (น้ำใช้ ไม่ใช่น้ำดื่ม)",
+      hook="ตะกอนในน้ำประปา หยุดได้ตั้งแต่หน้าบ้าน", mp="Bwell เครื่องกรองน้ำใช้ 20 นิ้ว BW-BB20PP มาตรฐาน NSF อเมริกา ดักตะกอน ทั้งบ้าน",
+      icons="NSF | กรองทั้งบ้าน | ดักตะกอน", kol="โชว์ใบรับรอง NSF · ติดตั้งก่อนเข้าบ้าน · ย้ำว่าเป็นน้ำใช้"),
+}
+HEATER_EXEC = {
+ "LUKA":   _o(headline="ดีไซน์ EV Charger ปลอดภัย 10 จุด", sub="เครื่องทำน้ำอุ่น LUKA ร้อนเร็ว อุณหภูมิสม่ำเสมอ เลือกวัตต์ตามการใช้งาน", hook="เครื่องทำน้ำอุ่นที่หน้าตาเหมือนที่ชาร์จรถ EV"),
+ "ELKA":   _o(headline="ร้อนเร็ว อุณหภูมิสม่ำเสมอ ทุกครั้งที่อาบ", sub="เครื่องทำน้ำอุ่น ELKA ดีไซน์ EV Charger ระบบความปลอดภัย 10 จุด", hook="น้ำอุ่นสลับเย็นตอนอาบ แก้ได้"),
+ "FELIX":  _o(headline="ปลอดภัย 10 จุด อุ่นใจทั้งครอบครัว", sub="เครื่องทำน้ำอุ่น FELIX ดีไซน์ EV Charger ร้อนเร็ว อุณหภูมิสม่ำเสมอ", hook="10 จุดความปลอดภัยในเครื่องทำน้ำอุ่น มีอะไรบ้าง"),
+ "Konrad": _o(headline="วัตต์สูง ร้อนเร็ว ใช้ได้หลายจุด", sub="เครื่องทำน้ำร้อน Konrad ดีไซน์ EV Charger ระบบความปลอดภัย 10 จุด อุณหภูมิสม่ำเสมอ", hook="บ้านหลายคน อาบต่อกัน น้ำยังร้อนไหม"),
+}
+CHAIR_EXEC = {
+ "Stella": ("เทา", "เก้าอี้ลิขสิทธิ์แท้ ผ่านมาตรฐาน BIFMA", "Stella สีเทา ขาเหล็กแข็งแรง มี Lumbar Support รุ่นเริ่มต้นของ Bwell Ergo"),
+ "Astrid": ("ขาว", "ลิขสิทธิ์แท้ ขาเหล็กแข็งแรง ในโทนขาว", "Astrid สีขาว ผ่านมาตรฐาน BIFMA พร้อม Lumbar Support สำหรับมุมทำงานที่บ้าน"),
+ "Greta":  ("เทา", "หลังสบายด้วย Lumbar Support ผ่าน BIFMA", "Greta สีเทา เก้าอี้ลิขสิทธิ์แท้ ขาเหล็กแข็งแรงทนทาน"),
+ "Agnes":  ("เทา", "แข็งแรงทนทานด้วยขาเหล็ก ผ่าน BIFMA", "Agnes สีเทา เก้าอี้ลิขสิทธิ์แท้ พร้อม Lumbar Support สำหรับคนทำงานเต็มวัน"),
+ "Bjorn":  ("เทา", "รุ่นท็อป ลิขสิทธิ์แท้ ผ่านมาตรฐาน BIFMA", "Bjorn สีเทา ขาเหล็กแข็งแรงทนทาน Lumbar Support สำหรับคนนั่งทำงานวันละ 8 ชั่วโมงขึ้นไป"),
+}
+MOVE_EXEC = _o(headline="หนาแน่นกว่า รับน้ำหนักได้ดีกว่า", sub="เสื่อโยคะ Bwell Move ลิขสิทธิ์แท้ วัสดุ NBR ความหนาแน่นสูง ช่วยลดแรงกระแทกระหว่างออกกำลังกาย",
+      hook="ซูมเทียบเสื่อ 199 บาท เห็นรูพรุนต่างกันชัด", mp="Bwell เสื่อโยคะ Move ลิขสิทธิ์แท้ NBR ความหนาแน่นสูง รับน้ำหนักดี",
+      icons="ลิขสิทธิ์แท้ | NBR หนาแน่นสูง | รับน้ำหนักดี", kol="ซูมเนื้อเสื่อเทียบเสื่อทั่วไป (ไม่ระบุยี่ห้อ) · ท่าที่ลงน้ำหนัก")
+
+exec_by_cat = {}
+for e in EXEC:
+    for c in e["cats"]:
+        exec_by_cat[c] = e
+# apply to categories
+for p in PILLARS:
+    for c in p["categories"]:
+        e = exec_by_cat.get(c["id"])
+        if e:
+            c["key_message_prev"] = c["key_message"]
+            c["key_message"] = " · ".join(e["km"])
+            c["exec"] = True
+        else:
+            c["exec"] = False
+            c["key_message"] += " (นอก Focus ผู้บริหาร 5 พ.ย.)"
+
+def is_focus(s):
+    e = exec_by_cat.get(s["cat"])
+    if not e: return False
+    if s["cat"] == "heat": return True
+    if s["cat"] == "cush": return True
+    if s["cat"] == "chair": return s["sku"].split(" ")[0] in CHAIR_EXEC
+    return s["sku"] in e["focus"]
+
+for s in SKUS:
+    e = exec_by_cat.get(s["cat"])
+    s["fbig"] = e["fbig"] if e else ""
+    s["tt"] = e["tt"] if e else ""
+    s["focus"] = is_focus(s)
+    ov = None
+    if s["sku"] in SKU_EXEC: ov = SKU_EXEC[s["sku"]]
+    elif s["cat"] == "heat":
+        series = s["sku"].split("-")[0]; h = HEATER_EXEC[series]; watt = s["sku"].split("-")[1].replace("W", "")
+        ov = dict(h, mp=f"Bwell เครื่องทำน้ำ{'ร้อน' if series=='Konrad' else 'อุ่น'} {series} {int(watt):,} W ดีไซน์ EV Charger ปลอดภัย 10 จุด ร้อนเร็ว",
+                  icons=f"EV Charger Design | ปลอดภัย 10 จุด | {int(watt):,} W",
+                  kol="ชี้จุดความปลอดภัยบนเครื่องจริง · ดีไซน์ EV Charger · ร้อนเร็ว อุณหภูมิสม่ำเสมอ")
+    elif s["cat"] == "chair":
+        m = s["sku"].split(" ")[0]; color, hl, sub = CHAIR_EXEC[m]
+        ov = dict(headline=hl, sub=sub, hook="ปรับ Lumbar Support ให้ดูใน 10 วินาที",
+                  mp=f"Bwell Ergo เก้าอี้เพื่อสุขภาพ {m} สี{color} ลิขสิทธิ์แท้ BIFMA ขาเหล็ก Lumbar Support",
+                  icons="ลิขสิทธิ์แท้ | ขาเหล็ก | BIFMA",
+                  kol=f"ชื่อ Bwell Ergo {m} ใน 3 วินาทีแรก · สาธิตปรับ Lumbar Support · พูดลิขสิทธิ์แท้ + BIFMA")
+        s["sku"] = f"{m} ({color} = Focus)"
+    elif s["cat"] == "cush":
+        ov = dict(headline=s["headline"], sub=s["sub"] + " · ลิขสิทธิ์แท้",
+                  mp=s["mp"] + " ลิขสิทธิ์แท้", icons="ลิขสิทธิ์แท้ | [Cool Gel/Cool Fabric ถ้ามี] | รองรับสรีระ",
+                  kol="ลิขสิทธิ์แท้ · สาธิตใช้งานจริง · บอกจุดขายรุ่น (Cool Gel/Cool Fabric) ถ้ามี")
+    elif s["sku"] == "Move":
+        ov = MOVE_EXEC
+    if ov:
+        s.update(ov)
+    if s["focus"]:
+        s["push"] = "FOCUS 5 พ.ย. · " + s["push"]
+    elif e:
+        s["push"] = "นอก Focus · " + s["push"]
+    else:
+        s["push"] = "นอก Focus (หมวดไม่อยู่ใน brief) · " + s["push"]
+
 # ---------------------------------------------------------------- OPEN DECISIONS
 OPEN = [
+    ["ความหมาย \"ลิขสิทธิ์แท้\"", "เก้าอี้/หมอน/เสื่อ: หมายถึงสินค้าแท้จากเจ้าของแบรนด์ หรือลิขสิทธิ์ดีไซน์? ต้องรู้เพื่อเขียนให้ถูกและมีหลักฐานรองรับ", "Bass + ผู้บริหาร"],
+    ["หลักฐาน claim จากผู้บริหาร", "NSF (มาตรฐาน+รุ่น), ปลอดภัย 10 จุด (รายการ), BLDC 110,000 รอบ (รุ่นไหน), 8 ขั้นตอน (AP-P4019US), ประหยัดไฟ (ฐานอ้างอิง), BIFMA (เอกสาร)", "Product"],
+    ["\"ดูดขอบมุมได้ชิดที่สุด\" (T20)", "เป็น superlative ใช้ได้เมื่อมีผลทดสอบเทียบ ไม่งั้นแนะนำ \"ชิดขอบ ชิดมุม\"", "ผู้บริหาร"],
+    ["สต็อกค้างที่ไม่อยู่ใน Focus", "AP-8119US, CF-8428, CF-8005, G9, AICSN, BW-D10UV5, BW-BB20CTO, Matrix 24\" จะระบายผ่าน bundle/CRM ต่อหรือไม่", "Bass"],
+    ["Focus SKU สต็อกต่ำ", "AP-M1536S, AP-H2219S, BAW-02, BDR-04, LUKA 3500W ต้อง restock ก่อนยิงแอด", "Bass + Supply"],
     ["Brand line ที่จะใช้", "เลือก 1 จาก 3 ตัวเลือก (แนะนำ \"สุขภาพดี เริ่มที่บ้าน\")", "Bass"],
     ["สีหลักใน Profile", "Profile ยังเป็น #005D9D แต่ CI ปัจจุบันเป็น #0D99DB → อัปเดต Profile", "Bass"],
     ["ลำดับรุ่นเก้าอี้", "Guideline เดิมจัด Stella เป็น Premium แต่ราคาเว็บต่ำสุด → ยืนยัน tier + feature รายรุ่น", "Product"],
@@ -659,13 +916,14 @@ OPEN = [
     ["ผูก SKU ใน Product_Facts", "37 fact ยัง BLOCKED_SKU_MAPPING → ผูก exact SKU + asset เพื่อเปลี่ยนเป็น CLAIM-READY", "Product"],
 ]
 
-DATA = dict(meta=dict(title="Bwell Key Message Playbook", version="v1.0", date="2026-11-02",
-                      sources=["Bwell Product Master — Consolidated Review 2026-09-29 (Products, Prices, Product_Facts)",
+DATA = dict(meta=dict(title="Bwell Key Message Playbook", version="v1.1", date="2026-11-07",
+                      sources=["Key_Message.docx — สรุปแนวทางทำ Content จากผู้บริหาร 5 พ.ย. 2026 (มีผลเหนือข้อความเดิม)",
+                               "Bwell Product Master — Consolidated Review 2026-09-29 (Products, Prices, Product_Facts)",
                                "Bwell สรุปผู้บริหาร 111 SKU (3 ต.ค. 2026) — สต็อก WICE 8 ก.ย. 2026",
                                "Bwell_Brand_Guidelines_2026.md / Bwell Project Knowledge / CI 10-10 Production Standard",
                                "bwell.co.th (ดึง 2 พ.ย. 2026) — ใช้เป็นข้อมูลประกอบเท่านั้น"]),
             brand=BRAND, claims=CLAIM_RULES, ci=CI, channels=CHANNELS, headline_rules=HEADLINE_RULES,
-            funnel=FUNNEL, pillars=PILLARS, skus=SKUS, open=OPEN)
+            funnel=FUNNEL, pillars=PILLARS, skus=SKUS, open=OPEN, exec=EXEC, exec_date=EXEC_DATE)
 
 with open(os.path.join(HERE, "data.json"), "w", encoding="utf-8") as f:
     json.dump(DATA, f, ensure_ascii=False, indent=1)
@@ -679,11 +937,11 @@ with open(os.path.join(HERE, "sku_matrix.csv"), "w", encoding="utf-8-sig", newli
     w = csv.writer(f)
     w.writerow(["Pillar", "Category", "SKU / Model", "Product name", "Price ref (web 26 ก.ย.)", "Role", "Push status", "Persona",
                 "Headline", "Sub-headline", "Video / TikTok hook (0–3s)", "Marketplace title", "POSM 3 icon claims",
-                "KOL must-say", "Spec slots [status · fact_id]", "Notes (stock 8 ก.ย. / price / page)"])
+                "KOL must-say", "Spec slots [status · fact_id]", "Notes (stock 8 ก.ย. / price / page)", "FB/IG direction (ผู้บริหาร)", "TikTok direction (ผู้บริหาร)"])
     for s in SKUS:
         pn, cn = catmap[s["cat"]]
         w.writerow([pn, cn, s["sku"], s["name"], s["price"], s["role"], s["push"], s["persona"], s["headline"], s["sub"], s["hook"],
-                    s["mp"], s["icons"], s["kol"], spec_str(s["specs"]), s["note"]])
+                    s["mp"], s["icons"], s["kol"], spec_str(s["specs"]), s["note"], s["fbig"], s["tt"]])
 
 with open(os.path.join(HERE, "category_message_house.csv"), "w", encoding="utf-8-sig", newline="") as f:
     w = csv.writer(f)
@@ -700,5 +958,12 @@ with open(os.path.join(HERE, "channel_rules.csv"), "w", encoding="utf-8-sig", ne
     w.writerow(["Channel", "Funnel", "Objective", "Message layer", "Tone", "Structure", "Length rule", "CTA", "KPI", "Example"])
     for c in CHANNELS:
         w.writerow([c["name"], c["funnel"], c["objective"], c["layer"], c["tone"], c["structure"], c["length"], c["cta"], c["kpi"], c["example"]])
+
+with open(os.path.join(HERE, "exec_direction.csv"), "w", encoding="utf-8-sig", newline="") as f:
+    w = csv.writer(f)
+    w.writerow(["หมวด", "Key Message (ผู้บริหาร 5 พ.ย.)", "SKU ที่เน้น", "จุดขายรายซีรีส์ / Proof", "FB/IG", "TikTok", "Marketplace title formula", "POSM", "KOL", "LINE OA", "สิ่งที่ต้องยืนยันก่อนยิงจริง"])
+    for e in EXEC:
+        w.writerow([e["name"], " | ".join(f"{i+1}) {k}" for i, k in enumerate(e["km"])), ", ".join(e["focus"]), " | ".join(e["series"]),
+                    e["fbig"], e["tt"], e["mp"], e["posm"], e["kol"], e["line"], " | ".join(e["flags"])])
 
 print("SKUs:", len(SKUS), "| categories:", len(catmap))
