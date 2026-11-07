@@ -1,0 +1,315 @@
+<title>Bwell Key Message Playbook</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Kanit:wght@400;500;600&family=IBM+Plex+Sans+Thai:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap">
+<style>
+/* Layout: sticky section nav over a single reading column; SKU matrix breaks out to full width as a working tool. */
+:root{
+  --bg:#F5F8FB; --surface:#FFFFFF; --ink:#13283A; --muted:#5B6F80; --line:#DCE5EE;
+  --blue:#0D99DB; --blue-ink:#086FA3; --blue-soft:#E3F3FB;
+  --ok:#0F8A65; --ok-soft:#E1F4EC; --warn:#A86A00; --warn-soft:#FBF0DA; --risk:#C23B32; --risk-soft:#FBE6E4;
+  --display:"Kanit","IBM Plex Sans Thai",system-ui,sans-serif;
+  --body:"IBM Plex Sans Thai","Kanit",system-ui,sans-serif;
+  --mono:"IBM Plex Mono",ui-monospace,Menlo,monospace;
+}
+@media (prefers-color-scheme: dark){:root:not([data-theme="light"]){
+  --bg:#0C1822; --surface:#13222F; --ink:#E4EDF4; --muted:#93A7B8; --line:#24394A;
+  --blue:#3DB2EA; --blue-ink:#7CCBF1; --blue-soft:#12334A;
+  --ok:#4CC79C; --ok-soft:#123528; --warn:#E7B04A; --warn-soft:#3A2D12; --risk:#F07A70; --risk-soft:#3D1D1A; color-scheme:dark}}
+:root[data-theme="dark"]{
+  --bg:#0C1822; --surface:#13222F; --ink:#E4EDF4; --muted:#93A7B8; --line:#24394A;
+  --blue:#3DB2EA; --blue-ink:#7CCBF1; --blue-soft:#12334A;
+  --ok:#4CC79C; --ok-soft:#123528; --warn:#E7B04A; --warn-soft:#3A2D12; --risk:#F07A70; --risk-soft:#3D1D1A; color-scheme:dark}
+*{box-sizing:border-box}
+body{background:var(--bg);color:var(--ink);font-family:var(--body);font-size:15px;line-height:1.65}
+body::before{content:"";position:fixed;inset:0 0 auto;height:env(safe-area-inset-top,0px);z-index:10;background:var(--surface)}
+a{color:var(--blue-ink)}
+.wrap{max-width:1080px;margin:0 auto;padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px))}
+header.top{background:var(--surface);border-bottom:1px solid var(--line)}
+header.top .wrap{padding-block:28px 22px;display:grid;gap:10px}
+.eyebrow{font-family:var(--mono);font-size:12px;letter-spacing:.08em;text-transform:uppercase;color:var(--muted)}
+h1,h2,h3,h4{font-family:var(--display);font-weight:500;line-height:1.25;text-wrap:balance;margin:0}
+h1{font-size:clamp(28px,4vw,40px)}
+h1 b{color:var(--blue);font-weight:600}
+h2{font-size:26px;margin-bottom:6px}
+h3{font-size:19px}
+h4{font-size:15px;font-weight:600}
+.lede{color:var(--muted);max-width:68ch;margin:0}
+nav.tabs{position:sticky;top:env(safe-area-inset-top,0px);z-index:5;background:var(--surface);border-bottom:1px solid var(--line)}
+nav.tabs .wrap{display:flex;gap:4px;overflow-x:auto;padding-block:6px;scrollbar-width:none}
+nav.tabs a{flex:none;text-decoration:none;color:var(--muted);font-family:var(--display);font-size:14px;padding:8px 12px;border-radius:8px;white-space:nowrap}
+nav.tabs a[aria-current="true"]{background:var(--blue-soft);color:var(--blue-ink)}
+nav.tabs a:focus-visible,button:focus-visible,select:focus-visible,input:focus-visible,summary:focus-visible{outline:2px solid var(--blue);outline-offset:2px}
+main section{padding-block:36px;border-bottom:1px solid var(--line)}
+main section > .wrap{display:grid;gap:20px}
+.grid2{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:16px}
+.grid3{display:grid;grid-template-columns:repeat(auto-fit,minmax(230px,1fr));gap:14px}
+.panel{background:var(--surface);border:1px solid var(--line);border-radius:12px;padding:18px;min-width:0}
+.panel p{margin:6px 0 0}
+.kv{display:grid;grid-template-columns:120px 1fr;gap:6px 14px;margin:0}
+.kv dt{color:var(--muted);font-size:13px}
+.kv dd{margin:0;min-width:0}
+.house{display:grid;gap:10px}
+.roof{background:var(--blue);color:#fff;border-radius:12px;padding:20px;text-align:center}
+.roof .eyebrow{color:#ffffffcc}
+.roof h3{font-size:24px;margin-top:4px}
+.roof p{margin:4px 0 0;opacity:.92}
+.umb{display:grid;grid-template-columns:3fr 1fr;gap:10px}
+.umb > div{background:var(--blue-soft);border-radius:10px;padding:14px;min-width:0}
+.umb h4{color:var(--blue-ink)}
+.umb p{margin:4px 0 0;font-size:14px}
+.cols{display:grid;grid-template-columns:repeat(4,1fr);gap:10px}
+.col{border:1px solid var(--line);background:var(--surface);border-radius:10px;padding:12px;min-width:0}
+.col .tag{font-family:var(--mono);font-size:12px;color:var(--blue-ink);letter-spacing:.06em}
+.col p{margin:4px 0 0;font-size:13.5px}
+.col ul{margin:8px 0 0;padding-left:18px;font-size:13px;color:var(--muted)}
+.base{border:1px dashed var(--line);border-radius:10px;padding:12px;font-size:13.5px;color:var(--muted)}
+@media (max-width:760px){.umb{grid-template-columns:1fr}.cols{grid-template-columns:1fr 1fr}}
+@media (max-width:440px){.cols{grid-template-columns:1fr}.kv{grid-template-columns:1fr}}
+.tablebox{overflow-x:auto;border:1px solid var(--line);border-radius:12px;background:var(--surface)}
+table{border-collapse:collapse;width:100%;font-size:13.5px}
+th,td{text-align:left;vertical-align:top;padding:10px 12px;border-bottom:1px solid var(--line)}
+th{font-family:var(--display);font-weight:500;font-size:13px;color:var(--muted);background:var(--bg);position:sticky;top:0}
+tr:last-child td{border-bottom:0}
+td.nowrap{white-space:nowrap}
+.pill{display:inline-block;font-family:var(--mono);font-size:11px;line-height:1.4;padding:2px 7px;border-radius:999px;border:1px solid currentColor;white-space:nowrap}
+.pill.ok{color:var(--ok);background:var(--ok-soft)}
+.pill.warn{color:var(--warn);background:var(--warn-soft)}
+.pill.risk{color:var(--risk);background:var(--risk-soft)}
+.pill.info{color:var(--blue-ink);background:var(--blue-soft)}
+.pill.mute{color:var(--muted)}
+.cat{display:grid;gap:12px}
+.cat-head{display:flex;flex-wrap:wrap;align-items:baseline;gap:8px 14px}
+.km{font-family:var(--display);font-size:20px;color:var(--blue-ink);margin:0}
+.funnel3{display:grid;grid-template-columns:repeat(3,1fr);gap:8px}
+.funnel3 div{background:var(--bg);border-radius:8px;padding:10px;font-size:13.5px;min-width:0}
+.funnel3 b{font-family:var(--mono);font-size:11px;color:var(--muted);display:block;letter-spacing:.06em}
+@media (max-width:640px){.funnel3{grid-template-columns:1fr}}
+.rtb{margin:0;padding-left:18px}
+.rtb li{margin:2px 0}
+.dont{color:var(--risk);font-size:13.5px}
+.pillar-band{display:flex;flex-wrap:wrap;gap:8px 16px;align-items:baseline;padding-bottom:6px;border-bottom:2px solid var(--blue)}
+.pillar-band .tag{font-family:var(--mono);color:var(--blue-ink);font-size:13px;letter-spacing:.08em}
+.tool{display:flex;flex-wrap:wrap;gap:10px;align-items:center}
+.tool input,.tool select{font:inherit;font-size:14px;padding:8px 10px;border:1px solid var(--line);border-radius:8px;background:var(--surface);color:var(--ink);min-width:0}
+.tool input{flex:1 1 220px}
+.count{font-family:var(--mono);font-size:12px;color:var(--muted);font-variant-numeric:tabular-nums}
+.sku-row td:first-child{font-family:var(--mono);font-size:12.5px;white-space:nowrap}
+.sku-row .hl{font-family:var(--display);font-size:15px}
+.sku-row .sub{color:var(--muted);font-size:13px;margin-top:2px}
+details.more summary{cursor:pointer;color:var(--blue-ink);font-size:12.5px;font-family:var(--display)}
+details.more[open] summary{margin-bottom:8px}
+.detail{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:10px;font-size:13px}
+.detail div{min-width:0}
+.detail b{display:block;font-family:var(--mono);font-size:11px;letter-spacing:.06em;color:var(--muted);font-weight:400}
+.specs{margin:0;padding:0;list-style:none;display:grid;gap:4px}
+.specs li{display:flex;gap:6px;flex-wrap:wrap;align-items:baseline}
+.price{font-variant-numeric:tabular-nums;white-space:nowrap}
+.note{font-size:12.5px;color:var(--muted)}
+.callout{border-left:3px solid var(--warn);background:var(--warn-soft);padding:12px 14px;border-radius:0 10px 10px 0;font-size:14px}
+.swatch{display:inline-block;width:14px;height:14px;border-radius:4px;vertical-align:-2px;margin-right:6px;border:1px solid var(--line)}
+footer{padding-block:28px;color:var(--muted);font-size:13px}
+@media (prefers-reduced-motion:reduce){*{scroll-behavior:auto!important}}
+</style>
+
+<header class="top"><div class="wrap">
+  <div class="eyebrow">Bwell International · Marketing Strategy · v1.1 · อัปเดตตาม Key Message ผู้บริหาร 5 พ.ย. 2026</div>
+  <h1>Key Message <b>Playbook</b></h1>
+  <p class="lede">แนวทางสื่อสารชุดเดียวสำหรับทุกหมวดและทุก SKU ของ Bwell ไล่จากแบรนด์ลงไปถึงข้อความในแต่ละช่องทาง เพื่อให้ทีม Content, Performance, Trade Marketing, KOL และ Agency ใช้ข้อความชุดเดียวกัน</p>
+</div></header>
+
+<nav class="tabs" aria-label="Sections"><div class="wrap" id="tabs"></div></nav>
+
+<main>
+<section id="summary"><div class="wrap">
+  <div><div class="eyebrow">01 · Decision summary</div><h2>สรุปสำหรับผู้บริหาร</h2></div>
+  <div class="grid2" id="sumcards"></div>
+  <div class="callout"><b>กฎข้อเดียวที่ต้องจำ:</b> ข้อความเชิง benefit ใช้ได้ทันที แต่ตัวเลขสเปกทุกตัวต้องมีสถานะ CLAIM-READY ใน Product_Facts ก่อนขึ้นงานจริง ตอนนี้มีแค่ Ultra T20 (เฉพาะ job ที่ผูกไว้) ที่พร้อมใช้</div>
+  <div><h3>เรื่องที่ต้องตัดสินใจ</h3></div>
+  <div class="tablebox"><table><thead><tr><th>เรื่อง</th><th>รายละเอียด</th><th>Owner</th></tr></thead><tbody id="open"></tbody></table></div>
+</div></section>
+
+<section id="exec"><div class="wrap">
+  <div><div class="eyebrow">02 · Executive direction · 5 พ.ย. 2026</div><h2>Key Message จากผู้บริหาร รายหมวด × ช่องทาง</h2>
+  <p class="lede">แนวทางนี้มาแทนข้อความเดิมของ 12 หมวด FB/IG และ TikTok ใช้ตามที่ผู้บริหารกำหนด ส่วน Marketplace, POSM, KOL และ LINE OA แตกต่อจาก key message ชุดเดียวกัน แถบ "ต้องยืนยันก่อนยิงจริง" คือหลักฐานที่ต้องแนบก่อนขึ้นแอดหรือ Marketplace</p></div>
+  <div class="tablebox"><table><thead><tr><th>หมวด</th><th>Key Message</th><th>SKU ที่เน้น</th><th>FB/IG</th><th>TikTok</th></tr></thead><tbody id="execbody"></tbody></table></div>
+  <div id="execcards" class="grid2"></div>
+</div></section>
+
+<section id="brand"><div class="wrap">
+  <div><div class="eyebrow">03 · Brand message house</div><h2>Brand House (ร่ม 2 ชั้น)</h2>
+  <p class="lede">ชั้นบนคือแบรนด์แม่ Total Wellness ชั้นล่างแบ่งเป็น 2 ร่ม: Home Environment Wellness (Air, Water, Clean Home) และ Personal Wellness (Body) ทุก Key Message ของหมวดและ SKU ต้องโยงกลับมาที่บ้านหลังนี้</p></div>
+  <div class="house" id="house"></div>
+  <div class="grid2">
+    <div class="panel"><h4>Brand line (เลือก 1)</h4><div id="lines"></div></div>
+    <div class="panel"><h4>Reasons to Believe ระดับแบรนด์</h4><dl class="kv" id="rtb"></dl></div>
+    <div class="panel"><h4>Brand personality</h4><dl class="kv" id="pers"></dl></div>
+    <div class="panel"><h4>Persona</h4><div id="personas"></div></div>
+  </div>
+</div></section>
+
+<section id="pillars"><div class="wrap">
+  <div><div class="eyebrow">04 · Pillar &amp; category</div><h2>Key Message รายหมวด</h2>
+  <p class="lede">13 หมวดใน 4 Pillar แต่ละหมวดมี Key Message 1 ประโยค, Pain, Benefit, Reasons to Believe, กรอบเทียบคู่แข่ง และมุมสื่อสาร TOFU/MOFU/BOFU</p></div>
+  <div id="pillarlist" style="display:grid;gap:30px"></div>
+</div></section>
+
+<section id="channels"><div class="wrap">
+  <div><div class="eyebrow">05 · Channel matrix</div><h2>กฎการใช้ข้อความรายช่องทาง</h2>
+  <p class="lede">ทุกช่องทางใช้ Key Message ชุดเดียวกัน แต่ดึงคนละชั้นและเขียนคนละความยาว ตารางนี้บอกว่าแต่ละช่องทางใช้ชั้นไหน เขียนโครงอย่างไร และวัดผลด้วยอะไร</p></div>
+  <div class="tablebox"><table><thead><tr><th>Funnel</th><th>บทบาท</th><th>ชั้นข้อความ</th><th>ช่องทาง</th><th>KPI</th></tr></thead><tbody id="funnel"></tbody></table></div>
+  <div class="grid2" id="chanlist"></div>
+  <h3>Headline / Sub-headline / Copy rules</h3>
+  <div class="tablebox"><table><thead><tr><th>องค์ประกอบ</th><th>กฎ</th><th>ตัวอย่าง</th></tr></thead><tbody id="hrules"></tbody></table></div>
+</div></section>
+
+<section id="skus"><div class="wrap" style="max-width:1400px">
+  <div><div class="eyebrow">06 · SKU matrix</div><h2>Key Message ราย SKU</h2>
+  <p class="lede">เครื่องหลัก 68 รุ่น (Focus ตามผู้บริหาร 39 รุ่น) ไม่รวมไส้กรอง/อะไหล่ และ BRITA กดดูเพิ่มเพื่อดู Hook, Marketplace title, POSM icon, KOL must-say และช่องสเปก ราคาเป็น snapshot จากเว็บวันที่ 26 ก.ย. และสต็อกเป็นข้อมูลวันที่ 8 ก.ย. ต้องเช็กข้อมูลล่าสุดก่อนใช้</p></div>
+  <div class="tool">
+    <label class="sr" for="q" hidden>ค้นหา</label>
+    <input id="q" type="search" placeholder="ค้นหารุ่น ชื่อสินค้า หรือคำใน headline">
+    <select id="fp" aria-label="Pillar"><option value="">ทุก Pillar</option></select>
+    <select id="fc" aria-label="Category"><option value="">ทุกหมวด</option></select>
+    <select id="fs" aria-label="Push status"><option value="">ทุกสถานะ</option></select>
+    <label class="note" style="display:flex;gap:6px;align-items:center"><input id="ff" type="checkbox" checked> เฉพาะ Focus 5 พ.ย.</label>
+    <span class="count" id="count"></span>
+  </div>
+  <div class="tablebox"><table><thead><tr><th>SKU</th><th>หมวด / Role</th><th>Headline · Sub-headline</th><th>Push status</th><th>ราคาอ้างอิง</th></tr></thead><tbody id="skubody"></tbody></table></div>
+</div></section>
+
+<section id="governance"><div class="wrap">
+  <div><div class="eyebrow">07 · Claim governance &amp; CI</div><h2>Claim, คำต้องห้าม และ CI</h2></div>
+  <h3>สถานะสเปก</h3>
+  <div class="tablebox"><table><thead><tr><th>สถานะ</th><th>ความหมาย</th></tr></thead><tbody id="legend"></tbody></table></div>
+  <h3>Claim ที่ห้ามใช้</h3>
+  <div class="tablebox"><table><thead><tr><th>Claim</th><th>เหตุผล / สิ่งที่ใช้แทน</th></tr></thead><tbody id="banned"></tbody></table></div>
+  <div class="grid2">
+    <div class="panel"><h4>Words to avoid</h4><p id="avoid"></p></div>
+    <div class="panel"><h4>การเขียนชื่อและข้อมูล</h4><ul class="rtb" id="naming"></ul></div>
+  </div>
+  <h3>CI ที่ต้องใช้คู่กับข้อความ</h3>
+  <div class="tablebox"><table><thead><tr><th>องค์ประกอบ</th><th>ค่า</th><th>การใช้งาน</th></tr></thead><tbody id="ci"></tbody></table></div>
+</div></section>
+</main>
+
+<footer><div class="wrap" id="foot"></div></footer>
+
+<script id="data" type="application/json">/*__DATA__*/</script>
+<script>
+(function(){
+const D = JSON.parse(document.getElementById('data').textContent);
+const $ = s => document.querySelector(s);
+const esc = s => String(s ?? '').replace(/[&<>"]/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
+const statusClass = s => ({'CLAIM-READY':'ok','BRAND-CONFIRMED':'ok','VERIFIED-SOURCE':'warn','UNVERIFIED':'risk','CONFLICT':'risk','BANNED':'risk'}[s] || 'mute');
+const pushClass = p => /^FOCUS/.test(p) && !/HOLD|FIX/.test(p) ? 'ok' : /HOLD|DO NOT|FIX/.test(p) ? (/DO NOT/.test(p)?'mute':'risk') : /BUNDLE/.test(p) ? 'warn' : /PUSH/.test(p) ? 'ok' : 'info';
+
+// tabs
+const secs = [['summary','สรุป'],['exec','ผู้บริหาร 5 พ.ย.'],['brand','Brand House'],['pillars','รายหมวด'],['channels','รายช่องทาง'],['skus','ราย SKU'],['governance','Claim & CI']];
+$('#tabs').innerHTML = secs.map(([id,t]) => `<a href="#${id}" data-id="${id}">${t}</a>`).join('');
+const tabLinks = [...document.querySelectorAll('#tabs a')];
+const io = new IntersectionObserver(es => { es.forEach(e => { if (e.isIntersecting) tabLinks.forEach(a => a.setAttribute('aria-current', a.dataset.id === e.target.id)); }); }, {rootMargin:'-40% 0px -55% 0px'});
+secs.forEach(([id]) => io.observe(document.getElementById(id)));
+
+// summary
+const skus = D.skus;
+const counts = {}; skus.filter(s=>s.focus).forEach(s => { const p = s.push.replace(/^(FOCUS 5 พ.ย.|นอก Focus[^·]*) · /, ''); const k = /HOLD/.test(p) ? 'HOLD' : /FIX/.test(p) ? 'FIX' : /BUNDLE/.test(p) ? 'BUNDLE' : /DO NOT/.test(p) ? 'LEGACY' : /^PUSH/.test(p) ? 'PUSH' : 'MAINTAIN'; counts[k]=(counts[k]||0)+1; });
+const sum = [
+  ['อัปเดต 5 พ.ย. (ผู้บริหาร)', `Key message ใหม่ <b>12 หมวด</b> · Focus <b>${skus.filter(x=>x.focus).length}</b> รุ่น · FB/IG เน้น <b>3D โชว์เทคโนโลยี</b> · TikTok เน้น <b>บรรยายสรรพคุณ / สาธิต / โชว์การทำงานจริง</b>`],
+  ['Positioning', 'Bwell = <b>Total Wellness</b> (แบรนด์แม่) แบ่งเป็น 2 ร่ม: <b>Home Environment Wellness</b> (Air · Water · Clean Home) และ <b>Personal Wellness</b> (Body)'],
+  ['Scope', `<b>${skus.length}</b> รุ่น (เครื่องหลัก) ใน <b>13</b> หมวด · ${D.channels.length} ช่องทาง · ไม่รวมไส้กรอง/อะไหล่ (ให้ LINE OA ดูแลเป็น After-sales) และ BRITA`],
+  ['Claim policy', 'เขียน Benefit + ช่องสเปก [fact_id] ตัวเลขทุกตัวรอสถานะ CLAIM-READY ห้ามใช้ CADR / ตร.ม. / 99.9% / 99.97% จนกว่าจะมีผลแล็บ'],
+  ['Push now (พ.ย.)', 'ฤดูฝุ่น: AP-P4019US + PM2.5 Series (restock ก่อน) · ปลายฝน: BDH-30A / BDH-53A · หน้าหนาว: LUKA/ELKA/FELIX/Konrad · 11.11/12.12: Ultra T20, Greta เทา, BDR-03'],
+  ['สถานะ Focus SKU (39)', `Push ${counts.PUSH||0} · Bundle/ระบายสต็อก ${counts.BUNDLE||0} · Hold (สต็อกต่ำ) ${counts.HOLD||0} · แก้หน้าเว็บก่อน ${counts.FIX||0} · Maintain ${counts.MAINTAIN||0} · Legacy ${counts.LEGACY||0}`],
+];
+$('#sumcards').innerHTML = sum.map(([k,v]) => `<div class="panel"><div class="eyebrow">${k}</div><p>${v}</p></div>`).join('');
+const E = D.exec;
+$('#execbody').innerHTML = E.map(e => `<tr><td><b>${esc(e.name)}</b></td><td>${e.km.map((k,i)=>`${i+1}) ${esc(k)}`).join('<br>')}</td><td>${e.focus.map(esc).join(', ')}${e.series.length?`<div class="note">${e.series.map(esc).join('<br>')}</div>`:''}</td><td>${esc(e.fbig)}</td><td>${esc(e.tt)}</td></tr>`).join('');
+$('#execcards').innerHTML = E.map(e => `<div class="panel"><div class="cat-head"><h4>${esc(e.name)}</h4><span class="pill info">ช่องทางอื่น</span></div>
+  <dl class="kv" style="margin-top:10px"><dt>Marketplace</dt><dd>${esc(e.mp)}</dd><dt>POSM</dt><dd>${esc(e.posm)}</dd><dt>KOL</dt><dd>${esc(e.kol)}</dd><dt>LINE OA</dt><dd>${esc(e.line)}</dd></dl>
+  <p class="dont" style="margin-top:10px"><b>ต้องยืนยันก่อนยิงจริง:</b></p><ul class="rtb dont">${e.flags.map(f=>`<li>${esc(f)}</li>`).join('')}</ul></div>`).join('');
+$('#open').innerHTML = D.open.map(r => `<tr><td><b>${esc(r[0])}</b></td><td>${esc(r[1])}</td><td class="nowrap">${esc(r[2])}</td></tr>`).join('');
+
+// brand house
+const B = D.brand, P = D.pillars;
+const pillarById = Object.fromEntries(P.map(p => [p.id, p]));
+$('#house').innerHTML = `
+ <div class="roof"><div class="eyebrow">Brand essence</div><h3>${esc(B.essence_th)}</h3><p>${esc(B.essence_en)} · Brand line: "${esc(B.brand_line_options[0].th)}"</p></div>
+ <div class="umb">${B.umbrellas.map(u => `<div><h4>${esc(u.name)}</h4><p>${esc(u.promise)}</p></div>`).join('')}</div>
+ <div class="cols">${P.map(p => `<div class="col"><div class="tag">${esc(p.name)}</div><h4>${esc(p.th)}</h4><p>${esc(p.message)}</p><ul>${p.categories.map(c => `<li>${esc(c.name)}</li>`).join('')}</ul></div>`).join('')}</div>
+ <div class="base"><b>ฐานรากทุกชั้น:</b> ${B.message_pillars.map(m => esc(m[0])).join(' · ')} — ${B.rtb.map(r => esc(r[0])).join(' · ')}</div>`;
+$('#lines').innerHTML = B.brand_line_options.map((l,i) => `<p><span class="pill ${i?'mute':'info'}">${i?'ทางเลือก':'แนะนำ'}</span> <b>${esc(l.th)}</b> / ${esc(l.en)}<br><span class="note">${esc(l.note)}</span></p>`).join('') + `<p class="note">Corporate tagline เดิม: ${esc(B.corporate_tagline)}</p>`;
+$('#rtb').innerHTML = B.rtb.map(r => `<dt>${esc(r[0])}</dt><dd>${esc(r[1])}</dd>`).join('');
+$('#pers').innerHTML = B.personality.map(r => `<dt>${esc(r[0])}</dt><dd>${esc(r[1])}</dd>`).join('');
+$('#personas').innerHTML = B.personas.map(p => `<p><span class="pill info">${p.id}</span> <b>${esc(p.name)}</b> (${p.age})<br><span class="note">${esc(p.pain)} · ${esc(p.channel)}</span></p>`).join('');
+
+// pillars
+$('#pillarlist').innerHTML = P.map(p => `
+ <div style="display:grid;gap:14px">
+  <div class="pillar-band"><span class="tag">${esc(p.name)}</span><h3>${esc(p.th)}</h3><span class="note">${esc(D.brand.umbrellas.find(u=>u.id===p.umbrella).name)}</span></div>
+  ${p.categories.map(c => `
+  <div class="panel cat" id="cat-${c.id}">
+    <div class="cat-head"><h4>${esc(c.name)}</h4><span class="pill mute">Font: ${esc(c.font)}</span><span class="pill info">${skus.filter(s=>s.cat===c.id).length} รุ่น</span></div>
+    <p class="km">"${esc(c.key_message)}"</p>
+    <div class="grid2">
+      <dl class="kv"><dt>Pain</dt><dd>${esc(c.pain)}</dd><dt>Benefit</dt><dd>${esc(c.benefit)}</dd><dt>Persona</dt><dd>${esc(c.persona)}</dd><dt>Season</dt><dd>${esc(c.season)}</dd></dl>
+      <div><h4 style="font-size:13px;color:var(--muted);font-weight:500">Reasons to Believe</h4><ul class="rtb">${c.rtb.map(r=>`<li>${esc(r)}</li>`).join('')}</ul></div>
+    </div>
+    <div class="funnel3">${['TOFU','MOFU','BOFU'].map(k=>`<div><b>${k}</b>${esc(c.funnel[k])}</div>`).join('')}</div>
+    <p class="note" style="margin:0"><b>Competitor frame:</b> ${esc(c.competitor)}</p>
+    <p class="dont" style="margin:0"><b>ห้ามพูด:</b> ${esc(c.dont)}</p>
+  </div>`).join('')}
+ </div>`).join('');
+
+// channels
+$('#funnel').innerHTML = D.funnel.map(r => `<tr><td><span class="pill info">${r[0]}</span></td><td>${esc(r[1])}</td><td>${esc(r[2])}</td><td>${esc(r[3])}</td><td>${esc(r[4])}</td></tr>`).join('');
+$('#chanlist').innerHTML = D.channels.map(c => `<div class="panel"><div class="cat-head"><h4>${esc(c.name)}</h4><span class="pill info">${esc(c.funnel)}</span></div>
+  <dl class="kv" style="margin-top:10px"><dt>เป้าหมาย</dt><dd>${esc(c.objective)}</dd><dt>ชั้นข้อความ</dt><dd>${esc(c.layer)}</dd><dt>Tone</dt><dd>${esc(c.tone)}</dd><dt>โครง</dt><dd>${esc(c.structure)}</dd><dt>ความยาว</dt><dd>${esc(c.length)}</dd><dt>CTA</dt><dd>${esc(c.cta)}</dd><dt>KPI</dt><dd>${esc(c.kpi)}</dd><dt>ตัวอย่าง</dt><dd class="note">${esc(c.example)}</dd></dl></div>`).join('');
+$('#hrules').innerHTML = D.headline_rules.map(r => `<tr><td><b>${esc(r[0])}</b></td><td>${esc(r[1])}</td><td class="note">${esc(r[2])}</td></tr>`).join('');
+
+// SKU matrix
+const catInfo = {}; P.forEach(p => p.categories.forEach(c => catInfo[c.id] = {pillar:p.name, name:c.name}));
+const fp = $('#fp'), fc = $('#fc'), fs = $('#fs'), q = $('#q'), ff = $('#ff');
+P.forEach(p => fp.insertAdjacentHTML('beforeend', `<option value="${p.name}">${esc(p.name)}</option>`));
+const fillCats = () => { const v = fp.value; fc.innerHTML = '<option value="">ทุกหมวด</option>' + P.filter(p=>!v||p.name===v).flatMap(p=>p.categories).map(c=>`<option value="${c.id}">${esc(c.name)}</option>`).join(''); };
+fillCats();
+const statuses = [['PUSH','Push'],['BUNDLE','ระบายสต็อก (Bundle)'],['HOLD','Hold (สต็อกต่ำ)'],['FIX','แก้หน้าเว็บก่อน'],['MAINTAIN','Maintain'],['DO NOT','Legacy']];
+statuses.forEach(([v,t]) => fs.insertAdjacentHTML('beforeend', `<option value="${v}">${t}</option>`));
+const matchStatus = (p, v) => { const q = p.replace(/^(FOCUS 5 พ.ย.|นอก Focus[^·]*) · /, ''); return v==='PUSH' ? /^PUSH(?! VIA)/.test(q) || / → PUSH$/.test(q) : q.includes(v); };
+const render = () => {
+  const term = q.value.trim().toLowerCase();
+  const rows = skus.filter(s => (!ff.checked || s.focus) && (!fp.value || catInfo[s.cat].pillar===fp.value) && (!fc.value || s.cat===fc.value) && (!fs.value || matchStatus(s.push, fs.value))
+    && (!term || [s.sku,s.name,s.headline,s.sub,s.mp].join(' ').toLowerCase().includes(term)));
+  $('#count').textContent = `${rows.length} / ${skus.length} รุ่น`;
+  $('#skubody').innerHTML = rows.map(s => `<tr class="sku-row">
+    <td>${esc(s.sku)}${s.focus?'<br><span class="pill ok">FOCUS</span>':''}</td>
+    <td><span class="note">${esc(catInfo[s.cat].pillar)} · ${esc(catInfo[s.cat].name)}</span><br>${esc(s.role)} <span class="pill mute">${esc(s.persona)}</span></td>
+    <td><div class="hl">${esc(s.headline)}</div>${s.sub?`<div class="sub">${esc(s.sub)}</div>`:''}
+      <details class="more"><summary>ดูข้อความรายช่องทางและสเปก</summary><div class="detail">
+        <div><b>FB/IG (ผู้บริหาร)</b>${esc(s.fbig)||'—'}</div>
+        <div><b>TIKTOK (ผู้บริหาร)</b>${esc(s.tt)||'—'}</div>
+        <div><b>VIDEO / TIKTOK HOOK</b>${esc(s.hook)||'—'}</div>
+        <div><b>MARKETPLACE TITLE</b>${esc(s.mp)}</div>
+        <div><b>POSM 3 ICON CLAIMS</b>${esc(s.icons)||'—'}</div>
+        <div><b>KOL MUST-SAY</b>${esc(s.kol)||'—'}</div>
+        <div><b>SPEC SLOTS</b>${s.specs.length?`<ul class="specs">${s.specs.map(x=>`<li><span>${esc(x.label)}${x.value?': <b style="display:inline;font-family:inherit;font-size:inherit;color:var(--ink)">'+esc(x.value)+'</b>':''}</span><span class="pill ${statusClass(x.status)}">${x.status}</span>${x.fact?`<span class="note" style="font-family:var(--mono);font-size:11px">${esc(x.fact)}</span>`:''}</li>`).join('')}</ul>`:'—'}</div>
+        <div><b>NOTES</b><span class="note">${esc(s.note)||'—'}</span></div>
+        <div><b>PRODUCT NAME</b>${esc(s.name)}</div>
+      </div></details></td>
+    <td><span class="pill ${pushClass(s.push)}" style="white-space:normal">${esc(s.push)}</span></td>
+    <td class="price">฿${esc(s.price)}</td></tr>`).join('') || `<tr><td colspan="5">ไม่พบรุ่นที่ตรงกับตัวกรอง ลองล้างคำค้นหรือเลือก "ทุกสถานะ"</td></tr>`;
+};
+fp.addEventListener('change', () => { fillCats(); render(); });
+[fc, fs, ff].forEach(el => el.addEventListener('change', render));
+q.addEventListener('input', render);
+render();
+
+// governance
+$('#legend').innerHTML = D.claims.status_legend.map(r => `<tr><td><span class="pill ${r[2]}">${r[0]}</span></td><td>${esc(r[1])}</td></tr>`).join('');
+$('#banned').innerHTML = D.claims.banned.map(r => `<tr><td><b>${esc(r[0])}</b></td><td>${esc(r[1])}</td></tr>`).join('');
+$('#avoid').textContent = D.claims.words_avoid;
+$('#naming').innerHTML = D.claims.naming.map(n => `<li>${esc(n)}</li>`).join('');
+$('#ci').innerHTML = D.ci.map(r => { const hex = (r[1].match(/#[0-9A-Fa-f]{6}/)||[])[0]; return `<tr><td><b>${esc(r[0])}</b></td><td class="nowrap">${hex?`<span class="swatch" style="background:${hex}"></span>`:''}${esc(r[1])}</td><td>${esc(r[2])}</td></tr>`; }).join('');
+$('#foot').innerHTML = `<b>แหล่งข้อมูล</b><br>${D.meta.sources.map(esc).join('<br>')}<br><br>สร้างจาก build_data.py ใน repo bass-7806/Marketing (key-message-strategy/) แก้ข้อมูลที่ไฟล์นั้นแล้ว build ใหม่ เพื่อให้ Playbook, Sheet และ Deck ตรงกัน`;
+})();
+</script>
