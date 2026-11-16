@@ -8,11 +8,14 @@ Marketing repository for **Bwell**, a Thai health-and-wellness appliance brand (
 
 ## Structure
 
-- `website/` — static Bwell brand website (no build system; plain HTML/CSS/JS)
-  - `index.html` — single-page Thai-language site: hero, trust bar, product categories, "Why Bwell" pillars, Bwell Beauty sub-brand, promotions, channels, footer
-  - `css/style.css` — all styles; brand tokens defined as CSS variables at the top
-  - `js/main.js` — mobile nav toggle and scroll-reveal (IntersectionObserver); reveal animations only activate when JS adds `html.js`, so content stays visible without JavaScript
-  - `assets/logos/` — official Bwell logo files copied from brand guidelines
+- `website/` — static Bwell site, 28 self-contained HTML pages (no build system; CSS/JS inlined per page). Recovered from the team's deployed prototype (`bwell-web-prototype-sep2026` → Netlify Drop capture), with capture artifacts stripped.
+  - `index.html` — homepage: announcement ribbon, slim global nav with per-category mega-menu flyouts, full-bleed hero, product tiles with footnoted spec claims (`#fn1`), trust section, store links, footer directory
+  - Category/product pages: `air-purifier.html`, `air-dehumidifier.html`, `portable-air-conditioner.html`, `air-purification-filters.html`, `air-purifier-{pm25,virus,car}.html`, `water-purifier.html`, `water-heater.html`, `robot-vacuum.html`, `vacuum-cleaner.html`, `ergonomic-chair.html`, `ergonomic-cushion.html`, `sport-gadgets.html`, `hair-{styling-tools,dryer,dryer-brush,straightener,curler}.html`
+  - Support pages: `warranty.html`, `warranty-policy.html`, `user-manual.html`, `faq.html`, `shipping-policy.html`, `find-store.html`, `contact.html`, `support.html`
+  - `assets/logos/` — official Bwell logo files from brand guidelines
+  - Internal links are relative (`*.html`), so the folder deploys as-is to any static host
+  - Product images hotlink to the live bwell.co.th CDN (`bwellcoth29b89.zapwp.com`); one hero image hotlinks to `bwell-redesign-preview.netlify.app` — self-host these before production
+  - Pages carry `noindex,nofollow` — remove when the site goes to production
 
 ## Development
 
