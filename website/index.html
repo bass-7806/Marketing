@@ -1,0 +1,959 @@
+<!DOCTYPE html>
+
+<html lang="th" data-variant="ba"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+
+
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="robots" content="noindex,nofollow">
+<link rel="icon" href="https://bwellcoth29b89.zapwp.com/wp-content/uploads/2022/04/logoBwell_pantone-Bwell-%E0%B9%80%E0%B8%94%E0%B8%B5%E0%B9%88%E0%B8%A2%E0%B8%A7-02.webp?src=png">
+<title>Bwell Homepage</title>
+<meta name="description" content="Bwell homepage prototype in apple.com/th layout pattern with the locked B+A global nav.">
+<link rel="preconnect" href="https://fonts.googleapis.com/"><link rel="preconnect" href="https://fonts.gstatic.com/" crossorigin="">
+<link href="https://fonts.googleapis.com/css2?family=Kanit:wght@300;400;500;600&family=Poppins:wght@400;500;600&display=swap" rel="stylesheet"><style>.gn-logo-img{height:46px!important;width:auto!important;margin:-14px -10px}.ft-bc img{height:40px!important;width:auto!important;margin:-12px -8px}</style>
+<style>
+
+:root{
+  --blue:#008AD0; --navy:#005D9D; --navy-deep:#0E2A44; --gray:#A8AAAD;
+  --ink:#1D1D1F; --ink-2:#5B6B7A; --ground:#F5F8FB; --surface:#FFFFFF; --line:#D5DFE8;
+  --bar-h:44px; --bar-h-m:48px; --content:980px;
+  --bar-bg:rgba(255,255,255,.82); --bar-ink:#1D1D1F; --bar-ink-soft:rgba(29,29,31,.72); --bar-line:rgba(0,0,0,.08);
+  --fly-bg:rgba(255,255,255,.94); --fly-ink:#1D1D1F; --fly-soft:#6E6E73; --fly-hover:#005D9D;
+  --display:"Poppins","Kanit",system-ui,sans-serif; --body:"Kanit","Poppins",system-ui,sans-serif;
+  --ease:cubic-bezier(.4,0,.6,1);
+  --nav-fs:13px; --nav-pad:10px;
+}
+:root[data-variant="hybrid"],:root[data-variant="ba"]{--content:1080px;--nav-fs:13px;--nav-pad:9px}
+:root[data-variant="flat"]{--content:1200px;--nav-fs:12px;--nav-pad:7px}
+/* B+A: 8 categories + support up to 1559px; all 11 bwell.co.th categories from 1560px */
+.gn-item.gn-wide{display:none}
+@media (min-width:1180px) and (max-width:1379px){:root[data-variant="ba"]{--content:1180px;--nav-fs:12px;--nav-pad:6px}}
+@media (min-width:1380px){:root[data-variant="ba"]{--content:1280px}}
+@media (min-width:1560px){:root[data-variant="ba"]{--content:1600px;--nav-pad:6px}:root[data-variant="ba"] .gn-item.gn-wide{display:block}}
+:root[data-bar="dark"]{
+  --bar-bg:rgba(14,42,68,.86); --bar-ink:#FFFFFF; --bar-ink-soft:rgba(255,255,255,.8); --bar-line:rgba(255,255,255,.08);
+  --fly-bg:rgba(14,42,68,.96); --fly-ink:#FFFFFF; --fly-soft:rgba(255,255,255,.62); --fly-hover:#8FD0FF;
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{margin:0;background:var(--ground);color:var(--ink);font-family:var(--body);font-weight:300;font-size:16px;line-height:1.6}
+a{color:inherit;text-decoration:none}
+button{font:inherit;color:inherit;background:none;border:0;padding:0;cursor:pointer}
+:focus-visible{outline:2px solid var(--blue);outline-offset:2px;border-radius:4px}
+
+/* ===== Global nav bar ===== */
+.gn{position:sticky;top:env(safe-area-inset-top,0px);z-index:50;height:var(--bar-h);background:var(--bar-bg);-webkit-backdrop-filter:saturate(1.8) blur(20px);backdrop-filter:saturate(1.8) blur(20px);border-bottom:1px solid var(--bar-line);color:var(--bar-ink)}
+.gn-inner{max-width:var(--content);margin:0 auto;height:100%;display:flex;align-items:center;padding-inline:16px}
+.gn-logo{display:flex;align-items:center;gap:6px;height:100%;padding-inline:8px;margin-left:-8px}
+.gn-logo-img{height:19px;width:auto;display:block}
+.gn-list{list-style:none;margin:0;padding:0;display:flex;flex:1;justify-content:space-evenly;height:100%}
+.gn-item{height:100%}
+.gn-link{display:flex;align-items:center;height:100%;padding-inline:var(--nav-pad);font-size:var(--nav-fs);font-weight:400;color:var(--bar-ink-soft);letter-spacing:-.01em;white-space:nowrap;transition:color .2s var(--ease)}
+.gn-link:hover,.gn-item.is-open .gn-link{color:var(--bar-ink)}
+.gn-actions{display:flex;align-items:center;gap:4px;margin-right:-8px}
+.gn-icon{display:flex;align-items:center;justify-content:center;width:36px;height:var(--bar-h);color:var(--bar-ink-soft);transition:color .2s}
+.gn-icon:hover{color:var(--bar-ink)}
+.gn-icon svg{width:17px;height:17px;display:block}
+.gn-burger{display:none}
+
+/* ===== Curtain + flyout ===== */
+.gn-curtain{position:fixed;inset:0;top:var(--bar-h);background:rgba(0,0,0,.42);-webkit-backdrop-filter:blur(6px);backdrop-filter:blur(6px);opacity:0;pointer-events:none;transition:opacity .32s var(--ease);z-index:40}
+.gn-curtain.is-on{opacity:1;pointer-events:auto}
+.gn-flyout{position:fixed;left:0;right:0;top:var(--bar-h);z-index:45;background:var(--fly-bg);-webkit-backdrop-filter:saturate(1.8) blur(20px);backdrop-filter:saturate(1.8) blur(20px);color:var(--fly-ink);overflow:hidden;height:0;transition:height .38s var(--ease);border-bottom:1px solid var(--bar-line)}
+.gn-flyout[data-open="true"]{height:var(--fly-h,420px)}
+.gn-panel{max-width:980px;margin:0 auto;padding:44px 16px 56px;display:none;grid-template-columns:1.6fr 1fr 1fr;gap:0 48px;opacity:0;transform:translateY(-8px);transition:opacity .28s var(--ease) .12s,transform .28s var(--ease) .12s}
+.gn-panel.is-active{display:grid}
+.gn-panel.is-visible{opacity:1;transform:none}
+.gn-group h3{font-family:var(--body);font-weight:400;font-size:12px;color:var(--fly-soft);margin:0 0 14px;letter-spacing:.01em}
+.gn-group ul{list-style:none;margin:0;padding:0}
+.gn-group li{margin:0 0 10px}
+.gn-group a{display:inline-block;font-size:12.5px;font-weight:400;color:var(--fly-ink);transition:color .15s}
+.gn-group a:hover{color:var(--fly-hover)}
+.gn-group.is-primary li{margin-bottom:10px}
+.gn-group.is-primary a{font-family:var(--body);font-size:24px;font-weight:500;line-height:1.2;letter-spacing:-.015em}
+.gn-group .tag{display:inline-block;margin-left:8px;font-family:var(--display);font-size:9px;font-weight:600;letter-spacing:.08em;text-transform:uppercase;color:#fff;background:var(--blue);padding:2px 6px;border-radius:999px;vertical-align:middle}
+
+/* Pillar strip (variant B+A) */
+.gn-pillar-strip{grid-column:1/-1;margin-top:28px;padding-top:18px;border-top:1px solid var(--bar-line);display:none;align-items:baseline;gap:6px 18px;flex-wrap:wrap;font-size:12.5px}
+:root[data-variant="ba"] .gn-pillar-strip{display:flex}
+.gn-pillar-strip .lbl{color:var(--fly-soft)}
+.gn-pillar-strip a{color:var(--fly-ink)} .gn-pillar-strip a:hover{color:var(--fly-hover)} .gn-pillar-strip a[aria-current]{color:var(--blue);font-weight:500}
+body.gn-mobile .gn-drawer-root li.gn-grp{border-bottom:0;padding:18px 0 4px;font-family:var(--display);font-size:11px;font-weight:600;letter-spacing:.12em;text-transform:uppercase;color:var(--fly-soft)}
+body.gn-mobile .gn-drawer-root li.gn-grp:first-child{padding-top:6px}
+/* Search panel */
+.gn-search{max-width:980px;margin:0 auto;padding:36px 16px 56px}
+.gn-search form{display:flex;align-items:center;gap:14px;border-bottom:1px solid var(--bar-line);padding-bottom:12px}
+.gn-search svg{width:22px;height:22px;color:var(--fly-soft);flex:none}
+.gn-search input{flex:1;background:none;border:0;font:inherit;font-family:var(--body);font-size:28px;font-weight:400;color:var(--fly-ink);outline:none;min-width:0}
+.gn-search input::placeholder{color:var(--fly-soft)}
+.gn-search h3{font-size:12px;font-weight:400;color:var(--fly-soft);margin:28px 0 12px}
+.gn-search ul{list-style:none;margin:0;padding:0}
+.gn-search li a{display:flex;align-items:center;gap:10px;padding:6px 0;font-size:15px;font-weight:400}
+.gn-search li a::before{content:"";width:6px;height:6px;border-right:1.5px solid var(--fly-soft);border-top:1.5px solid var(--fly-soft);transform:rotate(45deg);flex:none}
+.gn-search li a:hover{color:var(--fly-hover)}
+
+/* ===== Mobile drawer ===== */
+.gn-drawer{display:none}
+body.gn-mobile .gn{height:var(--bar-h-m)}
+body.gn-mobile .gn-inner{position:relative;justify-content:center}
+body.gn-mobile .gn-list,body.gn-mobile .gn-flyout,body.gn-mobile .gn-curtain{display:none}
+body.gn-mobile .gn-logo{position:absolute;left:50%;transform:translateX(-50%);margin:0;padding:0}
+body.gn-mobile .gn-icon{height:var(--bar-h-m);width:44px}
+body.gn-mobile .gn-burger{display:flex;position:absolute;left:8px}
+body.gn-mobile .gn-actions{position:absolute;right:8px;margin:0}
+body.gn-mobile .gn-actions .gn-icon-search{display:none}
+body.gn-mobile .gn-burger .bar{position:relative;width:18px;height:12px}
+body.gn-mobile .gn-burger .bar::before,body.gn-mobile .gn-burger .bar::after{content:"";position:absolute;left:0;width:18px;height:1.5px;background:currentColor;border-radius:2px;transition:transform .3s var(--ease),top .3s var(--ease)}
+body.gn-mobile .gn-burger .bar::before{top:1px}
+body.gn-mobile .gn-burger .bar::after{top:10px}
+body.gn-mobile .gn-burger[aria-expanded="true"] .bar::before{top:5px;transform:rotate(45deg)}
+body.gn-mobile .gn-burger[aria-expanded="true"] .bar::after{top:5px;transform:rotate(-45deg)}
+body.gn-mobile .gn-drawer{display:block;position:fixed;inset:0;top:var(--bar-h-m);z-index:45;background:var(--fly-bg);-webkit-backdrop-filter:saturate(1.8) blur(20px);backdrop-filter:saturate(1.8) blur(20px);color:var(--fly-ink);transform:translateY(-8px);opacity:0;pointer-events:none;transition:opacity .3s var(--ease),transform .3s var(--ease);overflow:hidden}
+body.gn-mobile .gn-drawer.is-open{opacity:1;transform:none;pointer-events:auto}
+body.gn-mobile .gn-drawer-track{display:flex;width:200%;height:100%;transition:transform .36s var(--ease)}
+body.gn-mobile .gn-drawer.is-sub .gn-drawer-track{transform:translateX(-50%)}
+body.gn-mobile .gn-drawer-pane{width:50%;flex:0 0 50%;height:100%;overflow-y:auto;overflow-x:hidden;padding:16px 24px 48px;-webkit-overflow-scrolling:touch}
+body.gn-mobile .gn-drawer-search{display:flex;align-items:center;gap:10px;background:rgba(0,0,0,.06);border-radius:10px;padding:10px 12px;margin-bottom:8px}
+:root[data-bar="dark"] body.gn-mobile .gn-drawer-search{background:rgba(255,255,255,.1)}
+body.gn-mobile .gn-drawer-search svg{width:16px;height:16px;color:var(--fly-soft)}
+body.gn-mobile .gn-drawer-search input{flex:1;background:none;border:0;font:inherit;font-size:17px;color:var(--fly-ink);outline:none;min-width:0}
+body.gn-mobile .gn-drawer ul{list-style:none;margin:0;padding:0}
+body.gn-mobile .gn-drawer-root>li{border-bottom:1px solid var(--bar-line)}
+body.gn-mobile .gn-drawer-root>li>button,body.gn-mobile .gn-drawer-root>li>a{display:flex;align-items:center;justify-content:space-between;width:100%;padding:14px 0;font-size:24px;font-weight:500;letter-spacing:-.015em;text-align:left;opacity:0;transform:translateY(6px);transition:opacity .35s var(--ease),transform .35s var(--ease)}
+body.gn-mobile .gn-drawer.is-open .gn-drawer-root>li>button,body.gn-mobile .gn-drawer.is-open .gn-drawer-root>li>a{opacity:1;transform:none}
+body.gn-mobile .gn-drawer-root>li>button::after{content:"";width:8px;height:8px;border-right:1.5px solid var(--fly-soft);border-top:1.5px solid var(--fly-soft);transform:rotate(45deg)}
+body.gn-mobile .gn-back{display:flex;align-items:center;gap:8px;font-size:14px;color:var(--fly-soft);padding:8px 0 18px}
+body.gn-mobile .gn-back::before{content:"";width:8px;height:8px;border-left:1.5px solid currentColor;border-top:1.5px solid currentColor;transform:rotate(-45deg)}
+body.gn-mobile .gn-sub h3{font-size:12px;font-weight:400;color:var(--fly-soft);margin:20px 0 8px}
+body.gn-mobile .gn-sub li a{display:block;padding:8px 0;font-size:15px}
+body.gn-mobile .gn-sub .is-primary li a{font-size:22px;font-weight:500;padding:6px 0;letter-spacing:-.015em}
+body.gn-mobile .gn-sub .tag{display:inline-block;margin-left:8px;font-family:var(--display);font-size:9px;font-weight:600;letter-spacing:.08em;text-transform:uppercase;color:#fff;background:var(--blue);padding:2px 6px;border-radius:999px;vertical-align:middle}
+body.gn-lock{overflow:hidden}
+body:not(.gn-mobile) .gn-drawer{display:none !important}
+
+
+/* ================= HOMEPAGE ================= */
+:root{--t-h1:46px;--t-h2:28px;--t-h3:18px;--t-lead:17px;--t-body-l:16px;--t-body:14.5px;--t-small:12.5px;--t-label:11.5px;--t-btn:14px;--t-btn-s:12.5px}
+@media (max-width:734px){:root{--t-h1:30px;--t-h2:22px;--t-h3:17px;--t-lead:15.5px;--t-body-l:15px;--t-body:14.5px}}
+
+/* ===== Homepage (apple.com/th layout pattern, Bwell identity) ===== */
+body{background:#FFFFFF}
+.nw{white-space:nowrap}
+.sr-only{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}
+.ribbon{background:#EAF3FA;text-align:center;padding:14px 16px;font-size:var(--t-small);line-height:1.5;color:#1D1D1F}
+.ribbon p{margin:0;max-width:980px;margin-inline:auto}
+.ribbon a{color:var(--navy);white-space:nowrap}
+.ribbon a::after{content:" ›"}
+
+main{display:block}
+.headline{font-family:var(--body);font-weight:600;font-size:var(--t-h1);line-height:1.08;letter-spacing:-.015em;margin:0;text-wrap:balance}
+.subhead{font-family:var(--body);font-weight:400;font-size:var(--t-lead);line-height:1.25;margin:6px 0 0;text-wrap:balance}
+.detail{font-size:var(--t-body);font-weight:300;margin:10px 0 0;opacity:.85;text-wrap:balance}
+.eyebrow{font-family:var(--display);font-size:var(--t-label);font-weight:600;letter-spacing:.14em;text-transform:uppercase;margin:0 0 6px}
+sup{font-size:.6em;line-height:0}
+sup a{color:inherit;opacity:.8}
+
+.ctas{display:flex;gap:14px;flex-wrap:wrap;margin-top:20px}
+.center .ctas{justify-content:center}
+.pill{display:inline-flex;align-items:center;justify-content:center;min-height:44px;padding:0 22px;border-radius:999px;font-family:var(--body);font-weight:500;font-size:var(--t-btn);line-height:1;border:1px solid transparent;transition:background .2s var(--ease),color .2s var(--ease),border-color .2s var(--ease)}
+.pill-fill{background:var(--blue);color:#fff}
+.pill-fill:hover{background:var(--navy)}
+.pill-line{border-color:var(--blue);color:var(--navy)}
+.pill-line:hover{background:var(--blue);color:#fff}
+.hero-dark .pill-fill{background:#fff;color:var(--navy)}
+.hero-dark .pill-fill:hover{background:#EAF3FA}
+.hero-dark .pill-line{border-color:rgba(255,255,255,.9);color:#fff}
+.hero-dark .pill-line:hover{background:#fff;color:var(--navy)}
+.pill-light{background:rgba(255,255,255,.92);color:#1D1D1F;min-height:40px;font-size:var(--t-btn)}
+.pill-light:hover{background:#fff}
+
+/* Hero */
+.hero{position:relative;overflow:hidden;min-height:692px;margin:0 0 12px}
+.hero-dark{background:#0B4F85;color:#fff}
+.hero-art,.hero-art img{position:absolute;inset:0;width:100%;height:100%}
+.hero-art img{object-fit:cover;object-position:right center}
+.hero-dark .hero-copy{position:relative;z-index:1;max-width:980px;margin:0 auto;padding:0 16px;min-height:692px;display:flex;flex-direction:column;justify-content:center}
+.hero-dark .hero-copy>*{max-width:460px}
+.hero-light{background:#F5F7FA;color:#1D1D1F;display:flex;flex-direction:column;align-items:center;text-align:center;padding-top:52px}
+.hero-light .hero-copy{padding:0 16px;max-width:900px}
+.hero-product{height:clamp(300px,34vw,460px);width:auto;max-width:80vw;margin-top:auto;mix-blend-mode:multiply;margin-bottom:44px}
+
+/* Promo grid */
+.grid{display:grid;grid-template-columns:1fr 1fr;gap:12px;padding:0 12px;margin-bottom:12px}
+.tile{position:relative;overflow:hidden;min-height:580px;display:flex;flex-direction:column;align-items:center;text-align:center;padding-top:52px;color:#1D1D1F}
+.t-white{background:#FFFFFF;box-shadow:inset 0 0 0 1px #EEF1F5}
+.t-cool{background:#F5F7FA}
+.t-blush{background:#F7F1EE}
+.tile-copy{padding:0 24px;max-width:560px}
+.tile-brand{font-family:var(--display);font-size:var(--t-label);font-weight:600;letter-spacing:.16em;text-transform:uppercase;color:#8A6A5C;margin:0 0 6px}
+.tile-title{font-family:var(--body);font-weight:600;font-size:var(--t-h2);line-height:1.1;letter-spacing:-.01em;margin:0;text-wrap:balance}
+.tile-sub{font-size:var(--t-body-l);font-weight:400;margin:6px 0 0;text-wrap:balance}
+.tile-detail{font-size:var(--t-small);font-weight:300;color:#5B6B7A;margin:8px 0 0}
+.ctas.sm{margin-top:16px;gap:10px}
+.ctas.sm .pill{min-height:38px;padding:0 18px;font-size:var(--t-btn-s)}
+.tile-img{height:clamp(240px,24vw,320px);width:auto;max-width:72%;margin-top:auto;mix-blend-mode:multiply;margin-bottom:36px}
+.tile-img-sm{height:clamp(200px,19vw,250px);margin-bottom:60px}
+
+/* Gallery */
+.gallery{padding:72px 0 56px;background:#FFFFFF;overflow:hidden}
+.gallery-title{font-family:var(--body);font-weight:600;font-size:var(--t-h2);text-align:center;margin:0 0 28px;padding:0 16px;letter-spacing:-.01em}
+.g-viewport{overflow:hidden}
+.g-track{list-style:none;margin:0;padding:0;display:flex;gap:16px;transition:transform .6s var(--ease);will-change:transform}
+.g-slide{position:relative;flex:0 0 min(1100px,86vw);aspect-ratio:16/9;border-radius:18px;overflow:hidden;background:#EAF3FA;opacity:.55;transition:opacity .6s var(--ease)}
+.g-slide.is-current{opacity:1}
+.g-slide img{width:100%;height:100%;object-fit:cover;display:block}
+.g-slide picture{display:block;width:100%;height:100%}
+.g-slot{background:repeating-linear-gradient(135deg,#EAF3FA 0 18px,#E1ECF6 18px 36px)}
+.g-slot-note{position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:6px;padding:24px 24px 120px;text-align:center;color:#3E5873;font-size:var(--t-small)}
+.g-slot-note b{font-family:var(--display);font-size:var(--t-body);font-weight:600;color:#1D1D1F}
+.g-cap{position:absolute;z-index:1;left:24px;bottom:24px;right:24px;display:flex;align-items:center;gap:14px 18px;flex-wrap:wrap;color:#fff;text-shadow:0 1px 12px rgba(0,0,0,.35)}
+.g-cap::before{content:"";position:absolute;inset:-140px -24px -24px;background:linear-gradient(0deg,rgba(0,0,0,.62),rgba(0,0,0,.28) 55%,rgba(0,0,0,0));z-index:-1;border-radius:0 0 18px 18px}
+.g-kicker{margin:0;font-family:var(--display);font-weight:600;font-size:var(--t-label);letter-spacing:.1em;text-transform:uppercase;flex-basis:100%}
+.g-text{margin:0;font-size:var(--t-body-l);font-weight:400;max-width:44ch;text-wrap:balance}
+.g-cap .pill{text-shadow:none}
+.g-controls{display:flex;align-items:center;justify-content:center;gap:14px;margin-top:22px}
+.g-dots{display:flex;gap:8px;background:#EEF1F5;padding:10px 14px;border-radius:999px}
+.g-dots button{width:8px;height:8px;border-radius:999px;background:#A8AAAD;transition:width .3s var(--ease),background .3s}
+.g-dots button[aria-selected="true"]{width:28px;background:#1D1D1F}
+.g-play{width:40px;height:40px;border-radius:999px;background:#EEF1F5;display:flex;align-items:center;justify-content:center;color:#1D1D1F}
+.g-play .i-pause{width:10px;height:12px;border-left:3px solid currentColor;border-right:3px solid currentColor}
+.g-play .i-play{width:0;height:0;border-left:11px solid currentColor;border-top:7px solid transparent;border-bottom:7px solid transparent;margin-left:3px;display:none}
+.g-play[data-state="paused"] .i-pause{display:none}
+.g-play[data-state="paused"] .i-play{display:block}
+
+/* Trust + buy-from */
+.trust{background:#F5F7FA;padding:64px 16px}
+.trust-title{font-family:var(--body);font-weight:600;font-size:var(--t-h2);text-align:center;margin:0 0 32px}
+.trust-list{list-style:none;margin:0 auto;padding:0;max-width:980px;display:grid;grid-template-columns:repeat(4,1fr);gap:28px}
+.trust-list li{text-align:center}
+.trust-list svg{width:36px;height:36px;color:var(--blue)}
+.trust-list h3{font-size:var(--t-body);font-weight:500;margin:10px 0 4px;text-wrap:balance}
+.trust-list p{font-size:var(--t-small);font-weight:300;color:#5B6B7A;margin:0;text-wrap:balance}
+.buyfrom{padding:36px 16px;text-align:center;border-top:1px solid #EEF1F5}
+.buyfrom-title{font-size:var(--t-small);color:#5B6B7A;margin:0 0 14px}
+.buyfrom-list{list-style:none;margin:0 auto;padding:0;display:flex;flex-wrap:wrap;justify-content:center;gap:10px;max-width:980px}
+.buyfrom-list a{display:inline-flex;align-items:center;min-height:40px;padding:0 18px;border-radius:999px;border:1px solid #D5DFE8;font-size:var(--t-body);color:#1D1D1F;transition:border-color .2s,color .2s}
+.buyfrom-list a:hover{border-color:var(--blue);color:var(--navy)}
+
+/* Footer */
+.ft{background:#F5F7FA;color:#6E6E73;font-size:12px;line-height:1.55}
+.ft-inner{max-width:980px;margin:0 auto;padding:20px 16px 28px}
+.ft a{color:#424245} .ft a:hover{color:var(--navy);text-decoration:underline}
+.ft-notes{margin:0 0 18px;padding:0 0 16px 18px;border-bottom:1px solid #D2D2D7}
+.ft-notes li{margin:0 0 6px}
+/* Directory: 5 columns, each column stacks one or more groups (apple.com/th footer pattern) */
+.ft-dir{display:grid;grid-template-columns:1.25fr 1fr 1fr 1.15fr 1fr;gap:0 24px;padding:10px 0 22px;border-bottom:1px solid #D2D2D7}
+.ft-col{min-width:0}
+.ft-sec+.ft-sec{margin-top:26px}
+.ft-dir summary{list-style:none;font-weight:600;font-size:12px;color:#1D1D1F;margin-bottom:10px;cursor:default}
+.ft-dir summary::-webkit-details-marker{display:none}
+.ft-dir ul{list-style:none;margin:0;padding:0}
+.ft-dir li{margin:0 0 9px;line-height:1.35}
+.ft-shop{margin:16px 0 0}
+.ft-legal p{margin:14px 0 0}
+.ft-legal-row{display:flex;flex-wrap:wrap;justify-content:space-between;gap:8px 20px;padding-top:12px;margin-top:12px;border-top:1px solid #D2D2D7}
+.ft-legal-row p{margin:0}
+.ft-legal-row ul{list-style:none;margin:0;padding:0;display:flex;flex-wrap:wrap;gap:4px 0}
+.ft-legal-row li+li::before{content:"|";margin:0 8px;color:#D2D2D7}
+
+/* Reveal motion */
+.reveal{opacity:0;transform:translateY(18px);transition:opacity .6s var(--ease),transform .6s var(--ease)}
+.reveal.is-in{opacity:1;transform:none}
+
+/* Spec */
+.spec-pill{position:fixed;right:16px;bottom:16px;z-index:30;background:#fff;border:1px solid #D5DFE8;border-radius:999px;padding:9px 16px;font-family:var(--display);font-size:12px;font-weight:500;color:var(--navy);box-shadow:0 8px 24px rgba(0,0,0,.12)}
+.spec{max-width:1080px;margin:0 auto;padding:72px 20px 96px;background:#fff;border-top:6px solid var(--navy)}
+.spec h2{font-family:var(--display);font-weight:600;font-size:22px;margin:0 0 10px}
+.spec h3{font-family:var(--display);font-weight:600;font-size:16px;margin:36px 0 8px;color:var(--navy)}
+.spec p{max-width:78ch;font-size:15px}
+.tablewrap{overflow-x:auto;border:1px solid #D5DFE8;border-radius:6px;background:#fff;margin-top:10px}
+.spec table{border-collapse:collapse;width:100%;font-size:14px}
+.spec th{font-family:var(--display);font-weight:500;font-size:12px;letter-spacing:.06em;text-transform:uppercase;text-align:left;color:#5B6B7A;background:#EDF3F8;padding:10px 12px;border-bottom:1px solid #D5DFE8;white-space:nowrap}
+.spec td{padding:10px 12px;border-bottom:1px solid #D5DFE8;vertical-align:top}
+.spec tr:last-child td{border-bottom:0}
+.spec code{font-family:ui-monospace,SFMono-Regular,Menlo,monospace;font-size:.86em;background:#EDF3F8;padding:1px 5px;border-radius:4px}
+
+/* Responsive */
+@media (max-width:1068px){
+  .ft-dir{grid-template-columns:repeat(3,1fr);gap:28px 24px}
+  .hero,.hero-dark .hero-copy{min-height:620px}
+  .tile{min-height:520px}
+}
+@media (max-width:734px){
+  .hero{min-height:740px}
+  .hero-art img{object-position:center top}
+  .hero-dark .hero-copy{min-height:740px;justify-content:flex-start;align-items:center;text-align:center;padding-top:48px}
+  .hero-dark .hero-copy>*{max-width:100%}
+  .hero-dark .ctas{justify-content:center}
+  .hero-light{padding-top:44px;min-height:620px}
+  .grid{grid-template-columns:1fr;padding:0}
+  .tile{min-height:500px;padding-top:44px}
+  .g-slide{aspect-ratio:4/5;flex-basis:84vw}
+  .g-cap{left:16px;right:16px;bottom:16px}
+  .trust-list{grid-template-columns:1fr 1fr;gap:28px 16px}
+  .ft-dir{grid-template-columns:1fr;gap:0;padding-top:0}
+  .ft-sec+.ft-sec{margin-top:0}
+  .ft-dir details{border-bottom:1px solid #D2D2D7}
+  .ft-col:last-child details:last-child{border-bottom:0}
+  .ft-dir summary{padding:11px 0;margin:0;font-weight:400;font-size:12px;cursor:pointer;display:flex;justify-content:space-between}
+  .ft-dir summary::after{content:"+";font-weight:400;color:#6E6E73}
+  .ft-dir details[open] summary::after{content:"−"}
+  .ft-dir ul{padding:0 0 12px 12px}
+  .ft-dir li{margin-bottom:11px}
+  .ft-legal-row{flex-direction:column}
+  .ft-legal-row ul{gap:8px 18px}
+  .ft-legal-row li+li::before{display:none}
+}
+@media (prefers-reduced-motion: reduce){ .reveal{opacity:1;transform:none} .g-track{transition:none} }
+
+</style>
+<style>
+.tile .ctas,.tile-copy .ctas,.hero-light .ctas{justify-content:center}
+.hero-art.hero-comp{background:radial-gradient(ellipse 60% 55% at 74% 82%,rgba(143,208,255,.22),rgba(11,79,133,0) 70%)}
+.hero-art.hero-comp img{position:absolute;inset:auto;width:auto;height:auto;object-fit:contain}
+.hero-art.hero-comp img.h-st{right:max(4%,calc(50% - 560px));bottom:7%;height:82%}
+.hero-art.hero-comp img.h-rb{right:max(25%,calc(50% - 300px));bottom:5%;height:34%;filter:drop-shadow(0 18px 24px rgba(0,0,0,.35))}
+.g-comp{position:absolute;inset:0;background:radial-gradient(ellipse 70% 60% at 60% 80%,#1A6BA8,#0B4F85 70%)}
+.g-comp img{position:absolute;width:auto!important;height:auto!important;object-fit:contain}
+.g-comp .h-st{right:16%;bottom:8%;height:80%!important}
+.g-comp .h-rb{right:42%;bottom:6%;height:34%!important;filter:drop-shadow(0 18px 24px rgba(0,0,0,.35))}
+@media (max-width:734px){
+ .hero-art.hero-comp img.h-st{right:6%;bottom:4%;height:44%}
+ .hero-art.hero-comp img.h-rb{right:auto;left:6%;bottom:3%;height:20%}
+ .g-comp .h-st{right:8%;height:62%!important}
+ .g-comp .h-rb{right:auto;left:8%;height:28%!important}
+}
+</style><style>.gn-logo-img{height:64px!important;width:auto!important;margin:-22px -16px!important}body.gn-mobile .gn-logo-img{height:58px!important;margin:-20px -14px!important}.ft-bc img{height:52px!important;width:auto!important;margin:-18px -12px!important}</style><style>
+.gn-panel:has(.gn-subs){grid-template-columns:1.25fr 1fr .9fr 1fr!important;column-gap:32px!important}
+@media (max-width:1068px){.gn-panel:has(.gn-subs){column-gap:22px!important}.gn-panel:has(.gn-subs) .gn-group li a{font-size:13px}}
+.sp-tabs{max-width:1080px;margin:0 auto;padding:0 16px 8px;display:flex;gap:8px;overflow-x:auto;scrollbar-width:none}
+.sp-tabs::-webkit-scrollbar{display:none}
+.sp-tabs a{flex:none;padding:9px 16px;border-radius:999px;background:#F5F5F7;color:#1D1D1F;font-size:13px;white-space:nowrap}
+.sp-tabs a:hover{background:#ECECF0;text-decoration:none}
+.sp-tabs a[aria-current="page"]{background:var(--navy);color:#fff}
+.sp-wrap{max-width:1080px;margin:0 auto;padding:0 16px}
+.sp-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:16px}
+.sp-grid.two{grid-template-columns:repeat(2,minmax(0,1fr))}
+.sp-card{background:#F5F5F7;border-radius:22px;padding:28px 26px;display:flex;flex-direction:column;min-height:200px;color:#1D1D1F}
+a.sp-card:hover{background:#EEEFF2;text-decoration:none}
+.sp-card .eyebrow{margin-bottom:10px}
+.sp-card h3{font-size:var(--t-h3);font-weight:600;line-height:1.25;margin:0 0 8px}
+.sp-card p{font-size:var(--t-body);line-height:1.55;color:#424245;font-weight:300;margin:0 0 16px}
+.sp-card .c-more{margin-top:auto}
+.sp-alt{background:#F5F5F7}
+.sp-alt .sp-card{background:#fff}
+.sp-doc{max-width:760px;margin:0 auto;padding:0 16px}
+.sp-doc h2{font-size:var(--t-h3);font-weight:600;margin:40px 0 10px;color:#1D1D1F}
+.sp-doc h2:first-child{margin-top:0}
+.sp-doc p{font-size:var(--t-body);line-height:1.75;color:#424245;font-weight:300;margin:0 0 12px}
+.sp-steps{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:16px;counter-reset:s}
+.sp-steps li{list-style:none;background:#F5F5F7;border-radius:22px;padding:26px}
+.sp-steps li::before{counter-increment:s;content:counter(s);display:flex;align-items:center;justify-content:center;width:30px;height:30px;border-radius:50%;background:var(--navy);color:#fff;font-size:14px;font-weight:600;margin-bottom:14px}
+.sp-steps h3{font-size:17px;font-weight:600;margin:0 0 6px}
+.sp-steps p{font-size:var(--t-small);line-height:1.55;color:#424245;margin:0;font-weight:300}
+.sp-form{max-width:760px;margin:0 auto;padding:0 16px;display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:14px}
+.sp-form label{display:flex;flex-direction:column;gap:6px;font-size:13px;color:#6E6E73}
+.sp-form label.full{grid-column:1/-1}
+.sp-form input,.sp-form select,.sp-form textarea{font:inherit;font-size:15px;color:#1D1D1F;background:#fff;border:1px solid #D2D2D7;border-radius:12px;padding:12px 14px;outline:none}
+.sp-form input:focus,.sp-form select:focus,.sp-form textarea:focus{border-color:var(--blue);box-shadow:0 0 0 3px rgba(0,138,208,.15)}
+.sp-form .sp-note{grid-column:1/-1;font-size:12.5px;color:#6E6E73;margin:0}
+.sp-form .pill{justify-self:start}
+.sp-ok{grid-column:1/-1;background:#EAF6EE;color:#1D5B2E;border-radius:12px;padding:14px 16px;font-size:14px;display:none}
+.sp-store{display:flex;flex-direction:column;gap:6px}
+.sp-store dl{margin:4px 0 16px;display:grid;grid-template-columns:auto 1fr;gap:6px 14px;font-size:var(--t-small);color:#424245}
+.sp-store dt{color:#6E6E73}
+.sp-store dd{margin:0}
+.sp-map{display:block;width:100%;aspect-ratio:16/9;border:0;border-radius:16px;margin-top:auto;background:#E8E8ED}
+@media (min-width:735px) and (max-width:1068px){.hero-art.hero-comp img.h-st{height:58%!important;right:3%!important;bottom:8%!important}.hero-art.hero-comp img.h-rb{height:24%!important;right:30%!important;bottom:6%!important}}
+@media (max-width:734px){.sp-grid,.sp-grid.two,.sp-steps,.sp-form{grid-template-columns:1fr}}
+</style></head>
+<body>
+<!-- ============ GLOBAL NAV ============ -->
+<header class="gn" id="gn">
+  <div class="gn-inner">
+    <button class="gn-icon gn-burger" id="gnBurger" aria-label="เปิดเมนู" aria-expanded="false" aria-controls="gnDrawer"><span class="bar"></span></button>
+    <a aria-label="Bwell หน้าแรก" class="gn-logo" href="index.html">
+      <img class="gn-logo-img" src="https://bwellcoth29b89.zapwp.com/wp-content/uploads/2022/04/logoBwell_pantone-Bwell-%E0%B9%80%E0%B8%94%E0%B8%B5%E0%B9%88%E0%B8%A2%E0%B8%A7-02.webp?src=png" alt="" width="728" height="169">
+    </a>
+    <ul class="gn-list" id="gnList" role="menubar" aria-label="เมนูหลัก"><li class="gn-item" data-menu="c-airpurifier"><a class="gn-link" href="air-purifier.html" role="menuitem" aria-haspopup="true" aria-expanded="false">เครื่องฟอกอากาศ</a></li><li class="gn-item" data-menu="c-beauty"><a class="gn-link" href="hair-styling-tools.html" role="menuitem" aria-haspopup="true" aria-expanded="false">อุปกรณ์จัดแต่งทรงผม</a></li><li class="gn-item" data-menu="c-chair"><a class="gn-link" href="ergonomic-chair.html" role="menuitem" aria-haspopup="true" aria-expanded="false">เก้าอี้เพื่อสุขภาพ</a></li><li class="gn-item gn-wide" data-menu="c-cushion"><a class="gn-link" href="ergonomic-cushion.html" role="menuitem" aria-haspopup="true" aria-expanded="false">หมอนและเบาะรองเพื่อสุขภาพ</a></li><li class="gn-item" data-menu="c-heater"><a class="gn-link" href="water-heater.html" role="menuitem" aria-haspopup="true" aria-expanded="false">เครื่องทำน้ำอุ่น น้ำร้อน</a></li><li class="gn-item" data-menu="c-water"><a class="gn-link" href="water-purifier.html" role="menuitem" aria-haspopup="true" aria-expanded="false">เครื่องกรองน้ำ</a></li><li class="gn-item" data-menu="c-dehum"><a class="gn-link" href="air-dehumidifier.html" role="menuitem" aria-haspopup="true" aria-expanded="false">เครื่องลดความชื้น</a></li><li class="gn-item" data-menu="c-pac"><a class="gn-link" href="portable-air-conditioner.html" role="menuitem" aria-haspopup="true" aria-expanded="false">แอร์เคลื่อนที่</a></li><li class="gn-item gn-wide" data-menu="c-cordless"><a class="gn-link" href="vacuum-cleaner.html" role="menuitem" aria-haspopup="true" aria-expanded="false">เครื่องดูดฝุ่นไร้สาย</a></li><li class="gn-item" data-menu="c-robot"><a class="gn-link" href="robot-vacuum.html" role="menuitem" aria-haspopup="true" aria-expanded="false">หุ่นยนต์ดูดฝุ่น</a></li><li class="gn-item gn-wide" data-menu="c-sport"><a class="gn-link" href="sport-gadgets.html" role="menuitem" aria-haspopup="true" aria-expanded="false">อุปกรณ์ออกกำลังกาย</a></li><li class="gn-item" data-menu="support"><a class="gn-link" href="support.html" role="menuitem" aria-haspopup="true" aria-expanded="false">บริการช่วยเหลือ</a></li></ul>
+    <div class="gn-actions">
+      <button class="gn-icon gn-icon-search" data-menu="search" aria-label="ค้นหา" aria-expanded="false"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><circle cx="11" cy="11" r="7"></circle><path d="M20 20l-3.6-3.6"></path></svg></button>
+      <button class="gn-icon" data-menu="store" aria-label="ซื้อสินค้า" aria-expanded="false"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M6 8h12l1 12H5L6 8z"></path><path d="M9 8V6a3 3 0 0 1 6 0v2"></path></svg></button>
+    </div>
+  </div>
+</header>
+<div class="gn-curtain" id="gnCurtain"></div>
+
+<div class="gn-flyout" id="gnFlyout" data-open="false" aria-hidden="true">
+  <!-- AIR -->
+  <div class="gn-panel" data-panel="air">
+    <div class="gn-group is-primary"><h3>สำรวจ Air</h3><ul>
+      <li><a href="air-purifier.html">เครื่องฟอกอากาศ</a></li>
+      <li><a href="air-dehumidifier.html">เครื่องลดความชื้น</a></li>
+      <li><a href="portable-air-conditioner.html">แอร์เคลื่อนที่</a></li>
+      <li><a href="air-purification-filters.html">แผ่นฟอกอากาศและไส้กรอง</a></li>
+      <li><a href="https://bwell.co.th/">เปรียบเทียบเครื่องฟอกอากาศ</a></li>
+    </ul></div>
+    <div class="gn-group"><h3>ซื้อ Air</h3><ul>
+      <li><a href="https://shop.bwell.co.th/">ซื้อเครื่องฟอกอากาศ</a></li>
+      <li><a href="https://shop.bwell.co.th/">ซื้อเครื่องลดความชื้น</a></li>
+      <li><a href="air-purification-filters.html">ซื้อไส้กรองตรงรุ่น</a></li>
+      <li><a href="find-store.html">ค้นหาสาขาใกล้คุณ</a></li>
+      <li><a href="https://shop.bwell.co.th/">ผ่อน 0% <span style="color:var(--fly-soft)">[ยืนยันเงื่อนไข]</span></a></li>
+    </ul></div>
+    <div class="gn-group"><h3>เพิ่มเติมจาก Air</h3><ul>
+      <li><a href="https://bwell.co.th/blog/">เลือกเครื่องฟอกอากาศให้เหมาะกับห้อง</a></li>
+      <li><a href="https://bwell.co.th/blog/">CADR คืออะไร</a></li>
+      <li><a href="https://bwell.co.th/blog/">เปลี่ยนไส้กรองเมื่อไหร่</a></li>
+      <li><a href="user-manual.html">คู่มือการใช้งาน</a></li>
+      <li><a href="warranty.html">ลงทะเบียนรับประกัน</a></li>
+    </ul></div>
+  </div>
+  <!-- WATER -->
+  <div class="gn-panel" data-panel="water">
+    <div class="gn-group is-primary"><h3>สำรวจ Water</h3><ul>
+      <li><a href="water-purifier.html">เครื่องกรองน้ำ RO</a></li>
+      <li><a href="water-heater.html">เครื่องทำน้ำอุ่น</a></li>
+      <li><a href="water-heater.html">เครื่องทำน้ำร้อน</a></li>
+      <li><a href="water-purifier.html#lineup-1">ไส้กรองน้ำ</a></li>
+      <li><a href="https://bwell.co.th/">เปรียบเทียบเครื่องกรองน้ำ</a></li>
+    </ul></div>
+    <div class="gn-group"><h3>ซื้อ Water</h3><ul>
+      <li><a href="https://shop.bwell.co.th/">ซื้อเครื่องกรองน้ำ</a></li>
+      <li><a href="https://shop.bwell.co.th/">ซื้อเครื่องทำน้ำอุ่น</a></li>
+      <li><a href="water-purifier.html#lineup-1">ซื้อไส้กรองน้ำ</a></li>
+      <li><a href="find-store.html">ค้นหาสาขาใกล้คุณ</a></li>
+    </ul></div>
+    <div class="gn-group"><h3>เพิ่มเติมจาก Water</h3><ul>
+      <li><a href="https://bwell.co.th/blog/">เลือกเครื่องกรองน้ำสำหรับบ้านและคอนโด</a></li>
+      <li><a href="https://bwell.co.th/blog/">RO กับ UF ต่างกันอย่างไร</a></li>
+      <li><a href="https://bwell.co.th/">วิธีเปลี่ยนไส้กรอง</a></li>
+      <li><a href="user-manual.html">คู่มือการใช้งาน</a></li>
+      <li><a href="warranty.html">ลงทะเบียนรับประกัน</a></li>
+    </ul></div>
+  </div>
+  <!-- CLEAN HOME -->
+  <div class="gn-panel" data-panel="clean">
+    <div class="gn-group is-primary"><h3>สำรวจ Clean Home</h3><ul>
+      <li><a href="robot-vacuum.html">หุ่นยนต์ดูดฝุ่น Ultra T20 <span class="tag">New</span></a></li>
+      <li><a href="robot-vacuum.html">หุ่นยนต์ดูดฝุ่น L6C</a></li>
+      <li><a href="robot-vacuum.html">หุ่นยนต์ดูดฝุ่น L0</a></li>
+      <li><a href="robot-vacuum.html">หุ่นยนต์ดูดฝุ่น Y1</a></li>
+      <li><a href="vacuum-cleaner.html">เครื่องดูดฝุ่นไร้สาย</a></li>
+      <li><a href="https://bwell.co.th/">เปรียบเทียบหุ่นยนต์ดูดฝุ่น</a></li>
+    </ul></div>
+    <div class="gn-group"><h3>ซื้อ Clean Home</h3><ul>
+      <li><a href="https://shop.bwell.co.th/">ซื้อหุ่นยนต์ดูดฝุ่น</a></li>
+      <li><a href="https://shop.bwell.co.th/">ซื้อเครื่องดูดฝุ่นไร้สาย</a></li>
+      <li><a href="robot-vacuum.html#essentials">อะไหล่และแปรง</a></li>
+      <li><a href="find-store.html">ค้นหาสาขาใกล้คุณ</a></li>
+    </ul></div>
+    <div class="gn-group"><h3>เพิ่มเติมจาก Clean Home</h3><ul>
+      <li><a href="https://bwell.co.th/blog/">รุ่นไหนเหมาะกับบ้านคุณ</a></li>
+      <li><a href="https://bwell.co.th/blog/">ดูแลแท่น OmniBase</a></li>
+      <li><a href="https://apps.apple.com/th/app/bwell/id6787315911?l=th">แอป Bwell Smart</a></li>
+      <li><a href="user-manual.html">คู่มือการใช้งาน</a></li>
+      <li><a href="warranty.html">ลงทะเบียนรับประกัน</a></li>
+    </ul></div>
+  </div>
+  <!-- ERGONOMIC -->
+  <div class="gn-panel" data-panel="ergo">
+    <div class="gn-group is-primary"><h3>สำรวจ Ergonomic</h3><ul>
+      <li><a href="ergonomic-chair.html">เก้าอี้เพื่อสุขภาพ Bjorn</a></li>
+      <li><a href="ergonomic-chair.html">เก้าอี้เพื่อสุขภาพ Stella</a></li>
+      <li><a href="ergonomic-chair.html">เก้าอี้เพื่อสุขภาพ Astrid</a></li>
+      <li><a href="ergonomic-cushion.html">หมอนและเบาะรองเพื่อสุขภาพ</a></li>
+      <li><a href="sport-gadgets.html">อุปกรณ์ออกกำลังกาย</a></li>
+      <li><a href="https://bwell.co.th/">เปรียบเทียบเก้าอี้</a></li>
+    </ul></div>
+    <div class="gn-group"><h3>ซื้อ Ergonomic</h3><ul>
+      <li><a href="https://shop.bwell.co.th/">ซื้อเก้าอี้เพื่อสุขภาพ</a></li>
+      <li><a href="https://shop.bwell.co.th/">ซื้อหมอนและเบาะรอง</a></li>
+      <li><a href="find-store.html">ทดลองนั่งที่ Showroom</a></li>
+      <li><a href="contact.html#dealer">สั่งซื้อในนามองค์กร</a></li>
+    </ul></div>
+    <div class="gn-group"><h3>เพิ่มเติมจาก Ergonomic</h3><ul>
+      <li><a href="https://bwell.co.th/blog/">ปรับเก้าอี้ให้พอดีตัว</a></li>
+      <li><a href="https://bwell.co.th/blog/">Office Syndrome และท่านั่ง</a></li>
+      <li><a href="user-manual.html">คู่มือการประกอบ</a></li>
+      <li><a href="warranty.html">ลงทะเบียนรับประกัน</a></li>
+    </ul></div>
+  </div>
+  <!-- BEAUTY -->
+  <div class="gn-panel" data-panel="beauty">
+    <div class="gn-group is-primary"><h3>สำรวจ Bwell Beauty</h3><ul>
+      <li><a href="hair-dryer-brush.html">หวีลมร้อนดิจิตอล</a></li>
+      <li><a href="hair-dryer-brush.html">ไดร์จัดแต่งทรงผม BLDC</a></li>
+      <li><a href="hair-straightener.html">เครื่องหนีบผม</a></li>
+      <li><a href="hair-curler.html">เครื่องม้วนผม</a></li>
+      <li><a href="https://bwell.co.th/">ดูทั้งหมด</a></li>
+    </ul></div>
+    <div class="gn-group"><h3>ซื้อ Beauty</h3><ul>
+      <li><a href="hair-dryer-brush.html">ซื้อหวีลมร้อน</a></li>
+      <li><a href="hair-straightener.html">ซื้อเครื่องหนีบผม</a></li>
+      <li><a href="https://shopee.co.th/bwell">ซื้อบน Shopee / Lazada</a></li>
+    </ul></div>
+    <div class="gn-group"><h3>เพิ่มเติมจาก Beauty</h3><ul>
+      <li><a href="https://bwell.co.th/blog/">หวีม้วนผมไฟฟ้า เลือกอย่างไร</a></li>
+      <li><a href="https://bwell.co.th/blog/">ไดร์เป่าผมแห้งไว ทำงานอย่างไร</a></li>
+      <li><a href="https://bwell.co.th/blog/">ดูแลเครื่องจัดแต่งทรงผม</a></li>
+      <li><a href="warranty.html">ลงทะเบียนรับประกัน</a></li>
+    </ul></div>
+  </div>
+  <!-- SUPPORT -->
+  <div class="gn-panel" data-panel="support">
+    <div class="gn-group is-primary"><h3>บริการช่วยเหลือ</h3><ul>
+      <li><a href="warranty.html">ลงทะเบียนรับประกันสินค้า</a></li>
+      <li><a href="user-manual.html">คู่มือการใช้งาน</a></li>
+      <li><a href="faq.html">คำถามที่พบบ่อย</a></li>
+      <li><a href="warranty-policy.html">เคลมสินค้าและคืนเงิน</a></li>
+      <li><a href="contact.html">ติดต่อเรา</a></li>
+    </ul></div>
+    <div class="gn-group"><h3>เกี่ยวกับ Bwell</h3><ul> <li><a href="https://bwell.co.th/about-us/">เกี่ยวกับแบรนด์</a></li> <li><a href="https://bwell.co.th/whybwell/">ทำไมต้อง Bwell</a></li> <li><a href="find-store.html">ค้นหาสาขาของ Bwell</a></li> <li><a href="https://bwell.co.th/%e0%b8%8a%e0%b9%88%e0%b8%ad%e0%b8%87%e0%b8%97%e0%b8%b2%e0%b8%87%e0%b8%88%e0%b8%b1%e0%b8%94%e0%b8%88%e0%b8%b3%e0%b8%ab%e0%b8%99%e0%b9%88%e0%b8%b2%e0%b8%a2/">ช่องทางจัดจำหน่าย</a></li> <li><a href="https://bwell.co.th/%e0%b8%a5%e0%b8%b9%e0%b8%81%e0%b8%84%e0%b9%89%e0%b8%b2%e0%b8%82%e0%b8%ad%e0%b8%87%e0%b9%80%e0%b8%a3%e0%b8%b2/">ลูกค้าของเรา</a></li> <li><a href="https://bwell.co.th/blog/">บทความ</a></li> <li><a href="https://bwell.co.th/channel/">Bwell Channel</a></li> </ul></div>
+    <div class="gn-group"><h3>เพิ่มเติม</h3><ul> <li><a href="https://shop.bwell.co.th/">สั่งซื้อออนไลน์</a></li>
+      <li><a href="warranty-policy.html">นโยบายการรับประกัน</a></li>
+      <li><a href="shipping-policy.html">นโยบายการจัดส่ง</a></li>
+      <li><a href="robot-vacuum.html#essentials">ซื้อไส้กรองและอะไหล่</a></li>
+      <li><a href="contact.html#dealer">สมัครตัวแทนจำหน่าย</a></li>
+    </ul></div>
+  </div>
+  <!-- STORE -->
+  <div class="gn-panel" data-panel="store">
+    <div class="gn-group is-primary"><h3>ซื้อสินค้า Bwell</h3><ul>
+      <li><a href="https://shop.bwell.co.th/">Bwell Shop ร้านค้าทางการ</a></li>
+      <li><a href="https://shopee.co.th/bwell">Shopee Official Store</a></li>
+      <li><a href="https://www.lazada.co.th/shop/bwell1630384141">Lazada Official Store</a></li>
+      <li><a href="https://www.tiktok.com/@bwell.group">TikTok Shop</a></li>
+    </ul></div>
+    <div class="gn-group"><h3>หน้าร้าน</h3><ul>
+      <li><a href="find-store.html">ค้นหาสาขาใกล้คุณ</a></li>
+      <li><a href="find-store.html">Bwell Showroom เจริญราษฎร์</a></li>
+      <li><a href="find-store.html">Bwell Flagship Store CDC</a></li>
+      <li><a href="find-store.html">Central · HomePro · PowerBuy</a></li>
+    </ul></div>
+    <div class="gn-group"><h3>บริการ</h3><ul>
+      <li><a href="https://shop.bwell.co.th/">ผ่อน 0% [ยืนยันเงื่อนไข]</a></li>
+      <li><a href="shipping-policy.html">จัดส่งและติดตั้ง</a></li>
+      <li><a href="contact.html#dealer">สั่งซื้อในนามองค์กร</a></li>
+      <li><a href="contact.html#dealer">สมัครตัวแทนจำหน่าย</a></li>
+    </ul></div>
+  </div>
+  <div class="gn-panel" data-panel="c-airpurifier" data-pillar="Air">
+    <div class="gn-group is-primary"><h3>สำรวจเครื่องฟอกอากาศ</h3><ul><li><a href="https://bwell.co.th/product/%e0%b9%80%e0%b8%84%e0%b8%a3%e0%b8%b7%e0%b9%88%e0%b8%ad%e0%b8%87%e0%b8%9f%e0%b8%ad%e0%b8%81%e0%b8%ad%e0%b8%b2%e0%b8%81%e0%b8%b2%e0%b8%a8%e0%b8%81%e0%b8%b3%e0%b8%88%e0%b8%b1%e0%b8%94%e0%b9%84%e0%b8%a7-a/">AP-H3029US 40–80 ตร.ม.</a></li><li><a href="https://bwell.co.th/product/%e0%b9%80%e0%b8%84%e0%b8%a3%e0%b8%b7%e0%b9%88%e0%b8%ad%e0%b8%87%e0%b8%9f%e0%b8%ad%e0%b8%81%e0%b8%ad%e0%b8%b2%e0%b8%81%e0%b8%b2%e0%b8%a8-%e0%b8%a3%e0%b8%b8%e0%b9%88%e0%b8%99-cf-8428-recurring/">CF-8428 20–40 ตร.ม.</a></li><li><a href="https://bwell.co.th/product/%e0%b9%80%e0%b8%84%e0%b8%a3%e0%b8%b7%e0%b9%88%e0%b8%ad%e0%b8%87%e0%b8%9f%e0%b8%ad%e0%b8%81%e0%b8%ad%e0%b8%b2%e0%b8%81%e0%b8%b2%e0%b8%a8-%e0%b8%a3%e0%b8%b8%e0%b9%88%e0%b8%99-ap-8119us/">AP-8119US 10–30 ตร.ม.</a></li><li><a href="https://bwell.co.th/product/%e0%b9%80%e0%b8%84%e0%b8%a3%e0%b8%b7%e0%b9%88%e0%b8%ad%e0%b8%87%e0%b8%9f%e0%b8%ad%e0%b8%81%e0%b8%ad%e0%b8%b2%e0%b8%81%e0%b8%b2%e0%b8%a8-%e0%b8%a3%e0%b8%b8%e0%b9%88%e0%b8%99-cf-8005/">CF-8005 10–20 ตร.ม.</a></li><li><a href="air-purifier.html#lineup">เปรียบเทียบทุกรุ่น</a></li></ul></div> <div class="gn-group gn-subs"><h3>หมวดหมู่ย่อย</h3><ul><li><a href="air-purifier-pm25.html">เครื่องฟอกอากาศ PM2.5</a></li><li><a href="air-purifier-virus.html">เครื่องฟอกอากาศกำจัดไวรัส</a></li><li><a href="air-purifier-car.html">เครื่องฟอกอากาศในรถยนต์</a></li><li><a href="air-purification-filters.html">แผ่นฟอกอากาศ</a></li><li><a href="air-purifier.html">ดูเครื่องฟอกอากาศทั้งหมด</a></li></ul></div>
+    <div class="gn-group"><h3>ซื้อเครื่องฟอกอากาศ</h3><ul><li><a href="https://shop.bwell.co.th/">ซื้อเครื่องฟอกอากาศ</a></li><li><a href="air-purification-filters.html">ซื้อแผ่นฟอกอากาศตรงรุ่น</a></li><li><a href="find-store.html">ค้นหาสาขาใกล้คุณ</a></li></ul></div>
+    <div class="gn-group"><h3>เพิ่มเติม</h3><ul><li><a href="https://bwell.co.th/blog/">เลือกเครื่องฟอกอากาศให้เหมาะกับห้อง</a></li><li><a href="https://bwell.co.th/blog/">CADR คืออะไร</a></li><li><a href="user-manual.html">คู่มือการใช้งาน</a></li><li><a href="warranty.html">ลงทะเบียนรับประกัน</a></li></ul></div>
+  <div class="gn-pillar-strip"><span class="lbl">อยู่ในกลุ่ม Air</span><a href="air-purifier.html" aria-current="true">เครื่องฟอกอากาศ</a><a href="air-dehumidifier.html">เครื่องลดความชื้น</a><a href="portable-air-conditioner.html">แอร์เคลื่อนที่</a><a href="air-purification-filters.html">แผ่นฟอกอากาศ</a></div></div>
+  <div class="gn-panel" data-panel="c-dehum" data-pillar="Air">
+    <div class="gn-group is-primary"><h3>สำรวจเครื่องลดความชื้น</h3><ul><li><a href="https://bwell.co.th/product/%e0%b9%80%e0%b8%84%e0%b8%a3%e0%b8%b7%e0%b9%88%e0%b8%ad%e0%b8%87%e0%b8%a5%e0%b8%94%e0%b8%84%e0%b8%a7%e0%b8%b2%e0%b8%a1%e0%b8%8a%e0%b8%b7%e0%b9%89%e0%b8%99-bwell-bdh-53a/">BDH-53A 40–80 ตร.ม.</a></li><li><a href="https://bwell.co.th/product/%e0%b9%80%e0%b8%84%e0%b8%a3%e0%b8%b7%e0%b9%88%e0%b8%ad%e0%b8%87%e0%b8%a5%e0%b8%94%e0%b8%84%e0%b8%a7%e0%b8%b2%e0%b8%a1%e0%b8%8a%e0%b8%b7%e0%b9%89%e0%b8%99-bwell-bdh-30a/">BDH-30A 20–40 ตร.ม.</a></li><li><a href="https://bwell.co.th/product/%e0%b9%80%e0%b8%84%e0%b8%a3%e0%b8%b7%e0%b9%88%e0%b8%ad%e0%b8%87%e0%b8%a5%e0%b8%94%e0%b8%84%e0%b8%a7%e0%b8%b2%e0%b8%a1%e0%b8%8a%e0%b8%b7%e0%b9%89%e0%b8%99-bwell-%e0%b8%a3%e0%b8%b8%e0%b9%88%e0%b8%99-bdh/">BDH-12A 10–20 ตร.ม.</a></li><li><a href="air-dehumidifier.html#which">เปรียบเทียบทุกรุ่น</a></li><li><a href="air-dehumidifier.html">ดูเครื่องลดความชื้นทั้งหมด</a></li></ul></div>
+    <div class="gn-group"><h3>ซื้อเครื่องลดความชื้น</h3><ul><li><a href="https://shop.bwell.co.th/">ซื้อเครื่องลดความชื้น</a></li><li><a href="find-store.html">ค้นหาสาขาใกล้คุณ</a></li></ul></div>
+    <div class="gn-group"><h3>เพิ่มเติม</h3><ul><li><a href="https://bwell.co.th/blog/">ความชื้นเท่าไหร่ถึงต้องใช้</a></li><li><a href="https://bwell.co.th/blog/">ใช้ในห้องนอนอย่างไร</a></li><li><a href="user-manual.html">คู่มือการใช้งาน</a></li><li><a href="warranty.html">ลงทะเบียนรับประกัน</a></li></ul></div>
+  <div class="gn-pillar-strip"><span class="lbl">อยู่ในกลุ่ม Air</span><a href="air-purifier.html">เครื่องฟอกอากาศ</a><a href="air-dehumidifier.html" aria-current="true">เครื่องลดความชื้น</a><a href="portable-air-conditioner.html">แอร์เคลื่อนที่</a><a href="air-purification-filters.html">แผ่นฟอกอากาศ</a></div></div>
+  <div class="gn-panel" data-panel="c-pac" data-pillar="Air">
+    <div class="gn-group is-primary"><h3>สำรวจแอร์เคลื่อนที่</h3><ul><li><a href="https://bwell.co.th/product/%e0%b9%81%e0%b8%ad%e0%b8%a3%e0%b9%8c%e0%b9%80%e0%b8%84%e0%b8%a5%e0%b8%b7%e0%b9%88%e0%b8%ad%e0%b8%99%e0%b8%97%e0%b8%b5%e0%b9%88-bwell-%e0%b8%a3%e0%b8%b8%e0%b9%88%e0%b8%99-bpac-12b/">BPAC-12B 12,000 BTU</a></li><li><a href="https://bwell.co.th/product/%e0%b9%81%e0%b8%ad%e0%b8%a3%e0%b9%8c%e0%b9%80%e0%b8%84%e0%b8%a5%e0%b8%b7%e0%b9%88%e0%b8%ad%e0%b8%99%e0%b8%97%e0%b8%b5%e0%b9%88/">BPAC-09B 9,000 BTU</a></li><li><a href="portable-air-conditioner.html#which">เปรียบเทียบทุกรุ่น</a></li><li><a href="portable-air-conditioner.html">ดูแอร์เคลื่อนที่ทั้งหมด</a></li></ul></div>
+    <div class="gn-group"><h3>ซื้อแอร์เคลื่อนที่</h3><ul><li><a href="https://shop.bwell.co.th/">ซื้อแอร์เคลื่อนที่</a></li><li><a href="find-store.html">ค้นหาสาขาใกล้คุณ</a></li></ul></div>
+    <div class="gn-group"><h3>เพิ่มเติม</h3><ul><li><a href="https://bwell.co.th/blog/">เลือก BTU ให้พอดีห้อง</a></li><li><a href="https://bwell.co.th/blog/">ติดตั้งท่อระบายอากาศ</a></li><li><a href="user-manual.html">คู่มือการใช้งาน</a></li><li><a href="warranty.html">ลงทะเบียนรับประกัน</a></li></ul></div>
+  <div class="gn-pillar-strip"><span class="lbl">อยู่ในกลุ่ม Air</span><a href="air-purifier.html">เครื่องฟอกอากาศ</a><a href="air-dehumidifier.html">เครื่องลดความชื้น</a><a href="portable-air-conditioner.html" aria-current="true">แอร์เคลื่อนที่</a><a href="air-purification-filters.html">แผ่นฟอกอากาศ</a></div></div>
+  <div class="gn-panel" data-panel="c-water" data-pillar="Water">
+    <div class="gn-group is-primary"><h3>สำรวจเครื่องกรองน้ำ</h3><ul><li><a href="https://bwell.co.th/product/%e0%b9%80%e0%b8%84%e0%b8%a3%e0%b8%b7%e0%b9%88%e0%b8%ad%e0%b8%87%e0%b8%81%e0%b8%a3%e0%b8%ad%e0%b8%87%e0%b8%99%e0%b9%89%e0%b8%b3-ro-%e0%b9%81%e0%b8%9a%e0%b8%9a%e0%b9%84%e0%b8%a3%e0%b9%89%e0%b8%96/">เครื่องกรองน้ำ RO แบบไร้ถัง</a></li><li><a href="https://bwell.co.th/product/%e0%b9%80%e0%b8%84%e0%b8%a3%e0%b8%b7%e0%b9%88%e0%b8%ad%e0%b8%87%e0%b8%81%e0%b8%a3%e0%b8%ad%e0%b8%87%e0%b8%99%e0%b9%89%e0%b8%b3-%e0%b8%a3%e0%b8%b8%e0%b9%88%e0%b8%99-bw-d103/">เครื่องกรองน้ำ BW-D103</a></li><li><a href="https://bwell.co.th/product/%e0%b9%80%e0%b8%84%e0%b8%a3%e0%b8%b7%e0%b9%88%e0%b8%ad%e0%b8%87%e0%b8%81%e0%b8%a3%e0%b8%ad%e0%b8%87%e0%b8%99%e0%b9%89%e0%b8%b3-%e0%b8%a3%e0%b8%b8%e0%b9%88%e0%b8%99-aicsn-h3-y03d-recurring/">เครื่องกรองน้ำ AICSN-H3</a></li><li><a href="https://bwell.co.th/product/%e0%b9%80%e0%b8%84%e0%b8%a3%e0%b8%b7%e0%b9%88%e0%b8%ad%e0%b8%87%e0%b8%81%e0%b8%a3%e0%b8%ad%e0%b8%87%e0%b8%99%e0%b9%89%e0%b8%b3%e0%b9%83%e0%b8%8a%e0%b9%89%e0%b8%82%e0%b8%99%e0%b8%b2%e0%b8%94-20/">เครื่องกรองน้ำใช้ 20 นิ้ว</a></li></ul></div> <div class="gn-group gn-subs"><h3>หมวดหมู่ย่อย</h3><ul><li><a href="water-purifier.html#lineup">เครื่องกรองน้ำ</a></li><li><a href="water-purifier.html#lineup-1">ไส้กรองน้ำ</a></li><li><a href="water-purifier.html">ดูเครื่องกรองน้ำทั้งหมด</a></li></ul></div>
+    <div class="gn-group"><h3>ซื้อเครื่องกรองน้ำ</h3><ul><li><a href="https://shop.bwell.co.th/">ซื้อเครื่องกรองน้ำ</a></li><li><a href="water-purifier.html#lineup-1">ซื้อไส้กรองน้ำ</a></li><li><a href="find-store.html">ค้นหาสาขาใกล้คุณ</a></li></ul></div>
+    <div class="gn-group"><h3>เพิ่มเติม</h3><ul><li><a href="https://bwell.co.th/blog/">เลือกเครื่องกรองน้ำสำหรับบ้านและคอนโด</a></li><li><a href="https://bwell.co.th/blog/">RO กับ UF ต่างกันอย่างไร</a></li><li><a href="user-manual.html">คู่มือการใช้งาน</a></li><li><a href="warranty.html">ลงทะเบียนรับประกัน</a></li></ul></div>
+  <div class="gn-pillar-strip"><span class="lbl">อยู่ในกลุ่ม Water</span><a href="water-purifier.html" aria-current="true">เครื่องกรองน้ำ</a><a href="water-heater.html">เครื่องทำน้ำอุ่น น้ำร้อน</a></div></div>
+  <div class="gn-panel" data-panel="c-heater" data-pillar="Water">
+    <div class="gn-group is-primary"><h3>สำรวจเครื่องทำน้ำอุ่น น้ำร้อน</h3><ul><li><a href="https://bwell.co.th/product/bwell-water-heater-felix-3500w/">FELIX 3,500 / 4,500 / 5,500 W</a></li><li><a href="https://bwell.co.th/product/%e0%b9%80%e0%b8%84%e0%b8%a3%e0%b8%b7%e0%b9%88%e0%b8%ad%e0%b8%87%e0%b8%97%e0%b8%b3%e0%b8%99%e0%b9%89%e0%b8%b3%e0%b8%ad%e0%b8%b8%e0%b9%88%e0%b8%99-luka-%e0%b8%82%e0%b8%99%e0%b8%b2%e0%b8%94-4500/">LUKA 4,500 W</a></li><li><a href="https://bwell.co.th/product/bwell-%e0%b9%80%e0%b8%84%e0%b8%a3%e0%b8%b7%e0%b9%88%e0%b8%ad%e0%b8%87%e0%b8%97%e0%b8%b3%e0%b8%99%e0%b9%89%e0%b8%b3%e0%b8%ad%e0%b8%b8%e0%b9%88%e0%b8%99-elka-%e0%b8%82%e0%b8%99%e0%b8%b2%e0%b8%94-3500/">ELKA 3,500 / 5,500 W</a></li><li><a href="https://bwell.co.th/product/bwell-%e0%b9%80%e0%b8%84%e0%b8%a3%e0%b8%b7%e0%b9%88%e0%b8%ad%e0%b8%87%e0%b8%97%e0%b8%b3%e0%b8%99%e0%b9%89%e0%b8%b3%e0%b8%a3%e0%b9%89%e0%b8%ad%e0%b8%99-konrad-%e0%b8%82%e0%b8%99%e0%b8%b2%e0%b8%94-8000/">Konrad น้ำร้อน 8,000 W</a></li><li><a href="water-heater.html#which">เปรียบเทียบทุกรุ่น</a></li><li><a href="water-heater.html">ดูเครื่องทำน้ำอุ่น น้ำร้อนทั้งหมด</a></li></ul></div>
+    <div class="gn-group"><h3>ซื้อเครื่องทำน้ำอุ่น น้ำร้อน</h3><ul><li><a href="https://shop.bwell.co.th/">ซื้อเครื่องทำน้ำอุ่น</a></li><li><a href="find-store.html">ค้นหาสาขาใกล้คุณ</a></li></ul></div>
+    <div class="gn-group"><h3>เพิ่มเติม</h3><ul><li><a href="https://bwell.co.th/blog/">เลือกกำลังวัตต์ให้เหมาะกับบ้าน</a></li><li><a href="https://bwell.co.th/blog/">ระบบตัดไฟ ELCB</a></li><li><a href="user-manual.html">คู่มือการติดตั้ง</a></li><li><a href="warranty.html">ลงทะเบียนรับประกัน</a></li></ul></div>
+  <div class="gn-pillar-strip"><span class="lbl">อยู่ในกลุ่ม Water</span><a href="water-purifier.html">เครื่องกรองน้ำ</a><a href="water-heater.html" aria-current="true">เครื่องทำน้ำอุ่น น้ำร้อน</a></div></div>
+  <div class="gn-panel" data-panel="c-robot" data-pillar="Clean Home">
+    <div class="gn-group is-primary"><h3>สำรวจหุ่นยนต์ดูดฝุ่น</h3><ul><li><a href="https://bwell.co.th/product/robot-vacuum-cleaner-bwell-ultra-t20/">Ultra T20 OmniBase <span class="tag">New</span></a></li><li><a href="https://bwell.co.th/product/%e0%b8%ab%e0%b8%b8%e0%b9%88%e0%b8%99%e0%b8%a2%e0%b8%99%e0%b8%95%e0%b9%8c%e0%b8%94%e0%b8%b9%e0%b8%94%e0%b8%9d%e0%b8%b8%e0%b9%88%e0%b8%99-bwell-%e0%b8%a3%e0%b8%b8%e0%b9%88%e0%b8%99-l6c/">L6C</a></li><li><a href="https://bwell.co.th/product/%e0%b8%ab%e0%b8%b8%e0%b9%88%e0%b8%99%e0%b8%a2%e0%b8%99%e0%b8%95%e0%b9%8c%e0%b8%94%e0%b8%b9%e0%b8%94%e0%b8%9d%e0%b8%b8%e0%b9%88%e0%b8%99-bwell-l0/">L0</a></li><li><a href="https://bwell.co.th/product/%e0%b8%ab%e0%b8%b8%e0%b9%88%e0%b8%99%e0%b8%a2%e0%b8%99%e0%b8%95%e0%b9%8c%e0%b8%94%e0%b8%b9%e0%b8%94%e0%b8%9d%e0%b8%b8%e0%b9%88%e0%b8%99-bwell-%e0%b8%a3%e0%b8%b8%e0%b9%88%e0%b8%99-y1/">Y1</a></li><li><a href="robot-vacuum.html#which">เปรียบเทียบทุกรุ่น</a></li><li><a href="robot-vacuum.html">ดูหุ่นยนต์ดูดฝุ่นทั้งหมด</a></li></ul></div>
+    <div class="gn-group"><h3>ซื้อหุ่นยนต์ดูดฝุ่น</h3><ul><li><a href="https://shop.bwell.co.th/">ซื้อหุ่นยนต์ดูดฝุ่น</a></li><li><a href="robot-vacuum.html#essentials">อะไหล่และแปรง</a></li><li><a href="find-store.html">ค้นหาสาขาใกล้คุณ</a></li></ul></div>
+    <div class="gn-group"><h3>เพิ่มเติม</h3><ul><li><a href="https://bwell.co.th/blog/">รุ่นไหนเหมาะกับบ้านคุณ</a></li><li><a href="https://bwell.co.th/blog/">ดูแลแท่น OmniBase</a></li><li><a href="https://apps.apple.com/th/app/bwell/id6787315911?l=th">แอป Bwell Smart</a></li><li><a href="warranty.html">ลงทะเบียนรับประกัน</a></li></ul></div>
+  <div class="gn-pillar-strip"><span class="lbl">อยู่ในกลุ่ม Clean Home</span><a href="robot-vacuum.html" aria-current="true">หุ่นยนต์ดูดฝุ่น</a><a href="vacuum-cleaner.html">เครื่องดูดฝุ่นไร้สาย</a></div></div>
+  <div class="gn-panel" data-panel="c-cordless" data-pillar="Clean Home">
+    <div class="gn-group is-primary"><h3>สำรวจเครื่องดูดฝุ่นไร้สาย</h3><ul><li><a href="https://bwell.co.th/product/%e0%b9%80%e0%b8%84%e0%b8%a3%e0%b8%b7%e0%b9%88%e0%b8%ad%e0%b8%87%e0%b8%94%e0%b8%b9%e0%b8%94%e0%b8%9d%e0%b8%b8%e0%b9%88%e0%b8%99%e0%b9%84%e0%b8%a3%e0%b9%89%e0%b8%aa%e0%b8%b2%e0%b8%a2-t12-allergy-plus/">T12 Allergy Plus 120 AW</a></li><li><a href="https://bwell.co.th/product/vacuum-cleaner-bwell-201-a/">201A</a></li><li><a href="vacuum-cleaner.html#lineup">เปรียบเทียบทุกรุ่น</a></li></ul></div> <div class="gn-group gn-subs"><h3>หมวดหมู่ย่อย</h3><ul><li><a href="vacuum-cleaner.html#lineup">เครื่องดูดฝุ่นไร้สาย</a></li><li><a href="vacuum-cleaner.html#lineup-1">ไส้กรองและอะไหล่</a></li><li><a href="vacuum-cleaner.html">ดูเครื่องดูดฝุ่นไร้สายทั้งหมด</a></li></ul></div>
+    <div class="gn-group"><h3>ซื้อเครื่องดูดฝุ่นไร้สาย</h3><ul><li><a href="https://shop.bwell.co.th/">ซื้อเครื่องดูดฝุ่นไร้สาย</a></li><li><a href="vacuum-cleaner.html#lineup-1">หัวแปรงและไส้กรอง</a></li></ul></div>
+    <div class="gn-group"><h3>เพิ่มเติม</h3><ul><li><a href="vacuum-cleaner.html">เครื่องดูดฝุ่นสำหรับคนเป็นภูมิแพ้</a></li><li><a href="user-manual.html">คู่มือการใช้งาน</a></li><li><a href="warranty.html">ลงทะเบียนรับประกัน</a></li></ul></div>
+  <div class="gn-pillar-strip"><span class="lbl">อยู่ในกลุ่ม Clean Home</span><a href="robot-vacuum.html">หุ่นยนต์ดูดฝุ่น</a><a href="vacuum-cleaner.html" aria-current="true">เครื่องดูดฝุ่นไร้สาย</a></div></div>
+  <div class="gn-panel" data-panel="c-chair" data-pillar="Ergonomic">
+    <div class="gn-group is-primary"><h3>สำรวจเก้าอี้เพื่อสุขภาพ</h3><ul><li><a href="https://bwell.co.th/product/bwell-bjorn/">Bjorn</a></li><li><a href="https://bwell.co.th/product/bwell-chair-ergonomic-stella/">Stella</a></li><li><a href="https://bwell.co.th/product/bwell-%e0%b9%80%e0%b8%81%e0%b9%89%e0%b8%b2%e0%b8%ad%e0%b8%b5%e0%b9%89-ergonomic-%e0%b8%a3%e0%b8%b8%e0%b9%88%e0%b8%99-astrid/">Astrid</a></li><li><a href="https://bwell.co.th/product/bwell-agnes/">Agnes</a></li><li><a href="ergonomic-chair.html#which">เปรียบเทียบทุกรุ่น</a></li><li><a href="ergonomic-chair.html">ดูเก้าอี้เพื่อสุขภาพทั้งหมด</a></li></ul></div>
+    <div class="gn-group"><h3>ซื้อเก้าอี้เพื่อสุขภาพ</h3><ul><li><a href="https://shop.bwell.co.th/">ซื้อเก้าอี้เพื่อสุขภาพ</a></li><li><a href="find-store.html">ทดลองนั่งที่ Showroom</a></li><li><a href="contact.html#dealer">สั่งซื้อในนามองค์กร</a></li></ul></div>
+    <div class="gn-group"><h3>เพิ่มเติม</h3><ul><li><a href="https://bwell.co.th/blog/">ปรับเก้าอี้ให้พอดีตัว</a></li><li><a href="https://bwell.co.th/blog/">Office Syndrome และท่านั่ง</a></li><li><a href="user-manual.html">คู่มือการประกอบ</a></li><li><a href="warranty.html">ลงทะเบียนรับประกัน</a></li></ul></div>
+  <div class="gn-pillar-strip"><span class="lbl">อยู่ในกลุ่ม Ergonomic</span><a href="ergonomic-chair.html" aria-current="true">เก้าอี้เพื่อสุขภาพ</a><a href="ergonomic-cushion.html">หมอนและเบาะรองเพื่อสุขภาพ</a><a href="sport-gadgets.html">อุปกรณ์ออกกำลังกาย</a></div></div>
+  <div class="gn-panel" data-panel="c-cushion" data-pillar="Ergonomic">
+    <div class="gn-group is-primary"><h3>สำรวจหมอนและเบาะรองเพื่อสุขภาพ</h3><ul><li><a href="https://bwell.co.th/product/bwell-%e0%b8%ab%e0%b8%a1%e0%b8%ad%e0%b8%99%e0%b8%a3%e0%b8%ad%e0%b8%87%e0%b8%84%e0%b8%ad%e0%b9%80%e0%b8%9e%e0%b8%b7%e0%b9%88%e0%b8%ad%e0%b8%aa%e0%b8%b8%e0%b8%82%e0%b8%a0%e0%b8%b2%e0%b8%9e-ergonomic/">หมอนรองคอเพื่อสุขภาพ</a></li><li><a href="https://bwell.co.th/product/bwell-ergonomic-car-lumbar-cushion/">เบาะรองหลังสำหรับรถยนต์</a></li><li><a href="https://bwell.co.th/product/bwell-ergonomic-car-neck-cushion/">หมอนรองคอสำหรับรถยนต์</a></li><li><a href="https://bwell.co.th/product/bwell-%e0%b8%97%e0%b8%b5%e0%b9%88%e0%b8%a7%e0%b8%b2%e0%b8%87%e0%b9%80%e0%b8%97%e0%b9%89%e0%b8%b2%e0%b9%80%e0%b8%9e%e0%b8%b7%e0%b9%88%e0%b8%ad%e0%b8%aa%e0%b8%b8%e0%b8%82%e0%b8%a0%e0%b8%b2%e0%b8%9e/">ที่วางเท้าเพื่อสุขภาพ</a></li><li><a href="ergonomic-cushion.html">ดูหมอนและเบาะรองเพื่อสุขภาพทั้งหมด</a></li></ul></div>
+    <div class="gn-group"><h3>ซื้อหมอนและเบาะรองเพื่อสุขภาพ</h3><ul><li><a href="https://shop.bwell.co.th/">ซื้อหมอนและเบาะรอง</a></li></ul></div>
+    <div class="gn-group"><h3>เพิ่มเติม</h3><ul><li><a href="https://bwell.co.th/blog/">เลือกหมอนรองคอสำหรับเดินทาง</a></li><li><a href="https://bwell.co.th/blog/">ดูแลเมมโมรี่โฟม</a></li></ul></div>
+  <div class="gn-pillar-strip"><span class="lbl">อยู่ในกลุ่ม Ergonomic</span><a href="ergonomic-chair.html">เก้าอี้เพื่อสุขภาพ</a><a href="ergonomic-cushion.html" aria-current="true">หมอนและเบาะรองเพื่อสุขภาพ</a><a href="sport-gadgets.html">อุปกรณ์ออกกำลังกาย</a></div></div>
+  <div class="gn-panel" data-panel="c-sport" data-pillar="Ergonomic">
+    <div class="gn-group is-primary"><h3>สำรวจอุปกรณ์ออกกำลังกาย</h3><ul><li><a href="https://bwell.co.th/product/bwell-yoga-mat-move-black/">เสื่อโยคะหนาพิเศษ 12 มม.</a></li><li><a href="https://bwell.co.th/product/foam-roller-13/">Foam Roller</a></li><li><a href="sport-gadgets.html">ดูทั้งหมด</a></li></ul></div>
+    <div class="gn-group"><h3>ซื้ออุปกรณ์ออกกำลังกาย</h3><ul><li><a href="https://shop.bwell.co.th/">ซื้ออุปกรณ์ออกกำลังกาย</a></li></ul></div>
+    <div class="gn-group"><h3>เพิ่มเติม</h3><ul><li><a href="https://bwell.co.th/blog/">คลายกล้ามเนื้อหลังออกกำลังกาย</a></li></ul></div>
+  <div class="gn-pillar-strip"><span class="lbl">อยู่ในกลุ่ม Ergonomic</span><a href="ergonomic-chair.html">เก้าอี้เพื่อสุขภาพ</a><a href="ergonomic-cushion.html">หมอนและเบาะรองเพื่อสุขภาพ</a><a href="sport-gadgets.html" aria-current="true">อุปกรณ์ออกกำลังกาย</a></div></div>
+  <div class="gn-panel" data-panel="c-beauty" data-pillar="Beauty">
+    <div class="gn-group is-primary"><h3>สำรวจอุปกรณ์จัดแต่งทรงผม</h3><ul><li><a href="https://bwell.co.th/product/bldc-hot-air-styler-38-bsl02/">หวีลมร้อนดิจิตอล BSL-02</a></li><li><a href="https://bwell.co.th/product/bldc-hot-air-styler-bsl01/">ไดร์จัดแต่งทรงผม BLDC BSL-01</a></li><li><a href="https://bwell.co.th/product/hair-straightener-23-bst02/">เครื่องหนีบผม 23 / 40 มม.</a></li><li><a href="https://bwell.co.th/product/magic-air-straightener-bdr04/">เครื่องหนีบผมลมร้อน BDR-04</a></li></ul></div> <div class="gn-group gn-subs"><h3>หมวดหมู่ย่อย</h3><ul><li><a href="hair-dryer-brush.html">หวีไดร์, หวีไฟฟ้า, หวีไดร์ม้วนผม</a></li><li><a href="hair-straightener.html">เครื่องหนีบผม</a></li><li><a href="hair-curler.html">เครื่องดัดผม, เครื่องม้วนผม</a></li><li><a href="hair-dryer.html">ไดร์เป่าผม</a></li><li><a href="hair-styling-tools.html">ดูอุปกรณ์จัดแต่งทรงผมทั้งหมด</a></li></ul></div>
+    <div class="gn-group"><h3>ซื้ออุปกรณ์จัดแต่งทรงผม</h3><ul><li><a href="https://shop.bwell.co.th/">ซื้อเครื่องจัดแต่งทรงผม</a></li><li><a href="https://shopee.co.th/bwell">ซื้อบน Shopee / Lazada</a></li></ul></div>
+    <div class="gn-group"><h3>เพิ่มเติม</h3><ul><li><a href="https://bwell.co.th/blog/">หวีม้วนผมไฟฟ้า เลือกอย่างไร</a></li><li><a href="https://bwell.co.th/blog/">ไดร์เป่าผมแห้งไว ทำงานอย่างไร</a></li><li><a href="warranty.html">ลงทะเบียนรับประกัน</a></li></ul></div>
+  <div class="gn-pillar-strip"><span class="lbl">อยู่ในกลุ่ม Beauty</span><a href="hair-styling-tools.html" aria-current="true">อุปกรณ์จัดแต่งทรงผม</a></div></div>
+  <div class="gn-panel" data-panel="c-filters" data-pillar="Air">
+    <div class="gn-group is-primary"><h3>สำรวจแผ่นฟอกอากาศ</h3><ul><li><a href="https://bwell.co.th/product/%e0%b8%8a%e0%b8%b8%e0%b8%94%e0%b9%81%e0%b8%9c%e0%b9%88%e0%b8%99%e0%b8%9f%e0%b8%ad%e0%b8%81%e0%b8%ad%e0%b8%b2%e0%b8%81%e0%b8%b2%e0%b8%a8-%e0%b8%a3%e0%b8%b8%e0%b9%88%e0%b8%99-ap-h3029us/">ชุดแผ่นฟอก AP-H3029US</a></li><li><a href="https://bwell.co.th/product/%e0%b8%8a%e0%b8%b8%e0%b8%94%e0%b9%81%e0%b8%9c%e0%b9%88%e0%b8%99%e0%b8%9f%e0%b8%ad%e0%b8%81%e0%b8%ad%e0%b8%b2%e0%b8%81%e0%b8%b2%e0%b8%a8-cf-8428/">ชุดแผ่นฟอก CF-8428</a></li><li><a href="https://bwell.co.th/product/%e0%b8%8a%e0%b8%b8%e0%b8%94%e0%b9%84%e0%b8%aa%e0%b9%89%e0%b8%81%e0%b8%a3%e0%b8%ad%e0%b8%87%e0%b8%ad%e0%b8%b2%e0%b8%81%e0%b8%b2%e0%b8%a8-%e0%b8%a3%e0%b8%b8%e0%b9%88%e0%b8%99-ap-8119us/">ชุดแผ่นฟอก AP-8119US</a></li><li><a href="https://bwell.co.th/product/%e0%b8%8a%e0%b8%b8%e0%b8%94%e0%b9%81%e0%b8%9c%e0%b9%88%e0%b8%99%e0%b8%9f%e0%b8%ad%e0%b8%81%e0%b8%ad%e0%b8%b2%e0%b8%81%e0%b8%b2%e0%b8%a8-cf-8005/">ชุดแผ่นฟอก CF-8005</a></li><li><a href="https://bwell.co.th/product/%e0%b8%8a%e0%b8%b8%e0%b8%94%e0%b9%81%e0%b8%9c%e0%b9%88%e0%b8%99%e0%b8%9f%e0%b8%ad%e0%b8%81%e0%b8%ad%e0%b8%b2%e0%b8%81%e0%b8%b2%e0%b8%a8-ac-2103/">ชุดแผ่นฟอก AC-2103 / AC-2104</a></li><li><a href="air-purification-filters.html">ดูทั้งหมด</a></li></ul></div>
+    <div class="gn-group"><h3>ซื้อแผ่นฟอกอากาศ</h3><ul><li><a href="air-purification-filters.html">ซื้อแผ่นฟอกอากาศ</a></li><li><a href="air-purification-filters.html">ค้นหาไส้กรองตรงรุ่น</a></li></ul></div>
+    <div class="gn-group"><h3>เพิ่มเติม</h3><ul><li><a href="https://bwell.co.th/blog/">เปลี่ยนไส้กรองเมื่อไหร่</a></li><li><a href="air-purification-filters.html">วิธีเปลี่ยนและรีเซ็ตไส้กรอง</a></li></ul></div>
+  <div class="gn-pillar-strip"><span class="lbl">อยู่ในกลุ่ม Air</span><a href="air-purifier.html">เครื่องฟอกอากาศ</a><a href="air-dehumidifier.html">เครื่องลดความชื้น</a><a href="portable-air-conditioner.html">แอร์เคลื่อนที่</a><a href="air-purification-filters.html" aria-current="true">แผ่นฟอกอากาศ</a></div></div>
+  <!-- SEARCH -->
+  <div class="gn-panel" data-panel="search" style="display:none;grid-template-columns:1fr">
+    <div class="gn-search" style="padding:0;grid-column:1/-1">
+      <form role="search" onsubmit="return false">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><circle cx="11" cy="11" r="7"></circle><path d="M20 20l-3.6-3.6"></path></svg>
+        <input id="gnSearchInput" type="search" placeholder="ค้นหาสินค้า รุ่น หรือคู่มือ" aria-label="ค้นหา" autocomplete="off">
+      </form>
+      <h3>ลิงก์ด่วน</h3>
+      <ul>
+        <li><a href="robot-vacuum.html">หุ่นยนต์ดูดฝุ่น Ultra T20</a></li>
+        <li><a href="air-purifier.html">เครื่องฟอกอากาศสำหรับห้องนอน</a></li>
+        <li><a href="air-purification-filters.html">ไส้กรองตรงรุ่น</a></li>
+        <li><a href="warranty.html">ลงทะเบียนรับประกัน</a></li>
+        <li><a href="find-store.html">ค้นหาสาขา</a></li>
+      </ul>
+    </div>
+  </div>
+</div>
+
+<!-- Mobile drawer -->
+<div class="gn-drawer" id="gnDrawer" aria-hidden="true">
+  <div class="gn-drawer-track">
+    <div class="gn-drawer-pane">
+      <label class="gn-drawer-search"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><circle cx="11" cy="11" r="7"></circle><path d="M20 20l-3.6-3.6"></path></svg><input type="search" placeholder="ค้นหาสินค้า รุ่น หรือคู่มือ" aria-label="ค้นหา"></label>
+      <ul class="gn-drawer-root" id="gnDrawerRoot"><li><button data-sub="c-airpurifier">เครื่องฟอกอากาศ</button></li><li><button data-sub="c-beauty">อุปกรณ์จัดแต่งทรงผม</button></li><li><button data-sub="c-chair">เก้าอี้เพื่อสุขภาพ</button></li><li><button data-sub="c-cushion">หมอนและเบาะรองเพื่อสุขภาพ</button></li><li><button data-sub="c-heater">เครื่องทำน้ำอุ่น น้ำร้อน</button></li><li><button data-sub="c-water">เครื่องกรองน้ำ</button></li><li><button data-sub="c-dehum">เครื่องลดความชื้น</button></li><li><button data-sub="c-pac">แอร์เคลื่อนที่</button></li><li><button data-sub="c-cordless">เครื่องดูดฝุ่นไร้สาย</button></li><li><button data-sub="c-robot">หุ่นยนต์ดูดฝุ่น</button></li><li><button data-sub="c-sport">อุปกรณ์ออกกำลังกาย</button></li><li><button data-sub="support">บริการช่วยเหลือ</button></li><li><button data-sub="store">ซื้อสินค้า</button></li></ul>
+    </div>
+    <div class="gn-drawer-pane gn-sub" id="gnDrawerSub">
+      <button class="gn-back" id="gnBack">เมนูหลัก</button>
+      <div id="gnSubContent"></div>
+    </div>
+  </div>
+</div>
+
+
+<!-- ============ RIBBON ============ -->
+<div class="ribbon" role="region" aria-label="ข่าวสาร">
+  <p>ใหม่ Ultra T20 OmniBase <span class="nw">ดูด ถู ซัก เป่าแห้ง</span> <span class="nw">จบในแท่นเดียว</span> <a data-nav="home/ribbon/t20" href="https://bwell.co.th/product/robot-vacuum-cleaner-bwell-ultra-t20/">ดูรายละเอียด</a></p>
+</div>
+
+<main id="main">
+  <!-- ============ HERO 1 · Ultra T20 (dark, full-bleed art direction) ============ -->
+  <section class="hero-banner" aria-label="ผลิตภัณฑ์ Bwell" style="margin:0 0 12px;background:#F2F3F5;line-height:0"><img src="data:image/webp;base64,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" alt="ผลิตภัณฑ์ Bwell ทุกหมวดหมู่" width="1400" height="490" fetchpriority="high" style="display:block;width:100%;height:auto;aspect-ratio:1400/490;object-fit:cover"></section>
+
+  <!-- ============ HERO 2 · Air purifier (light) ============ -->
+  <section class="hero hero-light" aria-labelledby="h-air">
+    <div class="hero-copy center">
+      <h2 id="h-air" class="headline">เครื่องฟอกอากาศ AP-H3029US</h2>
+      <p class="subhead">หายใจสะอาด ทั้งบ้าน</p>
+      <p class="detail">สำหรับห้อง 40–80 ตร.ม. กรอง 8 ขั้นตอน<sup><a href="#fn1">1</a></sup></p>
+      <div class="ctas"><a class="pill pill-fill"  data-nav="home/x/air/buy" href="https://shop.bwell.co.th/">สั่งซื้อ</a><a class="pill pill-line"  data-nav="home/x/air/learn" href="air-purifier.html">ดูรายละเอียด</a></div>
+    </div>
+    <img class="hero-product" src="https://bwellcoth29b89.zapwp.com/wp-content/uploads/2024/11/PSD-mock-up-AP-H3029US-001.webp" alt="เครื่องฟอกอากาศ Bwell AP-H3029US" width="425" height="789" loading="lazy">
+  </section>
+
+  <!-- ============ PROMO GRID · 2 × 3 ============ -->
+  <section class="grid" aria-label="สินค้าแนะนำ">
+    <article class="tile t-cool">
+      <div class="tile-copy reveal">
+        <h3 class="tile-title">เครื่องลดความชื้น</h3>
+        <p class="tile-sub">บ้านแห้งสบาย ไม่อับชื้น</p>
+        <p class="tile-detail">BDH-30A · ห้อง 20–40 ตร.ม. · 30 ลิตร/วัน<sup><a href="#fn1">1</a></sup></p>
+        <div class="ctas sm"><a class="pill pill-fill"  data-nav="home/x/dehum/buy" href="https://shop.bwell.co.th/">สั่งซื้อ</a><a class="pill pill-line"  data-nav="home/x/dehum/learn" href="air-dehumidifier.html">ดูรายละเอียด</a></div>
+      </div>
+      <img class="tile-img" src="https://bwellcoth29b89.zapwp.com/wp-content/uploads/2025/06/BDH-30A-001.webp" alt="เครื่องลดความชื้น Bwell BDH-30A" width="509" height="749" loading="lazy">
+    </article>
+
+    <article class="tile t-white">
+      <div class="tile-copy reveal">
+        <h3 class="tile-title">เครื่องกรองน้ำ RO</h3>
+        <p class="tile-sub">น้ำดื่มสะอาด จากก๊อกในครัว</p>
+        <p class="tile-detail">ระบบ RO แบบไร้ถังพักน้ำ ประหยัดพื้นที่ใต้ซิงก์</p>
+        <div class="ctas sm"><a class="pill pill-fill"  data-nav="home/x/water/buy" href="https://shop.bwell.co.th/">สั่งซื้อ</a><a class="pill pill-line"  data-nav="home/x/water/learn" href="water-purifier.html">ดูรายละเอียด</a></div>
+      </div>
+      <img class="tile-img tile-img-sm" src="https://bwellcoth29b89.zapwp.com/wp-content/uploads/2022/10/bwell_RO-400x400.webp?src=png" alt="เครื่องกรองน้ำ Bwell RO แบบไร้ถัง" width="234" height="387" loading="lazy">
+    </article>
+
+    <article class="tile t-white">
+      <div class="tile-copy reveal">
+        <h3 class="tile-title">เก้าอี้เพื่อสุขภาพ Bjorn</h3>
+        <p class="tile-sub">นั่งนาน ไม่ปวดหลัง</p>
+        <p class="tile-detail">พนักพิงศีรษะ 3D · Support Pad รองรับหลังล่าง 6 ชิ้น</p>
+        <div class="ctas sm"><a class="pill pill-fill"  data-nav="home/x/chair/buy" href="https://shop.bwell.co.th/">สั่งซื้อ</a><a class="pill pill-line"  data-nav="home/x/chair/learn" href="ergonomic-chair.html">ดูรายละเอียด</a></div>
+      </div>
+      <img class="tile-img" src="https://bwellcoth29b89.zapwp.com/wp-content/uploads/2024/06/black-bjorn-004.webp" alt="เก้าอี้เพื่อสุขภาพ Bwell Bjorn สีดำ" width="443" height="777" loading="lazy">
+    </article>
+
+    <article class="tile t-blush">
+      <div class="tile-copy reveal">
+        <p class="tile-brand">Bwell Beauty</p>
+        <h3 class="tile-title">หวีไดร์ BLDC BSL-01</h3>
+        <p class="tile-sub">เป่าแห้งและจัดทรง ในขั้นตอนเดียว</p>
+        <div class="ctas sm"><a class="pill pill-fill"  data-nav="home/x/beauty/buy" href="https://shop.bwell.co.th/">สั่งซื้อ</a><a class="pill pill-line"  data-nav="home/x/beauty/learn" href="hair-styling-tools.html">ดูรายละเอียด</a></div>
+      </div>
+      <img class="tile-img" src="https://bwellcoth29b89.zapwp.com/wp-content/uploads/2025/10/undefined-18-e1766399784813.webp" alt="หวีไดร์จัดแต่งทรงผม Bwell BSL-01" width="259" height="962" loading="lazy">
+    </article>
+
+    <article class="tile t-cool">
+      <div class="tile-copy reveal">
+        <h3 class="tile-title">เครื่องทำน้ำอุ่น FELIX</h3>
+        <p class="tile-sub">อุ่นไว ปลอดภัยทุกครั้งที่อาบ</p>
+        <p class="tile-detail">3,500 / 4,500 / 5,500 วัตต์ · ระบบตัดไฟอัตโนมัติ</p>
+        <div class="ctas sm"><a class="pill pill-fill"  data-nav="home/x/heater/buy" href="https://shop.bwell.co.th/">สั่งซื้อ</a><a class="pill pill-line"  data-nav="home/x/heater/learn" href="water-heater.html">ดูรายละเอียด</a></div>
+      </div>
+      <img class="tile-img" src="https://bwellcoth29b89.zapwp.com/wp-content/uploads/2024/10/BSH-3512-001.webp" alt="เครื่องทำน้ำอุ่น Bwell FELIX" width="640" height="739" loading="lazy">
+    </article>
+
+    <article class="tile t-white">
+      <div class="tile-copy reveal">
+        <h3 class="tile-title">แอร์เคลื่อนที่</h3>
+        <p class="tile-sub">เย็นทันที ไม่ต้องเจาะผนัง</p>
+        <p class="tile-detail">BPAC-12B 12,000 BTU · BPAC-09B 9,000 BTU<sup><a href="#fn1">1</a></sup></p>
+        <div class="ctas sm"><a class="pill pill-fill"  data-nav="home/x/pac/buy" href="https://shop.bwell.co.th/">สั่งซื้อ</a><a class="pill pill-line"  data-nav="home/x/pac/learn" href="portable-air-conditioner.html">ดูรายละเอียด</a></div>
+      </div>
+      <img class="tile-img" src="https://bwellcoth29b89.zapwp.com/wp-content/uploads/2024/04/BPAC-09B-001.webp" alt="แอร์เคลื่อนที่ Bwell BPAC" width="416" height="768" loading="lazy">
+    </article>
+  </section>
+
+  <!-- ============ GALLERY · lifestyle carousel ============ -->
+  <section class="gallery" aria-roledescription="carousel" aria-label="Bwell ในทุกห้องของบ้าน">
+    <h2 class="gallery-title reveal">ดีต่อสุขภาพ <span class="nw">ในทุกห้องของบ้าน</span></h2>
+    <div class="g-viewport" id="gViewport">
+      <ul class="g-track" id="gTrack" style="transform: translateX(402.5px);">
+        <li class="g-slide is-current" aria-roledescription="slide" aria-label="1 จาก 3" aria-hidden="false">
+          <div class="g-comp"><img class="h-st" src="https://bwellcoth29b89.zapwp.com/wp-content/uploads/2026/09/T20-Station-Packshot-Side-Left.webp" alt="หุ่นยนต์ดูดฝุ่น Bwell Ultra T20 คู่กับแท่น OmniBase" loading="lazy"><img class="h-rb" src="https://bwellcoth29b89.zapwp.com/wp-content/uploads/2026/09/T20-Packshot-3-scaled.webp" alt="" loading="lazy"></div>
+          <div class="g-cap"><p class="g-kicker">ใหม่ · Ultra T20</p><p class="g-text">แรงดูดสูงสุด 22,000Pa แท่น OmniBase ซักและเป่าม็อบแห้งให้อัตโนมัติ</p><a class="pill pill-light" data-nav="home/gallery/t20" href="https://bwell.co.th/product/robot-vacuum-cleaner-bwell-ultra-t20/" tabindex="0">ดูรายละเอียด</a></div>
+        </li>
+        <li class="g-slide" aria-roledescription="slide" aria-label="2 จาก 3" aria-hidden="true">
+          <picture><img src="https://bwell-redesign-preview.netlify.app/assets/img/hero-lineup.webp" style="object-fit:contain;background:#fff" alt="สินค้า Bwell แอร์เคลื่อนที่ เก้าอี้เพื่อสุขภาพ อุปกรณ์จัดแต่งทรงผม เครื่องลดความชื้น เครื่องกรองน้ำ เครื่องฟอกอากาศ เครื่องทำน้ำอุ่น เครื่องดูดฝุ่นไร้สาย และหุ่นยนต์ดูดฝุ่น" width="2200" height="1238" loading="lazy"></picture>
+          <div class="g-cap"><p class="g-kicker">บ้านทั้งหลัง</p><p class="g-text">อากาศ น้ำ และพื้นบ้าน ดูแลครบด้วย Home Environment Wellness</p><a class="pill pill-light" href="https://bwell.co.th/product-bwell/" data-nav="home/gallery/home" tabindex="-1">สำรวจสินค้าทั้งหมด</a></div>
+        </li>
+        <li class="g-slide g-slot" aria-roledescription="slide" aria-label="3 จาก 3" aria-hidden="true">
+          <div class="g-slot-note"><b>ช่องภาพ lifestyle จริง</b><span>[รอภาพจาก shoot ตาม brief ใน Spec · desktop 2200×1238 · mobile 656×820 ขึ้นไป]</span></div>
+          <div class="g-cap"><p class="g-kicker">ในบ้านจริง</p><p class="g-text">[copy ตามฉากที่ได้จาก shoot]</p></div>
+        </li>
+      </ul>
+    </div>
+    <div class="g-controls">
+      <div class="g-dots" id="gDots" role="tablist" aria-label="เลือกสไลด์"><button type="button" role="tab" aria-label="สไลด์ 1" aria-selected="true" tabindex="0"></button><button type="button" role="tab" aria-label="สไลด์ 2" aria-selected="false" tabindex="-1"></button><button type="button" role="tab" aria-label="สไลด์ 3" aria-selected="false" tabindex="-1"></button></div>
+      <button class="g-play" id="gPlay" aria-label="หยุดเล่นอัตโนมัติ" data-state="playing"><span class="i-pause" aria-hidden="true"></span><span class="i-play" aria-hidden="true"></span></button>
+    </div>
+  </section>
+
+  <!-- ============ TRUST STRIP (Bwell addition) ============ -->
+  <section class="trust" aria-label="ทำไมต้องซื้อกับ Bwell">
+    <h2 class="trust-title">ทำไมต้องซื้อกับ Bwell</h2>
+    <ul class="trust-list">
+      <li><svg viewBox="0 0 32 32" aria-hidden="true"><path d="M16 4l10 4v7c0 6.5-4.3 11.2-10 13-5.7-1.8-10-6.5-10-13V8l10-4z" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round"></path><path d="M11.5 16.2l3.2 3.2 6-6.4" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path></svg><h3>ดูแลสุขภาพคนไทยตั้งแต่ปี 2011</h3><p>แบรนด์ไทยที่เริ่มจากการทำงานร่วมกับแพทย์</p></li>
+      <li><svg viewBox="0 0 32 32" aria-hidden="true"><rect x="6" y="9" width="20" height="16" rx="3" fill="none" stroke="currentColor" stroke-width="2"></rect><path d="M11 9V7a5 5 0 0 1 10 0v2M16 15v4" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"></path></svg><h3>รับประกันศูนย์ Bwell</h3><p>[ระยะเวลารับประกันตามรุ่น · ยืนยันเงื่อนไข]</p></li>
+      <li><svg viewBox="0 0 32 32" aria-hidden="true"><path d="M6 8h20v13H13l-5 4v-4H6z" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round"></path><path d="M11 13h10M11 17h6" stroke="currentColor" stroke-width="2" stroke-linecap="round"></path></svg><h3>ปรึกษาผู้เชี่ยวชาญผ่าน LINE</h3><p>ช่วยเลือกรุ่นให้พอดีกับห้องและการใช้งาน</p></li>
+      <li><svg viewBox="0 0 32 32" aria-hidden="true"><path d="M16 28s9-8.2 9-15a9 9 0 0 0-18 0c0 6.8 9 15 9 15z" fill="none" stroke="currentColor" stroke-width="2"></path><circle cx="16" cy="13" r="3.2" fill="none" stroke="currentColor" stroke-width="2"></circle></svg><h3>ลองของจริงที่หน้าร้าน</h3><p>Showroom เจริญราษฎร์ · Flagship Store CDC · Central · HomePro · PowerBuy</p></li>
+    </ul>
+  </section>
+
+  <!-- ============ BUY-FROM STRIP ============ -->
+  <section class="buyfrom" aria-label="ช่องทางสั่งซื้อ">
+    <p class="buyfrom-title">สั่งซื้อได้ที่ร้านค้าทางการ</p>
+    <ul class="buyfrom-list">
+      <li><a href="https://shop.bwell.co.th/" data-nav="home/buyfrom/bwellshop">Bwell Shop</a></li>
+      <li><a href="https://shopee.co.th/bwell" data-nav="home/buyfrom/shopee">Shopee</a></li>
+      <li><a href="https://www.lazada.co.th/shop/bwell1630384141" data-nav="home/buyfrom/lazada">Lazada</a></li>
+      <li><a href="https://www.tiktok.com/@bwell.group" data-nav="home/buyfrom/tiktok">TikTok Shop</a></li>
+      <li><a href="find-store.html" data-nav="home/buyfrom/stores">ค้นหาสาขา ›</a></li>
+    </ul>
+  </section>
+</main>
+
+<!-- ============ FOOTER ============ -->
+<footer class="ft" aria-label="ส่วนท้าย">
+  <div class="ft-inner">
+    <ol class="ft-notes">
+      <li id="fn1">ขนาดห้อง ขั้นตอนการกรอง อัตราลดความชื้น และ BTU อ้างอิงจากชื่อและรายละเอียดสินค้าบน bwell.co.th ณ วันที่ 29 ก.ย. 2026 ผลการใช้งานจริงขึ้นอยู่กับสภาพห้อง</li>
+      <li>ภาพ Ultra T20 ในส่วนหัวของหน้าเป็นภาพประกอบ</li>
+    </ol>
+    <nav class="ft-dir" aria-label="สารบัญเว็บไซต์ Bwell">
+      <div class="ft-col">
+        <details class="ft-sec" open=""><summary>เลือกซื้อและเรียนรู้</summary><ul><li><a href="https://bwell.co.th/product-bwell/" data-nav="home/footer/เลือกซื้อและเรียนรู้/สินค้าทั้งหมด">สินค้าทั้งหมด</a></li><li><a href="air-purifier.html" data-nav="home/footer/เลือกซื้อและเรียนรู้/เครื่องฟอกอากาศ">เครื่องฟอกอากาศ</a></li><li><a href="air-purifier-car.html" data-nav="home/footer/เลือกซื้อและเรียนรู้/เครื่องฟอกอากาศพกพา">เครื่องฟอกอากาศพกพา</a></li><li><a href="air-purification-filters.html" data-nav="home/footer/เลือกซื้อและเรียนรู้/แผ่นฟอกอากาศ">แผ่นฟอกอากาศ</a></li><li><a href="air-dehumidifier.html" data-nav="home/footer/เลือกซื้อและเรียนรู้/เครื่องลดความชื้น">เครื่องลดความชื้น</a></li><li><a href="portable-air-conditioner.html" data-nav="home/footer/เลือกซื้อและเรียนรู้/แอร์เคลื่อนที่">แอร์เคลื่อนที่</a></li><li><a href="water-purifier.html" data-nav="home/footer/เลือกซื้อและเรียนรู้/เครื่องกรองน้ำ">เครื่องกรองน้ำ</a></li><li><a href="water-heater.html" data-nav="home/footer/เลือกซื้อและเรียนรู้/เครื่องทำน้ำอุ่น-น้ำร้อน">เครื่องทำน้ำอุ่น น้ำร้อน</a></li><li><a data-nav="home/footer/เลือกซื้อและเรียนรู้/หุ่นยนต์ดูดฝุ่น" href="robot-vacuum.html">หุ่นยนต์ดูดฝุ่น</a></li><li><a href="vacuum-cleaner.html" data-nav="home/footer/เลือกซื้อและเรียนรู้/เครื่องดูดฝุ่นไร้สาย">เครื่องดูดฝุ่นไร้สาย</a></li><li><a href="ergonomic-chair.html" data-nav="home/footer/เลือกซื้อและเรียนรู้/เก้าอี้เพื่อสุขภาพ">เก้าอี้เพื่อสุขภาพ</a></li><li><a href="ergonomic-cushion.html" data-nav="home/footer/เลือกซื้อและเรียนรู้/หมอนและเบาะรองเพื่อสุขภาพ">หมอนและเบาะรองเพื่อสุขภาพ</a></li><li><a href="sport-gadgets.html" data-nav="home/footer/เลือกซื้อและเรียนรู้/อุปกรณ์ออกกำลังกาย">อุปกรณ์ออกกำลังกาย</a></li><li><a href="hair-styling-tools.html" data-nav="home/footer/เลือกซื้อและเรียนรู้/อุปกรณ์จัดแต่งทรงผม">อุปกรณ์จัดแต่งทรงผม</a></li></ul></details>
+      </div>
+      <div class="ft-col">
+        <details class="ft-sec" open=""><summary>ร้านค้าออนไลน์</summary><ul><li><a href="https://shop.bwell.co.th/" data-nav="home/footer/ร้านค้าออนไลน์/Bwell-Shop">Bwell Shop</a></li><li><a href="https://shopee.co.th/bwell" data-nav="home/footer/ร้านค้าออนไลน์/Shopee">Shopee</a></li><li><a href="https://www.lazada.co.th/shop/bwell1630384141" data-nav="home/footer/ร้านค้าออนไลน์/Lazada">Lazada</a></li><li><a href="https://www.tiktok.com/@bwell.group" data-nav="home/footer/ร้านค้าออนไลน์/TikTok-Shop">TikTok Shop</a></li></ul></details>
+        <details class="ft-sec" open=""><summary>แอป Bwell</summary><ul><li><a href="https://apps.apple.com/th/app/bwell/id6787315911?l=th" data-nav="home/footer/แอป-Bwell/ดาวน์โหลดบน-App-Store">ดาวน์โหลดบน App Store</a></li><li><a href="https://play.google.com/store/apps/details?id=com.bwell.smart" data-nav="home/footer/แอป-Bwell/ดาวน์โหลดบน-Google-Play">ดาวน์โหลดบน Google Play</a></li></ul></details>
+      </div>
+      <div class="ft-col">
+        <details class="ft-sec" open=""><summary>หน้าร้าน Bwell</summary><ul><li><a href="find-store.html" data-nav="home/footer/หน้าร้าน-Bwell/ค้นหาสาขาของ-Bwell">ค้นหาสาขาของ Bwell</a></li><li><a href="https://bwell.co.th/%e0%b8%8a%e0%b9%88%e0%b8%ad%e0%b8%87%e0%b8%97%e0%b8%b2%e0%b8%87%e0%b8%88%e0%b8%b1%e0%b8%94%e0%b8%88%e0%b8%b3%e0%b8%ab%e0%b8%99%e0%b9%88%e0%b8%b2%e0%b8%a2/" data-nav="home/footer/หน้าร้าน-Bwell/ช่องทางจัดจำหน่าย">ช่องทางจัดจำหน่าย</a></li><li><a href="find-store.html" data-nav="home/footer/หน้าร้าน-Bwell/Showroom-เจริญราษฎร์">Showroom เจริญราษฎร์</a></li><li><a href="find-store.html" data-nav="home/footer/หน้าร้าน-Bwell/Flagship-Store-CDC">Flagship Store CDC</a></li><li><a href="find-store.html" data-nav="home/footer/หน้าร้าน-Bwell/Central-·-HomePro-·-PowerBuy">Central · HomePro · PowerBuy</a></li></ul></details>
+      </div>
+      <div class="ft-col">
+        <details class="ft-sec" open=""><summary>บริการหลังการขาย</summary><ul><li><a href="warranty.html" data-nav="home/footer/บริการหลังการขาย/ลงทะเบียนรับประกันสินค้า">ลงทะเบียนรับประกันสินค้า</a></li><li><a href="faq.html" data-nav="home/footer/บริการหลังการขาย/คำถามที่พบบ่อย">คำถามที่พบบ่อย</a></li><li><a href="user-manual.html" data-nav="home/footer/บริการหลังการขาย/คู่มือการใช้งานเครื่องฟอกอากาศ">คู่มือการใช้งานเครื่องฟอกอากาศ</a></li><li><a href="warranty-policy.html" data-nav="home/footer/บริการหลังการขาย/นโยบายคืนเงินและรับประกันสินค้า">นโยบายคืนเงินและรับประกันสินค้า</a></li><li><a href="shipping-policy.html" data-nav="home/footer/บริการหลังการขาย/นโยบายการจัดส่งสินค้า">นโยบายการจัดส่งสินค้า</a></li></ul></details>
+        <details class="ft-sec" open=""><summary>สำหรับองค์กร</summary><ul><li><a href="https://bwell.co.th/%e0%b8%a5%e0%b8%b9%e0%b8%81%e0%b8%84%e0%b9%89%e0%b8%b2%e0%b8%82%e0%b8%ad%e0%b8%87%e0%b9%80%e0%b8%a3%e0%b8%b2/" data-nav="home/footer/สำหรับองค์กร/ลูกค้าของเรา">ลูกค้าของเรา</a></li></ul></details>
+      </div>
+      <div class="ft-col">
+        <details class="ft-sec" open=""><summary>เกี่ยวกับ Bwell</summary><ul><li><a href="https://bwell.co.th/about-us/" data-nav="home/footer/เกี่ยวกับ-Bwell/เกี่ยวกับแบรนด์">เกี่ยวกับแบรนด์</a></li><li><a href="https://bwell.co.th/whybwell/" data-nav="home/footer/เกี่ยวกับ-Bwell/ทำไมต้อง-Bwell">ทำไมต้อง Bwell</a></li><li><a href="https://bwell.co.th/blog/" data-nav="home/footer/เกี่ยวกับ-Bwell/บทความ">บทความ</a></li><li><a href="contact.html" data-nav="home/footer/เกี่ยวกับ-Bwell/ติดต่อเรา">ติดต่อเรา</a></li></ul></details>
+        <details class="ft-sec" open=""><summary>ติดตาม Bwell</summary><ul><li><a href="https://lin.ee/xULzTdA" data-nav="home/footer/ติดตาม-Bwell/LINE-Official-Account">LINE Official Account</a></li><li><a href="https://www.facebook.com/bwellgroup/" data-nav="home/footer/ติดตาม-Bwell/Facebook">Facebook</a></li></ul></details>
+      </div>
+    </nav>
+    <div class="ft-legal">
+      <p class="ft-shop">ช่องทางอื่นในการสั่งซื้อ: <a href="find-store.html" data-nav="home/footer/shop/findbwell">ค้นหาสาขาของ Bwell</a> หรือ<a href="https://bwell.co.th/%e0%b8%8a%e0%b9%88%e0%b8%ad%e0%b8%87%e0%b8%97%e0%b8%b2%e0%b8%87%e0%b8%88%e0%b8%b1%e0%b8%94%e0%b8%88%e0%b8%b3%e0%b8%ab%e0%b8%99%e0%b9%88%e0%b8%b2%e0%b8%a2/" data-nav="home/footer/shop/dealers">ช่องทางจัดจำหน่าย</a>ใกล้คุณ หรือโทร 02-294-3211</p>
+      <div class="ft-legal-row"><p>© 2026 B-Well International Co., Ltd. สงวนลิขสิทธิ์</p><ul><li><a href="https://bwell.co.th/privacy-policy/" data-nav="home/footer/legal/นโยบายความเป็นส่วนตัว">นโยบายความเป็นส่วนตัว</a></li><li><a href="https://bwell.co.th/cookies-policy/" data-nav="home/footer/legal/นโยบายการใช้คุกกี้">นโยบายการใช้คุกกี้</a></li><li><a href="shipping-policy.html" data-nav="home/footer/legal/นโยบายการจัดส่งสินค้า">นโยบายการจัดส่งสินค้า</a></li><li><a href="warranty-policy.html" data-nav="home/footer/legal/นโยบายคืนเงินและรับประกันสินค้า">นโยบายคืนเงินและรับประกันสินค้า</a></li></ul></div>
+    </div>
+  </div>
+</footer>
+
+<!-- ============ SPEC (for agency) ============ -->
+<script>
+(function(){
+  const root=document.documentElement, body=document.body;
+  const nav=document.getElementById('gn'), fly=document.getElementById('gnFlyout'), curtain=document.getElementById('gnCurtain');
+  const list=document.getElementById('gnList'), drawerRoot=document.getElementById('gnDrawerRoot');
+  const panels=[...fly.querySelectorAll('.gn-panel')];
+  const canHover=window.matchMedia('(hover:hover) and (pointer:fine)').matches;
+
+  /* Variants: label + panel key. bp = viewport width below which the bar collapses to the mobile drawer */
+  const VARIANTS={
+    pillars:{bp:1024,items:[['Air','air'],['Water','water'],['Clean Home','clean'],['Ergonomic','ergo'],['Beauty','beauty'],['บริการช่วยเหลือ','support']]},
+    ba:{bp:1180,grouped:true,items:[['เครื่องฟอกอากาศ','c-airpurifier'],['อุปกรณ์จัดแต่งทรงผม','c-beauty'],['เก้าอี้เพื่อสุขภาพ','c-chair'],['หมอนและเบาะรองเพื่อสุขภาพ','c-cushion','wide'],['เครื่องทำน้ำอุ่น น้ำร้อน','c-heater'],['เครื่องกรองน้ำ','c-water'],['เครื่องลดความชื้น','c-dehum'],['แอร์เคลื่อนที่','c-pac'],['เครื่องดูดฝุ่นไร้สาย','c-cordless','wide'],['หุ่นยนต์ดูดฝุ่น','c-robot'],['อุปกรณ์ออกกำลังกาย','c-sport','wide'],['บริการช่วยเหลือ','support']]},
+    hybrid:{bp:1180,items:[['เครื่องฟอกอากาศ','c-airpurifier'],['เครื่องลดความชื้น','c-dehum'],['แอร์เคลื่อนที่','c-pac'],['เครื่องกรองน้ำ','c-water'],['เครื่องทำน้ำอุ่น','c-heater'],['หุ่นยนต์ดูดฝุ่น','c-robot'],['เก้าอี้เพื่อสุขภาพ','c-chair'],['Beauty','c-beauty'],['บริการช่วยเหลือ','support']]},
+    flat:{bp:1280,items:[['ฟอกอากาศ','c-airpurifier'],['ลดความชื้น','c-dehum'],['แอร์เคลื่อนที่','c-pac'],['กรองน้ำ','c-water'],['น้ำอุ่น','c-heater'],['หุ่นยนต์ดูดฝุ่น','c-robot'],['ดูดฝุ่นไร้สาย','c-cordless'],['เก้าอี้','c-chair'],['หมอนเบาะรอง','c-cushion'],['ออกกำลังกาย','c-sport'],['จัดแต่งทรงผม','c-beauty'],['ช่วยเหลือ','support']]}
+  };
+  let variant='ba', items=[], openKey=null, hoverTimer=null, closeTimer=null, lastTrigger=null;
+  const isDesktop=()=>window.innerWidth>=VARIANTS[variant].bp;
+  const panelFor=key=>panels.find(p=>p.dataset.panel===key);
+
+  function open(key,trigger){
+    if(!isDesktop()) return;
+    clearTimeout(closeTimer);
+    const p=panelFor(key); if(!p) return;
+    panels.forEach(x=>{ if(x!==p){x.classList.remove('is-active','is-visible'); x.style.display='';} });
+    p.style.display= key==='search'?'block':'grid';
+    p.classList.add('is-active');
+    requestAnimationFrame(()=>{
+      fly.style.setProperty('--fly-h',p.scrollHeight+'px');
+      fly.dataset.open='true'; fly.setAttribute('aria-hidden','false'); curtain.classList.add('is-on');
+      requestAnimationFrame(()=>p.classList.add('is-visible'));
+    });
+    items.forEach(it=>{ const on=it.dataset.menu===key; it.classList.toggle('is-open',on); const t=it.matches('[aria-expanded]')?it:it.querySelector('[aria-expanded]'); if(t) t.setAttribute('aria-expanded',String(on)); });
+    openKey=key; lastTrigger=trigger||lastTrigger;
+    if(key==='search') setTimeout(()=>document.getElementById('gnSearchInput').focus(),80);
+  }
+  function close(restoreFocus){
+    if(!openKey) return;
+    const p=panelFor(openKey);
+    fly.dataset.open='false'; fly.setAttribute('aria-hidden','true'); curtain.classList.remove('is-on');
+    if(p){ p.classList.remove('is-visible'); setTimeout(()=>{ if(fly.dataset.open==='false'){ p.classList.remove('is-active'); p.style.display=''; } },380); }
+    items.forEach(it=>{ it.classList.remove('is-open'); const t=it.matches('[aria-expanded]')?it:it.querySelector('[aria-expanded]'); if(t) t.setAttribute('aria-expanded','false'); });
+    if(restoreFocus && lastTrigger) lastTrigger.focus();
+    openKey=null;
+  }
+  const scheduleClose=()=>{ clearTimeout(closeTimer); closeTimer=setTimeout(()=>close(false),200); };
+
+  function bind(it){
+    const key=it.dataset.menu, trigger=it.matches('a,button')?it:it.querySelector('a,button');
+    if(canHover && key!=='search'){
+      it.addEventListener('mouseenter',()=>{ clearTimeout(closeTimer); clearTimeout(hoverTimer); hoverTimer=setTimeout(()=>open(key,trigger),120); });
+      it.addEventListener('mouseleave',()=>{ clearTimeout(hoverTimer); scheduleClose(); });
+    }
+    trigger.addEventListener('click',e=>{
+      if(!isDesktop()) return;
+      if(trigger.tagName==='A' && key!=='search') return; /* click goes straight to the category page; hover opens the flyout */ /* second click follows the link */
+      e.preventDefault(); openKey===key?close(true):open(key,trigger);
+    });
+    trigger.addEventListener('keydown',e=>{ if(e.key==='Enter'||e.key===' '){ e.preventDefault(); openKey===key?close(true):open(key,trigger); } });
+  }
+
+  function buildNav(){
+    close(false); closeDrawer();
+    list.innerHTML=''; drawerRoot.innerHTML='';
+    const cfg=VARIANTS[variant];
+    cfg.items.forEach(([label,key,tier])=>{
+      const li=document.createElement('li'); li.className='gn-item'+(tier==='wide'?' gn-wide':''); li.dataset.menu=key;
+      li.innerHTML=`<a class="gn-link" href="${({"c-airpurifier":"air-purifier.html","c-beauty":"hair-styling-tools.html","c-chair":"ergonomic-chair.html","c-cushion":"ergonomic-cushion.html","c-heater":"water-heater.html","c-water":"water-purifier.html","c-dehum":"air-dehumidifier.html","c-pac":"portable-air-conditioner.html","c-cordless":"vacuum-cleaner.html","c-robot":"robot-vacuum.html","c-sport":"sport-gadgets.html","support":"support.html"})[key]||'#'+key}" role="menuitem" aria-haspopup="true" aria-expanded="false">${label}</a>`;
+      list.appendChild(li);
+      const dli=document.createElement('li'); dli.innerHTML=`<button data-sub="${key}">${label}</button>`; drawerRoot.appendChild(dli);
+    });
+    /* pillar strip inside each category flyout (variant B+A): siblings in the same pillar */
+    document.querySelectorAll('.gn-pillar-strip').forEach(e=>e.remove());
+    if(cfg.grouped){
+      const byPillar={}; panels.forEach(p=>{ if(p.dataset.pillar){ (byPillar[p.dataset.pillar]=byPillar[p.dataset.pillar]||[]).push(p); } });
+      const name=p=>p.querySelector('.gn-group.is-primary h3').textContent.replace(/^สำรวจ/,'').trim();
+      panels.forEach(p=>{ const pl=p.dataset.pillar; if(!pl) return; const strip=document.createElement('div'); strip.className='gn-pillar-strip';
+        strip.innerHTML=`<span class="lbl">อยู่ในกลุ่ม ${pl}</span>`+byPillar[pl].map(s=>`<a href="${({"c-airpurifier":"air-purifier.html","c-beauty":"hair-styling-tools.html","c-chair":"ergonomic-chair.html","c-cushion":"ergonomic-cushion.html","c-heater":"water-heater.html","c-water":"water-purifier.html","c-dehum":"air-dehumidifier.html","c-pac":"portable-air-conditioner.html","c-cordless":"vacuum-cleaner.html","c-robot":"robot-vacuum.html","c-sport":"sport-gadgets.html","c-filters":"air-purification-filters.html","support":"support.html"})[s.dataset.panel]||'#'}" ${s===p?'aria-current="true"':''}>${name(s)}</a>`).join('');
+        p.appendChild(strip); });
+    }
+    const dli=document.createElement('li'); dli.innerHTML='<button data-sub="store">ซื้อสินค้า</button>'; drawerRoot.appendChild(dli);
+    items=[...list.querySelectorAll('.gn-item'),...document.querySelectorAll('.gn-actions [data-menu]')];
+    items.forEach(bind);
+    drawerRoot.querySelectorAll('button[data-sub]').forEach(b=>b.addEventListener('click',()=>showSub(b.dataset.sub)));
+    applyLayout();
+  }
+  function applyLayout(){ body.classList.toggle('gn-mobile',!isDesktop()); if(!isDesktop()) close(false); else closeDrawer(); }
+
+  fly.addEventListener('mouseenter',()=>clearTimeout(closeTimer));
+  fly.addEventListener('mouseleave',()=>{ if(canHover && openKey!=='search') scheduleClose(); });
+  curtain.addEventListener('click',()=>close(false));
+  document.addEventListener('keydown',e=>{ if(e.key==='Escape'){ close(true); closeDrawer(); } });
+  document.addEventListener('focusin',e=>{ if(openKey && !nav.contains(e.target) && !fly.contains(e.target)) close(false); });
+  window.addEventListener('resize',applyLayout);
+
+  /* ---- Mobile drawer ---- */
+  const burger=document.getElementById('gnBurger'), drawer=document.getElementById('gnDrawer'), sub=document.getElementById('gnSubContent'), back=document.getElementById('gnBack');
+  function openDrawer(){ drawer.classList.add('is-open'); drawer.setAttribute('aria-hidden','false'); burger.setAttribute('aria-expanded','true'); burger.setAttribute('aria-label','ปิดเมนู'); body.classList.add('gn-lock'); }
+  function closeDrawer(){ drawer.classList.remove('is-open','is-sub'); drawer.setAttribute('aria-hidden','true'); burger.setAttribute('aria-expanded','false'); burger.setAttribute('aria-label','เปิดเมนู'); body.classList.remove('gn-lock'); }
+  function showSub(key){ const p=panelFor(key); if(!p) return; sub.innerHTML=''; [...p.querySelectorAll('.gn-group')].forEach(g=>sub.appendChild(g.cloneNode(true))); drawer.scrollLeft=0; drawer.classList.add('is-sub'); setTimeout(()=>{ back.focus({preventScroll:true}); drawer.scrollLeft=0; },380); }
+  burger.addEventListener('click',()=> drawer.classList.contains('is-open')?closeDrawer():openDrawer());
+  back.addEventListener('click',()=>drawer.classList.remove('is-sub'));
+  document.querySelector('.gn-actions [data-menu="store"]').addEventListener('click',()=>{ if(!isDesktop()){ openDrawer(); showSub('store'); } });
+
+  /* ---- Locked variant: B+A, Light bar ---- */
+  function setVariant(v){ variant=v; root.setAttribute('data-variant',v); buildNav(); }
+  setVariant('ba');
+})();
+</script>
+<script>
+(function(){
+  /* ---- Gallery carousel: centered slide, peeking neighbours ---- */
+  const vp=document.getElementById('gViewport'), track=document.getElementById('gTrack');
+  const slides=[...track.querySelectorAll('.g-slide')], dotsWrap=document.getElementById('gDots'), play=document.getElementById('gPlay');
+  const reduce=window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  let cur=0, timer=null, playing=!reduce;
+  const dots=slides.map((s,i)=>{ const b=document.createElement('button'); b.type='button'; b.setAttribute('role','tab'); b.setAttribute('aria-label','สไลด์ '+(i+1)); b.addEventListener('click',()=>{ go(i); restart(); }); dotsWrap.appendChild(b); return b; });
+  function go(i){
+    cur=(i+slides.length)%slides.length;
+    const s=slides[cur], offset=s.offsetLeft-(vp.clientWidth-s.offsetWidth)/2;
+    track.style.transform='translateX('+(-offset)+'px)';
+    slides.forEach((el,k)=>{ el.classList.toggle('is-current',k===cur); el.setAttribute('aria-hidden',String(k!==cur)); el.querySelectorAll('a').forEach(a=>a.tabIndex=k===cur?0:-1); });
+    dots.forEach((d,k)=>{ d.setAttribute('aria-selected',String(k===cur)); d.tabIndex=k===cur?0:-1; });
+  }
+  function start(){ stop(); if(playing) timer=setInterval(()=>go(cur+1),6000); }
+  function stop(){ if(timer){ clearInterval(timer); timer=null; } }
+  function restart(){ if(playing) start(); }
+  function setPlaying(p){ playing=p; play.dataset.state=p?'playing':'paused'; play.setAttribute('aria-label',p?'หยุดเล่นอัตโนมัติ':'เล่นอัตโนมัติ'); p?start():stop(); }
+  play.addEventListener('click',()=>setPlaying(!playing));
+  slides.forEach((s,k)=>s.addEventListener('click',e=>{ if(k!==cur){ e.preventDefault(); go(k); restart(); } }));
+  dotsWrap.addEventListener('keydown',e=>{ if(e.key==='ArrowRight'||e.key==='ArrowLeft'){ go(cur+(e.key==='ArrowRight'?1:-1)); dots[cur].focus(); restart(); } });
+  let x0=null;
+  vp.addEventListener('pointerdown',e=>{ x0=e.clientX; },{passive:true});
+  vp.addEventListener('pointerup',e=>{ if(x0===null) return; const dx=e.clientX-x0; x0=null; if(Math.abs(dx)>40){ go(cur+(dx<0?1:-1)); restart(); } },{passive:true});
+  vp.addEventListener('mouseenter',stop); vp.addEventListener('mouseleave',restart);
+  vp.addEventListener('focusin',stop); vp.addEventListener('focusout',restart);
+  window.addEventListener('resize',()=>go(cur));
+  if('IntersectionObserver' in window){ new IntersectionObserver(es=>es.forEach(en=>{ en.isIntersecting?restart():stop(); }),{threshold:.3}).observe(vp); }
+  go(0); setPlaying(playing);
+
+  /* ---- Footer directory: open columns on desktop, collapsed accordion on phones ---- */
+  const mq=window.matchMedia('(max-width:734px)'), det=[...document.querySelectorAll('.ft-dir details')];
+  function syncFt(){ det.forEach(d=>{ d.open=!mq.matches; }); }
+  syncFt(); mq.addEventListener('change',syncFt);
+  det.forEach(d=>d.querySelector('summary').addEventListener('click',e=>{ if(!mq.matches) e.preventDefault(); }));
+
+  /* ---- Reveal on scroll (class added only when JS + observer exist, so content is visible without JS) ---- */
+  if(!reduce && 'IntersectionObserver' in window){
+    const els=document.querySelectorAll('.hero-copy, .tile-copy, .gallery-title, .trust-item');
+    const io=new IntersectionObserver(es=>es.forEach(en=>{ if(en.isIntersecting){ en.target.classList.add('is-in'); io.unobserve(en.target); } }),{rootMargin:'0px 0px -8% 0px'});
+    els.forEach(el=>{ const r=el.getBoundingClientRect(); if(r.top<innerHeight){ return; } el.classList.add('reveal'); io.observe(el); });
+  }
+})();
+
+</script>
+
+
+
+
+</body></html>
