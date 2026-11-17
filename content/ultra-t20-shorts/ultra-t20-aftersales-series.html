@@ -1,0 +1,211 @@
+<title>T20 How-to Series</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Kanit:wght@400;500;600&family=Poppins:wght@500;600&display=swap">
+<style>
+/* Layout: one reading column; series sections with step cards in a 2-col grid that stacks on phones */
+:root{
+  --bg:#f5f8fb; --surface:#ffffff; --fg:#14222e; --muted:#5a6b79; --line:#d8e2ea;
+  --brand:#005D9D; --brand-soft:#e3eef7; --warn:#9a5b00; --warn-soft:#fff3df;
+  --a:#005D9D; --b:#2f7d5b; --c:#7a4fb0; --d:#b0472f;
+  --f-display:"Poppins","Kanit",system-ui,sans-serif;
+  --f-body:"Kanit",system-ui,"Noto Sans Thai",sans-serif;
+}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){
+  --bg:#0d1820; --surface:#13222d; --fg:#e4edf3; --muted:#9db0bf; --line:#24394a;
+  --brand:#5fb0e8; --brand-soft:#16334a; --warn:#f0b35a; --warn-soft:#33270f;
+  --a:#5fb0e8; --b:#6fcf9f; --c:#b996ea; --d:#ef8f78; color-scheme:dark}}
+:root[data-theme="dark"]{
+  --bg:#0d1820; --surface:#13222d; --fg:#e4edf3; --muted:#9db0bf; --line:#24394a;
+  --brand:#5fb0e8; --brand-soft:#16334a; --warn:#f0b35a; --warn-soft:#33270f;
+  --a:#5fb0e8; --b:#6fcf9f; --c:#b996ea; --d:#ef8f78; color-scheme:dark}
+*{box-sizing:border-box}
+body{background:var(--bg);color:var(--fg);font-family:var(--f-body);font-size:16px;line-height:1.65;
+  padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px))}
+.wrap{max-width:1000px;margin:0 auto;padding-block:32px 64px;display:grid;gap:40px}
+header{display:grid;gap:10px}
+.eyebrow{font-family:var(--f-display);font-size:12px;letter-spacing:.12em;text-transform:uppercase;color:var(--brand);font-weight:600}
+h1{font-family:var(--f-display);font-size:clamp(28px,5vw,40px);line-height:1.15;margin:0;text-wrap:balance}
+h2{font-size:22px;margin:0;text-wrap:balance}
+h3{font-size:17px;margin:0;line-height:1.35}
+p{margin:0;max-width:68ch}
+.note{background:var(--warn-soft);border-left:4px solid var(--warn);padding:12px 16px;border-radius:6px}
+.note strong{color:var(--warn)}
+section{display:grid;gap:14px}
+.tbl{overflow-x:auto;border:1px solid var(--line);border-radius:8px;background:var(--surface)}
+table{border-collapse:collapse;width:100%;min-width:600px;font-size:15px}
+th,td{text-align:left;vertical-align:top;padding:10px 12px;border-bottom:1px solid var(--line)}
+th{font-weight:500;color:var(--muted);font-size:13px;background:var(--brand-soft)}
+tr:last-child td{border-bottom:0}
+.series-head{display:flex;flex-wrap:wrap;align-items:baseline;gap:6px 14px;border-bottom:2px solid var(--sc);padding-bottom:6px}
+.series-head .tag{font-family:var(--f-display);font-weight:600;color:var(--sc)}
+.series-head .sub{color:var(--muted);font-size:14px}
+.sa{--sc:var(--a)} .sb{--sc:var(--b)} .sc{--sc:var(--c)} .sd{--sc:var(--d)}
+.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(min(100%,440px),1fr));gap:14px}
+.card{background:var(--surface);border:1px solid var(--line);border-radius:8px;padding:14px 16px;display:grid;gap:8px;align-content:start;min-width:0}
+.card .top{display:flex;gap:10px;align-items:baseline;flex-wrap:wrap}
+.id{font-family:var(--f-display);font-weight:600;color:var(--sc);font-size:14px}
+.len{font-size:13px;color:var(--muted);margin-left:auto;font-variant-numeric:tabular-nums}
+.hook{font-weight:500}
+.hook::before{content:"Hook: ";color:var(--muted);font-weight:400}
+ol{margin:0;padding-left:20px;display:grid;gap:2px;font-size:15px}
+.warn{font-size:14px;color:var(--warn)}
+.warn::before{content:"ระวัง: ";font-weight:600}
+.pending{font-size:14px;color:var(--muted)}
+.ph{background:var(--warn-soft);color:var(--warn);padding:0 4px;border-radius:3px}
+footer{color:var(--muted);font-size:13px}
+</style>
+
+<div class="wrap">
+<header>
+  <div class="eyebrow">How-to & After-sales · YouTube Shorts · Draft v1</div>
+  <h1>Bwell Ultra T20: คลิปสอนใช้งานและดูแลหลังการขาย 18 คลิป</h1>
+  <p>ทุกขั้นตอนอ้างอิงคู่มือผู้ใช้ Ultra T20 (EN+TH) ใช้สำหรับทีม Creator ถ่ายทำ และทีม CS ส่งลิงก์ตอบลูกค้า คลิปละ 30–45 วินาที แนวตั้ง 9:16</p>
+  <p class="note"><strong>ยังมีจุดรอยืนยัน</strong> ข้อความที่ไฮไลต์สีส้มคือข้อมูลที่ยังไม่มีแหล่งยืนยัน ห้ามถ่ายหรือใส่กราฟิกจนกว่าจะได้รับคำตอบ (ดูท้ายหน้า)</p>
+</header>
+
+<section>
+  <h2>โครงซีรีส์</h2>
+  <div class="tbl"><table>
+    <thead><tr><th>ซีรีส์</th><th>ชื่อ</th><th>เป้าหมาย</th><th>คลิป</th><th>ใช้ที่ไหน</th></tr></thead>
+    <tbody>
+      <tr><td>A. เริ่มใช้งาน</td><td>T20 Day 1</td><td>ติดตั้งและใช้ได้เอง ลดสายโทรถาม</td><td>4</td><td>Playlist + LINE OA หลังส่งของ + QR บนการ์ดรับประกัน</td></tr>
+      <tr><td>B. ใช้งานและตั้งค่า</td><td>T20 ใช้เป็นใน 1 นาที</td><td>ใช้ฟีเจอร์ครบ</td><td>4</td><td>Playlist + Shorts</td></tr>
+      <tr><td>C. ดูแลหลังการขาย</td><td>ดูแล T20 ง่าย ๆ</td><td>ยืดอายุเครื่อง ลดเคสเคลม</td><td>7</td><td>Playlist + LINE OA เตือนดูแลทุก 1 / 3 เดือน</td></tr>
+      <tr><td>D. แก้ปัญหาเบื้องต้น</td><td>T20 แก้ไขได้เอง</td><td>ลดเคส CS ที่แก้ได้เอง</td><td>3</td><td>ทีม CS ส่งลิงก์ตอบลูกค้า</td></tr>
+    </tbody>
+  </table></div>
+  <p>ผลิตก่อน: C9 ถังน้ำเสีย, C10 ถุงเก็บฝุ่น, C11 กล่องเก็บฝุ่นและไส้กรอง, D16 แท่นไม่ดูดฝุ่น/ไม่ล้างผ้าถู แล้วตามด้วยชุด A</p>
+  <p>End card ทุกคลิป: โลโก้ Bwell + "ดูคลิปดูแล T20 ทั้งหมด" + <span class="ph">[ลิงก์ Playlist]</span> + <span class="ph">[เบอร์ / LINE CS]</span></p>
+</section>
+
+<section class="sa">
+  <div class="series-head"><span class="tag">A</span><h2>เริ่มใช้งาน</h2><span class="sub">T20 Day 1</span></div>
+  <div class="grid">
+    <article class="card"><div class="top"><span class="id">A1</span><h3>แกะกล่อง T20 มีอะไรบ้าง</h3><span class="len">30 วิ</span></div>
+      <p class="hook">"แกะกล่องแล้ว อย่าเพิ่งกดเปิด ดูของให้ครบก่อน"</p>
+      <ol><li>หุ่นยนต์ 1 / แท่น All-in-One 1 / แปรงข้าง 1 / ผ้าถูพื้น 2 / แปรงทำความสะอาด 1 / คู่มือ 1</li><li>ถอดอุปกรณ์กันกระแทกบนหุ่นออก</li></ol>
+      <p class="warn">อุปกรณ์แต่ละล็อตอาจต่างกันเล็กน้อย ยึดตามของจริงที่ได้รับ</p></article>
+    <article class="card"><div class="top"><span class="id">A2</span><h3>ติดตั้งแท่นให้ถูกที่</h3><span class="len">45 วิ</span></div>
+      <p class="hook">"วางแท่นผิดที่ หุ่นกลับบ้านไม่ถูก"</p>
+      <ol><li>ชิดผนัง บนพื้นแข็งเรียบ (ไม้/กระเบื้อง)</li><li>เว้นซ้าย-ขวาอย่างน้อย 0.6 ม. ด้านหน้า 1.5 ม.</li><li>จุดที่ Wi-Fi แรง</li><li>กดแผ่นฐานทั้งสองข้าง แล้วกดตรงกลางจนคลิก</li><li>เสียบปลั๊ก ไฟสถานะติด</li></ol>
+      <p class="warn">มีน้ำค้างในท่อเล็กน้อยเป็นเรื่องปกติ แท่นผ่านการทดสอบน้ำจากโรงงาน</p></article>
+    <article class="card"><div class="top"><span class="id">A3</span><h3>ติดผ้าถู แปรงข้าง เติมน้ำ ชาร์จ</h3><span class="len">45 วิ</span></div>
+      <p class="hook">"4 อย่างที่ต้องทำก่อนใช้ครั้งแรก"</p>
+      <ol><li>ติดผ้าถูบนที่ยึดให้ตรงและแน่น</li><li>กดแปรงข้างลงแกนให้แน่น</li><li>ใส่ที่ยึดผ้าถูเข้าหุ่นจนคลิก</li><li>เติมน้ำประปาในถังน้ำสะอาด วางกลับ ไฟแท่นเป็นสีฟ้าค้าง</li><li>ชาร์จหุ่นให้เต็มก่อนใช้ครั้งแรก</li></ol>
+      <p class="warn">ห้ามเติมน้ำร้อน ถังอาจเสียรูป</p></article>
+    <article class="card"><div class="top"><span class="id">A4</span><h3>เชื่อมแอปและสร้างแผนที่</h3><span class="len">45 วิ</span></div>
+      <p class="hook">"ก่อนให้หุ่นทำความสะอาด ให้มันรู้จักบ้านก่อน"</p>
+      <ol><li>โหลดแอป Bwell (App Store / Google Play)</li><li>เชื่อมต่อเครือข่ายตาม Quick Start Guide</li><li>กด Quick Mapping หุ่นสแกนบ้านโดยไม่ทำความสะอาด</li><li>กลับแท่นแล้วแผนที่บันทึกอัตโนมัติ</li></ol>
+      <p class="warn">อัปเดตเฟิร์มแวร์ได้เมื่อแบตเกิน 30%</p></article>
+  </div>
+</section>
+
+<section class="sb">
+  <div class="series-head"><span class="tag">B</span><h2>ใช้งานและตั้งค่า</h2><span class="sub">T20 ใช้เป็นใน 1 นาที</span></div>
+  <div class="grid">
+    <article class="card"><div class="top"><span class="id">B5</span><h3>4 โหมดทำความสะอาด</h3><span class="len">45 วิ</span></div>
+      <p class="hook">"ดูดอย่างเดียว ถูอย่างเดียว หรือทั้งคู่ เลือกได้"</p>
+      <ol><li>ดูดฝุ่นและถูพื้น (ค่าเริ่มต้น)</li><li>ดูดอย่างเดียว ยกชุดม็อบขึ้นอัตโนมัติ</li><li>ดูดแล้วค่อยถู</li><li>ถูอย่างเดียว</li><li>Customize Mode ปรับแรงดูดและปริมาณน้ำถู</li></ol>
+      <p class="warn">เช็กว่าติดผ้าถูถูกต้องก่อนเริ่มทุกครั้ง</p></article>
+    <article class="card"><div class="top"><span class="id">B6</span><h3>เลือกห้อง เขตห้ามเข้า ตั้งเวลา</h3><span class="len">45 วิ</span></div>
+      <p class="hook">"สั่งทำแค่ห้องนั่งเล่น ไม่เข้าห้องนอนลูก"</p>
+      <ol><li>เลือกห้อง/พื้นที่บนแผนที่</li><li>ตีกรอบเขตห้ามเข้า เช่น มุมชามอาหารน้อง หรือพรม</li><li>ตั้งเวลาทำความสะอาด</li><li>ตั้ง Do Not Disturb ช่วงพักผ่อน</li></ol>
+      <p class="warn">ตั้งเวลาไม่ทำงานในช่วง DND และต้องมีแบตเกิน 20%</p></article>
+    <article class="card"><div class="top"><span class="id">B7</span><h3>ปุ่มบนตัวเครื่อง</h3><span class="len">30 วิ</span></div>
+      <p class="hook">"ไม่ได้ถือมือถือ ก็สั่งงานได้"</p>
+      <ol><li>กดค้างปุ่ม Power เพื่อเปิด/ปิด</li><li>กดปุ่มเริ่มทำความสะอาด</li><li>ระหว่างทำงาน กดปุ่มใดก็ได้เพื่อหยุดชั่วคราว</li><li>กดปุ่มกลับแท่น</li><li>หุ่นอยู่บนแท่น กดปุ่ม Home เพื่อสั่งล้างผ้าถูเอง</li></ol>
+      <p class="warn">ยกหุ่นที่หยุดชั่วคราวไปวางบนแท่นเอง จะจบงานรอบนั้นทันที</p></article>
+    <article class="card"><div class="top"><span class="id">B8</span><h3>ไฟแท่นสีแดง หมายความว่าอะไร</h3><span class="len">30 วิ</span></div>
+      <p class="hook">"ไฟแดงค้างที่แท่น ไม่ได้แปลว่าเครื่องเสีย"</p>
+      <ol><li>ถังน้ำสะอาดหมดหรือไม่เข้าที่</li><li>ถังน้ำเสียไม่เข้าที่</li><li>มีน้ำขังในถาด</li><li>เช็กทีละจุด ไฟกลับเป็นสีฟ้า</li></ol>
+      <p class="warn">แม้เครื่องปกติ ถ้าน้ำในถังสะอาดหมด ไฟก็แดงค้าง</p></article>
+  </div>
+</section>
+
+<section class="sc">
+  <div class="series-head"><span class="tag">C</span><h2>ดูแลหลังการขาย</h2><span class="sub">ดูแล T20 ง่าย ๆ</span></div>
+  <div class="grid">
+    <article class="card"><div class="top"><span class="id">C9</span><h3>เทและล้างถังน้ำเสีย</h3><span class="len">30 วิ</span></div>
+      <p class="hook">"ถังน้ำเสีย ทิ้งไว้นาน มีกลิ่น"</p>
+      <ol><li>ยกถังน้ำเสียออก เปิดฝา เทน้ำทิ้ง</li><li>เติมน้ำสะอาด ปิดฝา ล็อก เขย่า แล้วเทออก</li><li>เช็ดคราบด้านนอกด้วยผ้าแห้งนุ่ม</li><li>ใส่กลับ</li></ol>
+      <p class="warn">ใช้น้ำเย็นเท่านั้น / ทำหลังจบงาน และอย่างน้อยสัปดาห์ละครั้ง</p></article>
+    <article class="card"><div class="top"><span class="id">C10</span><h3>เปลี่ยนถุงเก็บฝุ่นที่แท่น</h3><span class="len">30 วิ</span></div>
+      <p class="hook">"ถุงฝุ่นเต็ม เปลี่ยนใน 10 วินาที ไม่ต้องจับฝุ่น"</p>
+      <ol><li>เปิดฝาครอบถุงเก็บฝุ่น</li><li>ดึงที่จับ ยกถุงออกแล้วทิ้ง</li><li>ใส่ถุงใหม่ ปิดฝาครอบให้สนิท</li></ol>
+      <p class="warn">ไม่ปิดฝาครอบ แท่นจะไม่ดูดฝุ่นอัตโนมัติ</p>
+      <p class="pending">สั่งถุงใหม่: ติดต่อสอบถามฝ่ายบริการหลังการขาย</p></article>
+    <article class="card"><div class="top"><span class="id">C11</span><h3>ล้างกล่องเก็บฝุ่นและไส้กรอง HEPA</h3><span class="len">45 วิ</span></div>
+      <p class="hook">"แรงดูดเหมือนลดลง? เช็กจุดนี้ก่อน"</p>
+      <ol><li>ยกฝาบนหุ่น กดปุ่มถอดกล่องเก็บฝุ่น</li><li>ใช้แปรงทำความสะอาดปัดด้านใน</li><li>ล้างน้ำได้ แต่ห้ามจุ่มทั้งกล่อง</li><li>ถอดไส้กรอง เคาะฝุ่น ล้างน้ำประปาถ้าจำเป็น</li><li>ผึ่งให้แห้งสนิท แล้วใส่กลับ</li></ol>
+      <p class="warn">ไส้กรองต้องแห้งสนิทก่อนใช้</p></article>
+    <article class="card"><div class="top"><span class="id">C12</span><h3>ถอดล้างแปรงหลักและแปรงข้าง</h3><span class="len">45 วิ</span></div>
+      <p class="hook">"เสียงดังผิดปกติ มักเป็นเพราะแปรงพัน"</p>
+      <ol><li>ปิดหุ่น พลิกด้านล่าง</li><li>กดสลักสองข้างของฝาครอบแปรงหลักเข้าหากันเบา ๆ</li><li>ดึงแปรงออก เอาผมและเศษที่พันออก รวมปลายแปรง</li><li>ใส่กลับพร้อมฝาครอบ</li><li>ดึงแปรงข้างขึ้น ทำความสะอาด กดกลับจนคลิก</li></ol>
+      <p class="warn">ฝาครอบแปรงหลักไม่เข้าที่ ประสิทธิภาพการดูดลดลง</p></article>
+    <article class="card"><div class="top"><span class="id">C13</span><h3>ล้างถาดทำความสะอาดที่แท่น</h3><span class="len">45 วิ</span></div>
+      <p class="hook">"จุดที่คนลืมล้าง แต่ทำให้แท่นมีกลิ่น"</p>
+      <ol><li>ถอดปลั๊กแท่นก่อน</li><li>ถอดถาดที่แถบถอดถาด</li><li>ล้างถาดและชุดกรองถาดด้วยน้ำ ใช้แปรงช่วยถ้าจำเป็น</li><li>เช็ดด้วยผ้าแห้งนุ่ม แล้วใส่กลับ</li></ol>
+      <p class="warn">ห้ามเช็ดตัวแท่นด้วยผ้าเปียกหรือราดน้ำ</p></article>
+    <article class="card"><div class="top"><span class="id">C14</span><h3>เช็ดเซนเซอร์ ล้อหน้า ขั้วชาร์จ</h3><span class="len">45 วิ</span></div>
+      <p class="hook">"หุ่นชนบ่อยหรือหาแท่นไม่เจอ ลองเช็ดตรงนี้"</p>
+      <ol><li>เช็ดเซนเซอร์ทั้งหมดด้วยผ้าแห้งนุ่ม</li><li>ใช้ไขควงปากแบนงัดล้อหน้า ทำความสะอาดล้อและช่อง กดกลับจนแน่น</li><li>เช็ดขั้วชาร์จของหุ่นและแท่นด้วยผ้าแห้ง</li></ol>
+      <p class="warn">ห้ามกด สอดของ หรือปรับ LiDAR / ห้ามผ้าเปียกที่ขั้วชาร์จ</p></article>
+    <article class="card"><div class="top"><span class="id">C15</span><h3>ตารางดูแลตามรอบ</h3><span class="len">45 วิ</span></div>
+      <p class="hook">"ดูแล T20 ตามรอบ ใช้ได้นาน"</p>
+      <ol><li>กราฟิกตาราง: ทุกครั้ง/สัปดาห์ > ทุกเดือน > ทุก 3–12 เดือน</li><li>โชว์หน้าสถานะอุปกรณ์เสริมในแอป</li></ol>
+      <p class="pending">ยืนยันแล้ว: ถังน้ำเสีย สัปดาห์ละครั้ง / ชิ้นส่วนอื่น <span class="ph">[รอตรวจตารางหน้า 22 ในคู่มือ]</span></p>
+      <p class="warn">แบตเตอรี่ HEPA และถุงเก็บฝุ่นที่เสื่อมตามปกติ ไม่อยู่ในประกัน</p></article>
+  </div>
+</section>
+
+<section class="sd">
+  <div class="series-head"><span class="tag">D</span><h2>แก้ปัญหาเบื้องต้น</h2><span class="sub">T20 แก้ไขได้เอง</span></div>
+  <div class="grid">
+    <article class="card"><div class="top"><span class="id">D16</span><h3>แท่นไม่ดูดฝุ่น / ไม่ล้างผ้าถู</h3><span class="len">45 วิ</span></div>
+      <p class="hook">"แท่นไม่ดูดฝุ่น ไม่ต้องรีบส่งซ่อม เช็ก 3 ข้อนี้"</p>
+      <ol><li>ไม่ดูดฝุ่น: ฟังก์ชันปิดในแอป / ไม่ได้ใส่ฝาครอบถุงฝุ่น / หุ่นกลับแท่นโดยไม่ได้ทำความสะอาดหรืออยู่ใน DND</li><li>ไม่ล้างผ้าถู: ถังน้ำสะอาดหมดหรือไม่เข้าที่ / ถังน้ำเสียเต็มหรือไม่เข้าที่ / รอบนั้นไม่ได้ถูพื้น</li><li>ไม่อบแห้ง: ฟังก์ชันปิด / เริ่มหลังถูหรือล้างผ้าเท่านั้น / สั่งเองในแอปได้</li></ol></article>
+    <article class="card"><div class="top"><span class="id">D17</span><h3>ตั้งเวลาไม่ทำงาน / ต่อ Wi-Fi ไม่ได้</h3><span class="len">45 วิ</span></div>
+      <p class="hook">"ตั้งเวลาไว้ แต่หุ่นไม่ออกมาทำงาน"</p>
+      <ol><li>ตั้งเวลาไม่ทำงาน: อยู่ในช่วง DND / แบตต่ำกว่า 20%</li><li>Wi-Fi: รีเซ็ต Wi-Fi / ย้ายไปจุดสัญญาณดี / อัปเดตแอป / รีเซ็ตเราเตอร์</li><li>กลับแท่นไม่ได้: สิ่งกีดขวางใกล้แท่น / หุ่นไกลเกินไป / เช็ดหัวเลเซอร์ด้วยผ้าแห้ง</li></ol></article>
+    <article class="card"><div class="top"><span class="id">D18</span><h3>ไม่ใช้นาน เก็บยังไง + การรับประกัน</h3><span class="len">30 วิ</span></div>
+      <p class="hook">"ไปเที่ยวยาว ๆ เก็บหุ่นยังไงให้แบตไม่เสื่อม"</p>
+      <ol><li>ชาร์จเต็ม ปิดเครื่อง เก็บที่เย็นและแห้ง</li><li>ชาร์จซ้ำอย่างน้อยทุก 3 เดือน ใช้งานที่ 0–45°C</li><li>ประกัน 1 ปี เก็บใบเสร็จและ S/N ลงทะเบียนที่ bwell.co.th/warranty</li></ol>
+      <p class="warn">เปลี่ยนแบตเตอรี่โดยช่างผู้เชี่ยวชาญเท่านั้น ไม่ทำคลิปสอนเปลี่ยนเอง</p></article>
+  </div>
+</section>
+
+<section>
+  <h2>กฎการผลิต</h2>
+  <div class="tbl"><table>
+    <thead><tr><th>หัวข้อ</th><th>กฎ</th></tr></thead>
+    <tbody>
+      <tr><td>ความปลอดภัย</td><td>ทุกขั้นตอนที่ถอดชิ้นส่วนแท่น ต้องโชว์ "ถอดปลั๊กก่อน" ในเฟรม</td></tr>
+      <tr><td>ตัวเลข</td><td>ใช้ตัวเลขจากคู่มือเท่านั้น ไม่ใส่ Pa / dB / กำลังไฟ</td></tr>
+      <tr><td>น้ำยา</td><td>ใช้เฉพาะน้ำยา Robot Cleaning ที่ Bwell แนะนำ / ห้ามโชว์แอลกอฮอล์ น้ำยาฆ่าเชื้อ หรือน้ำร้อน ในถังน้ำ</td></tr>
+      <tr><td>โลโก้</td><td>โชว์เฉพาะแบรนด์ Bwell ห้ามเห็นโลโก้ Mamibot ในเฟรม (เลี่ยงมุมกล้องหรือปิดทับ)</td></tr>
+      <tr><td>คำศัพท์</td><td>ใช้คำเดียวกับคู่มือภาษาไทย: ถังน้ำสะอาด / ถังน้ำเสีย / ถุงเก็บฝุ่น / ถาดทำความสะอาด</td></tr>
+      <tr><td>ชื่อแบรนด์</td><td>พูดว่า "Bwell Ultra T20" และ "แอป Bwell" เท่านั้น</td></tr>
+      <tr><td>ภาพ</td><td>เครื่องจริง มือจริง close-up ชัด ข้อความขั้นตอนอยู่ใน safe zone</td></tr>
+    </tbody>
+  </table></div>
+</section>
+
+<section>
+  <h2>รอยืนยันก่อนผลิต</h2>
+  <div class="tbl"><table>
+    <thead><tr><th>ประเด็น</th><th>สถานะ</th></tr></thead>
+    <tbody>
+      <tr><td>ชื่อแอป</td><td>ยืนยันแล้ว: แอป Bwell</td></tr>
+      <tr><td>โลโก้บนตัวเครื่อง</td><td>ยืนยันแล้ว: โชว์เฉพาะ Bwell</td></tr>
+      <tr><td>น้ำยาทำความสะอาด</td><td>ยืนยันแล้ว: Robot Cleaning</td></tr>
+      <tr><td>ช่องทางอะไหล่ T20</td><td>ยืนยันแล้ว: ติดต่อสอบถามฝ่ายบริการหลังการขาย</td></tr>
+      <tr><td>ตารางความถี่การดูแล หน้า 22 ของคู่มือ</td><td>ไฟล์ PDF อ่านเป็นตารางไม่ได้ ต้องเช็กหน้าจริง</td></tr>
+      <tr><td>เบอร์ / LINE ฝ่ายบริการหลังการขาย สำหรับ end card</td><td>รอยืนยัน (คู่มือระบุ (662) 294-3211)</td></tr>
+    </tbody>
+  </table></div>
+</section>
+
+<footer>แหล่งข้อมูล: Bwell Robot Ultra T20 User Manual (EN+TH) และ bwell.co.th · Bwell Marketing · 5 พ.ย. 2569</footer>
+</div>

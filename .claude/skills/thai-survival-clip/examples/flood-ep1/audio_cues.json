@@ -1,0 +1,103 @@
+[
+ {
+  "id": "vo",
+  "src": "assets/audio/vo.wav",
+  "start": 0,
+  "volume": 1,
+  "track": 4
+ },
+ {
+  "id": "music",
+  "src": "assets/audio/music_bed.wav",
+  "start": 0,
+  "volume": 1,
+  "track": 5,
+  "attrs": {
+   "automation": "{\"version\": 1, \"lanes\": [{\"target\": \"volume\", \"points\": [{\"t\": 0, \"v\": 0.14}, {\"t\": 50.6, \"v\": 0.14}, {\"t\": 51.2, \"v\": 0.03}, {\"t\": 53.8, \"v\": 0.03}, {\"t\": 54.3, \"v\": 0.17}, {\"t\": 65.8, \"v\": 0.17}, {\"t\": 65.9, \"v\": 0.0}, {\"t\": 66.2, \"v\": 0.0}, {\"t\": 66.8, \"v\": 0.1}, {\"t\": 68.0, \"v\": 0.0}]}]}"
+  }
+ },
+ {
+  "id": "rainbed",
+  "src": "assets/sfx/rain_bed.mp3",
+  "start": 0,
+  "volume": 0.16,
+  "track": 6
+ },
+ {
+  "id": "sfx-bub1",
+  "src": "assets/sfx/bubbles.wav",
+  "start": 14.3,
+  "volume": 0.5,
+  "track": 7
+ },
+ {
+  "id": "sfx-switch",
+  "src": "assets/sfx/switch.wav",
+  "start": 24.88,
+  "volume": 0.55,
+  "track": 7
+ },
+ {
+  "id": "sfx-bub2",
+  "src": "assets/sfx/bubbles.wav",
+  "start": 35.85,
+  "volume": 0.45,
+  "track": 7
+ },
+ {
+  "id": "sfx-key1",
+  "src": "assets/sfx/key-press.wav",
+  "start": 46.71,
+  "volume": 0.35,
+  "track": 8
+ },
+ {
+  "id": "sfx-key2",
+  "src": "assets/sfx/key-press.wav",
+  "start": 46.99,
+  "volume": 0.32,
+  "track": 9
+ },
+ {
+  "id": "sfx-key3",
+  "src": "assets/sfx/key-press.wav",
+  "start": 47.27,
+  "volume": 0.35,
+  "track": 8
+ },
+ {
+  "id": "sfx-key4",
+  "src": "assets/sfx/key-press.wav",
+  "start": 47.55,
+  "volume": 0.32,
+  "track": 9
+ },
+ {
+  "id": "sfx-whoosh",
+  "src": "assets/sfx/whoosh-cinematic.wav",
+  "start": 51.74,
+  "volume": 0.4,
+  "track": 7
+ },
+ {
+  "id": "sfx-hiss",
+  "src": "assets/sfx/hiss.wav",
+  "start": 60.69,
+  "volume": 0.5,
+  "track": 8
+ },
+ {
+  "id": "sfx-bub3",
+  "src": "assets/sfx/bubbles.wav",
+  "start": 64.35,
+  "volume": 0.55,
+  "track": 7
+ },
+ {
+  "id": "sfx-impact",
+  "src": "assets/sfx/impact-bass-1.wav",
+  "start": 65.83,
+  "volume": 0.7,
+  "track": 8
+ }
+]
