@@ -113,7 +113,7 @@ footer{padding-block:28px;color:var(--muted);font-size:13px}
 </style>
 
 <header class="top"><div class="wrap">
-  <div class="eyebrow">Bwell International · Marketing Strategy · v1.1 · อัปเดตตาม Key Message ผู้บริหาร 5 พ.ย. 2026</div>
+  <div class="eyebrow">Bwell International · Marketing Strategy · v1.2 · Key Message ผู้บริหาร 5 พ.ย. 2026 · ตรวจหลักฐาน claim 19 พ.ย. 2026</div>
   <h1>Key Message <b>Playbook</b></h1>
   <p class="lede">แนวทางสื่อสารชุดเดียวสำหรับทุกหมวดและทุก SKU ของ Bwell ไล่จากแบรนด์ลงไปถึงข้อความในแต่ละช่องทาง เพื่อให้ทีม Content, Performance, Trade Marketing, KOL และ Agency ใช้ข้อความชุดเดียวกัน</p>
 </div></header>
@@ -131,7 +131,8 @@ footer{padding-block:28px;color:var(--muted);font-size:13px}
 
 <section id="exec"><div class="wrap">
   <div><div class="eyebrow">02 · Executive direction · 5 พ.ย. 2026</div><h2>Key Message จากผู้บริหาร รายหมวด × ช่องทาง</h2>
-  <p class="lede">แนวทางนี้มาแทนข้อความเดิมของ 12 หมวด FB/IG และ TikTok ใช้ตามที่ผู้บริหารกำหนด ส่วน Marketplace, POSM, KOL และ LINE OA แตกต่อจาก key message ชุดเดียวกัน แถบ "ต้องยืนยันก่อนยิงจริง" คือหลักฐานที่ต้องแนบก่อนขึ้นแอดหรือ Marketplace</p></div>
+  <p class="lede">แนวทางนี้มาแทนข้อความเดิมของ 12 หมวด FB/IG และ TikTok ใช้ตามที่ผู้บริหารกำหนด ส่วน Marketplace, POSM, KOL และ LINE OA แตกต่อจาก key message ชุดเดียวกัน ทุก claim ตรวจหลักฐานแล้วเมื่อ 19 พ.ย. 2026 (bwell.co.th, Google Drive, Product Master, NSF listing) คอลัมน์ Key Message คือ<b>คำที่ใช้ได้จริง</b> ส่วนคำต้นฉบับของผู้บริหารแสดงเป็นตัวเล็กด้านล่าง ข้อความใน [วงเล็บเหลี่ยม] คือช่องรอเอกสาร ห้ามใส่ใน copy จนกว่าจะได้หลักฐาน</p></div>
+  <div class="tablebox"><table><thead><tr><th>ผลตรวจ</th><th>ความหมาย</th></tr></thead><tbody id="evlegend"></tbody></table></div>
   <div class="tablebox"><table><thead><tr><th>หมวด</th><th>Key Message</th><th>SKU ที่เน้น</th><th>FB/IG</th><th>TikTok</th></tr></thead><tbody id="execbody"></tbody></table></div>
   <div id="execcards" class="grid2"></div>
 </div></section>
@@ -214,7 +215,9 @@ secs.forEach(([id]) => io.observe(document.getElementById(id)));
 // summary
 const skus = D.skus;
 const counts = {}; skus.filter(s=>s.focus).forEach(s => { const p = s.push.replace(/^(FOCUS 5 พ.ย.|นอก Focus[^·]*) · /, ''); const k = /HOLD/.test(p) ? 'HOLD' : /FIX/.test(p) ? 'FIX' : /BUNDLE/.test(p) ? 'BUNDLE' : /DO NOT/.test(p) ? 'LEGACY' : /^PUSH/.test(p) ? 'PUSH' : 'MAINTAIN'; counts[k]=(counts[k]||0)+1; });
+const E = D.exec;
 const sum = [
+  ['ตรวจหลักฐาน 19 พ.ย.', `Claim ผู้บริหาร ${E.reduce((n,e)=>n+e.evidence.length,0)} ข้อ: OK ${E.flatMap(e=>e.evidence).filter(x=>x[1]==='OK').length} · ปรับคำ ${E.flatMap(e=>e.evidence).filter(x=>x[1]==='ADJUST').length} · หยุดใช้ ${E.flatMap(e=>e.evidence).filter(x=>x[1]==='STOP').length} · รอเอกสาร ${E.flatMap(e=>e.evidence).filter(x=>x[1]==='PENDING').length} · copy ทุก Focus SKU ใช้คำที่ผ่านตรวจแล้ว`],
   ['อัปเดต 5 พ.ย. (ผู้บริหาร)', `Key message ใหม่ <b>12 หมวด</b> · Focus <b>${skus.filter(x=>x.focus).length}</b> รุ่น · FB/IG เน้น <b>3D โชว์เทคโนโลยี</b> · TikTok เน้น <b>บรรยายสรรพคุณ / สาธิต / โชว์การทำงานจริง</b>`],
   ['Positioning', 'Bwell = <b>Total Wellness</b> (แบรนด์แม่) แบ่งเป็น 2 ร่ม: <b>Home Environment Wellness</b> (Air · Water · Clean Home) และ <b>Personal Wellness</b> (Body)'],
   ['Scope', `<b>${skus.length}</b> รุ่น (เครื่องหลัก) ใน <b>13</b> หมวด · ${D.channels.length} ช่องทาง · ไม่รวมไส้กรอง/อะไหล่ (ให้ LINE OA ดูแลเป็น After-sales) และ BRITA`],
@@ -223,11 +226,13 @@ const sum = [
   ['สถานะ Focus SKU (39)', `Push ${counts.PUSH||0} · Bundle/ระบายสต็อก ${counts.BUNDLE||0} · Hold (สต็อกต่ำ) ${counts.HOLD||0} · แก้หน้าเว็บก่อน ${counts.FIX||0} · Maintain ${counts.MAINTAIN||0} · Legacy ${counts.LEGACY||0}`],
 ];
 $('#sumcards').innerHTML = sum.map(([k,v]) => `<div class="panel"><div class="eyebrow">${k}</div><p>${v}</p></div>`).join('');
-const E = D.exec;
-$('#execbody').innerHTML = E.map(e => `<tr><td><b>${esc(e.name)}</b></td><td>${e.km.map((k,i)=>`${i+1}) ${esc(k)}`).join('<br>')}</td><td>${e.focus.map(esc).join(', ')}${e.series.length?`<div class="note">${e.series.map(esc).join('<br>')}</div>`:''}</td><td>${esc(e.fbig)}</td><td>${esc(e.tt)}</td></tr>`).join('');
+const evCls = Object.fromEntries(D.evidence_legend.map(r=>[r[0],r[2]]));
+$('#evlegend').innerHTML = D.evidence_legend.map(r => `<tr><td><span class="pill ${r[2]}">${r[0]}</span></td><td>${esc(r[1])}</td></tr>`).join('');
+$('#execbody').innerHTML = E.map(e => `<tr><td><b>${esc(e.name)}</b></td><td>${e.km.map((k,i)=>`${i+1}) ${esc(k)}`).join('<br>')}<div class="note">ต้นฉบับผู้บริหาร: ${e.km_exec.map(esc).join(' · ')}</div></td><td>${e.focus.map(esc).join(', ')}${e.series.length?`<div class="note">${e.series.map(esc).join('<br>')}</div>`:''}</td><td>${esc(e.fbig)}</td><td>${esc(e.tt)}</td></tr>`).join('');
 $('#execcards').innerHTML = E.map(e => `<div class="panel"><div class="cat-head"><h4>${esc(e.name)}</h4><span class="pill info">ช่องทางอื่น</span></div>
   <dl class="kv" style="margin-top:10px"><dt>Marketplace</dt><dd>${esc(e.mp)}</dd><dt>POSM</dt><dd>${esc(e.posm)}</dd><dt>KOL</dt><dd>${esc(e.kol)}</dd><dt>LINE OA</dt><dd>${esc(e.line)}</dd></dl>
-  <p class="dont" style="margin-top:10px"><b>ต้องยืนยันก่อนยิงจริง:</b></p><ul class="rtb dont">${e.flags.map(f=>`<li>${esc(f)}</li>`).join('')}</ul></div>`).join('');
+  <p style="margin-top:10px"><b>ผลตรวจหลักฐาน (${esc(D.evidence_date)})</b></p><ul class="specs">${e.evidence.map(([c,v,r,s])=>`<li><span><b style="display:inline;font-family:inherit;font-size:inherit;color:var(--ink)">${esc(c)}</b><br>${esc(r)}<br><span class="note">${esc(s)}</span></span><span class="pill ${evCls[v]}">${v}</span></li>`).join('')}</ul>
+  <p class="dont" style="margin-top:10px"><b>ต้องทำต่อ:</b></p><ul class="rtb dont">${e.flags.map(f=>`<li>${esc(f)}</li>`).join('')}</ul></div>`).join('');
 $('#open').innerHTML = D.open.map(r => `<tr><td><b>${esc(r[0])}</b></td><td>${esc(r[1])}</td><td class="nowrap">${esc(r[2])}</td></tr>`).join('');
 
 // brand house
